@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{cite}
+\usepackage{tikz}
+\usepackage{empheq}
+\usepackage{bm}
+\usepackage{slashed}
+\usepackage{pxfonts}
+\usepackage{bm}
+\usepackage{graphicx}
+
+
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{8.5in}
+\setlength{\oddsidemargin}{-0.15in}
+\setlength{\topmargin}{0.0in}
+
+\title{A novel form for Fermi distribution}
+\author{Cheng Tao Yang, Martin Formanek and Johann Rafelski\\
+{\small Department of Physics, The University of Arizona, Tucson, AZ 85721}}
+\date{\today}
+
+\begin{document}
+\maketitle
+We have empirically identified the following novel way to state the form of the Fermi distribution. We obtained this form seeking to carry out cosmological computations involving shift in behavior from high to very low-$T$ physics 
+\begin{equation}\label{NFF1}
+F\equiv \frac{1}{e^{ (E-E_F)/T} +1}=%{\exp((E-E_F)/T) + 1} = 
+\Theta(E_F - E) +  e^{ - |E-E_F|/T } %exp\left(-\frac{|E-E_F|}{T}\right)
+\; \left[\frac{1}{2}\mathrm{sgn}\left({E-E_F}\right) 
+ +\frac{1}{2}\tanh\left(\frac{E-E_F}{2T}\right)\right]
+\end{equation}
+Note also that the expression in square bracket is a modified form of the sign-function which interpolates between $-1,+1$ for $x\pm \infty$ with a half-unit-sized jump at origin.  We note  that the right hand side (RHS) of Eq.\,(\ref{NFF1}) comprises several non-analytical functions also called distributions. On first sight it is hard to believe that  these   cancel to create the analytical Fermi function format seen on the left hand side (LHS). However, {\bf magic happens} as we demonstrate now. 
+
+To see this we need to remember a few properties of singular functions we will use: 
+\begin{align}\label{NFF2a}
+\mathrm{sgn}(x)&%\equiv \frac{d|x|}{dx}
+\equiv  \frac{|x|}{x}\equiv \frac{x}{|x|}\;,
+   \quad \mathrm{sgn}(0)=0\\[8pt]
+ \label{NFF2b}
+ \mathrm{sgn}(x)&=2\Theta(x)-1\;,\\[8pt]
+\label{NFF2c}
+ &\Theta(x)+\Theta(-x)=1\;.
+ \end{align}
+ These relations  imply that at the $0$-point \underline{our step function  $\theta(x)$} obeys:
+ \begin{equation}\label{NFF3}
+ \theta(0)=1/2\;.%,\qquad \frac{d\mathrm{sgn}(x)}{dx}=2\frac{d\Theta(x)}{dx}=2\delta(x)\;. 
+ \end{equation}
+Note that any combination of distributions including powers are a new distribution requiring new careful investigation and cannot be simply set to be  equal to the simple product/power of values. Therefore we must avoid computations with powers of distributions - else we succumb to Mathematica which says that $\Theta(0)=$\,undefined or Wikipedia writers who did not take appropriate class in college. We will need just one complicated expression:
+\begin{equation}\label{NFFa1}
+\mathrm{sgn}^{2}(x)\sinh(x)=\sinh(x)\;.
+ \end{equation}
+This is so since $\sinh(x)$  vanishes  at $x=0$ thus we need not worry what value to assign to $\mathrm{sgn}^{2}(x)$ at $x=0$.  
+
+With the singular function properties as given  we see that at $x=0$, that is at  $E=E_F$ both LHS and RHS of Eq.\,(\ref{NFF1}) are equal to $1/2$ and in the first derivative of the   RHS the two $\delta(x)$-terms 
+\begin{equation}\label{NFF1b}
+\frac{d\Theta(E_F-E)}{dE}=-\delta(E_F-E)\;,\qquad 
+\frac{d\mathrm{sgn}(E -E_F)}{dE}=-2\delta(E-E_F)\;, 
+ \end{equation}
+cancel exactly as required, since there is no $\delta(x)$ on LHS. This encourages us to believe that all of singular expressions cancel. We now show this. 
+
+To shorten notation we set from now on
+\begin{equation}
+A = \frac{x}{T}= \frac{E-E_F}{T}
+\end{equation}
+We proceed replacing 
+ \begin{equation}\label{NFF4}
+\Theta(-x)=\frac 1 2 (1-\mathrm{sgn}(x))\;,\qquad 
+e^{-|A|}=\cosh|A|-\sinh|A|=\cosh A- \mathrm{sgn}(x)\sinh A\;.
+\end{equation}
+We obtain
+ \begin{equation}\label{NFF5}
+ F=\frac 1 2 +\left(\cosh A- \mathrm{sgn}(x)\sinh A -1\right)\frac 1 2 \mathrm{sgn}(x)
+ +\left(\cosh A- \mathrm{sgn}(x)\sinh A \right)\frac 1 2\tanh A/2\;.
+\end{equation}
+We now collect all regular and irregular terms in $F_R, F_I$ respectively, remembering Eq.\,(\ref{NFFa1})
+ \begin{align}\label{NFF5a}
+ F_R=& \frac 1 2 \left(1-\sinh A +\cosh A \tanh A/2\right) \\
+ F_I=& \mathrm{sgn}(x) \frac 1 2 \left(\cosh A-1 - \sinh A \tanh A/2\right)
+ \label{NFF5b}
+\end{align}
+Substituting in $F_I$: $\cosh A-1= 2\sinh^2 A/2$, and $\sinh A=2 \sinh A/2 \cosh A/2$ we find that the irregular part  $F_I$ vanishes as an identity! 
+
+This of course means that the regular part must be  Fermi function. We show this by brute force
+\begin{align}\label{NFF5c}
+2 F_R=&  1-\frac 1 2 e^A + \frac 1 2 e^{-A}+\frac 1 2 \frac{(e^A+e^{-A})(e^A-1)}{e^A+1}\\[0.4cm]
+  =&\frac{1-\frac 12 e^A+\frac 12 e^{-A}+e^A -\frac 1 2 e^{2A}+\frac 12 +\frac 12  e^{2A}+\frac 1 2-\frac 12 e^A-\frac 1 2 e^{-A}}{e^A+1}=2F\;.
+ \label{NFF5d}
+\end{align}
+This completes the demonstration of the exact validity of  Eq.\,(\ref{NFF1}). Since this exact relation is so surprising, we did verify it  numerically to see that all singularities on RHS  of  Eq.\,(\ref{NFF1}) cancel exactly, all \lq jumps\rq\ are always precisely compensated.\\
+
+ 
+{\bf However, is this really a novel form or are we rediscovering the wheel?} It is hard to believe that such a relatively simple and superbly useful textbook expression allowing to study $T\to 0$ precisely   has not been discovered before. It is not found in any of our textbooks.
+ 
+
+\end{document}
