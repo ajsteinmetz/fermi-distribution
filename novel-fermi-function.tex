@@ -129,12 +129,13 @@ Our interest and motivations in studying the Fermi-Dirac distribution were to pe
 \label{NFF1}
 \begin{split}
 f_\mathrm{FD}(x)
-&=\left[\exp(x)+1\right]^{-1}\\
+&=\left[e^{x}+1\right]^{-1}\\
 &=\Theta(-x)+\frac{1}{2}e^{-|x|}\left[\sgn(x)+\tanh(x/2)\right]\,,\quad
 x\equiv\frac{E-\widetilde\mu}{T}\,,
 \end{split}
 \end{align}
 \begin{align}
+\label{NFF2}
 \Theta(x)=\left\{
 \begin{array}{r}
 1,\quad\mathrm{for}\quad{x}>0\\
@@ -148,82 +149,65 @@ x\equiv\frac{E-\widetilde\mu}{T}\,,
 -1,\quad\mathrm{for}\quad{x}<0\\
 \end{array}\right.\,,
 \end{align}
-where $\Theta(x)$ is the Heaviside step function and $\sgn(x)$ is the sign function. The first term in \req{NFF1} represents the zero temperature portion of the FD distribution while the finite temperature terms are weighted by a decaying exponential function.
+where $\Theta(x)$ is the Heaviside step function and $\sgn(x)$ is the sign function. The first term in \req{NFF1} represents the zero temperature portion of the FD distribution while the finite temperature terms are weighted by a decaying exponential function. The immediate benefit of this form is that numerical evaluations will naturally center around the Fermi surface of the system with finite temperature contributions exponentially weighted.
 
-We note that the right hand side (RHS) of \req{NFF1} comprises of distributions rather than analytical functions\ar. On first sight, it is difficult to see that these cancel to create the analytical FD function seen on the left hand side (LHS) of \req{NFF1}. In the following section, we will show that both sides are truly equal.
+We note that the right hand side (RHS) of \req{NFF1} comprises of distributions rather than analytical functions~\cite{arfken_2011}. On first sight, it is difficult to see that these cancel to create the analytical FD function seen on the left hand side (LHS) of \req{NFF1}. In the following section, we will show that both sides are truly equivalent.
 
 \subsection{Mathematical proof}
-To demonstrate the novel form of Fermi distribution in \req{NFF1}, we will use the following properties of the $\sgn(x)$ function
-\begin{align}\label{NFF2a}
-\sgn(x)\equiv\frac{|x|}{x}\equiv\frac{x}{|x|}\;,\qquad
-\sgn(x)=2\Theta(x)-1\;.
-\end{align}
-For the step function we also note
+Considering the sign and step function properties given in \req{NFF2}, we see that \req{NFF1} is equal to $1/2$ when $x=0$. This is the expected behavior of the FD distribution when the energy is equal to the chemical potential. To further demonstrate that \req{NFF1} is indeed the FD distribution, we will use the following properties of the sign and step functions
 \begin{align}
-\label{NFF2c}
-\Theta(x)+\Theta(-x)=1\;.
+\label{NFF2a}
+\sgn(x)\equiv\frac{|x|}{x}\equiv\frac{x}{|x|}\,,\quad
+\sgn(x)=2\Theta(x)-1\,,\quad
+\Theta(x)+\Theta(-x)=1\,.
 \end{align}
-Lastly, we write the following trigonometry expression
-\begin{equation}\label{NFFa1}
-\sgn^{2}(x)\sinh(x)=\sinh(x)\;.
+We also write the following hyperbolic expression
+\begin{equation}
+\label{NFFa1}
+\sgn^{2}(x)\sinh(x)=\sinh(x)\,.
 \end{equation}
-Because $\sinh(0)=0$ vanishes, we will not worry about what value to assign $\sgn^{2}(0)$.  
+\req{NFFa1} is useful because while $\sgn^{2}(0)$ has an indeterminate value, $\sinh(0)=0$ vanishes; therefore we will not worry about this indeterminacy at the origin.
 
-To shorten the notations we define variables as follow
+Using \req{NFF2a}, we replace the step function and exponential functions in \req{NFF1} with the following expressions
 \begin{align}
-x^\prime=E-\widetilde\mu,\qquad A = \frac{x^\prime}{T}= \frac{E-\widetilde\mu}{T}
+\label{NFF4}
+&\Theta(-x)=\frac 1 2 (1-\sgn(x))\,,\\ 
+&e^{-|x|}=\cosh|x|-\sinh|x|=\cosh(x)- \sgn(x)\sinh(x)\,.
 \end{align}
-with these new notations the Fermi function can be written as
+Therefore we can rewrite the FD distribution \req{NFF1} as
 \begin{align}
-f=\Theta(-x^\prime)+e^{-|A|}\left[\frac{1}{2}\sgn\left(x^\prime\right) 
-+\frac{1}{2}\tanh\left(A\right)\right]
+\begin{split}
+\label{NFF4a}
+f_\mathrm{FD}(x)&=\frac{1}{2}\left[1-\sinh(x)+\cosh(x)\tanh(x/2)\right]\\
+&+\frac{1}{2}\sgn(x)\left[\cosh(x)-1-\sinh(x)\tanh(x/2)\right]\,.
+\end{split}
 \end{align}
-Replacing the step function and exponential function as  follow
-\begin{align}\label{NFF4}
-&\Theta(-x^\prime)=\frac 1 2 (1-\sgn(x^\prime))\;,\\ 
-&e^{-|A|}=\cosh|A|-\sinh|A|=\cosh A- \sgn(x^\prime)\sinh A\;.
-\end{align}
-then the Fermi distribution function becomes
+Using the properties of the hyperbolic functions
 \begin{align}
-f=\frac{1}{2} &+\left[\cosh {A}- \sgn(x^\prime)\sinh{A} -1\right]\frac{1}{2} \sgn(x^\prime)\notag\\
-&\qquad\qquad\qquad+\left[\cosh{A}- \sgn(x)\sinh{A} \right]\frac{1}{2}\tanh{(A/2)}\;.
+\cosh(x)-1=2\sinh^2(x/2)\,,\qquad
+\sinh(x)=2\sinh(x/2)\cosh(x/2)\,,
 \end{align}
-Using the properties of singular function  Eq.\,(\ref{NFFa1}), the distribution function can be written as
+\req{NFF4a} then simplifies to
 \begin{align}
-f=f_R+f_I
+\begin{split}
+\label{NFF4b}
+f_\mathrm{FD}(x)
+&=\frac{1}{2}\left[1-\sinh(x)+\cosh(x)\tanh(x/2)\right]\,,\\
+&=\frac{1}{2}\left[1-\tanh(x/2)\right]\,,\\
+&=\left[e^{x}+1\right]^{-1}\,,
+\end{split}
 \end{align}
-where $f_R$ and $f_I$ represent regular and irregular part of distribution respectively. We have
-\begin{align}\label{NFF5a}
-f_R=& \frac{1}{2}\left(1-\sinh A +\cosh A \tanh (A/2)\right) \\
-f_I=& \sgn(x) \frac{1}{2} \left(\cosh A-1 - \sinh A \tanh (A/2)\right)
-\label{NFF5b}
-\end{align}
+which is just the original FD distribution written in the usual manner \req{f_old}.
 
-For the irregular part $f_I$, we use the properties of hyperbolic functions
+Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
 \begin{align}
-\cosh A-1= 2\sinh^2(A/2), \qquad\sinh A=2 \sinh(A/2) \cosh(A/2)
+\label{NFF1b}
+\frac{d}{dx}\Theta(-x)&=-\delta(x)\,,\qquad 
+\frac{d}{dE}\Theta(-x)=-\frac{1}{T}\delta(x)\,,\\
+\frac{d}{dx}\sgn(x)&=-2\delta(x)\,,\,\,\quad 
+\frac{d}{dE}\sgn(x)=-\frac{2}{T}\delta(x)\,,
 \end{align}
-then it can be written as
-\begin{align}
-f_I&=\sgn(x) \frac{1}{2} \left[ 2\sinh^2(A/2) - 2 \sinh(A/2) \cosh(A/2) \tanh (A/2)\right]\\
-&=\sgn(x) \frac{1}{2}\left[2\sinh^2(A/2)-2\sinh^2(A/2)\right]\\
-&=0
-\end{align}
-we show that the irregular part $f_I$ vanishes as an identity. On the other hand, the regular part $f_R$ can be simplified as below:
-\begin{align}
-f_R&=\frac{1}{2}\left[1-\frac{1}{2}\left(e^A-e^{-A}\right)+\frac{1}{2}\left(e^A+e^{-A}\right)\frac{e^A-1}{e^A+1}\right]\\
-&=\frac{1}{2(e^A+1)}\left[\left(e^A+1\right)-\frac{1}{2}\left[\left(e^A+1\right)\left(e^A-e^{-A}\right)-\left(e^A-1\right)\left(e^A+e^{-A}\right)\right]\right]\\
-&=\frac{1}{2(e^A+1)}\left[\left(e^A+1\right)-\left(e^A-1\right)\right]\\
-&=f
-\end{align}
-
-
-Finally, we consider the LHS and RHS of Eq.\,(\ref{NFF1}) at $x=0$. With the singular function properties as given we see that at $x=0$ both LHS and RHS of Eq.\,(\ref{NFF1}) are equal to $1/2$ and in the first derivative of the  RHS the two $\delta(x)$-terms 
-\begin{align}\label{NFF1b}
-\frac{d\Theta(\widetilde\mu-E)}{dE}=-\delta(\widetilde\mu-E)\;,\qquad 
-\frac{d\sgn(E -\widetilde\mu)}{dE}=-2\delta(E-\widetilde\mu)\;, 
-\end{align}
-cancel exactly as required, since there is no $\delta(x)$ on LHS. This encourages us to believe that all of singular expressions cancel. This completes the demonstration of the exact validity of  Eq.\,(\ref{NFF1}). 
+both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}. 
 
 \subsection{Numerical illustration}
 In Fig.~\ref{Fermi_Checking} we plot the exact Fermi-distribution (LHS of Eq.~(\ref{NFF1}) with solid lines and novel form of Fermi-distribution (RHS of Eq.~(\ref{NFF1})) with dashed lines as a function of energy with different parameters. It demonstrate that 
