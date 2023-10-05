@@ -204,10 +204,10 @@ Lastly, we check that the properties of the first derivative of \req{NFF1} are i
 \label{NFF1b}
 \frac{d}{dx}\Theta(-x)&=-\delta(x)\,,\qquad 
 \frac{d}{dE}\Theta(-x)=-\frac{1}{T}\delta(x)\,,\\
-\frac{d}{dx}\sgn(x)&=-2\delta(x)\,,\,\,\quad 
-\frac{d}{dE}\sgn(x)=-\frac{2}{T}\delta(x)\,,
+\frac{d}{dx}\sgn(x)&={\color{red}2\delta(x)}\,,\,\,\quad 
+\frac{d}{dE}\sgn(x)={\color{red}\frac{2}{T}\delta(x)}\,,
 \end{align}
-both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}. 
+both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} {\color{red} at $x=0$} exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}. 
 
 \subsection{Numerical illustration}
 In Fig.~\ref{Fermi_Checking} we plot the exact Fermi-distribution (LHS of Eq.~(\ref{NFF1}) with solid lines and novel form of Fermi-distribution (RHS of Eq.~(\ref{NFF1})) with dashed lines as a function of energy with different parameters. It demonstrate that 
