@@ -16,6 +16,16 @@
 \usepackage{algpseudocode}%
 \usepackage{listings}%
 
+% Make Orcid icon
+\newcommand{\orcidicon}{\includegraphics[width=0.32cm]{orcid.pdf}}
+\newcommand{\orc}[1]{\href{https://orcid.org/#1}{\orcidicon}}
+
+% Author Orcid ID: Define per author
+\newcommand{\orcA}{0000-0001-8217-1484}
+\newcommand{\orcB}{0000-0001-5038-8427}
+\newcommand{\orcC}{0000-0001-5474-2649}
+\newcommand{\orcD}{0000-0003-2704-6474}
+
 % List of useful macros
 \newcommand{\req}[1]{Eq.~(\ref{#1})}
 \newcommand{\rf}[1]{Fig.~{\ref{#1}}}
@@ -62,10 +72,10 @@
 %%                 \dgr{MSc, PhD}}\email{iauthor@gmail.com}
 %%=============================================================%%
 
-\author[1]{\fnm{}\sur{Cheng Tao Yang}}
-\author[1,2]{\fnm{} \sur{Martin Formanek}}
-\author[1]{\fnm{} \sur{Andrew Steinmetz}} 
-\author[1]{\fnm{and} \sur{Johann Rafelski}}
+\author[1]{\fnm{Cheng Tao} \sur{Yang\orc{\orcB}}}
+\author[1,2]{\fnm{Martin} \sur{Formanek\orc{\orcD}}}
+\author[1]{\fnm{Andrew} \sur{Steinmetz\orc{\orcC}}} 
+\author[1]{\fnm{Johann} \sur{Rafelski\orc{\orcA}}}
 %\email{iiiauthor@gmail.com}
 %\equalcont{These authors contributed equally to this work.}
 
@@ -204,14 +214,13 @@ Lastly, we check that the properties of the first derivative of \req{NFF1} are i
 \label{NFF1b}
 \frac{d}{dx}\Theta(-x)&=-\delta(x)\,,\qquad 
 \frac{d}{dE}\Theta(-x)=-\frac{1}{T}\delta(x)\,,\\
-\frac{d}{dx}\sgn(x)&={\color{red}2\delta(x)}\,,\,\,\quad 
-\frac{d}{dE}\sgn(x)={\color{red}\frac{2}{T}\delta(x)}\,,
+\frac{d}{dx}\sgn(x)&=2\delta(x)\,,\,\,\quad 
+\frac{d}{dE}\sgn(x)=\frac{2}{T}\delta(x)\,,
 \end{align}
-both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} {\color{red} at $x=0$} exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}. 
+both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} at $x=0$ exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}. 
 
 \subsection{Numerical illustration}
-In Fig.~\ref{Fermi_Checking} we plot the exact Fermi-distribution (LHS of Eq.~(\ref{NFF1}) with solid lines and novel form of Fermi-distribution (RHS of Eq.~(\ref{NFF1})) with dashed lines as a function of energy with different parameters. It demonstrate that 
-LHS and RHS of Eq.~(\ref{NFF1}) are equivalent to each other numerically.
+In addition to our mathematical derivation, we also present a graphical check to show that the novel expression for the distribution is well behaved numerically. In \rf{Fermi_Checking} we plot the traditional expression for the Fermi-distribution (\req{f_old}) with solid lines and the novel form of Fermi-distribution (\req{NFF1}) with dashed lines as a function of energy for various temperatures and chemical potential values. This demonstrates that \req{f_old} and \req{NFF1} are equivalent to each other numerically.
 
 %~~~~~~~Figure~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{figure}[ht]
@@ -223,7 +232,26 @@ LHS and RHS of Eq.~(\ref{NFF1}) are equivalent to each other numerically.
 \end{center}
 \end{figure}
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+To illustrate the zero and finite temperature contribution to the Fermi distribution function, it is convenient to rewrite Eq.~(\ref{NFF1}) into the following form
+\begin{align}
+&f=f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}
+\end{align}
+where the function are defined as
+\begin{align}
+&f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\quad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
+\end{align}
+In Fig.~(\ref{Fermi_Component}) we plot the zero (purple lines, $f_{T=0}$) and finite temperature components of the Fermi distribution as a function of energy choosing in this example the chemical potential $\widetilde\mu=0.461$ MeV at temperature $T=0.02$ MeV and at $T=0.2$ MeV.
+%~~~~~~~Figure~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{./plot/FermiZeorFiniteTemperature}\includegraphics[width=0.5\textwidth]{./plot/FermiZeroFiniteTemperature002}
+\caption{The zero and finite temperature components of the decomposition here considered for Fermi distribution as a function of energy with chemical potential $\widetilde\mu=0.461$ MeV at temperature $T=0.02$ MeV and $T=0.2$ MeV. The purple line represents the zero temperature component $f_{\mathrm{T}=0}$, and blue and red lines represent the finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ respectively. }
+\label{Fermi_Component}
+\end{center}
+\end{figure}
 
+The Fig.~(\ref{Fermi_Component}) shows that the two finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ are naturally centered around the Fermi surface of the system $E=\tilde\mu$. Both finite $T$ always have the same sign, so there is no opportunity generate numerical noise; this can be the case when considering brute force removal of $T=0$ limit from the low temperature distribution. The dominant contribution (blue lines, $f_{T\ne 0}$) are containing the  decaying exponential function of the Fermi distribution at large argument. The remainder (red lines, $\tilde f_{T\ne 0}$) has the shape of a derivative of a finite support representation of delta-function. 
+\vfill\eject
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -351,6 +379,31 @@ In Fig.~\ref{Fn_Checking} we plot the sum over $F_n$ as a function of $p_z/T$ wi
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Fig.~\ref{M_Checking} we plot the magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$. It shows that the novel form of Fermi distribution can improve the numerical calculation of Landau level by summing over finite terms only. For different higher temperature range, instead of sum over a large numbers of $N$, we just need to include more terms in Landau level summation to obtain the stabilize magnetization.
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{./plot/NewFermi_Magnetization_BRange}
+\includegraphics[width=0.8\textwidth]{./plot/Magnetization_B_NChecking}
+\caption{Top:The magnetization $M/2eT^2$ as a function of magnetic field $B/B_c$ with the conditions $\mu=2$ MeV and $B/B_c=1/6$ at different temperatures. Bottom: The magnetization $M/2eT^2$ as a function of magnetic field $B/B_c$ with different sum of the Landau level at temperature $T=0.012$MeV, $\mu=2$ MeV and $B/B_c=1/6$. }
+\label{M_MagneticField}
+\end{center}
+\end{figure}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{./plot/Magnetization_cold_corr}
+\includegraphics[width=0.8\textwidth]{./plot/Magnetization_cold_corr003}
+\caption{The magnetization $M/2eT^2$ as a function of magnetic field $B/B_c$ for zero temperature component (blue line), finite temperature component (red line), and sum of both contribution (green line). }
+\label{M_MagneticField002}
+\end{center}
+\end{figure}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 
 \section{Results and Discussion}
