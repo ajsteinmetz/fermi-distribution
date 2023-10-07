@@ -101,9 +101,9 @@ We present a novel form of Fermi distribution allowing to evaluate the propertie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 \label{sec1}
-Systems which use the Fermi-Dirac (FD) distribution, such as finite temperature Fermi quantum gasses, are difficult to study outside the zero temperature limit because the finite temperature contribution's numerical precision is lost quickly\ar. Numerical evaluations of the finite temperature behavior of systems also obscures the physics as the precise origin of thermodynamic features are shrouded whereas analytic evaluations can show explicitly the mathematical origin of physical features. This is why the few analytic solutions that exist in physics are invaluable to study.
+Systems which obey the Fermi-Dirac (FD) distribution, such as finite temperature Fermi quantum gasses, are difficult to study outside the zero temperature limit because the numerical precision of finite temperature contribution rapidly vanishes\ar. Numerical evaluations of the finite temperature behavior of systems also obscures the physics as the precise origin of thermodynamic features are shrouded; whereas analytic evaluations can show explicitly the mathematical origin of physical features. This is why the few analytic solutions that exist in physics are invaluable to study.
 
-The most interesting physics of finite temperature Fermi gasses also occurs around the Fermi surface\ar which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution in an analytic fashion. We provide in this work a novel form of FD distribution that can separate the Fermi gas into zero and finite temperature components analytically which is useful addressing physics beyond the zero temperature approximation. We also as an example tackle the case of the magnetized relativistic Fermi gas to demonstrate the usefulness of this new method. Other use cases would be for astrophysical systems such as white dwarfs or neutron stars where matter is nearly degenerate and finite temperature effects are important.
+The most interesting physics of Fermi gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution in an analytic fashion. We provide a novel form of FD distribution that can separate the Fermi gas into zero and finite temperature components analytically which is useful addressing physics beyond the zero temperature approximation. We also tackle the case of the magnetized relativistic Fermi gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and wherever finite temperature Fermi effects are important.
 
 Before we introduce the novel form in \rsec{NewFermi}, we will briefly recall the standard picture of the FD distribution. In the zero temperature limit $T\to0$, the FD distribution reduces to a step function where a state $E_{i}$ is either filled or empty. For given chemical potential $\widetilde\mu(T)$, we have
 \begin{align}
@@ -159,9 +159,9 @@ x\equiv\frac{E-\widetilde\mu}{T}\,,
 -1,\quad\mathrm{for}\quad{x}<0\\
 \end{array}\right.\,,
 \end{align}
-where $\Theta(x)$ is the Heaviside step function and $\sgn(x)$ is the sign function. The first term in \req{NFF1} represents the zero temperature portion of the FD distribution while the finite temperature terms are weighted by a decaying exponential function. The immediate benefit of this form is that numerical evaluations will naturally center around the Fermi surface of the system with finite temperature contributions exponentially weighted.
+where $\Theta(x)$ is the Heaviside step function and $\sgn(x)$ is the sign function. The first term $\Theta(-x)$ in \req{NFF1} represents the zero temperature portion of the FD distribution while the finite temperature terms are weighted by a decaying exponential function. The immediate benefit of this form is that numerical evaluations will naturally center around the Fermi surface of the system with finite temperature contributions exponentially weighted.
 
-We note that the right hand side (RHS) of \req{NFF1} comprises of distributions rather than analytical functions~\cite{arfken_2011}. On first sight, it is difficult to see that these cancel to create the analytical FD function seen on the left hand side (LHS) of \req{NFF1}. In the following section, we will show that both sides are truly equivalent.
+We note that \req{NFF1} comprises of distributions rather than analytical functions~\cite{Arfken:2011abc}. On first sight, it is difficult to see that these cancel to create the analytical FD function seen in \req{f_old}. In the following section, we will show that both sides are truly equivalent.
 
 \subsection{Mathematical proof}
 Considering the sign and step function properties given in \req{NFF2}, we see that \req{NFF1} is equal to $1/2$ when $x=0$. This is the expected behavior of the FD distribution when the energy is equal to the chemical potential. To further demonstrate that \req{NFF1} is indeed the FD distribution, we will use the following properties of the sign and step functions
@@ -257,7 +257,7 @@ The Fig.~(\ref{Fermi_Component}) shows that the two finite temperature component
 
 \section{Partition function and Magnetization}\label{NumericalResult}
 
-In previous section we demonstrate that the Fermi-distribution can be written into a novel form Eq.~(\ref{NFF1}). To illustrate the benefits of our innovative Fermi distribution function in practical applications, it is convenient to introduce the partition function and consider the physical quantity magnetization as a example.
+In previous section we demonstrate that the Fermi-distribution can be written into a novel form Eq.~(\ref{NFF1}). To illustrate the benefits of our innovative Fermi distribution function in practical applications, it is convenient to introduce the partition function and consider the physical quantity magnetization~\cite{Melrose:2008abc} as a example.
 
 Considering the partition function of $e^\pm$ gas in a uniform magnetic field $B$ pointing along the $z$-axis, we have
 \begin{align}
