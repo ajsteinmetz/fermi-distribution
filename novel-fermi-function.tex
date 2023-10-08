@@ -101,6 +101,7 @@ We present a novel form of Fermi distribution allowing to evaluate the propertie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 \label{sec1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Systems which obey the Fermi-Dirac (FD) distribution, such as finite temperature Fermi quantum gasses, are difficult to study outside the zero temperature limit because the numerical precision of finite temperature contribution rapidly vanishes\ar. Numerical evaluations of the finite temperature behavior of systems also obscures the physics as the precise origin of thermodynamic features are shrouded; whereas analytic evaluations can show explicitly the mathematical origin of physical features. This is why the few analytic solutions that exist in physics are invaluable to study.
 
 The most interesting physics of Fermi gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution in an analytic fashion. We provide a novel form of FD distribution that can separate the Fermi gas into zero and finite temperature components analytically which is useful addressing physics beyond the zero temperature approximation. We also tackle the case of the magnetized relativistic Fermi gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and wherever finite temperature Fermi effects are important.
@@ -131,9 +132,11 @@ In \rf{Electron_001} we plot the FD distribution of a fermion as a function of e
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Zero and finite temperature Fermi-Dirac distributions}
-%\section{Exact finite temperature correction to Fermi distribution}
 \label{NewFermi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{A novel form of Fermi-Dirac distribution}
+\label{Novel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Our interest and motivations in studying the Fermi-Dirac distribution were to perform cosmological computations involving both high and low temperature physics. In doing so, we have identified the following novel way to write FD distribution as three terms which separates out the zero temperature portion from the finite temperature contributions as 
 \begin{align}
 \label{NFF1}
@@ -163,7 +166,10 @@ where $\Theta(x)$ is the Heaviside step function and $\sgn(x)$ is the sign funct
 
 We note that \req{NFF1} comprises of distributions rather than analytical functions~\cite{Arfken:2011abc}. On first sight, it is difficult to see that these cancel to create the analytical FD function seen in \req{f_old}. In the following section, we will show that both sides are truly equivalent.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Mathematical proof}
+\label{Proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Considering the sign and step function properties given in \req{NFF2}, we see that \req{NFF1} is equal to $1/2$ when $x=0$. This is the expected behavior of the FD distribution when the energy is equal to the chemical potential. To further demonstrate that \req{NFF1} is indeed the FD distribution, we will use the following properties of the sign and step functions
 \begin{align}
 \label{NFF2a}
@@ -219,19 +225,22 @@ Lastly, we check that the properties of the first derivative of \req{NFF1} are i
 \end{align}
 both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} at $x=0$ exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Numerical illustration}
+\label{Numerical}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In addition to our mathematical derivation, we also present a graphical check to show that the novel expression for the distribution is well behaved numerically. In \rf{Fermi_Checking} we plot the traditional expression for the Fermi-distribution (\req{f_old}) with solid lines and the novel form of Fermi-distribution (\req{NFF1}) with dashed lines as a function of energy for various temperatures and chemical potential values. This demonstrates that \req{f_old} and \req{NFF1} are equivalent to each other numerically.
 
-%~~~~~~~Figure~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
-\begin{center}
+\centering
 \includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_001}\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_002}
 \includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_003}\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_004}
-\caption{The exact Fermi-distribution (LHS of Eq.~(\ref{NFF1}) with solid lines and novel form of Fermi-distribution (RHS of Eq.~(\ref{NFF1})) with dashed lines as a function of energy with different parameters.Top: we compare the RHS and LHS of Eq.~(\ref{NFF1}) with different chemical potential: $\widetilde\mu=0, \pm0.1, \pm0.4\,\pm0.6\, \mathrm{MeV}$ at temperature $T=0.012\,\mathrm{MeV}$. Bottom: the Fermi distribution with different temperatures $T=0.511, 0.0511, 0.012\,\mathrm{MeV}$ for chemical potential $\widetilde\mu=\pm0.461\,\mathrm{MeV}$.}
+\caption{We plot the Fermi-distribution~\req{f_old} (solid lines) against the novel formulation~\req{NFF1} (dashed lines) as a function of energy. (Upper plots) We compare the two formulations under different chemical potentials: $\widetilde\mu=(0,\pm0.1,\pm0.4,\pm0.6)\MeV$ at temperature $T=0.012\MeV$. (Lower plots) We compare under different temperatures $T=(0.511,0.0511, 0.012)\MeV$ for chemical potential $\widetilde\mu=\pm0.461\MeV$.}
 \label{Fermi_Checking}
-\end{center}
 \end{figure}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 To illustrate the zero and finite temperature contribution to the Fermi distribution function, it is convenient to rewrite Eq.~(\ref{NFF1}) into the following form
 \begin{align}
 &f=f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}
@@ -240,23 +249,24 @@ where the function are defined as
 \begin{align}
 &f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\quad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
 \end{align}
-In Fig.~(\ref{Fermi_Component}) we plot the zero (purple lines, $f_{T=0}$) and finite temperature components of the Fermi distribution as a function of energy choosing in this example the chemical potential $\widetilde\mu=0.461$ MeV at temperature $T=0.02$ MeV and at $T=0.2$ MeV.
-%~~~~~~~Figure~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In Fig.~(\ref{Fermi_Component}) we plot the zero (purple lines, $f_{T=0}$) and finite temperature components of the Fermi distribution as a function of energy choosing in this example the chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and at $T=0.2\MeV$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
-\begin{center}
+\centering
 \includegraphics[width=0.5\textwidth]{./plot/FermiZeorFiniteTemperature}\includegraphics[width=0.5\textwidth]{./plot/FermiZeroFiniteTemperature002}
-\caption{The zero and finite temperature components of the decomposition here considered for Fermi distribution as a function of energy with chemical potential $\widetilde\mu=0.461$ MeV at temperature $T=0.02$ MeV and $T=0.2$ MeV. The purple line represents the zero temperature component $f_{\mathrm{T}=0}$, and blue and red lines represent the finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ respectively. }
+\caption{The zero and finite temperature components of the decomposition here considered for Fermi distribution as a function of energy with chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and $T=0.2\MeV$. The purple line represents the zero temperature component $f_{\mathrm{T}=0}$, and blue and red lines represent the finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ respectively. }
 \label{Fermi_Component}
-\end{center}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The Fig.~(\ref{Fermi_Component}) shows that the two finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ are naturally centered around the Fermi surface of the system $E=\tilde\mu$. Both finite $T$ always have the same sign, so there is no opportunity generate numerical noise; this can be the case when considering brute force removal of $T=0$ limit from the low temperature distribution. The dominant contribution (blue lines, $f_{T\ne 0}$) are containing the  decaying exponential function of the Fermi distribution at large argument. The remainder (red lines, $\tilde f_{T\ne 0}$) has the shape of a derivative of a finite support representation of delta-function. 
 \vfill\eject
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Partition function and Magnetization}\label{NumericalResult}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Partition function and Magnetization}
+\label{NumericalResult}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In previous section we demonstrate that the Fermi-distribution can be written into a novel form Eq.~(\ref{NFF1}). To illustrate the benefits of our innovative Fermi distribution function in practical applications, it is convenient to introduce the partition function and consider the physical quantity magnetization~\cite{Melrose:2008abc} as a example.
 
 Considering the partition function of $e^\pm$ gas in a uniform magnetic field $B$ pointing along the $z$-axis, we have
@@ -313,7 +323,6 @@ M_n&=4e\sum_{n=1}^\infty \int_{m_n}^\infty\!\!dE_n\bigg(f_{e^-}(E_n)+f_{e^+}(E_n
 &=4e \int_{0}^\infty\!\!dp_z\sum_{n=1}^\infty\frac{(p_z^2-Ben)}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg).
 \end{align}
 
-
 It is convenient to introduce the dimensionless variables and critical magnetic field $B_c$ as follows:
 \begin{align}
 \xi=p_z/T,\qquad \eta=m_e/T,\qquad B_c=m^2_e/e
@@ -346,71 +355,68 @@ In this case, the function $F_n$ can be written as
 &\widetilde F_n^{\mathrm{T\neq0}}=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\bigg(\tilde f^{\mathrm{T\ne0}}_{e^-}(E_n/T)+\tilde f^{\mathrm{T\neq0}}_{e^+}(E_n/T)\bigg)
 \end{align}
 In Fig~\ref{F0_Checking}, we plot the background  $F_0$ as a function of $p_z/T$ with temperature $T=0.012$ MeV and chemical potential $\mu=2$ MeV. The dominant term is the $F_{n=0}^{\mathrm{T=0}}$ which correspond to the step function contribution when $T=0$ The functions $F_{n=0}^{\mathrm{T\neq0}}$ and $\widetilde F_{n=0}^{\mathrm{T\neq0}}$ provide the correction near the energy surface $\mu/T\approx166.6$ MeV.
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
-\begin{center}
+\centering
 \includegraphics[width=0.9\textwidth]{./plot/NewFermi_Background}
 %\includegraphics[width=0.9\textwidth]{./plot/NewFermi_Magnetization_n001}
 \caption{The function $F_n$ as a function of $p_z/T$ for $n=0$ (purple line). We consider the case: $T=0.012$ MeV and $\mu=2$ MeV. For comparison, the black line represents $F_{n=0}^{\mathrm{T=0}}$, the blue line label $F_{n=0}^{\mathrm{T\neq0}}$ and red line is $\tilde F_{n=0}^{\mathrm{T\neq0}}$.}
 \label{F0_Checking}
-\end{center}
 \end{figure}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In Fig.~\ref{Fn_Checking} we plot the sum over $F_n$ as a function of $p_z/T$ with condition $T=0.012$ MeV, $\mu=2$ MeV and magnetic field $B/B_c=1/6$. It shows that for the given conditions, our novel form of Fermi function converge very fast. When $N=50$ the sum over Landau level is already stable.
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
-\begin{center}
+\centering
 \includegraphics[width=0.9\textwidth]{./plot/NewFermi_SumChecking}
 \caption{The sum over  $\sum_{n=1}^NF_n$ as a function of $p_z/T$ for different values of $N$. We consider the case: $T=0.012$ MeV, $\mu=2$ MeV and magnetic field $B/B_c=1/6$.}
 \label{Fn_Checking}
-\end{center}
 \end{figure}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
-\begin{center}
+\centering
 \includegraphics[width=0.9\textwidth]{./plot/NewFermi_Magnetization_tot003}
 \caption{We plot the magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$}
 \label{M_Checking}
-\end{center}
 \end{figure}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In Fig.~\ref{M_Checking} we plot the magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$. It shows that the novel form of Fermi distribution can improve the numerical calculation of Landau level by summing over finite terms only. For different higher temperature range, instead of sum over a large numbers of $N$, we just need to include more terms in Landau level summation to obtain the stabilize magnetization.
 
-
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
-\begin{center}
+\centering
 \includegraphics[width=0.8\textwidth]{./plot/NewFermi_Magnetization_BRange}
 \includegraphics[width=0.8\textwidth]{./plot/Magnetization_B_NChecking}
 \caption{Top:The magnetization $M/2eT^2$ as a function of magnetic field $B/B_c$ with the conditions $\mu=2$ MeV and $B/B_c=1/6$ at different temperatures. Bottom: The magnetization $M/2eT^2$ as a function of magnetic field $B/B_c$ with different sum of the Landau level at temperature $T=0.012$MeV, $\mu=2$ MeV and $B/B_c=1/6$. }
 \label{M_MagneticField}
-\end{center}
 \end{figure}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
-\begin{center}
+\centering
 \includegraphics[width=0.8\textwidth]{./plot/Magnetization_cold_corr}
 \includegraphics[width=0.8\textwidth]{./plot/Magnetization_cold_corr003}
 \caption{The magnetization $M/2eT^2$ as a function of magnetic field $B/B_c$ for zero temperature component (blue line), finite temperature component (red line), and sum of both contribution (green line). }
 \label{M_MagneticField002}
-\end{center}
 \end{figure}
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Discussion}
 \label{sec12}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Appendix}
+\label{Append}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Considering the second term in magnetization $M_n$ Eq.~(\ref{M_landau}), it can be written as
 \begin{align}
 B\frac{\partial\ln\mathcal{I}_n}{\partial B}&=2B \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{\partial E_n}{\partial B}\frac{\partial}{\partial E_n}\left[\frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\right]\notag\\
@@ -445,15 +451,13 @@ M_n&=4e\sum_{n=1}^\infty \int_{m_n}^\infty\!\!dE_n\bigg(f_{e^-}(E_n)+f_{e^+}(E_n
 \end{align}
 
 
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter
 
 \bmhead{Acknowledgments}
 We thank Gordon Baym and John W. Clark for their encouragement to publish this result.
 
-%\bibliographystyle{sn-mathphys}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{novel-fermi-function-refs}
 %% if required, the content of .bbl file can be included here once bbl is generated
 %%\input sn-article.bbl

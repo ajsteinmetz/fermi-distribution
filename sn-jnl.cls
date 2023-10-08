@@ -1462,7 +1462,7 @@
   \RequirePackage[hyphenbreaks]{breakurl}%
 %  \let\href\burlalt%
 \fi}%
-\breakurldefns%
+%\breakurldefns%
 %    \bgroup
 %      \catcode`\&=12\relax
 %      \hyper@normalise\burl@addtocharlistbefore{%}
