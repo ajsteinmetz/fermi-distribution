@@ -42,8 +42,9 @@
 
 % Useful macros for annotation
 \newcommand*{\xred}{\color{red}}
-\newcommand*{\xblue}{\color{black}}
+\newcommand*{\xblue}{\color{blue}}
 \newcommand*{\xgreen}{\color{green}}
+\newcommand*{\xmagenta}{\color{magenta}}
 \newcommand{\rev}[1]{{\color{blue}#1}}
 \newcommand*{\rcite}{{\xred (Citation?)}}
 
@@ -130,7 +131,7 @@ The energy of the last filled state is called the Fermi energy and is denoted by
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In \rf{Electron_001} we plot the FD distribution of a fermion as a function of energy with example parameters $T=0.012\MeV$ and $\widetilde\mu=0.461\MeV$. This shows the textbook behavior that for finite temperatures, there is a filling of some higher energy states above the chemical potential $\widetilde\mu$ at the expense of states below $\widetilde\mu$. As the temperature increases, the distribution becomes more broad as a wide range of states become thermally populated.
+In \rf{Electron_001} we plot the FD distribution of a fermion as a function of energy with example parameters $T=0.012\MeV$ and $\widetilde\mu=0.461\MeV$. This shows the textbook behavior that for finite temperatures, there is a filling of higher energy states above the chemical potential $\widetilde\mu$ at the expense of states below $\widetilde\mu$. As the temperature increases, the distribution becomes more broad as a wide range of states become thermally populated.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Zero and finite temperature Fermi-Dirac distributions}
@@ -139,7 +140,7 @@ In \rf{Electron_001} we plot the FD distribution of a fermion as a function of e
 \subsection{A novel form of Fermi-Dirac distribution}
 \label{Novel}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Our interest and motivations in studying the Fermi-Dirac distribution were to perform cosmological computations involving both high and low temperature physics. In doing so, we have identified the following novel way to write FD distribution as three terms which separates out the zero temperature portion from the finite temperature contributions as 
+Our interest and motivations in studying the Fermi-Dirac distribution was to perform cosmological computations involving both high and low temperature physics. In doing so, we have identified the following novel way to write FD distribution as three terms which separates out the zero temperature portion from the finite temperature contributions as 
 \begin{align}
 \label{NFF1}
 \begin{split}
@@ -172,78 +173,30 @@ We note that \req{NFF1} comprises of distributions rather than analytical functi
 \subsection{Mathematical proof}
 \label{Proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\rev{ALTERNATE PROOF:
-For $x>0$
+To show the equivalency between the two distinct forms of the FD, we look at the three relevant regions of $x>0$, the origin $x=0$, and $x<0$. For $x>0$, \req{NFF1} evaluates as
 \begin{equation}
-    f_\mathrm{FD}(x) = 0 + \frac{1}{2}e^{-x}[1+\tanh(x/2)] = (e^x + 1)^{-1}
+    f_\mathrm{FD}(x>0) = 0 + \frac{1}{2}e^{-x}[1+\tanh(x/2)] = (e^x + 1)^{-1}\,.
 \end{equation}
-as can be seen by substituting $\tanh(x/2)=\sinh(x/2)/\cosh(x/2)$ and using hyperbolic formulas $\sinh(x/2)=(e^{x/2}-e^{-x/2})/2$, $\cosh(x/2) = (e^{x/2}+e^{-x/2})/2$. Similarly, for $x<0$
+This can be seen by substituting
 \begin{equation}
-    f_\mathrm{FD}(x) = 1 + \frac{1}{2}e^{x}[-1 + \tanh(x/2)] = (e^x + 1)^{-1}\,.
+    \tanh(x/2)=\sinh(x/2)/\cosh(x/2)\,,
 \end{equation}
-At the origin $x=0$ it can be shown that limits from the left and right are equal
-\begin{align}
-    \lim_{x\rightarrow 0^+} f_\mathrm{FD}(x) &= 0 + \frac{1}{2}(1 + 0) = \frac{1}{2}\\
-    \lim_{x\rightarrow 0^-} f_\mathrm{FD}(x) &= 1 + \frac{1}{2}(-1 + 0) = \frac{1}{2}
-\end{align}
-which means that the limit of our expression at origin exists and is equal to the value of the function $(e^x+1)^{-1}$ at $x = 0$. With the definitions of $\Theta(x)$ and $\sgn(x)$ from Eq. (\ref{NFF2}) the limits for $x \rightarrow 0^\pm$ are even equal to the value of our function at origin. Therefore for all real $x$ our expression matches the original FD distribution Eq. (\ref{f_old}).  
-}
-
-
-Considering the sign and step function properties given in \req{NFF2}, we see that \req{NFF1} is equal to $1/2$ when $x=0$. This is the expected behavior of the FD distribution when the energy is equal to the chemical potential. To further demonstrate that \req{NFF1} is indeed the FD distribution, we will use the following properties of the sign and step functions
-\begin{align}
-\label{NFF2a}
-\sgn(x)\equiv\frac{|x|}{x}\equiv\frac{x}{|x|}\,,\quad
-\sgn(x)=2\Theta(x)-1\,,\quad
-\Theta(x)+\Theta(-x)=1\,.
-\end{align}
-We also write the following hyperbolic expression
+and using hyperbolic formulas
 \begin{equation}
-\label{NFFa1}
-\sgn^{2}(x)\sinh(x)=\sinh(x)\,.
+    \sinh(x/2)=(e^{x/2}-e^{-x/2})/2\,,\qquad
+    \cosh(x/2) = (e^{x/2}+e^{-x/2})/2\,.
 \end{equation}
-\req{NFFa1} is useful because while $\sgn^{2}(0)$ has an indeterminate value, $\sinh(0)=0$ vanishes; therefore we will not worry about this indeterminacy at the origin.
+In a similar manner, the $x<0$ region evaluates as
+\begin{equation}
+    f_\mathrm{FD}(x<0) = 1 + \frac{1}{2}e^{x}[-1 + \tanh(x/2)] = (e^x + 1)^{-1}\,.
+\end{equation}
 
-Using \req{NFF2a}, we replace the step function and exponential functions in \req{NFF1} with the following expressions
+As our expression is written in terms of distributions rather than analytic functions, special care should be taken in evaluation of the origin. It can be shown that the left $x=0^{-}$ and right $x=0^{+}$ limits are equal via
 \begin{align}
-\label{NFF4}
-&\Theta(-x)=\frac 1 2 [1-\sgn(x)]\,,\\ 
-&e^{-|x|}=\cosh|x|-\sinh|x|=\cosh(x)- \sgn(x)\sinh(x)\,.
+    \lim_{x\rightarrow 0^+} f_\mathrm{FD}(x) &= 0 + \frac{1}{2}(1 + 0) = \frac{1}{2}\,,\\
+    \lim_{x\rightarrow 0^-} f_\mathrm{FD}(x) &= 1 + \frac{1}{2}(-1 + 0) = \frac{1}{2}\,,
 \end{align}
-Therefore we can rewrite the FD distribution \req{NFF1} as
-\begin{align}
-\begin{split}
-\label{NFF4a}
-f_\mathrm{FD}(x)&=\frac{1}{2}\left[1-\sinh(x)+\cosh(x)\tanh(x/2)\right]\\
-&+\frac{1}{2}\sgn(x)\left[\cosh(x)-1-\sinh(x)\tanh(x/2)\right]\,.
-\end{split}
-\end{align}
-Using the properties of the hyperbolic functions
-\begin{align}
-\cosh(x)-1=2\sinh^2(x/2)\,,\qquad
-\sinh(x)=2\sinh(x/2)\cosh(x/2)\,,
-\end{align}
-\req{NFF4a} then simplifies to
-\begin{align}
-\begin{split}
-\label{NFF4b}
-f_\mathrm{FD}(x)
-&=\frac{1}{2}\left[1-\sinh(x)+\cosh(x)\tanh(x/2)\right]\,,\\
-&=\frac{1}{2}\left[1-\tanh(x/2)\right]\,,\\
-&=\left(e^{x}+1\right)^{-1}\,,
-\end{split}
-\end{align}
-which is just the original FD distribution written in the usual manner \req{f_old}.
-
-\rev{This I believe is not necessary...if the functions match $\forall x \in \mathbb{R}$ then of course their derivatives match too.}Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
-\begin{align}
-\label{NFF1b}
-\frac{d}{dx}\Theta(-x)&=-\delta(x)\,,\qquad 
-\frac{d}{dE}\Theta(-x)=-\frac{1}{T}\delta(x)\,,\\
-\frac{d}{dx}\sgn(x)&=2\delta(x)\,,\,\,\quad 
-\frac{d}{dE}\sgn(x)=\frac{2}{T}\delta(x)\,,
-\end{align}
-both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} at $x=0$ exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}. 
+which means that the limit of our expression at the origin $x=0$ exists and is equal to the value of the function in \req{f_old} at $x = 0$. With the definitions of the step function $\Theta(x)$ and sign function $\sgn(x)$ in \req{NFF2}, the limits for $x\rightarrow0^{\pm}$ are equal to the value of our function at the origin. Therefore, for all real $x\in\mathbb{R}$, our expression matches the original FD distribution \req{f_old}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Decomposition of zero and finite temperature contribution}
@@ -261,13 +214,13 @@ both without and with units and where $\delta(x)$ is the Dirac $\delta$-function
 %\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-To illustrate the zero and finite temperature contribution to the Fermi distribution function, it is convenient to rewrite Eq.~(\ref{NFF1}) into the following form
+{\xmagenta ANDREW: I recommend we stick with the dimensionless variable ``$x$'' for all calculations and discussions up to the physical example. This enhances the mathematical clarity and simply makes the expressions more simple to read. I did this for Eq. 11, but wanted your approval before continuing my edits. Additionally, the expression $f_{T=0}(x)$ doesn't make sense as $T$ is clearly nonzero in $x(E,\widetilde\mu,T)$. I suggest we abandon this notation and simply call it the step function $\Theta(x)$ and we are already doing earlier. There is also a conflict where Eq. 12 and Eq. 13 are defined using the same notation. Is this an error? Please look at this Cheng Tao.} To illustrate the separation of the zero and finite temperature contributions to the FD distribution, it is convenient to rewrite Eq.~(\ref{NFF1}) in the following form
 \begin{align}\label{Eq_form}
-&f=f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}
+&f_\mathrm{FD}=f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}
 \end{align}
-where the function are defined as
+where the temperature functions are defined as
 \begin{align}
-&f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\quad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\\
+&f_{\mathrm{T=0}}(x)=\Theta(x),\\ &f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\quad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\\
 &f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\left[\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right)+\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\right]
 \end{align}
 In Fig.~(\ref{Fermi_Component}) we plot the exact Fermi distribution (black line $f$), the zero (purple lines, $f_{T=0}$) and finite temperature components of the Fermi distribution as a function of energy choosing in this example the chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and at $T=0.2\MeV$.
@@ -468,33 +421,57 @@ M_n&=4e\sum_{n=1}^\infty \int_{m_n}^\infty\!\!dE_n\bigg(f_{e^-}(E_n)+f_{e^+}(E_n
 \end{align}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Numerical illustration}
+\subsection{Numerical integration for low temperature}
 For any given function $g(E)$, then the correspond physical quantity can be written as
 \begin{align}
-G\equiv\int^{\infty}_{m}dE\,g(E)\,f(E)=\int^{\infty}_{m}dE\,g(E)\bigg[f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}\bigg]
-\end{align}
-To illustrate the zero and finite temperature contribution to the Fermi distribution function, it is convenient to rewrite Eq.~(\ref{NFF1}) into the following form
-\begin{align}\label{Eq_form}
-&f=f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}
+G&\equiv\int^{\infty}_{m}dE\,g(E)\,f(E)=\int^{\infty}_{m}dE\,g(E)\bigg[f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}\bigg]\\
+&=G_{\mathrm{T=0}}+G_\mathrm{T\neq0}+\tilde G_\mathrm{T\neq0}
 \end{align}
 where the function are defined as
 \begin{align}
-&f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\quad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\\
-&f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\left[\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right)+\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\right]
+&G_{\mathrm{T=0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T=0}},\qquad f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T\neq0}},\qquad,f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\\
+&\tilde G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\tilde f_{\mathrm{T\neq0}},\qquad,\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
 \end{align}
-Integrating by part, the quantity $A$ can be written as
+TO illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics in the limit when $T$ approaches to zero. We use the function 
 \begin{align}
-\label{N_electron}
-A=\int^{\infty}_{m_e}dE\,\rho(E)\,f_e(E)=A_{cold}+\int^{\infty}_{m_e}\,dE\left(g(E)\,f_\delta(E)-g^\prime(E)\,f^{(2)}_\delta(E)\right)+\left.g(E)\,f^{(2)}_\delta\right|_{surface},
+    g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
 \end{align}
-where $g^\prime(e)=dg(E)/dE$ and the function $f^{(2)}_\delta(E)$ is defined as
+as a example. 
+\subsubsection{The function $G_{\mathrm{T\neq0}}$}
+In general, for the given function $g(E)$ the function $G_\mathrm{T\neq0}$ is given by
 \begin{align}
-f^{(2)}_\delta(E)=\int^E_{m_e}dE^\prime\,f_\epsilon(E^\prime).
+G_{\mathrm{T\neq0}}=\int^\infty_m\!\!dE\, g(E)\left[\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right)\right],\qquad g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
 \end{align}
-
-
-
-
+It is convenient to introduce the dimensionless variable as below:
+\begin{align}
+x\equiv\left(\frac{E-\tilde\mu}{T}\right), \qquad x_0=\left(\frac{m-\tilde\mu}{T}\right)
+\end{align}
+then the function $G_{\mathrm{T\neq0}}$ can be written as
+\begin{align}
+G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\,\left(\frac{x}{|x|}\,e^{-|x|}\,\right),\qquad g(x)=\frac{1}{\pi} \frac{x}{x^2+\epsilon^{\prime2}},\qquad \epsilon^\prime=\epsilon/T
+\end{align}
+To evaluate the integral we consider the two cases as follows
+\begin{itemize}
+  \item Considering $x_0>0$, i.e., $m>\tilde\mu$, we have
+  \begin{align}
+  G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\frac{x}{|x|}\,e^{-|x|}=\frac{1}{2}\int^{\infty}_{x_0}\,dx\,g(x)\,e^{-x}.
+  \end{align}
+  \item Considering $x_0<0$, i.e., $m<\tilde\mu$, we obtain
+  \begin{align}
+    G_{\mathrm{T\neq0}}&=\frac{1}{2}\int^\infty_{-|x_0|}dx\,g(x)\frac{x}{|x|}\,e^{-|x|}\\
+    &=\frac{1}{2}\left[\left(\int_0^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}+\int^\infty_{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right)+\int^0_{-|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right]\notag\\
+   &=\frac{1}{2}\left[\int_{-|x_0|}^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}+\int^\infty_{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right].
+  \end{align}
+\end{itemize}
+In summary, consider the both cases the function $G_\mathrm{T\neq0}$ can be written as
+\begin{align}
+  G_{\mathrm{T\neq0}}=\Theta(-x_0)\,\left[\frac{1}{2}\int_{-|x_0|}^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right]+\frac{1}{2}\int^\infty_{|x_0|}dx\,g(x)\,e^{-x},
+\end{align}
+where we introduce step function $\Theta(-x_0)$ to show that the first integral only exist when the $x_0<0$.
+Considering the limit when temperature approaches to zero, we have
+\begin{align}
+\lim_{T\to0}G_{\mathrm{T\neq0}}=\left[\frac{1}{2}\int_{-\infty}^{\infty}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right],\qquad m<\tilde\mu
+\end{align}
 
 
 

@@ -1,0 +1,55 @@
+% OLD MATH PROOF SECTION
+Considering the sign and step function properties given in \req{NFF2}, we see that \req{NFF1} is equal to $1/2$ when $x=0$. This is the expected behavior of the FD distribution when the energy is equal to the chemical potential. To further demonstrate that \req{NFF1} is indeed the FD distribution, we will use the following properties of the sign and step functions
+\begin{align}
+\label{NFF2a}
+\sgn(x)\equiv\frac{|x|}{x}\equiv\frac{x}{|x|}\,,\quad
+\sgn(x)=2\Theta(x)-1\,,\quad
+\Theta(x)+\Theta(-x)=1\,.
+\end{align}
+We also write the following hyperbolic expression
+\begin{equation}
+\label{NFFa1}
+\sgn^{2}(x)\sinh(x)=\sinh(x)\,.
+\end{equation}
+\req{NFFa1} is useful because while $\sgn^{2}(0)$ has an indeterminate value, $\sinh(0)=0$ vanishes; therefore we will not worry about this indeterminacy at the origin.
+
+Using \req{NFF2a}, we replace the step function and exponential functions in \req{NFF1} with the following expressions
+\begin{align}
+\label{NFF4}
+&\Theta(-x)=\frac 1 2 [1-\sgn(x)]\,,\\ 
+&e^{-|x|}=\cosh|x|-\sinh|x|=\cosh(x)- \sgn(x)\sinh(x)\,.
+\end{align}
+Therefore we can rewrite the FD distribution \req{NFF1} as
+\begin{align}
+\begin{split}
+\label{NFF4a}
+f_\mathrm{FD}(x)&=\frac{1}{2}\left[1-\sinh(x)+\cosh(x)\tanh(x/2)\right]\\
+&+\frac{1}{2}\sgn(x)\left[\cosh(x)-1-\sinh(x)\tanh(x/2)\right]\,.
+\end{split}
+\end{align}
+Using the properties of the hyperbolic functions
+\begin{align}
+\cosh(x)-1=2\sinh^2(x/2)\,,\qquad
+\sinh(x)=2\sinh(x/2)\cosh(x/2)\,,
+\end{align}
+\req{NFF4a} then simplifies to
+\begin{align}
+\begin{split}
+\label{NFF4b}
+f_\mathrm{FD}(x)
+&=\frac{1}{2}\left[1-\sinh(x)+\cosh(x)\tanh(x/2)\right]\,,\\
+&=\frac{1}{2}\left[1-\tanh(x/2)\right]\,,\\
+&=\left(e^{x}+1\right)^{-1}\,,
+\end{split}
+\end{align}
+which is just the original FD distribution written in the usual manner \req{f_old}.
+
+\rev{This I believe is not necessary...if the functions match $\forall x \in \mathbb{R}$ then of course their derivatives match too.}Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
+\begin{align}
+\label{NFF1b}
+\frac{d}{dx}\Theta(-x)&=-\delta(x)\,,\qquad 
+\frac{d}{dE}\Theta(-x)=-\frac{1}{T}\delta(x)\,,\\
+\frac{d}{dx}\sgn(x)&=2\delta(x)\,,\,\,\quad 
+\frac{d}{dE}\sgn(x)=\frac{2}{T}\delta(x)\,,
+\end{align}
+both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} at $x=0$ exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}.
