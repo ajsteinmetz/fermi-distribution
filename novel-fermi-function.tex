@@ -15,6 +15,7 @@
 \usepackage{algorithmicx}%
 \usepackage{algpseudocode}%
 \usepackage{listings}%
+\usepackage[normalem]{ulem}
 
 % Make Orcid icon
 \newcommand{\orcidicon}{\includegraphics[width=0.32cm]{orcid.pdf}}
@@ -43,7 +44,8 @@
 \newcommand*{\xred}{\color{red}}
 \newcommand*{\xblue}{\color{black}}
 \newcommand*{\xgreen}{\color{green}}
-\newcommand*{\ar}{{\color{red}\text{ (Citation!) }}}
+\newcommand{\rev}[1]{{\color{blue}#1}}
+\newcommand*{\rcite}{{\xred (Citation?)}}
 
 %\theoremstyle{thmstyleone}%
 %\newtheorem{theorem}{Theorem}
@@ -83,11 +85,7 @@
 
 \affil[2]{\orgdiv{ELI Beamlines Facility}, \orgname{The Extreme Light Infrastructure ERIC}, \orgaddress{ \postcode{252 41}, \city{Dolni Brezany}, \country{Czech Republic}}}
 
-\abstract{
-We present a novel form of Fermi distribution allowing to evaluate the properties of Fermi gas at low temperature.
-%This novel formulation of Fermi distribution extends the understanding of physics beyond the conventional zero-temperature limit.
-%have identified an innovative approach to express the form of the Fermi distribution, which can be use at low temperatures physics where the Fermi gas remain degenerate and their special feature persist. This novel formulation of Fermi distribution extends the understanding of physics beyond the conventional zero-temperature limit.}
-}
+\abstract{The most interesting physics of finite temperature Fermi gasses occurs around the Fermi surface, which needs a mathematical tool that can capture the finite temperature behavior of the Fermi-Dirac distribution in an analytic fashion. We provide a novel form of the Fermi distribution that can separate the Fermi gas into zero and finite temperature components analytically which is useful for addressing physics beyond the zero temperature approximation.}
 
 
 \date{To be published in International Journal of Theoretical Physics}
@@ -102,7 +100,7 @@ We present a novel form of Fermi distribution allowing to evaluate the propertie
 \section{Introduction}
 \label{sec1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Systems which obey the Fermi-Dirac (FD) distribution, such as finite temperature Fermi quantum gasses, are difficult to study outside the zero temperature limit because the numerical precision of finite temperature contribution rapidly vanishes\ar. Numerical evaluations of the finite temperature behavior of systems also obscures the physics as the precise origin of thermodynamic features are shrouded; whereas analytic evaluations can show explicitly the mathematical origin of physical features. This is why the few analytic solutions that exist in physics are invaluable to study.
+Systems which obey the Fermi-Dirac (FD) distribution, such as finite temperature Fermi quantum gasses, are difficult to study outside the zero temperature limit because the numerical precision of finite temperature contribution rapidly vanishes\rcite. Numerical evaluations of the finite temperature behavior of systems also obscures the physics as the precise origin of thermodynamic features are shrouded; whereas analytic evaluations can show explicitly the mathematical origin of physical features. This is why the few analytic solutions that exist in physics are invaluable to study.
 
 % Kapusta and Gale - many body theory
 % Lebellac - text
@@ -146,7 +144,7 @@ Our interest and motivations in studying the Fermi-Dirac distribution were to pe
 \label{NFF1}
 \begin{split}
 f_\mathrm{FD}(x)
-&=\left[e^{x}+1\right]^{-1}\\
+&=\left(e^{x}+1\right)^{-1}\\
 &=\Theta(-x)+\frac{1}{2}e^{-|x|}\left[\sgn(x)+\tanh(x/2)\right]\,,\quad
 x\equiv\frac{E-\widetilde\mu}{T}\,,
 \end{split}
@@ -174,6 +172,24 @@ We note that \req{NFF1} comprises of distributions rather than analytical functi
 \subsection{Mathematical proof}
 \label{Proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rev{ALTERNATE PROOF:
+For $x>0$
+\begin{equation}
+    f_\mathrm{FD}(x) = 0 + \frac{1}{2}e^{-x}[1+\tanh(x/2)] = (e^x + 1)^{-1}
+\end{equation}
+as can be seen by substituting $\tanh(x/2)=\sinh(x/2)/\cosh(x/2)$ and using hyperbolic formulas $\sinh(x/2)=(e^{x/2}-e^{-x/2})/2$, $\cosh(x/2) = (e^{x/2}+e^{-x/2})/2$. Similarly, for $x<0$
+\begin{equation}
+    f_\mathrm{FD}(x) = 1 + \frac{1}{2}e^{x}[-1 + \tanh(x/2)] = (e^x + 1)^{-1}\,.
+\end{equation}
+At the origin $x=0$ it can be shown that limits from the left and right are equal
+\begin{align}
+    \lim_{x\rightarrow 0^+} f_\mathrm{FD}(x) &= 0 + \frac{1}{2}(1 + 0) = \frac{1}{2}\\
+    \lim_{x\rightarrow 0^-} f_\mathrm{FD}(x) &= 1 + \frac{1}{2}(-1 + 0) = \frac{1}{2}
+\end{align}
+which means that the limit of our expression at origin exists and is equal to the value of the function $(e^x+1)^{-1}$ at $x = 0$. With the definitions of $\Theta(x)$ and $\sgn(x)$ from Eq. (\ref{NFF2}) the limits for $x \rightarrow 0^\pm$ are even equal to the value of our function at origin. Therefore for all real $x$ our expression matches the original FD distribution Eq. (\ref{f_old}).  
+}
+
+
 Considering the sign and step function properties given in \req{NFF2}, we see that \req{NFF1} is equal to $1/2$ when $x=0$. This is the expected behavior of the FD distribution when the energy is equal to the chemical potential. To further demonstrate that \req{NFF1} is indeed the FD distribution, we will use the following properties of the sign and step functions
 \begin{align}
 \label{NFF2a}
@@ -191,7 +207,7 @@ We also write the following hyperbolic expression
 Using \req{NFF2a}, we replace the step function and exponential functions in \req{NFF1} with the following expressions
 \begin{align}
 \label{NFF4}
-&\Theta(-x)=\frac 1 2 (1-\sgn(x))\,,\\ 
+&\Theta(-x)=\frac 1 2 [1-\sgn(x)]\,,\\ 
 &e^{-|x|}=\cosh|x|-\sinh|x|=\cosh(x)- \sgn(x)\sinh(x)\,.
 \end{align}
 Therefore we can rewrite the FD distribution \req{NFF1} as
@@ -214,12 +230,12 @@ Using the properties of the hyperbolic functions
 f_\mathrm{FD}(x)
 &=\frac{1}{2}\left[1-\sinh(x)+\cosh(x)\tanh(x/2)\right]\,,\\
 &=\frac{1}{2}\left[1-\tanh(x/2)\right]\,,\\
-&=\left[e^{x}+1\right]^{-1}\,,
+&=\left(e^{x}+1\right)^{-1}\,,
 \end{split}
 \end{align}
 which is just the original FD distribution written in the usual manner \req{f_old}.
 
-Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
+\rev{This I believe is not necessary...if the functions match $\forall x \in \mathbb{R}$ then of course their derivatives match too.}Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
 \begin{align}
 \label{NFF1b}
 \frac{d}{dx}\Theta(-x)&=-\delta(x)\,,\qquad 
@@ -230,45 +246,52 @@ Lastly, we check that the properties of the first derivative of \req{NFF1} are i
 both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} at $x=0$ exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Numerical illustration}
+\subsection{Decomposition of zero and finite temperature contribution}
 \label{Numerical}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In addition to our mathematical derivation, we also present a graphical check to show that the novel expression for the distribution is well behaved numerically. In \rf{Fermi_Checking} we plot the traditional expression for the Fermi-distribution (\req{f_old}) with solid lines and the novel form of Fermi-distribution (\req{NFF1}) with dashed lines as a function of energy for various temperatures and chemical potential values. This demonstrates that \req{f_old} and \req{NFF1} are equivalent to each other numerically.
+%\sout{In addition to our mathematical derivation, we also present a graphical check to show that the novel expression for the distribution is well behaved numerically. In \rf{Fermi_Checking} we plot the traditional expression for the Fermi-distribution [\req{f_old}] with solid lines and the novel form of Fermi-distribution [\req{NFF1}] with dashed lines as a function of energy for various temperatures and chemical potential values. This demonstrates that \req{f_old} and \req{NFF1} are equivalent to each other numerically.}\rev{I would remove this and Fig.2. ...of course they are identical, we showed that they are. Or I would at least reframe Fig. 2. as examples of Fermi distribution for some parameters, not sure if needed. This way it makes an impression that we are not sure. I would focus on the splitting in Fig. 3.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_001}\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_002}
-\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_003}\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_004}
-\caption{We plot the Fermi-distribution~\req{f_old} (solid lines) against the novel formulation~\req{NFF1} (dashed lines) as a function of energy. (Upper plots) We compare the two formulations under different chemical potentials: $\widetilde\mu=(0,\pm0.1,\pm0.4,\pm0.6)\MeV$ at temperature $T=0.012\MeV$. (Lower plots) We compare under different temperatures $T=(0.511,0.0511, 0.012)\MeV$ for chemical potential $\widetilde\mu=\pm0.461\MeV$.}
-\label{Fermi_Checking}
-\end{figure}
+%\begin{figure}[ht]
+%\centering
+%\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_001}\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_002}
+%\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_003}\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_004}
+%\caption{We plot the Fermi-distribution~\req{f_old} (solid lines) against the novel formulation~\req{NFF1} (dashed lines) as a function of energy. (Upper plots) We compare the two formulations under different chemical potentials: $\widetilde\mu=(0,\pm0.1,\pm0.4,\pm0.6)\MeV$ at temperature $T=0.012\MeV$. (Lower plots) We compare under different temperatures $T=(0.511,0.0511, 0.012)\MeV$ for chemical potential $\widetilde\mu=\pm0.461\MeV$.}
+%\label{Fermi_Checking}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 To illustrate the zero and finite temperature contribution to the Fermi distribution function, it is convenient to rewrite Eq.~(\ref{NFF1}) into the following form
-\begin{align}
+\begin{align}\label{Eq_form}
 &f=f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}
 \end{align}
 where the function are defined as
 \begin{align}
-&f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\quad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
+&f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\quad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\\
+&f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\left[\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right)+\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\right]
 \end{align}
-In Fig.~(\ref{Fermi_Component}) we plot the zero (purple lines, $f_{T=0}$) and finite temperature components of the Fermi distribution as a function of energy choosing in this example the chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and at $T=0.2\MeV$.
+In Fig.~(\ref{Fermi_Component}) we plot the exact Fermi distribution (black line $f$), the zero (purple lines, $f_{T=0}$) and finite temperature components of the Fermi distribution as a function of energy choosing in this example the chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and at $T=0.2\MeV$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{./plot/FermiZeorFiniteTemperature}\includegraphics[width=0.5\textwidth]{./plot/FermiZeroFiniteTemperature002}
-\caption{The zero and finite temperature components of the decomposition here considered for Fermi distribution as a function of energy with chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and $T=0.2\MeV$. The purple line represents the zero temperature component $f_{\mathrm{T}=0}$, and blue and red lines represent the finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ respectively. }
+\caption{%\rev{Here I would add the full fermi distribution - to see how it is decomposed to zero temperature and finite temperature terms.}
+The zero and finite temperature components of the decomposition here considered for Fermi distribution as a function of energy with chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and $T=0.2\MeV$. The black line represents the exact Fermi distribution. The purple line represents the zero temperature component $f_{\mathrm{T}=0}$, and blue and red lines represent the finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ respectively. }
 \label{Fermi_Component}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Fig.~(\ref{Fermi_Component}) shows that the two finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ are naturally centered around the Fermi surface of the system $E=\tilde\mu$. Both finite $T$ always have the same sign, so there is no opportunity generate numerical noise; this can be the case when considering brute force removal of $T=0$ limit from the low temperature distribution. The dominant contribution (blue lines, $f_{T\ne 0}$) are containing the  decaying exponential function of the Fermi distribution at large argument. The remainder (red lines, $\tilde f_{T\ne 0}$) has the shape of a derivative of a finite support representation of delta-function. 
-\vfill\eject
+The Fig.~(\ref{Fermi_Component}) shows that \rev{the contributions of the two finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ exponentially decay with the distance from the Fermi surface $E=\tilde{\mu}$. Moreover, the splitting was chosen in such a way that the discontinuous distribution part is fully contained in $f_\mathrm{T\neq 0}$ and $\tilde{f}_\mathrm{T\neq 0}$ is a remaining smooth function of $T$. Hmmm...actually the second derivative of $\tilde{f}_\mathrm{T\neq 0}$ is discontinuous at origin, is there any other motiviation for this splitting?}  Both finite temperature contributions always have the same sign \rev{and lower the distribution for $E < \tilde{\mu}$ and increase it for $E > \tilde{\mu}$}.
+%\vfill\eject
+
+
+{\xred(Comments for the numerical motivation:) In contrast to the brute force approach for eliminating the $T=0$ limit from the low-temperature Fermi distribution, our analytic form of distribution offers a more numerically advantageous method for separating the finite temperature components. This is advantage arise from the behavior of: 1.) both finite temperature contributions $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ always have the same sign 2.) the exponential factor for finite temperature components provide the naturally exponentially suppresses for the large energy. In this scenario, it reduces the numerical noise when evaluate the numerical integral beyond the zero temperature approximation. Furthermore, our novel form for Fermi distribution also provide us the tool to analytically investigate the finite temperature contributions by expanding the function around the Fermi-energy surface, which is useful for addressing physics for the finite temperature approximation.}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Partition function and Magnetization}
+\section{Numerical illustration: Magnetization}
 \label{NumericalResult}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In previous section we demonstrate that the Fermi-distribution can be written into a novel form Eq.~(\ref{NFF1}). To illustrate the benefits of our innovative Fermi distribution function in practical applications, it is convenient to introduce the partition function and consider the physical quantity magnetization~\cite{Melrose:2008abc} as a example.
@@ -277,19 +300,11 @@ Considering the partition function of $e^\pm$ gas in a uniform magnetic field $B
 \begin{align}
 \ln\mathcal{Z}_{tot}=eBV\!\!\sum_{s=\pm1}\sum_{j=0}^\infty\int^\infty_{-\infty} \!\!dp_z\bigg[\ln\left(1+e^{-\beta(E_{j,s}-\mu_e)}\right)+\ln\left(1+e^{-\beta(E_{j,s}+\mu_e)}\right)\bigg],
 \end{align}
-where $\beta=1/T$, $\mu_e$ is the chemical potential of electron, and the electron(positron) energy $E_{j,s}$ can be written as
+where electric charge $e\equiv q_{e^{+}}=-q_{e^{-}}$, $\beta=1/T$, $\mu_e$ is the chemical potential of electron, and the electron(positron) energy $E_{j,s}$ can be written as
 \begin{align}
 E_{j,s}&=\sqrt{m^2_e+p^2_z+2eB\left(j+\frac{1}{2}+\frac{g}{4}s\right)},\qquad s=\pm1,\qquad j=0,1,2,\dots
 \end{align}
-To simplify the integral over $dp_z$ we can take  the integration by integrating by part and obtain
-\begin{align}
-&\int^\infty_{-\infty} \!\!dp_z\bigg[\ln\left(1+e^{-\beta(E_{j,s}-\mu_e)}\right)+\ln\left(1+e^{-\beta(E_{j,s}+\mu_e)}\right)\bigg]\notag\\
-&=2\bigg[\int_0^\infty\!\!dp_z\ln\left(1+e^{-\beta(E_{j,s}-\mu_e)}\right)+\int_0^\infty\!\!dp_z\ln\left(1+e^{-\beta(E_{j,s}+\mu_e)}\right)\bigg]\\
-&=2\bigg[\beta\int_0^\infty\!\!dp_z p_z\frac{\partial E_{j,s}}{\partial p_z}\frac{1}{e^{\beta(E_{j,s}-\mu_e})+1}+\beta\int_0^z\!\!dp_z p_z\frac{\partial E_{j,s}}{\partial p_z}\frac{1}{e^{\beta(E_{j,s}+\mu_e})+1}\bigg]\\
-&=2\beta\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{j,s}}\left[\frac{1}{e^{\beta(E_{j,s}-\mu_e})+1}+\frac{1}{e^{\beta(E_{j,s}+\mu_e})+1}\right]
-\end{align}
-
-Then the partition function of $e^\pm$ plasma in a uniform magnetic field $B$ can be written as
+To simplify the partition function, we do integration by part and the partition function of $e^\pm$ gas becomes
 \begin{align}
 \ln\mathcal{Z}_{tot}&=eBV\sum_{s=\pm1}\sum_{j=0}^\infty2\beta\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{j,s}}\left[\frac{1}{e^{\beta(E_{j,s}-\mu_e})+1}+\frac{1}{e^{\beta(E_{j,s}+\mu_e})+1}\right]\\
 &=eBV\sum_{s=\pm1}\sum_{j=0}^\infty2\beta\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{j,s}}\bigg[f_{e^-}+f_{e^+}\bigg].
@@ -302,32 +317,22 @@ Considering the case $g=2$, then we have
 where we change the index from $j$ to $n$. In this case, the partition function of $e^\pm$ plasma can be written as
 \begin{align}
 \ln\mathcal{Z}_{tot}&=V(2eB\beta) \bigg[ \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)+\sum_{n=0}^\infty\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\bigg]\notag\\
-&=V(2eB\beta) \bigg[\int_0^\infty\!\!dp_z \frac{p_z^2}{E_0}\bigg(f_{e^-}(E_0)+f_{e^+}(E_0)\bigg)+2 \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\bigg]\notag\\
 &=V(2eB\beta)\bigg(\ln\mathcal{I}_{0}+\ln\mathcal{I}_{n}\bigg)
 \end{align}
-where the ground energy is given by $E_0=\sqrt{{m}_e^2+p^2_z}$ and the partition function $\ln\mathcal{I}_{0}$ and $\ln\mathcal{I}_{n}$ are defined as
+where the partition function $\ln\mathcal{I}_{0}$ and $\ln\mathcal{I}_{n}$ are defined as
 \begin{align}
 &\ln\mathcal{I}_{0}=\int_0^\infty\!\!dp_z \frac{p_z^2}{E_0}\bigg(f_{e^-}(E_0)+f_{e^+}(E_0)\bigg),\qquad E_0=\sqrt{{m}_e^2+p^2_z} \\
 &\ln\mathcal{I}_{n}=2 \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg),\quad E_n=\sqrt{{m}_e^2+p^2_z+2eBn}
 \end{align}
 
-Giving the partition function, the magnetization can be obtained via the definition
+Giving the partition function of $e^\pm$ gas in the magnetic field, the magnetization can be obtained via the definition
 \begin{align}
 M&=\frac{1}{V\beta}\frac{\partial \ln \mathcal{Z}_{tot}}{\partial B}=2e\frac{\partial}{\partial B}\bigg[B\bigg(\ln\mathcal{I}_{0}+\ln\mathcal{I}_{n}\bigg)\bigg]=M_0+M_n,\\
 &M_0=2e\ln\mathcal{I}_{0},\qquad
 \label{M_landau}
 M_n=2e\bigg(\ln\mathcal{I}_{n}+B\frac{\partial\ln\mathcal{I}_n}{\partial B}\bigg)
 \end{align}
-where we introduce the magnetization $M_0$ and $M_n$ to simplify the notations. 
-Integrating by part the magnetization $M_n$ can be written as
-\begin{align}
-M_n&=4e\sum_{n=1}^\infty \int_{m_n}^\infty\!\!dE_n\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[{\sqrt{E^2_n-m^2_n}}-\frac{Ben}{\sqrt{E^2_n-m^2_n}}\right]\\
-&=4e\sum_{n=1}^\infty \int_{0}^\infty\!\!dp_z\frac{p_z}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[\frac{p_z^2-Ben}{p_z}\right]\\
-&=4e\sum_{n=1}^\infty \int_{0}^\infty\!\!dp_z\frac{(p_z^2-Ben)}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\\
-&=4e \int_{0}^\infty\!\!dp_z\sum_{n=1}^\infty\frac{(p_z^2-Ben)}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg).
-\end{align}
-
-It is convenient to introduce the dimensionless variables and critical magnetic field $B_c$ as follows:
+where the $M_0$ represents the background magnetization  and $M_n$ is magnetization associate to Landau level (see Appendix for simplification). It is convenient to introduce the dimensionless variables and critical magnetic field $B_c$ as follows:
 \begin{align}
 \xi=p_z/T,\qquad \eta=m_e/T,\qquad B_c=m^2_e/e
 \end{align}
@@ -335,98 +340,106 @@ In this case, the magnetization $M_0$ and $M_n$ can be written as
 \begin{align}
 &M_0=2eT^2\int_0^\infty\!\!d\xi\, F_0(E_0/T),\qquad M_n=2eT^2\int_{0}^\infty\!\!d\xi\left(2\sum_{n=1}^\infty\,F_n(E_n/T)\right)
 \end{align}
-where the $M_0$ represents the background magnetization  and $M_n$ is magnetization associate to Landau level. The function $F_n$ is defined as
+where the function $F_n$ is defined as
 \begin{align}
 &F_n=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\bigg(f_{e^-}(E_n/T)+f_{e^+}(E_n/T)\bigg)\\
 &E_n/T=\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)},\qquad n=0,1,2,\cdots
 \end{align}
 
-To illustrate the benefits of our novel Fermi distribution function in calculation of magnetization, it is convenient to rewrite the Fermi-function as 
+To illustrate the benefits of our novel Fermi distribution function in calculation of magnetization, it is convenient to use the Fermi-function Eq.~(\ref{Eq001_appendix}) and the function $F_n$ can be written as
 \begin{align}
-&f=f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}
+&F_n=F_n^{\mathrm{T=0}}+F_n^{\mathrm{T\neq0}}+\widetilde F_n^{\mathrm{T\neq0}},
 \end{align}
-where the functions $f_{\mathrm{T=0}}$, $f_\mathrm{T\neq0}$ ans $\tilde f_\mathrm{T\neq0}$ are defined as
+and we have
 \begin{align}
-&f_{\mathrm{T=0}}=\Theta(\widetilde\mu-E),\\
-&f_\mathrm{T\neq0}=\frac{1}{2}\,e^{-|E-\widetilde\mu|/T}\frac{(E-\widetilde\mu)}{|E-\widetilde\mu|},\\ 
-&\tilde f_\mathrm{T\neq0}=\frac{1}{2}\,e^{-|E-\widetilde\mu|/T}\tanh\bigg(\frac{E-\widetilde\mu}{2T}\bigg),
-\end{align}
-In this case, the function $F_n$ can be written as
-\begin{align}
-&F_n=F_n^{\mathrm{T=0}}+F_n^{\mathrm{T\neq0}}+\widetilde F_n^{\mathrm{T\neq0}},\\
 &F_n^{\mathrm{T=0}}=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\bigg(f^{\mathrm{T=0}}_{e^-}(E_n/T)+f^{\mathrm{T=0}}_{e^+}(E_n/T)\bigg)\\
 &F_n^{\mathrm{T\neq0}}=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\bigg(f^{\mathrm{T\neq0}}_{e^-}(E_n/T)+f^{\mathrm{T\neq0}}_{e^+}(E_n/T)\bigg)\\
 &\widetilde F_n^{\mathrm{T\neq0}}=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\bigg(\tilde f^{\mathrm{T\ne0}}_{e^-}(E_n/T)+\tilde f^{\mathrm{T\neq0}}_{e^+}(E_n/T)\bigg)
 \end{align}
-In Fig~\ref{F0_Checking}, we plot the background  $F_0$ as a function of $p_z/T$ with temperature $T=0.012$ MeV and chemical potential $\mu=2$ MeV. The dominant term is the $F_{n=0}^{\mathrm{T=0}}$ which correspond to the step function contribution when $T=0$ The functions $F_{n=0}^{\mathrm{T\neq0}}$ and $\widetilde F_{n=0}^{\mathrm{T\neq0}}$ provide the correction near the energy surface $\mu/T\approx166.6$ MeV.
+In Fig~\ref{F0_Checking} (left) we plot the background  $F_0$ as a function of $p_z/T$ with temperature $T=0.012$ MeV and chemical potential $\mu=2$ MeV. The dominant term is the $F_{n=0}^{\mathrm{T=0}}$ which correspond to the step function contribution when $T=0$. The functions $F_{n=0}^{\mathrm{T\neq0}}$ and $\widetilde F_{n=0}^{\mathrm{T\neq0}}$ provide the correction near the energy surface $\mu/T\approx166.6$ MeV. In Fig~\ref{F0_Checking} (right) we plot the sum over $F_n$ as a function of $p_z/T$ with condition $T=0.012$ MeV, $\mu=2$ MeV and magnetic field $B/B_c=1/6$. It shows that for the above condition, the sum over Landau level is already stable for $N=50$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.9\textwidth]{./plot/NewFermi_Background}
-%\includegraphics[width=0.9\textwidth]{./plot/NewFermi_Magnetization_n001}
-\caption{The function $F_n$ as a function of $p_z/T$ for $n=0$ (purple line). We consider the case: $T=0.012$ MeV and $\mu=2$ MeV. For comparison, the black line represents $F_{n=0}^{\mathrm{T=0}}$, the blue line label $F_{n=0}^{\mathrm{T\neq0}}$ and red line is $\tilde F_{n=0}^{\mathrm{T\neq0}}$.}
+\includegraphics[width=0.5\textwidth]{./plot/NewFermi_Background}\includegraphics[width=0.5\textwidth]{./plot/NewFermi_SumChecking}
+\caption{ The function $F_n$ as a function of $p_z/T$ with conditions $T=0.012$ MeV, $\mu=2$ MeV and magnetic field $B/B_c=1/6$ as an example.
+(Left) The function $F_n$ as a function of $p_z/T$ for $n=0$ (purple line). For comparison, the black line represents $F_{n=0}^{\mathrm{T=0}}$, the blue line label $F_{n=0}^{\mathrm{T\neq0}}$ and red line is $\tilde F_{n=0}^{\mathrm{T\neq0}}$. (Right) The sum over $\sum_{n=1}^NF_n$ as a function of $p_z/T$ for different values of $N$. It shows that for the given conditions, the sum over Landau level is converge for $N=50$.}
 \label{F0_Checking}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-In Fig.~\ref{Fn_Checking} we plot the sum over $F_n$ as a function of $p_z/T$ with condition $T=0.012$ MeV, $\mu=2$ MeV and magnetic field $B/B_c=1/6$. It shows that for the given conditions, our novel form of Fermi function converge very fast. When $N=50$ the sum over Landau level is already stable.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.9\textwidth]{./plot/NewFermi_SumChecking}
-\caption{The sum over  $\sum_{n=1}^NF_n$ as a function of $p_z/T$ for different values of $N$. We consider the case: $T=0.012$ MeV, $\mu=2$ MeV and magnetic field $B/B_c=1/6$.}
-\label{Fn_Checking}
-\end{figure}
+%\begin{figure}[ht]
+%\centering
+%\includegraphics[width=0.9\textwidth]{./plot/NewFermi_SumChecking}
+%\caption{The sum over  $\sum_{n=1}^NF_n$ as a function of $p_z/T$ for different values of $N$. We consider the case: $T=0.012$ MeV, $\mu=2$ MeV and magnetic field $B/B_c=1/6$.}
+%\label{Fn_Checking}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.9\textwidth]{./plot/NewFermi_Magnetization_tot003}
-\caption{We plot the magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$}
-\label{M_Checking}
+\includegraphics[width=0.5\textwidth]{./plot/NewFermi_Magnetization_tot003}\includegraphics[width=0.5\textwidth]{./plot/Magnetization_ChemicalPotential}
+\caption{(Left) The magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$. It shows that the novel form of Fermi distribution improves the numerical calculation of Landau level by summing over finite terms $N$ for given temperature to obtain the converge results. (Right) The magnetization as a function of temperature with different chemical values from $2\,\mathrm{MeV}>\mu>0.05\,\mathrm{MeV}$ with a fixed value of $N=300$ for the Landau level summation.}
+\label{M_Checking001}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-In Fig.~\ref{M_Checking} we plot the magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$. It shows that the novel form of Fermi distribution can improve the numerical calculation of Landau level by summing over finite terms only. For different higher temperature range, instead of sum over a large numbers of $N$, we just need to include more terms in Landau level summation to obtain the stabilize magnetization.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\textwidth]{./plot/NewFermi_Magnetization_BRange}
-\includegraphics[width=0.8\textwidth]{./plot/Magnetization_B_NChecking}
-\caption{Top:The magnetization $M/2eT^2$ as a function of magnetic field $B/B_c$ with the conditions $\mu=2$ MeV and $B/B_c=1/6$ at different temperatures. Bottom: The magnetization $M/2eT^2$ as a function of magnetic field $B/B_c$ with different sum of the Landau level at temperature $T=0.012$MeV, $\mu=2$ MeV and $B/B_c=1/6$. }
-\label{M_MagneticField}
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[ht]
+%\centering
+%\includegraphics[width=0.9\textwidth]{./plot/Magnetization_ChemicalPotential}
+%\caption{We plot the magnetization $M/2eT^2$ as a function of temperature with the conditions $N=300$ for sum over Landau level and $B/B_c=1/6$.}
+%\label{M_Checking002}
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.8\textwidth]{./plot/Magnetization_cold_corr}
-\includegraphics[width=0.8\textwidth]{./plot/Magnetization_cold_corr003}
-\caption{The magnetization $M/2eT^2$ as a function of magnetic field $B/B_c$ for zero temperature component (blue line), finite temperature component (red line), and sum of both contribution (green line). }
-\label{M_MagneticField002}
-\end{figure}
+
+In Fig.~\ref{M_Checking001} (left) we plot the magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$. It shows that the novel form of Fermi distribution can improve the numerical calculation of Landau level by summing over finite terms only. In cases where higher temperature ranges are involved, instead of summing over a vast number of $N$ terms, we only need to incorporate a few additional terms in the Landau level summation to achieve stable magnetization results. This results suggests that under the given conditions, our analytic form of Fermi function converges rapidly, significantly improving computational efficiency. In Fig.~\ref{M_Checking001} (right) we extend our analysis by plotting the magnetization as a function of temperature with different chemical values from $2\,\mathrm{MeV}>\mu>0.05\,\mathrm{MeV}$. This examination shows the versatility of our approach in addressing extreme conditions for the chemical potential of the Fermi gas. It shows the broad applicability of our approach and performance across different limit of Fermi system.
+
+
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Discussion}
 \label{sec12}
+In this work, we introduce a novel form of the Fermi distribution Eq.~(\ref{NFF1}) that separate the Fermi gas into zero and finite temperature components analytically. This is the first time in literature that has clean separation of the zero and finite temperature components. Unlike the traditional brutal approach to eliminating the $T=0$ limit from the low-temperature Fermi distribution, our novel form of the Fermi distribution for finite temperature component has several numerical advantages in computation. 
+
+The Fermi distribution Eq.~(\ref{NFF1}) provides us the tool to study or examine the effects and characteristics of finite temperature components separately. The mathematical form of the finite temperature components is well-suited for numerical calculations and can be used to address the integrals common in statistical physics. This is because the finite temperature components are naturally exponentially suppressed while also preserving the sign of all corrections making the formulation easier to numerically integrate and reduce the numerical noise, see Fig.~\ref{Fermi_Component}. In addition, our approach also allows for analytical exploration of the finite temperature contributions by expanding the function around the Fermi-energy surface.
+
+To illustrate the numerical benefits, we examine the magnetization of electron-positron gas in a uniform magnetic filed as an example. Fig.~\ref{M_Checking001} shows that our novel form of Fermi distribution improves convergence of the numerical calculation of Landau levels. Instead of summing over a large number of terms, our approach  requires only a few additional terms in the Landau level summation to obtain the stable magnetization. This results imply that our analytic form of Fermi function exhibits rapid convergence and therefore improves the computational efficiency significantly.
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Martin - Highlight the method can be used to address the integrals common in stastistical physics.
+% Johann - First time we separate cleanly the hot and cold components. This therefore could be very useful for studying interacting systems where the mathematics becomes intractible quickly. The properties near to the Fermi surface are clearly isolated and most of the interactions occur near the Fermi surface.
+% Cold matter cannot form pairs, but finite temperature systems can because of the deformation of the step function. Particle-antiparticle hope pairs behavior is isolated. May have applications to superconducting systems. Allowing for the exploration of interacting systems at the Fermi surface.
+% Reference to superconducting neutron stars.
+% Andrew - This allows us to analyze the finite temperature elements as a distinct model.
+% Cheng Tao - This novel form is numerically friendly as the finite temperature components are naturally exponentially suppresses while also preserving the sign of all corrections making the formulation easier to numerically integrate.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Appendix}
 \label{Append}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Considering the second term in magnetization $M_n$ Eq.~(\ref{M_landau}), it can be written as
+\subsection{Simplification of magnetization $M_n$}
+The magnetization $M_n$ corresponds to the landau level contribution can be written as
+\begin{align}
+M_n=2e\bigg(\ln\mathcal{I}_{n}+B\frac{\partial\ln\mathcal{I}_n}{\partial B}\bigg)
+\end{align}
+Considering the second term in magnetization $M_n$, it can be written as
 \begin{align}
 B\frac{\partial\ln\mathcal{I}_n}{\partial B}&=2B \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{\partial E_n}{\partial B}\frac{\partial}{\partial E_n}\left[\frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\right]\notag\\
-&=2B \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{en}{E_n}\frac{p_z^2}{E_{n}}\left[-\frac{1}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)+\bigg(\frac{\partial f_{e^-}(E_n)}{\partial E_n}+\frac{\partial f_{e^+}(E_n)}{\partial E_n}\bigg)\right]\notag\\
+%&=2B \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{en}{E_n}\frac{p_z^2}{E_{n}}\left[-\frac{1}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)+\bigg(\frac{\partial f_{e^-}(E_n)}{\partial E_n}+\frac{\partial f_{e^+}(E_n)}{\partial E_n}\bigg)\right]\notag\\
 &=2eB \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{n p_z^2}{E^2_{n}}\left[-\frac{1}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)+\bigg(\frac{\partial f_{e^-}(E_n)}{\partial E_n}+\frac{\partial f_{e^+}(E_n)}{\partial E_n}\bigg)\right]\notag\\
-&=2eB\sum_{n=1}^\infty n\bigg(A_n-D_n\bigg)
+&=2eB\sum_{n=1}^\infty n\bigg(A_n-D_n\bigg)\label{Eq001_appendix}
 \end{align}
 where the function $A_n$ and $D_n$ are defined as
 \begin{align}
@@ -440,19 +453,49 @@ where we change the integral variable to energy and introduce the variable $m_n^
 A_n&=-\int_{m_n}^\infty\!\!dE_n \bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\frac{\partial}{\partial E_n}\left[\frac{\sqrt{E^2_n-m^2_n}}{E_{n}}\right]\notag\\
 &=-\int_{m_n}^\infty\!\!dE_n \bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[\frac{m^2_n}{E^2_{n}\sqrt{E^2_n-m^2_n}}\right].
 \end{align}
-In this case we have
+Substituting the $A_n$ and $D_n$ into Eq.~(\ref{Eq001_appendix}), we can simplify the equation as below:
 \begin{align}
-B\frac{\partial\ln\mathcal{I}_n}{\partial B}&=2eB\sum_{n=1}^\infty n\bigg(A_n-D_n\bigg)\notag\\
+B\frac{\partial\ln\mathcal{I}_n}{\partial B}
 &=2eB\sum_{n=1}^\infty n\int_{m_n}^\infty\!\!dE_n \bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[-\frac{m^2_n}{E^2_{n}\sqrt{E^2_n-m^2_n}}-\frac{\sqrt{E^2_n-m^2_n}}{E^2_{n}}\right]\notag\\
 &=-2eB\sum_{n=1}^\infty n\int_{m_n}^\infty\!\!\frac{dE_n}{\sqrt{E^2_n-m^2_n}} \bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg).
 \end{align}
 In this case the magnetization $M_n$ can be written as
 \begin{align}
 M_n&=4e\sum_{n=1}^\infty \int_{m_n}^\infty\!\!dE_n\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[{\sqrt{E^2_n-m^2_n}}-\frac{Ben}{\sqrt{E^2_n-m^2_n}}\right]\\
-&=4e\sum_{n=1}^\infty \int_{0}^\infty\!\!dp_z\frac{p_z}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[\frac{p_z^2-Ben}{p_z}\right]\\
-&=4e\sum_{n=1}^\infty \int_{0}^\infty\!\!dp_z\frac{(p_z^2-Ben)}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\\
+%&=4e\sum_{n=1}^\infty \int_{0}^\infty\!\!dp_z\frac{p_z}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[\frac{p_z^2-Ben}{p_z}\right]\\
+%&=4e\sum_{n=1}^\infty \int_{0}^\infty\!\!dp_z\frac{(p_z^2-Ben)}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\\
 &=4e \int_{0}^\infty\!\!dp_z\sum_{n=1}^\infty\frac{(p_z^2-Ben)}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg).
 \end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Numerical illustration}
+For any given function $g(E)$, then the correspond physical quantity can be written as
+\begin{align}
+G\equiv\int^{\infty}_{m}dE\,g(E)\,f(E)=\int^{\infty}_{m}dE\,g(E)\bigg[f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}\bigg]
+\end{align}
+To illustrate the zero and finite temperature contribution to the Fermi distribution function, it is convenient to rewrite Eq.~(\ref{NFF1}) into the following form
+\begin{align}\label{Eq_form}
+&f=f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}
+\end{align}
+where the function are defined as
+\begin{align}
+&f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\quad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\\
+&f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\left[\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right)+\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\right]
+\end{align}
+Integrating by part, the quantity $A$ can be written as
+\begin{align}
+\label{N_electron}
+A=\int^{\infty}_{m_e}dE\,\rho(E)\,f_e(E)=A_{cold}+\int^{\infty}_{m_e}\,dE\left(g(E)\,f_\delta(E)-g^\prime(E)\,f^{(2)}_\delta(E)\right)+\left.g(E)\,f^{(2)}_\delta\right|_{surface},
+\end{align}
+where $g^\prime(e)=dg(E)/dE$ and the function $f^{(2)}_\delta(E)$ is defined as
+\begin{align}
+f^{(2)}_\delta(E)=\int^E_{m_e}dE^\prime\,f_\epsilon(E^\prime).
+\end{align}
+
+
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
