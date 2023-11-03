@@ -253,11 +253,11 @@ Considering the partition function of $e^\pm$ gas in a uniform magnetic field $B
 \begin{align}
 \ln\mathcal{Z}_{tot}=eBV\!\!\sum_{s=\pm1}\sum_{j=0}^\infty\int^\infty_{-\infty} \!\!dp_z\bigg[\ln\left(1+e^{-\beta(E_{j,s}-\mu_e)}\right)+\ln\left(1+e^{-\beta(E_{j,s}+\mu_e)}\right)\bigg],
 \end{align}
-where electric charge $e\equiv q_{e^{+}}=-q_{e^{-}}$, $\beta=1/T$, $\mu_e$ is the chemical potential of electron, and the electron(positron) energy $E_{j,s}$ can be written as
+\rev{Please define $V$ and $p_z$ in this expression}where \rev{elementary charge $e>0$}\sout{electric charge $e\equiv q_{e^{+}}=-q_{e^{-}}$}, $\beta=1/T$, $\mu_e$ is the chemical potential of electron, and the electron(positron) energy $E_{j,s}$ can be written as
 \begin{align}
 E_{j,s}&=\sqrt{m^2_e+p^2_z+2eB\left(j+\frac{1}{2}+\frac{g}{4}s\right)},\qquad s=\pm1,\qquad j=0,1,2,\dots
 \end{align}
-To simplify the partition function, we do integration by part and the partition function of $e^\pm$ gas becomes
+To simplify the partition function, we integrate by parts and the partition function of $e^\pm$ gas becomes
 \begin{align}
 \ln\mathcal{Z}_{tot}&=eBV\sum_{s=\pm1}\sum_{j=0}^\infty2\beta\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{j,s}}\left[\frac{1}{e^{\beta(E_{j,s}-\mu_e})+1}+\frac{1}{e^{\beta(E_{j,s}+\mu_e})+1}\right]\\
 &=eBV\sum_{s=\pm1}\sum_{j=0}^\infty2\beta\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{j,s}}\bigg[f_{e^-}+f_{e^+}\bigg].
@@ -278,7 +278,7 @@ where the partition function $\ln\mathcal{I}_{0}$ and $\ln\mathcal{I}_{n}$ are d
 &\ln\mathcal{I}_{n}=2 \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg),\quad E_n=\sqrt{{m}_e^2+p^2_z+2eBn}
 \end{align}
 
-Giving the partition function of $e^\pm$ gas in the magnetic field, the magnetization can be obtained via the definition
+\rev{Ok, now $E_n$ has been defined three times which seems redundant. In (21) and (22) it is certainly not necessary. I would define once separately from (18,19) and I would remove the rest, you can refer this equation if necessary.}Giving the partition function of $e^\pm$ gas in the magnetic field, the magnetization can be obtained via the definition
 \begin{align}
 M&=\frac{1}{V\beta}\frac{\partial \ln \mathcal{Z}_{tot}}{\partial B}=2e\frac{\partial}{\partial B}\bigg[B\bigg(\ln\mathcal{I}_{0}+\ln\mathcal{I}_{n}\bigg)\bigg]=M_0+M_n,\\
 &M_0=2e\ln\mathcal{I}_{0},\qquad
@@ -383,41 +383,45 @@ To illustrate the numerical benefits, we examine the magnetization of electron-p
 \label{Append}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Simplification of magnetization $M_n$}
-The magnetization $M_n$ corresponds to the landau level contribution can be written as
+The magnetization $M_n$ corresponds to the contribution of the landau levels and can be written as
 \begin{align}
-M_n=2e\bigg(\ln\mathcal{I}_{n}+B\frac{\partial\ln\mathcal{I}_n}{\partial B}\bigg)
+M_n=2e\bigg(\ln\mathcal{I}_{n}+B\frac{\partial\ln\mathcal{I}_n}{\partial B}\bigg)\,.
 \end{align}
-Considering the second term in magnetization $M_n$, it can be written as
+Considering the derivative in the second term of magnetization $M_n$
 \begin{align}
-B\frac{\partial\ln\mathcal{I}_n}{\partial B}&=2B \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{\partial E_n}{\partial B}\frac{\partial}{\partial E_n}\left[\frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\right]\notag\\
+B\frac{\partial\ln\mathcal{I}_n}{\partial B}&=2B \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{\partial E_n}{\partial B}\frac{\partial}{\partial E_n}\left(\frac{p_z^2}{E_{n}}\left[f_{e^-}(E_n)+f_{e^+}(E_n)\right]\right)\notag\\
 %&=2B \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{en}{E_n}\frac{p_z^2}{E_{n}}\left[-\frac{1}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)+\bigg(\frac{\partial f_{e^-}(E_n)}{\partial E_n}+\frac{\partial f_{e^+}(E_n)}{\partial E_n}\bigg)\right]\notag\\
-&=2eB \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{n p_z^2}{E^2_{n}}\left[-\frac{1}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)+\bigg(\frac{\partial f_{e^-}(E_n)}{\partial E_n}+\frac{\partial f_{e^+}(E_n)}{\partial E_n}\bigg)\right]\notag\\
-&=2eB\sum_{n=1}^\infty n\bigg(A_n-D_n\bigg)\label{Eq001_appendix}
+&=2eB \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{n p_z^2}{E^2_{n}}\left[-\frac{1}{E_{n}}\left[f_{e^-}(E_n)+f_{e^+}(E_n)\right]+\left(\frac{\partial f_{e^-}(E_n)}{\partial E_n}+\frac{\partial f_{e^+}(E_n)}{\partial E_n}\right)\right]\notag\\
+&=2eB\sum_{n=1}^\infty n\bigg(A_n-D_n\bigg)\,,\label{Eq001_appendix}
 \end{align}
-where the function $A_n$ and $D_n$ are defined as
+where the functions $A_n$ and $D_n$ are defined as
 \begin{align}
 \label{Function_A}
-&A_n=\int_{m_n}^\infty\!\!dE_n \frac{\sqrt{E^2_n-m^2_n}}{E_{n}}\bigg(\frac{\partial f_{e^-}(E_n)}{\partial E_n}+\frac{\partial f_{e^+}(E_n)}{\partial E_n}\bigg),\qquad m_n^2=m^2_e+2eBn\\ 
+&A_n=\int_{m_n}^\infty\!\!dE_n \frac{\sqrt{E^2_n-m^2_n}}{E_{n}}\bigg(\frac{\partial f_{e^-}(E_n)}{\partial E_n}+\frac{\partial f_{e^+}(E_n)}{\partial E_n}\bigg)\,,\\ 
 \label{Function_D}
-&D_n=\int_{m_n}^\infty\!\!dE_n \frac{\sqrt{E^2_n-m^2_n}}{E^2_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)
+&D_n=\int_{m_n}^\infty\!\!dE_n \frac{\sqrt{E^2_n-m^2_n}}{E^2_{n}}\left[f_{e^-}(E_n)+f_{e^+}(E_n)\right]\,,
 \end{align}
-where we change the integral variable to energy and introduce the variable $m_n^2=m^2_e+2eBn$. Integrating by part, the function $A_n$ becomes
+variable $m_n$ is given by
+\begin{equation}
+    m_n^2 = m^2_e+2eBn
+\end{equation}
+and the integration variable was changed to energy. Integrating by parts, the function $A_n$ becomes
 \begin{align}
-A_n&=-\int_{m_n}^\infty\!\!dE_n \bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\frac{\partial}{\partial E_n}\left[\frac{\sqrt{E^2_n-m^2_n}}{E_{n}}\right]\notag\\
-&=-\int_{m_n}^\infty\!\!dE_n \bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[\frac{m^2_n}{E^2_{n}\sqrt{E^2_n-m^2_n}}\right].
+A_n&=-\int_{m_n}^\infty\!\!dE_n \left[f_{e^-}(E_n)+f_{e^+}(E_n)\right]\frac{\partial}{\partial E_n}\left(\frac{\sqrt{E^2_n-m^2_n}}{E_{n}}\right)\notag\\
+&=-\int_{m_n}^\infty\!\!dE_n \left[f_{e^-}(E_n)+f_{e^+}(E_n)\right]\frac{m^2_n}{E^2_{n}\sqrt{E^2_n-m^2_n}}.
 \end{align}
-Substituting the $A_n$ and $D_n$ into Eq.~(\ref{Eq001_appendix}), we can simplify the equation as below:
+Substituting the $A_n$ and $D_n$ into Eq.~(\ref{Eq001_appendix}), we can simplify this equation 
 \begin{align}
 B\frac{\partial\ln\mathcal{I}_n}{\partial B}
-&=2eB\sum_{n=1}^\infty n\int_{m_n}^\infty\!\!dE_n \bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[-\frac{m^2_n}{E^2_{n}\sqrt{E^2_n-m^2_n}}-\frac{\sqrt{E^2_n-m^2_n}}{E^2_{n}}\right]\notag\\
-&=-2eB\sum_{n=1}^\infty n\int_{m_n}^\infty\!\!\frac{dE_n}{\sqrt{E^2_n-m^2_n}} \bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg).
+&=2eB\sum_{n=1}^\infty n\int_{m_n}^\infty\!\!dE_n \left[f_{e^-}(E_n)+f_{e^+}(E_n)\right]\left(-\frac{m^2_n}{E^2_{n}\sqrt{E^2_n-m^2_n}}-\frac{\sqrt{E^2_n-m^2_n}}{E^2_{n}}\right)\notag\\
+&=-2eB\sum_{n=1}^\infty n\int_{m_n}^\infty\!\!\frac{dE_n}{\sqrt{E^2_n-m^2_n}} \left[f_{e^-}(E_n)+f_{e^+}(E_n)\right].
 \end{align}
 In this case the magnetization $M_n$ can be written as
 \begin{align}
-M_n&=4e\sum_{n=1}^\infty \int_{m_n}^\infty\!\!dE_n\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[{\sqrt{E^2_n-m^2_n}}-\frac{Ben}{\sqrt{E^2_n-m^2_n}}\right]\\
+M_n&=4e\sum_{n=1}^\infty \int_{m_n}^\infty\!\!dE_n\left[f_{e^-}(E_n)+f_{e^+}(E_n)\right]\left({\sqrt{E^2_n-m^2_n}}-\frac{Ben}{\sqrt{E^2_n-m^2_n}}\right)\\
 %&=4e\sum_{n=1}^\infty \int_{0}^\infty\!\!dp_z\frac{p_z}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\left[\frac{p_z^2-Ben}{p_z}\right]\\
 %&=4e\sum_{n=1}^\infty \int_{0}^\infty\!\!dp_z\frac{(p_z^2-Ben)}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\\
-&=4e \int_{0}^\infty\!\!dp_z\sum_{n=1}^\infty\frac{(p_z^2-Ben)}{E_n}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg).
+&=4e \int_{0}^\infty\!\!dp_z\sum_{n=1}^\infty\frac{(p_z^2-Ben)}{E_n}\left[f_{e^-}(E_n)+f_{e^+}(E_n)\right].
 \end{align}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -429,8 +433,8 @@ G&\equiv\int^{\infty}_{m}dE\,g(E)\,f(E)=\int^{\infty}_{m}dE\,g(E)\bigg[f_{\mathr
 \end{align}
 where the function are defined as
 \begin{align}
-&G_{\mathrm{T=0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T=0}},\qquad f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T\neq0}},\qquad,f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\\
-&\tilde G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\tilde f_{\mathrm{T\neq0}},\qquad,\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
+&G_{\mathrm{T=0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T=0}},\qquad f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T\neq0}},\qquad f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\\
+&\tilde G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\tilde f_{\mathrm{T\neq0}},\qquad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
 \end{align}
 TO illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics in the limit when $T$ approaches to zero. We use the function 
 \begin{align}
@@ -460,7 +464,7 @@ To evaluate the integral we consider the two cases as follows
   \begin{align}
     G_{\mathrm{T\neq0}}&=\frac{1}{2}\int^\infty_{-|x_0|}dx\,g(x)\frac{x}{|x|}\,e^{-|x|}\\
     &=\frac{1}{2}\left[\left(\int_0^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}+\int^\infty_{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right)+\int^0_{-|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right]\notag\\
-   &=\frac{1}{2}\left[\int_{-|x_0|}^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}+\int^\infty_{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right].
+   &=\frac{1}{2}\left[\int_{-|x_0|}^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}+\int^\infty_{|x_0|}dx\,g(x)\,e^{-x}\right].
   \end{align}
 \end{itemize}
 In summary, consider the both cases the function $G_\mathrm{T\neq0}$ can be written as
@@ -472,8 +476,11 @@ Considering the limit when temperature approaches to zero, we have
 \begin{align}
 \lim_{T\to0}G_{\mathrm{T\neq0}}=\left[\frac{1}{2}\int_{-\infty}^{\infty}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right],\qquad m<\tilde\mu
 \end{align}
-
-
+\subsubsection{The function $\tilde G_{\mathrm{T\neq0}}$}
+The function $\tilde G_{\mathrm{T\neq0}}$ can be written as
+\begin{align}
+G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\left[\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\right],\quad g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
+\end{align}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter
