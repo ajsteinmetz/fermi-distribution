@@ -198,6 +198,16 @@ As our expression is written in terms of distributions rather than analytic func
 \end{align}
 which means that the limit of our expression at the origin $x=0$ exists and is equal to the value of the function in \req{f_old} at $x = 0$. With the definitions of the step function $\Theta(x)$ and sign function $\sgn(x)$ in \req{NFF2}, the limits for $x\rightarrow0^{\pm}$ are equal to the value of our function at the origin. Therefore, for all real $x\in\mathbb{R}$, our expression matches the original FD distribution \req{f_old}.
 
+\rev{This I believe is not necessary...if the functions match $\forall x \in \mathbb{R}$ then of course their derivatives match too.}Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
+\begin{align}
+\label{NFF1b}
+\frac{d}{dx}\Theta(-x)&=-\delta(x)\,,\qquad 
+\frac{d}{dE}\Theta(-x)=-\frac{1}{T}\delta(x)\,,\\
+\frac{d}{dx}\sgn(x)&=2\delta(x)\,,\,\,\quad 
+\frac{d}{dE}\sgn(x)=\frac{2}{T}\delta(x)\,,
+\end{align}
+both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} at $x=0$ exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Decomposition of zero and finite temperature contribution}
 \label{Numerical}
@@ -216,12 +226,12 @@ which means that the limit of our expression at the origin $x=0$ exists and is e
 
 {\xmagenta ANDREW: I recommend we stick with the dimensionless variable ``$x$'' for all calculations and discussions up to the physical example. This enhances the mathematical clarity and simply makes the expressions more simple to read. I did this for Eq. 11, but wanted your approval before continuing my edits. Additionally, the expression $f_{T=0}(x)$ doesn't make sense as $T$ is clearly nonzero in $x(E,\widetilde\mu,T)$. I suggest we abandon this notation and simply call it the step function $\Theta(x)$ and we are already doing earlier. There is also a conflict where Eq. 12 and Eq. 13 are defined using the same notation. Is this an error? Please look at this Cheng Tao.} To illustrate the separation of the zero and finite temperature contributions to the FD distribution, it is convenient to rewrite Eq.~(\ref{NFF1}) in the following form
 \begin{align}\label{Eq_form}
-&f_\mathrm{FD}=f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}
+&f_\mathrm{FD}(x)=\theta(-x)+f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)
 \end{align}
 where the temperature functions are defined as
 \begin{align}
-&f_{\mathrm{T=0}}(x)=\Theta(x),\\ &f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\quad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\\
-&f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\left[\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right)+\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\right]
+f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\qquad
+\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
 \end{align}
 In Fig.~(\ref{Fermi_Component}) we plot the exact Fermi distribution (black line $f$), the zero (purple lines, $f_{T=0}$) and finite temperature components of the Fermi distribution as a function of energy choosing in this example the chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and at $T=0.2\MeV$.
 
@@ -295,7 +305,7 @@ In this case, the magnetization $M_0$ and $M_n$ can be written as
 \end{align}
 where the function $F_n$ is defined as
 \begin{align}
-&F_n=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\bigg(f_{e^-}(E_n/T)+f_{e^+}(E_n/T)\bigg)\\
+&F_n=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\left[f_{e^-}(E_n/T)+f_{e^+}(E_n/T)\right]\\
 &E_n/T=\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)},\qquad n=0,1,2,\cdots
 \end{align}
 
@@ -305,9 +315,9 @@ To illustrate the benefits of our novel Fermi distribution function in calculati
 \end{align}
 and we have
 \begin{align}
-&F_n^{\mathrm{T=0}}=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\bigg(f^{\mathrm{T=0}}_{e^-}(E_n/T)+f^{\mathrm{T=0}}_{e^+}(E_n/T)\bigg)\\
-&F_n^{\mathrm{T\neq0}}=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\bigg(f^{\mathrm{T\neq0}}_{e^-}(E_n/T)+f^{\mathrm{T\neq0}}_{e^+}(E_n/T)\bigg)\\
-&\widetilde F_n^{\mathrm{T\neq0}}=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\bigg(\tilde f^{\mathrm{T\ne0}}_{e^-}(E_n/T)+\tilde f^{\mathrm{T\neq0}}_{e^+}(E_n/T)\bigg)
+&F_n^{\mathrm{T=0}}=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\left[f^{\mathrm{T=0}}_{e^-}(E_n/T)+f^{\mathrm{T=0}}_{e^+}(E_n/T)\right]\\
+&F_n^{\mathrm{T\neq0}}=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\left[f^{\mathrm{T\neq0}}_{e^-}(E_n/T)+f^{\mathrm{T\neq0}}_{e^+}(E_n/T)\right]\\
+&\widetilde F_n^{\mathrm{T\neq0}}=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\left[\tilde f^{\mathrm{T\ne0}}_{e^-}(E_n/T)+\tilde f^{\mathrm{T\neq0}}_{e^+}(E_n/T)\right]
 \end{align}
 In Fig~\ref{F0_Checking} (left) we plot the background  $F_0$ as a function of $p_z/T$ with temperature $T=0.012$ MeV and chemical potential $\mu=2$ MeV. The dominant term is the $F_{n=0}^{\mathrm{T=0}}$ which correspond to the step function contribution when $T=0$. The functions $F_{n=0}^{\mathrm{T\neq0}}$ and $\widetilde F_{n=0}^{\mathrm{T\neq0}}$ provide the correction near the energy surface $\mu/T\approx166.6$ MeV. In Fig~\ref{F0_Checking} (right) we plot the sum over $F_n$ as a function of $p_z/T$ with condition $T=0.012$ MeV, $\mu=2$ MeV and magnetic field $B/B_c=1/6$. It shows that for the above condition, the sum over Landau level is already stable for $N=50$.
 
@@ -316,7 +326,7 @@ In Fig~\ref{F0_Checking} (left) we plot the background  $F_0$ as a function of $
 \centering
 \includegraphics[width=0.5\textwidth]{./plot/NewFermi_Background}\includegraphics[width=0.5\textwidth]{./plot/NewFermi_SumChecking}
 \caption{ The function $F_n$ as a function of $p_z/T$ with conditions $T=0.012$ MeV, $\mu=2$ MeV and magnetic field $B/B_c=1/6$ as an example.
-(Left) The function $F_n$ as a function of $p_z/T$ for $n=0$ (purple line). For comparison, the black line represents $F_{n=0}^{\mathrm{T=0}}$, the blue line label $F_{n=0}^{\mathrm{T\neq0}}$ and red line is $\tilde F_{n=0}^{\mathrm{T\neq0}}$. (Right) The sum over $\sum_{n=1}^NF_n$ as a function of $p_z/T$ for different values of $N$. It shows that for the given conditions, the sum over Landau level is converge for $N=50$.}
+Left: the function $F_n$ as a function of $p_z/T$ for $n=0$ (purple line). For comparison, the black line represents $F_{n=0}^{\mathrm{T=0}}$, the blue line label $F_{n=0}^{\mathrm{T\neq0}}$ and red line is $\tilde F_{n=0}^{\mathrm{T\neq0}}$ \rev{The description of the inset is missing}. Right: the sum over $\sum_{n=1}^NF_n$ as a function of $p_z/T$ for different values of $N$. For the given conditions, the sum over Landau levels converges around $N=50$.}
 \label{F0_Checking}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -333,7 +343,7 @@ In Fig~\ref{F0_Checking} (left) we plot the background  $F_0$ as a function of $
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{./plot/NewFermi_Magnetization_tot003}\includegraphics[width=0.5\textwidth]{./plot/Magnetization_ChemicalPotential}
-\caption{(Left) The magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$. It shows that the novel form of Fermi distribution improves the numerical calculation of Landau level by summing over finite terms $N$ for given temperature to obtain the converge results. (Right) The magnetization as a function of temperature with different chemical values from $2\,\mathrm{MeV}>\mu>0.05\,\mathrm{MeV}$ with a fixed value of $N=300$ for the Landau level summation.}
+\caption{Left: the magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$. It shows that the novel form of Fermi distribution improves the numerical calculation of Landau levels by summing over finite terms $N$ for given temperature to obtain a converged results. Right: the magnetization as a function of temperature with different chemical potential values from $2\,\mathrm{MeV}>\mu>0.05\,\mathrm{MeV}$ with a fixed value of $N=300$ for the Landau level summation.}
 \label{M_Checking001}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -347,7 +357,7 @@ In Fig~\ref{F0_Checking} (left) we plot the background  $F_0$ as a function of $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-In Fig.~\ref{M_Checking001} (left) we plot the magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$. It shows that the novel form of Fermi distribution can improve the numerical calculation of Landau level by summing over finite terms only. In cases where higher temperature ranges are involved, instead of summing over a vast number of $N$ terms, we only need to incorporate a few additional terms in the Landau level summation to achieve stable magnetization results. This results suggests that under the given conditions, our analytic form of Fermi function converges rapidly, significantly improving computational efficiency. In Fig.~\ref{M_Checking001} (right) we extend our analysis by plotting the magnetization as a function of temperature with different chemical values from $2\,\mathrm{MeV}>\mu>0.05\,\mathrm{MeV}$. This examination shows the versatility of our approach in addressing extreme conditions for the chemical potential of the Fermi gas. It shows the broad applicability of our approach and performance across different limit of Fermi system.
+In Fig.~\ref{M_Checking001} (left) we plot the magnetization $M/2eT^2$ as a function of temperature with the conditions $\mu=2$ MeV and $B/B_c=1/6$. It shows that the novel form of Fermi distribution can improve the numerical calculation of Landau level by summing over finite terms only. In cases where higher temperature ranges are involved, instead of summing over a vast number of $N$ terms, we only need to incorporate a few additional terms in the Landau level summation to achieve stable magnetization results. This results suggests that under the given conditions, our analytic form of Fermi function converges rapidly, significantly improving computational efficiency. In Fig.~\ref{M_Checking001} (right) we extend our analysis by plotting the magnetization as a function of temperature with different chemical potential values from $2\,\mathrm{MeV}>\mu>0.05\,\mathrm{MeV}$. This examination shows the versatility of our approach in addressing extreme conditions for the chemical potential of the Fermi gas. It shows the broad applicability of our approach and performance across different limit of Fermi system.
 
 
 
@@ -360,7 +370,7 @@ In Fig.~\ref{M_Checking001} (left) we plot the magnetization $M/2eT^2$ as a func
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Discussion}
 \label{sec12}
-In this work, we introduce a novel form of the Fermi distribution Eq.~(\ref{NFF1}) that separate the Fermi gas into zero and finite temperature components analytically. This is the first time in literature that has clean separation of the zero and finite temperature components. Unlike the traditional brutal approach to eliminating the $T=0$ limit from the low-temperature Fermi distribution, our novel form of the Fermi distribution for finite temperature component has several numerical advantages in computation. 
+In this work, we introduce a novel form of the Fermi distribution Eq.~(\ref{NFF1}) that separates the Fermi gas into zero and finite temperature components analytically. This is the first time in literature that has clean separation of the zero and finite temperature components. Unlike the traditional brutal approach to eliminating the $T=0$ limit from the low-temperature Fermi distribution, our novel form of the Fermi distribution for finite temperature component has several numerical advantages in computation. 
 
 The Fermi distribution Eq.~(\ref{NFF1}) provides us the tool to study or examine the effects and characteristics of finite temperature components separately. The mathematical form of the finite temperature components is well-suited for numerical calculations and can be used to address the integrals common in statistical physics. This is because the finite temperature components are naturally exponentially suppressed while also preserving the sign of all corrections making the formulation easier to numerically integrate and reduce the numerical noise, see Fig.~\ref{Fermi_Component}. In addition, our approach also allows for analytical exploration of the finite temperature contributions by expanding the function around the Fermi-energy surface.
 
@@ -426,7 +436,7 @@ M_n&=4e\sum_{n=1}^\infty \int_{m_n}^\infty\!\!dE_n\left[f_{e^-}(E_n)+f_{e^+}(E_n
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Numerical integration for low temperature}
-For any given function $g(E)$, then the correspond physical quantity can be written as
+To illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics, we consider for any given function $g(E)$, then the correspond physical quantity can be written as
 \begin{align}
 G&\equiv\int^{\infty}_{m}dE\,g(E)\,f(E)=\int^{\infty}_{m}dE\,g(E)\bigg[f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}\bigg]\\
 &=G_{\mathrm{T=0}}+G_\mathrm{T\neq0}+\tilde G_\mathrm{T\neq0}
@@ -436,18 +446,27 @@ where the function are defined as
 &G_{\mathrm{T=0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T=0}},\qquad f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T\neq0}},\qquad f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\\
 &\tilde G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\tilde f_{\mathrm{T\neq0}},\qquad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
 \end{align}
-TO illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics in the limit when $T$ approaches to zero. We use the function 
+One of the advantage using our distribution is that it can help evaluating the integral especially when temperature $T\to0$. The integral can be written in the general form as follows:
+\begin{align}\label{Integral_T0}
+\lim_{T\to0}G&=\int^{\infty}_{m}dE\,g(E)\Theta\left(\frac{\widetilde\mu - E}{T}\right)+A T\left(\mathrm{P.V.} \int^{\infty}_{-\infty}dE\,g(E)\right)\notag\\
+&+BT^2\int^{\infty}_{m}dE\,g(E)\delta^{\prime}(E-\tilde\mu)
+\end{align}
+where $A$ and $B$ are the coefficients and $\mathrm{P.V.}$ represents the principal value integral.
+
+To examine Eq.~(\ref{Integral_T0}) for zero temperature limit, We use the function 
 \begin{align}
     g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
 \end{align}
 as a example. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{The function $G_{\mathrm{T\neq0}}$}
 In general, for the given function $g(E)$ the function $G_\mathrm{T\neq0}$ is given by
 \begin{align}
 G_{\mathrm{T\neq0}}=\int^\infty_m\!\!dE\, g(E)\left[\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right)\right],\qquad g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
 \end{align}
 It is convenient to introduce the dimensionless variable as below:
-\begin{align}
+\begin{align}\label{x_dimensionless}
 x\equiv\left(\frac{E-\tilde\mu}{T}\right), \qquad x_0=\left(\frac{m-\tilde\mu}{T}\right)
 \end{align}
 then the function $G_{\mathrm{T\neq0}}$ can be written as
@@ -477,10 +496,27 @@ Considering the limit when temperature approaches to zero, we have
 \lim_{T\to0}G_{\mathrm{T\neq0}}=\left[\frac{1}{2}\int_{-\infty}^{\infty}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right],\qquad m<\tilde\mu
 \end{align}
 \subsubsection{The function $\tilde G_{\mathrm{T\neq0}}$}
-The function $\tilde G_{\mathrm{T\neq0}}$ can be written as
+The function $\tilde G_{\mathrm{T\neq0}}$ is given by
 \begin{align}
-G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\left[\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\right],\quad g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
+\tilde G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\left[\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\right],\quad g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
 \end{align}
+Using the dimensionless variables Eq.~(\ref{x_dimensionless}) the function can be written as
+\begin{align}
+\tilde G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\,\left[e^{-|x|}\,\tanh\left(\frac{x}{2}\right)\right],\qquad g(x)=\frac{1}{\pi} \frac{x}{x^2+\epsilon^{\prime2}},\qquad \epsilon^\prime=\epsilon/T
+\end{align}
+Considering the cases for $x_0>0$ and  $x_0<0$. The integral can be simplified as follows:
+\begin{itemize}
+  \item Considering $x_0>0$, i.e., $m>\tilde\mu$, we have
+  \begin{align}
+  \tilde G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\,\left[e^{-x}\,\tanh\left(\frac{x}{2}\right)\right]
+  \end{align}
+  \item Considering $x_0<0$, i.e., $m<\tilde\mu$, we obtain
+  \begin{align}
+    G_{\mathrm{T\neq0}}&=\frac{1}{2}\int^\infty_{-|x_0|}dx\,g(x)\,\left[e^{-|x|}\tanh\left(\frac{x}{2}\right)\right]\\
+    %&=\frac{1}{2}\left[\left(\int_0^{|x_0|}dx\,g(x)\,\,e^{-|x|}\tanh\left(\frac{x}{2}\right)+\int^\infty_{|x_0|}dx\,g(x)\,e^{-|x|}\tanh\left(\frac{x}{2}\right)\right)+\int^0_{-|x_0|}dx\,g(x)\,e^{-|x|}\tanh\left(\frac{x}{2}\right)\right]\notag\\
+   &=\frac{1}{2}\left[\int_{-|x_0|}^{|x_0|}dx\,g(x)\,e^{-|x|}\tanh\left(\frac{x}{2}\right)+\int^\infty_{|x_0|}dx\,g(x)\,e^{-x}\tanh\left(\frac{x}{2}\right)\right].
+  \end{align}
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter
