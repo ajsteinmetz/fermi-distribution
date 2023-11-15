@@ -224,14 +224,17 @@ both without and with units and where $\delta(x)$ is the Dirac $\delta$-function
 %\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-{\xmagenta ANDREW: I recommend we stick with the dimensionless variable ``$x$'' for all calculations and discussions up to the physical example. This enhances the mathematical clarity and simply makes the expressions more simple to read. I did this for Eq. 11, but wanted your approval before continuing my edits. Additionally, the expression $f_{T=0}(x)$ doesn't make sense as $T$ is clearly nonzero in $x(E,\widetilde\mu,T)$. I suggest we abandon this notation and simply call it the step function $\Theta(x)$ and we are already doing earlier. There is also a conflict where Eq. 12 and Eq. 13 are defined using the same notation. Is this an error? Please look at this Cheng Tao.} To illustrate the separation of the zero and finite temperature contributions to the FD distribution, it is convenient to rewrite Eq.~(\ref{NFF1}) in the following form
+%{\xmagenta ANDREW: I recommend we stick with the dimensionless variable ``$x$'' for all calculations and discussions up to the physical example. This enhances the mathematical clarity and simply makes the expressions more simple to read. I did this for Eq. 11, but wanted your approval before continuing my edits. Additionally, the expression $f_{T=0}(x)$ doesn't make sense as $T$ is clearly nonzero in $x(E,\widetilde\mu,T)$. I suggest we abandon this notation and simply call it the step function $\Theta(x)$ and we are already doing earlier. There is also a conflict where Eq. 12 and Eq. 13 are defined using the same notation. Is this an error? Please look at this Cheng Tao.} 
+To illustrate the separation of the zero and finite temperature contributions to the FD distribution, it is convenient to rewrite Eq.~(\ref{NFF1}) in the following form
 \begin{align}\label{Eq_form}
-&f_\mathrm{FD}(x)=\theta(-x)+f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)
+&f_\mathrm{FD}(x)=\Theta(-x)+f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)
 \end{align}
 where the temperature functions are defined as
 \begin{align}
-f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\qquad
-\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
+&f_\mathrm{T\neq0}=\frac{1}{2}e^{ -|x|/T }\mathrm{sgn}\left(x\right),\qquad
+\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |x| }\tanh\left(\frac{x}{2}\right),\qquad x=\frac{E-\tilde\mu}{T}
+%&f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\qquad
+%\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
 \end{align}
 In Fig.~(\ref{Fermi_Component}) we plot the exact Fermi distribution (black line $f$), the zero (purple lines, $f_{T=0}$) and finite temperature components of the Fermi distribution as a function of energy choosing in this example the chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and at $T=0.2\MeV$.
 
@@ -251,8 +254,88 @@ The Fig.~(\ref{Fermi_Component}) shows that \rev{the contributions of the two fi
 
 {\xred(Comments for the numerical motivation:) In contrast to the brute force approach for eliminating the $T=0$ limit from the low-temperature Fermi distribution, our analytic form of distribution offers a more numerically advantageous method for separating the finite temperature components. This is advantage arise from the behavior of: 1.) both finite temperature contributions $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ always have the same sign 2.) the exponential factor for finite temperature components provide the naturally exponentially suppresses for the large energy. In this scenario, it reduces the numerical noise when evaluate the numerical integral beyond the zero temperature approximation. Furthermore, our novel form for Fermi distribution also provide us the tool to analytically investigate the finite temperature contributions by expanding the function around the Fermi-energy surface, which is useful for addressing physics for the finite temperature approximation.}
 
+To illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics especially when temperature $T\to0$, we consider for any given function $G(E-\tilde\mu/T)$, then the correspond  thermal average physical quantity $\langle G\rangle_T$ can be written as
+\begin{align}
+\langle G\rangle_T&\equiv\int^{\infty}_{m}\!\!dE\,G(E-\tilde\mu/T)\,f_{FD}(E-\tilde\mu/T)=\langle G\rangle_{0}+\langle G\rangle_{\delta T},
+\end{align}
+where the functions $\langle G\rangle_{0}$ and $\langle G\rangle_{\delta T}$ are defined as
+\begin{align}
+&\langle G\rangle_{0}=\int^{\infty}_{m}\!\!dE\,G(E-\tilde\mu/T)\Theta(-E+\tilde\mu/T),\\
+&\langle G\rangle_{\delta T}=\int^{\infty}_{m}\!\!dE\,G(E-\tilde\mu/T)\bigg[f_\mathrm{T\neq0}(E-\tilde\mu/T)+\tilde f_\mathrm{T\neq0}(E-\tilde\mu/T)\bigg]
+\end{align}
+To simplify the notation, it is convenient to introduce the dimensionless variables as follows:
+\begin{align}
+x\equiv\left(\frac{E-\tilde\mu}{T}\right), \qquad x_0=\left(\frac{m-\tilde\mu}{T}\right),\qquad \tilde\mu>m.
+\end{align}
+where for the condition $T\to0$ the chemical potential $\tilde\mu$ is equal to the Fermi energy $E_F$ and we have the condition $\tilde\mu(T=0)= E_F>m$. Then the finite temperature contribution $\langle G\rangle_{\delta T}$ can be written as
+\begin{align}\label{G_deltaT}
+\langle G\rangle_{\delta T}&=T\int_{-|x_0|}^\infty \!\!dx\,G(x)\bigg[f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg]\notag\\
+&=T\bigg[-\int^{-|x_0|}_{-\infty}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)+\int_{-\infty}^{\infty}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)\bigg]\notag
+\\&=\langle G_1\rangle_{\delta T}+\langle G_2\rangle_{\delta T}
+\end{align}
+where the function $\langle G_1\rangle_{\delta T}$ and $\langle G_2\rangle_{\delta T}$ are defined by
+\begin{align}
+&\langle G_1\rangle_{\delta T}=-T\int^{-|x_0|}_{-\infty}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)\\
+&\langle G_2\rangle_{\delta T}=T\int_{-\infty}^{\infty}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)
+\end{align}
+
+In general the integral of $\langle G_1\rangle_{\delta T}$ can be written as
+\begin{align}
+\langle G_1\rangle_{\delta T}&=-\frac{T}{2}\int^{-|x_0|}_{-\infty}\!\!dx\,G(x) e^{-|x|}\bigg(\mathrm{sgn}\left(x\right)+\tanh\left(\frac{x}{2}\right)\bigg)\notag\\
+&=-\frac{T}{2}\int^{-|x_0|}_{-\infty}\!\!dx\,G(x) e^{-|x|}\bigg(-1+\tanh\left(\frac{x}{2}\right)\bigg).
+\end{align}
+ Given any regular function $G(x)$, there is no singularity in the integral. Hence we propose that the integral for finite temperature contribution $\langle G_1\rangle_{\delta T}$ can be written as
+\begin{align}\label{finite expansion}
+\langle G_1\rangle_{\delta T}=\sum_{n}c_nT^n,
+\end{align}
+where $c_n$ represents the coefficients used to expand the function in terms of temperature.
 
 
+%By employing our decomposition form, we propose that the integral for finite temperature contribution $\langle G\rangle_{\delta T}$ in general can be written as
+%\begin{align}\label{finite expansion}
+%\langle G\rangle_{\delta T}=\sum_{n}c_nT^n,
+%\end{align}
+%where $c_n$ represents the coefficients used to expand the function in terms of temperature. In this scenario, our novel Fermi distribution can provide the tool to study any physical quantity when temperature approach to zero, and facilitate the connection between the study of finite temperature system to zero temperature limit smoothly. 
+
+%In following we will demonstrate that for any general function in the zero-temperature limit, we can always write the integral into Eq.~(\ref{finite expansion}). 
+On the other hand, the function $\langle G_2\rangle_{\delta T}$ can be written as 
+\begin{align}
+\langle G_2\rangle_{\delta T}=\frac{T}{2}\int^{\infty}_{-\infty}\!\!dx\,G(x) e^{-|x|}\bigg(\mathrm{sgn}\left(x\right)+\tanh\left(\frac{x}{2}\right)\bigg).
+\end{align}
+In general, for any function $G(x)$ we can use the spherical Bessel function of the first kind $j_n(x)$ as a basis to expand it. We have
+\begin{align}
+G(x)=\sum_{n}k_nj_n(x),\qquad
+j_n(x)\equiv(-x)^n\left(\frac{1}{x}\frac{d}{dx}\right)^{\!\!n}\frac{\sin(x)}{x},\qquad n=0,1,2,\cdots
+\end{align}
+where $k_n$ represents the expansion coefficients. In this case, the finite temperature contribution $\langle G_2\rangle_{\delta T}$ can be written as
+\begin{align}
+&\langle G_2\rangle_{\delta T}\!=\!\frac{T}{2}\sum_n k_n\int^{\infty}_{-\infty}\!\!\!\!dx\,j_n(x) e^{-|x|}\bigg(\mathrm{sgn}\left(x\right)+\tanh\left(\frac{x}{2}\right)\!\!\bigg)\!\!=\frac{T}{2}\sum_n k_n\bigg(a_n+b_n\bigg)\\
+&a_n=\int^{\infty}_{-\infty}\!\!\!\!dx\,j_n(x) e^{-|x|}\mathrm{sgn}\left(x\right),\qquad b_n=\int^{\infty}_{-\infty}\!\!\!\!dx\,j_n(x) e^{-|x|}\tanh\left(\frac{x}{2}\right)
+\end{align}
+
+Given different value of $n=0,1,2,3\cdots$, the integral can be evaluated numerically. In Table.~\ref{coeff_table} we evaluate the coefficient $a_n$ and $b_n$ numerically for $n=1,2,3,4$ as an example. It shows that $a_n,b_n\neq 0$ when $n$ equals odd integer only. %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{table}%[b]
+\centering
+\begin{tabular}{c| c| c}
+\hline\hline
+$n$ &$a_n$ & $b_n$ \\
+\hline
+$0$ & $0$ & $0$\\ 
+\hline
+$1$ & $(4-\pi)/2$ & $0.227$\\
+\hline
+$2$ & $0$& $0$\\
+\hline
+ $3$ & $(19-6\pi)/3$&$0.041$\\
+\hline
+$4$ & $0$ & $0$\\
+\hline\hline
+\end{tabular}
+\caption{The coefficient $a_n$ and $b_n$ for $n=1,2,3,4$ as example.}
+\label{coeff_table} 
+\end{table}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Numerical illustration: Magnetization}
 \label{NumericalResult}
@@ -263,7 +346,7 @@ Considering the partition function of $e^\pm$ gas in a uniform magnetic field $B
 \begin{align}
 \ln\mathcal{Z}_{tot}=eBV\!\!\sum_{s=\pm1}\sum_{j=0}^\infty\int^\infty_{-\infty} \!\!dp_z\bigg[\ln\left(1+e^{-\beta(E_{j,s}-\mu_e)}\right)+\ln\left(1+e^{-\beta(E_{j,s}+\mu_e)}\right)\bigg],
 \end{align}
-\rev{Please define $V$ and $p_z$ in this expression}where \rev{elementary charge $e>0$}\sout{electric charge $e\equiv q_{e^{+}}=-q_{e^{-}}$}, $\beta=1/T$, $\mu_e$ is the chemical potential of electron, and the electron(positron) energy $E_{j,s}$ can be written as
+where $V$ represent the volume of the system, and $p_z$ is the momentum in the direction of $z$-axis. The elementary charge $e>0$, $\beta=1/T$, $\mu_e$ is the chemical potential of electron, and the electron(positron) energy $E_{j,s}$ can be written as
 \begin{align}
 E_{j,s}&=\sqrt{m^2_e+p^2_z+2eB\left(j+\frac{1}{2}+\frac{g}{4}s\right)},\qquad s=\pm1,\qquad j=0,1,2,\dots
 \end{align}
@@ -274,21 +357,24 @@ To simplify the partition function, we integrate by parts and the partition func
 \end{align}
 Considering the case $g=2$, then we have
 \begin{align}
-&E_{j,+}=\sqrt{{m}_e^2+p^2_z+2eB\left(j+1\right)}\longrightarrow E_{n}=\sqrt{{m}_e^2+p^2_z+2eBn},\quad n=1,2,3,\dots\\
-&E_{j,-}=\sqrt{{m}_e^2+p^2_z+2eB\left(j\right)}\longrightarrow E_{n}=\sqrt{{m}_e^2+p^2_z+2eBn},\,\, n=0,1,2,3,\dots
+&E_{j,+}=\sqrt{{m}_e^2+p^2_z+2eB\left(j+1\right)}\longrightarrow E_{n},\quad n=1,2,3,\dots\\
+&E_{j,-}=\sqrt{{m}_e^2+p^2_z+2eB\left(j\right)}\longrightarrow E_{n},\quad n=0,1,2,3,\dots
 \end{align}
-where we change the index from $j$ to $n$. In this case, the partition function of $e^\pm$ plasma can be written as
+where we change the index from $j$ to $n$ and
+\begin{equation}\label{eq:En}
+    E_n \equiv \sqrt{{m}_e^2+p^2_z+2eBn}\,.
+\end{equation}
+In this case, the partition function of $e^\pm$ plasma can be written as
 \begin{align}
 \ln\mathcal{Z}_{tot}&=V(2eB\beta) \bigg[ \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)+\sum_{n=0}^\infty\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg)\bigg]\notag\\
 &=V(2eB\beta)\bigg(\ln\mathcal{I}_{0}+\ln\mathcal{I}_{n}\bigg)
 \end{align}
 where the partition function $\ln\mathcal{I}_{0}$ and $\ln\mathcal{I}_{n}$ are defined as
 \begin{align}
-&\ln\mathcal{I}_{0}=\int_0^\infty\!\!dp_z \frac{p_z^2}{E_0}\bigg(f_{e^-}(E_0)+f_{e^+}(E_0)\bigg),\qquad E_0=\sqrt{{m}_e^2+p^2_z} \\
-&\ln\mathcal{I}_{n}=2 \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg),\quad E_n=\sqrt{{m}_e^2+p^2_z+2eBn}
+&\ln\mathcal{I}_{0}=\int_0^\infty\!\!dp_z \frac{p_z^2}{E_0}\bigg(f_{e^-}(E_0)+f_{e^+}(E_0)\bigg), \\
+&\ln\mathcal{I}_{n}=2 \sum_{n=1}^\infty\int_0^\infty\!\!dp_z \frac{p_z^2}{E_{n}}\bigg(f_{e^-}(E_n)+f_{e^+}(E_n)\bigg),
 \end{align}
-
-\rev{Ok, now $E_n$ has been defined three times which seems redundant. In (21) and (22) it is certainly not necessary. I would define once separately from (18,19) and I would remove the rest, you can refer this equation if necessary.}Giving the partition function of $e^\pm$ gas in the magnetic field, the magnetization can be obtained via the definition
+where $E_0$ and $E_n$ are given by \req{eq:En}. Giving the partition function of $e^\pm$ gas in the magnetic field, the magnetization can be obtained via the definition
 \begin{align}
 M&=\frac{1}{V\beta}\frac{\partial \ln \mathcal{Z}_{tot}}{\partial B}=2e\frac{\partial}{\partial B}\bigg[B\bigg(\ln\mathcal{I}_{0}+\ln\mathcal{I}_{n}\bigg)\bigg]=M_0+M_n,\\
 &M_0=2e\ln\mathcal{I}_{0},\qquad
@@ -303,10 +389,10 @@ In this case, the magnetization $M_0$ and $M_n$ can be written as
 \begin{align}
 &M_0=2eT^2\int_0^\infty\!\!d\xi\, F_0(E_0/T),\qquad M_n=2eT^2\int_{0}^\infty\!\!d\xi\left(2\sum_{n=1}^\infty\,F_n(E_n/T)\right)
 \end{align}
-where the function $F_n$ is defined as
+where the function $F_n$, $n=0,1,2,\ldots$ is defined as
 \begin{align}
 &F_n=\frac{(\xi^2-\eta^2nB/B_c)}{\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}}\left[f_{e^-}(E_n/T)+f_{e^+}(E_n/T)\right]\\
-&E_n/T=\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)},\qquad n=0,1,2,\cdots
+&E_n/T=\sqrt{\xi^2+\eta^2\left(1+2nB/B_c\right)}\,.
 \end{align}
 
 To illustrate the benefits of our novel Fermi distribution function in calculation of magnetization, it is convenient to use the Fermi-function Eq.~(\ref{Eq001_appendix}) and the function $F_n$ can be written as
@@ -435,88 +521,88 @@ M_n&=4e\sum_{n=1}^\infty \int_{m_n}^\infty\!\!dE_n\left[f_{e^-}(E_n)+f_{e^+}(E_n
 \end{align}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Numerical integration for low temperature}
-To illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics, we consider for any given function $g(E)$, then the correspond physical quantity can be written as
-\begin{align}
-G&\equiv\int^{\infty}_{m}dE\,g(E)\,f(E)=\int^{\infty}_{m}dE\,g(E)\bigg[f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}\bigg]\\
-&=G_{\mathrm{T=0}}+G_\mathrm{T\neq0}+\tilde G_\mathrm{T\neq0}
-\end{align}
-where the function are defined as
-\begin{align}
-&G_{\mathrm{T=0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T=0}},\qquad f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T\neq0}},\qquad f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\\
-&\tilde G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\tilde f_{\mathrm{T\neq0}},\qquad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
-\end{align}
-One of the advantage using our distribution is that it can help evaluating the integral especially when temperature $T\to0$. The integral can be written in the general form as follows:
-\begin{align}\label{Integral_T0}
-\lim_{T\to0}G&=\int^{\infty}_{m}dE\,g(E)\Theta\left(\frac{\widetilde\mu - E}{T}\right)+A T\left(\mathrm{P.V.} \int^{\infty}_{-\infty}dE\,g(E)\right)\notag\\
-&+BT^2\int^{\infty}_{m}dE\,g(E)\delta^{\prime}(E-\tilde\mu)
-\end{align}
-where $A$ and $B$ are the coefficients and $\mathrm{P.V.}$ represents the principal value integral.
+%\subsection{Numerical integration for low temperature}
+%To illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics, we consider for any given function $g(E)$, then the correspond physical quantity can be written as
+%\begin{align}
+%G&\equiv\int^{\infty}_{m}dE\,g(E)\,f(E)=\int^{\infty}_{m}dE\,g(E)\bigg[f_{\mathrm{T=0}}+f_\mathrm{T\neq0}+\tilde f_\mathrm{T\neq0}\bigg]\\
+%&=G_{\mathrm{T=0}}+G_\mathrm{T\neq0}+\tilde G_\mathrm{T\neq0}
+%\end{align}
+%where the function are defined as
+%\begin{align}
+%&G_{\mathrm{T=0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T=0}},\qquad f_{\mathrm{T=0}}=\Theta\left(\frac{\widetilde\mu - E}{T}\right),\\ &G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)f_{\mathrm{T\neq0}},\qquad f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\\
+%&\tilde G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\tilde f_{\mathrm{T\neq0}},\qquad\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
+%\end{align}
+%One of the advantage using our distribution is that it can help evaluating the integral especially when temperature $T\to0$. The integral can be written in the general form as follows:
+%\begin{align}\label{Integral_T0}
+%\lim_{T\to0}G&=\int^{\infty}_{m}dE\,g(E)\Theta\left(\frac{\widetilde\mu - E}{T}\right)+A T\left(\mathrm{P.V.} \int^{\infty}_{-\infty}dE\,g(E)\right)\notag\\
+%&+BT^2\int^{\infty}_{m}dE\,g(E)\delta^{\prime}(E-\tilde\mu)
+%\end{align}
+%where $A$ and $B$ are the coefficients and $\mathrm{P.V.}$ represents the principal value integral.
 
-To examine Eq.~(\ref{Integral_T0}) for zero temperature limit, We use the function 
-\begin{align}
-    g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
-\end{align}
-as a example. 
+%To examine Eq.~(\ref{Integral_T0}) for zero temperature limit, We use the function 
+%\begin{align}
+%    g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-%\tilde\mu)^2+\epsilon^2}
+%\end{align}
+%as a example. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{The function $G_{\mathrm{T\neq0}}$}
-In general, for the given function $g(E)$ the function $G_\mathrm{T\neq0}$ is given by
-\begin{align}
-G_{\mathrm{T\neq0}}=\int^\infty_m\!\!dE\, g(E)\left[\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right)\right],\qquad g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
-\end{align}
-It is convenient to introduce the dimensionless variable as below:
-\begin{align}\label{x_dimensionless}
-x\equiv\left(\frac{E-\tilde\mu}{T}\right), \qquad x_0=\left(\frac{m-\tilde\mu}{T}\right)
-\end{align}
-then the function $G_{\mathrm{T\neq0}}$ can be written as
-\begin{align}
-G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\,\left(\frac{x}{|x|}\,e^{-|x|}\,\right),\qquad g(x)=\frac{1}{\pi} \frac{x}{x^2+\epsilon^{\prime2}},\qquad \epsilon^\prime=\epsilon/T
-\end{align}
-To evaluate the integral we consider the two cases as follows
-\begin{itemize}
-  \item Considering $x_0>0$, i.e., $m>\tilde\mu$, we have
-  \begin{align}
-  G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\frac{x}{|x|}\,e^{-|x|}=\frac{1}{2}\int^{\infty}_{x_0}\,dx\,g(x)\,e^{-x}.
-  \end{align}
-  \item Considering $x_0<0$, i.e., $m<\tilde\mu$, we obtain
-  \begin{align}
-    G_{\mathrm{T\neq0}}&=\frac{1}{2}\int^\infty_{-|x_0|}dx\,g(x)\frac{x}{|x|}\,e^{-|x|}\\
-    &=\frac{1}{2}\left[\left(\int_0^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}+\int^\infty_{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right)+\int^0_{-|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right]\notag\\
-   &=\frac{1}{2}\left[\int_{-|x_0|}^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}+\int^\infty_{|x_0|}dx\,g(x)\,e^{-x}\right].
-  \end{align}
-\end{itemize}
-In summary, consider the both cases the function $G_\mathrm{T\neq0}$ can be written as
-\begin{align}
-  G_{\mathrm{T\neq0}}=\Theta(-x_0)\,\left[\frac{1}{2}\int_{-|x_0|}^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right]+\frac{1}{2}\int^\infty_{|x_0|}dx\,g(x)\,e^{-x},
-\end{align}
-where we introduce step function $\Theta(-x_0)$ to show that the first integral only exist when the $x_0<0$.
-Considering the limit when temperature approaches to zero, we have
-\begin{align}
-\lim_{T\to0}G_{\mathrm{T\neq0}}=\left[\frac{1}{2}\int_{-\infty}^{\infty}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right],\qquad m<\tilde\mu
-\end{align}
-\subsubsection{The function $\tilde G_{\mathrm{T\neq0}}$}
-The function $\tilde G_{\mathrm{T\neq0}}$ is given by
-\begin{align}
-\tilde G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\left[\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\right],\quad g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
-\end{align}
-Using the dimensionless variables Eq.~(\ref{x_dimensionless}) the function can be written as
-\begin{align}
-\tilde G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\,\left[e^{-|x|}\,\tanh\left(\frac{x}{2}\right)\right],\qquad g(x)=\frac{1}{\pi} \frac{x}{x^2+\epsilon^{\prime2}},\qquad \epsilon^\prime=\epsilon/T
-\end{align}
-Considering the cases for $x_0>0$ and  $x_0<0$. The integral can be simplified as follows:
-\begin{itemize}
-  \item Considering $x_0>0$, i.e., $m>\tilde\mu$, we have
-  \begin{align}
-  \tilde G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\,\left[e^{-x}\,\tanh\left(\frac{x}{2}\right)\right]
-  \end{align}
-  \item Considering $x_0<0$, i.e., $m<\tilde\mu$, we obtain
-  \begin{align}
-    G_{\mathrm{T\neq0}}&=\frac{1}{2}\int^\infty_{-|x_0|}dx\,g(x)\,\left[e^{-|x|}\tanh\left(\frac{x}{2}\right)\right]\\
+%\subsubsection{The function $G_{\mathrm{T\neq0}}$}
+%In general, for the given function $g(E)$ the function $G_\mathrm{T\neq0}$ is given by
+%\begin{align}
+%G_{\mathrm{T\neq0}}=\int^\infty_m\!\!dE\, g(E)\left[\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right)\right],\qquad g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
+%\end{align}
+%It is convenient to introduce the dimensionless variable as below:
+%\begin{align}\label{x_dimensionless}
+%x\equiv\left(\frac{E-\tilde\mu}{T}\right), \qquad x_0=\left(\frac{m-\tilde\mu}{T}\right)
+%\end{align}
+%then the function $G_{\mathrm{T\neq0}}$ can be written as
+%\begin{align}
+%G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\,\left(\frac{x}{|x|}\,e^{-|x|}\,\right),\qquad g(x)=\frac{1}{\pi} \frac{x}{x^2+\epsilon^{\prime2}},\qquad \epsilon^\prime=\epsilon/T
+%\end{align}
+%To evaluate the integral we consider the two cases as follows
+%\begin{itemize}
+%  \item Considering $x_0>0$, i.e., $m>\tilde\mu$, we have
+%  \begin{align}
+%  G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\frac{x}{|x|}\,e^{-|x|}=\frac{1}{2}\int^{\infty}_{x_0}\,dx\,g(x)\,e^{-x}.
+%  \end{align}
+% \item Considering $x_0<0$, i.e., $m<\tilde\mu$, we obtain
+%  \begin{align}
+%    G_{\mathrm{T\neq0}}&=\frac{1}{2}\int^\infty_{-|x_0|}dx\,g(x)\frac{x}{|x|}\,e^{-|x|}\\
+%    &=\frac{1}{2}\left[\left(\int_0^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}+\int^\infty_{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right)+\int^0_{-|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right]\notag\\
+%   &=\frac{1}{2}\left[\int_{-|x_0|}^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}+\int^\infty_{|x_0|}dx\,g(x)\,e^{-x}\right].
+%  \end{align}
+%\end{itemize}
+%In summary, consider the both cases the function $G_\mathrm{T\neq0}$ can be written as
+%\begin{align}
+%  G_{\mathrm{T\neq0}}=\Theta(-x_0)\,\left[\frac{1}{2}\int_{-|x_0|}^{|x_0|}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right]+\frac{1}{2}\int^\infty_{|x_0|}dx\,g(x)\,e^{-x},
+%\end{align}
+%where we introduce step function $\Theta(-x_0)$ to show that the first integral only exist when the $x_0<0$.
+%Considering the limit when temperature approaches to zero, we have
+%\begin{align}
+%\lim_{T\to0}G_{\mathrm{T\neq0}}=\left[\frac{1}{2}\int_{-\infty}^{\infty}dx\,g(x)\,\frac{x}{|x|}\,e^{-|x|}\right],\qquad m<\tilde\mu
+%\end{align}
+%\subsubsection{The function $\tilde G_{\mathrm{T\neq0}}$}
+%The function $\tilde G_{\mathrm{T\neq0}}$ is given by
+%\begin{align}
+%\tilde G_{\mathrm{T\neq0}}=\int^{\infty}_{m}dE\,g(E)\left[\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)\right],\quad g(E)=\frac{1}{\pi} \frac{E-\tilde\mu}{(E-\tilde\mu)^2+\epsilon^2}
+%\end{align}
+%Using the dimensionless variables Eq.~(\ref{x_dimensionless}) the function can be written as
+%\begin{align}
+%\tilde G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\,\left[e^{-|x|}\,\tanh\left(\frac{x}{2}\right)\right],\qquad g(x)=\frac{1}{\pi} \frac{x}{x^2+\epsilon^{\prime2}},\qquad \epsilon^\prime=\epsilon/T
+%\end{align}
+%Considering the cases for $x_0>0$ and  $x_0<0$. The integral can be simplified as follows:
+%\begin{itemize}
+%  \item Considering $x_0>0$, i.e., $m>\tilde\mu$, we have
+%  \begin{align}
+%  \tilde G_{\mathrm{T\neq0}}=\frac{1}{2}\int^\infty_{x_0}\,dx\,g(x)\,\left[e^{-x}\,\tanh\left(\frac{x}{2}\right)\right]
+% \end{align}
+%  \item Considering $x_0<0$, i.e., $m<\tilde\mu$, we obtain
+%  \begin{align}
+%    G_{\mathrm{T\neq0}}&=\frac{1}{2}\int^\infty_{-|x_0|}dx\,g(x)\,\left[e^{-|x|}\tanh\left(\frac{x}{2}\right)\right]\\
     %&=\frac{1}{2}\left[\left(\int_0^{|x_0|}dx\,g(x)\,\,e^{-|x|}\tanh\left(\frac{x}{2}\right)+\int^\infty_{|x_0|}dx\,g(x)\,e^{-|x|}\tanh\left(\frac{x}{2}\right)\right)+\int^0_{-|x_0|}dx\,g(x)\,e^{-|x|}\tanh\left(\frac{x}{2}\right)\right]\notag\\
-   &=\frac{1}{2}\left[\int_{-|x_0|}^{|x_0|}dx\,g(x)\,e^{-|x|}\tanh\left(\frac{x}{2}\right)+\int^\infty_{|x_0|}dx\,g(x)\,e^{-x}\tanh\left(\frac{x}{2}\right)\right].
-  \end{align}
-\end{itemize}
+%   &=\frac{1}{2}\left[\int_{-|x_0|}^{|x_0|}dx\,g(x)\,e^{-|x|}\tanh\left(\frac{x}{2}\right)+\int^\infty_{|x_0|}dx\,g(x)\,e^{-x}\tanh\left(\frac{x}{2}\right)\right].
+%  \end{align}
+%\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter
