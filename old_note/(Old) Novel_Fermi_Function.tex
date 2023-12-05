@@ -198,7 +198,7 @@ As our expression is written in terms of distributions rather than analytic func
 \end{align}
 which means that the limit of our expression at the origin $x=0$ exists and is equal to the value of the function in \req{f_old} at $x = 0$. With the definitions of the step function $\Theta(x)$ and sign function $\sgn(x)$ in \req{NFF2}, the limits for $x\rightarrow0^{\pm}$ are equal to the value of our function at the origin. Therefore, for all real $x\in\mathbb{R}$, our expression matches the original FD distribution \req{f_old}.
 
-\rev{This I believe is not necessary...if the functions match $\forall x \in \mathbb{R}$ then of course their derivatives match too.}Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
+\rev{This I believe is not necessary...if the functions match $\forall x \in \mathbb{R}$ then of course their derivatives match too - NOT TRUE FOR DISTRIBUTIONS!.}Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
 \begin{align}
 \label{NFF1b}
 \frac{d}{dx}\Theta(-x)&=-\delta(x)\,,\qquad 
@@ -270,13 +270,13 @@ x\equiv\left(\frac{E-\tilde\mu}{T}\right), \qquad x_0=\left(\frac{m-\tilde\mu}{T
 where for the condition $T\to0$ the chemical potential $\tilde\mu$ is equal to the Fermi energy $E_F$ and we have the condition $\tilde\mu(T=0)= E_F>m$. Then the finite temperature contribution $\langle G\rangle_{\delta T}$ can be written as
 \begin{align}\label{G_deltaT}
 \langle G\rangle_{\delta T}&=T\int_{-|x_0|}^\infty \!\!dx\,G(x)\bigg[f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg]\notag\\
-&=T\bigg[-\int^{-|x_0|}_{-\infty}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)+\int_{-\infty}^{\infty}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)\bigg]\notag
+&=T\bigg[\int_{-|x_0|}^{0}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)+\int_{0}^{\infty}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)\bigg]\notag
 \\&=\langle G_1\rangle_{\delta T}+\langle G_2\rangle_{\delta T}
 \end{align}
 where the function $\langle G_1\rangle_{\delta T}$ and $\langle G_2\rangle_{\delta T}$ are defined by
 \begin{align}
-&\langle G_1\rangle_{\delta T}=-T\int^{-|x_0|}_{-\infty}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)\\
-&\langle G_2\rangle_{\delta T}=T\int_{-\infty}^{\infty}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)
+&\langle G_1\rangle_{\delta T}=-T\int_{-|x_0|}^{0}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)\\
+&\langle G_2\rangle_{\delta T}=T\int_{0}^{\infty}\!\!dx\,G(x)\bigg(f_\mathrm{T\neq0}(x)+\tilde f_\mathrm{T\neq0}(x)\bigg)
 \end{align}
 
 In general the integral of $\langle G_1\rangle_{\delta T}$ can be written as
