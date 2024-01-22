@@ -61,7 +61,7 @@
 \begin{document}
 
 %\title[Article Title]{Cold Ideal Fermi Gas}
-\title[Article Title]{Decomposition of Fermi gas into zero and finite temperature components with examples}
+\title[Article Title]{Zero and finite temperature  components of\newline Fermi quantum gas}
 
 %%=============================================================%%
 %% Prefix	-> \pfx{Dr}
@@ -74,10 +74,10 @@
 %% \author*[1,2]{\pfx{Dr} \fnm{Joergen W.} \spfx{van der} \sur{Ploeg} \sfx{IV} \tanm{Poet Laureate} 
 %%                 \dgr{MSc, PhD}}\email{iauthor@gmail.com}
 %%=============================================================%%
-
+\centering
 \author[1]{\fnm{Cheng Tao} \sur{Yang\orc{\orcB}}}
 \author[1,2]{\fnm{Martin} \sur{Formanek\orc{\orcD}}}
-\author[1]{\fnm{Andrew} \sur{Steinmetz\orc{\orcC}}} 
+\author[1]{\newline\fnm{Andrew} \sur{Steinmetz\orc{\orcC}}} 
 \author[1]{\fnm{Johann} \sur{Rafelski\orc{\orcA}}}
 %\email{iiiauthor@gmail.com}
 %\equalcont{These authors contributed equally to this work.}
@@ -86,11 +86,12 @@
 
 \affil[2]{\orgdiv{ELI Beamlines Facility}, \orgname{The Extreme Light Infrastructure ERIC}, \orgaddress{ \postcode{252 41}, \city{Dolni Brezany}, \country{Czech Republic}}}
 
-\abstract{The most interesting physics of finite temperature Fermi gasses occurs around the Fermi surface, which needs a mathematical tool that can capture the finite temperature behavior of the Fermi-Dirac distribution in an analytic fashion. We provide a novel form of the Fermi distribution that can separate the Fermi gas into zero and finite temperature components analytically which is useful for addressing physics beyond the zero temperature approximation.}
+\abstract{We present a novel mathematical tool allowing to separate the zero and finite temperature phenomena in ideal Fermi gases. To achieve this  we decompose the Fermi distribution into three components. We prove that the singular (step) functions properly add up to the finite temperature smooth Fermi shape. As an example we consider briefly a semi relativistic-electron density where with high chemical potential ($\mu>m$) at low temperature $T<<m$.}
 
+% ANDREW's note: We present a novel mathematical tool allowing the separation of the finite and zero temperature phenomena in fermi gassses. To achieve this, we provide a novel form of the Fermi distribution 
 
-\date{To be published in International Journal of Theoretical Physics}
-\keywords{Fermi distribution, Low temperature Fermi gas}
+\date{January 2024, To be published in International Journal of Theoretical Physics}
+\keywords{Fermi distribution, Low temperature}
 
 %%\pacs[JEL Classification]{D8, H51}
 %%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
@@ -101,15 +102,18 @@
 \section{Introduction}
 \label{sec1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Systems which obey the Fermi-Dirac (FD) distribution, such as finite temperature Fermi quantum gasses, are difficult to study outside the zero temperature limit because the numerical precision of finite temperature contribution rapidly vanishes\rcite. Numerical evaluations of the finite temperature behavior of systems also obscures the physics as the precise origin of thermodynamic features are shrouded; whereas analytic evaluations can show explicitly the mathematical origin of physical features. This is why the few analytic solutions that exist in physics are invaluable to study.
+It is self evident that the  zero temperature limit of Fermi distribution involves transition from a smooth functional form to a singular step function. Therefore, systems which obey the Fermi-Dirac (FD) distribution, such as finite temperature Fermi quantum gasses, are difficult to study in
+the limit of zero temperature. Numerical evaluations of the finite temperature behavior of systems also obscures the physics as the precise origin of thermodynamic features are shrouded; whereas analytic evaluations can show explicitly the mathematical origin of physical features. This is why the few analytic solutions that exist in physics are invaluable to study.
 
 % Kapusta and Gale - many body theory
 % Lebellac - text
 % 
 
-The most interesting physics of Fermi gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution in an analytic fashion. We provide a novel form of FD distribution that can separate the Fermi gas into zero and finite temperature components analytically which is useful addressing physics beyond the zero temperature approximation. We also tackle the case of the magnetized relativistic Fermi gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and wherever finite temperature Fermi effects are important.
+%The most interesting physics of Fermi gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution in an analytic fashion. We provide a novel form of FD distribution that can separate the Fermi gas into zero and finite temperature components analytically which is useful addressing physics beyond the zero temperature approximation. We also tackle the case of the magnetized relativistic Fermi gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and wherever finite temperature Fermi effects are important.
 
-Before we introduce the novel form in \rsec{NewFermi}, we will briefly recall the standard picture of the FD distribution. In the zero temperature limit $T\to0$, the FD distribution reduces to a step function where a state $E_{i}$ is either filled or empty. For given chemical potential $\widetilde\mu(T)$, we have
+%Before we introduce the novel form in \rsec{NewFermi}, we will briefly recall the standard picture of the FD distribution. 
+
+The situation of interest is presented in \rf{Electron_001}: In the zero temperature limit $T\to0$, the FD distribution reduces to a step function where a state $E_{i}$ is either filled or empty. For given chemical potential $\widetilde\mu(T)$, we have
 \begin{align}
 \label{f_old}
 f_\mathrm{FD}(E_{i},\widetilde\mu(T),T)=\left[\exp\left(\frac{E_{i}-\widetilde\mu}{T}\right)+1\right]^{-1}\,,\quad
@@ -121,7 +125,6 @@ f_\mathrm{FD}(E_{i},\widetilde\mu(T),T)=\left[\exp\left(\frac{E_{i}-\widetilde\m
 \right.\,.
 \end{align}
 The energy of the last filled state is called the Fermi energy and is denoted by $E_F$. The Fermi energy is also the value of the chemical potential at zero temperature $T=0$, \emph{i.e.} $E_F\equiv\widetilde\mu(T = 0)$.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
 \centering
@@ -131,7 +134,9 @@ The energy of the last filled state is called the Fermi energy and is denoted by
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In \rf{Electron_001} we plot the FD distribution of a fermion as a function of energy with example parameters $T=0.012\MeV$ and $\widetilde\mu=0.461\MeV$. This shows the textbook behavior that for finite temperatures, there is a filling of higher energy states above the chemical potential $\widetilde\mu$ at the expense of states below $\widetilde\mu$. As the temperature increases, the distribution becomes more broad as a wide range of states become thermally populated.
+The two analytical forms are shown in \rf{Electron_001}: The solid line shows Fermi distribution as a function of energy with example parameters $T=0.012\MeV$ and $\widetilde\mu=0.461\MeV$ for electrons of mass $m=0.511\MeV$. Dashed line is the corresponding $T=0$ limit.  This shows the textbook behavior that for finite temperatures, there is a filling of higher energy states above the chemical potential $\widetilde\mu$ at the expense of states below $\widetilde\mu$. As the temperature increases, the distribution becomes more broad as a wide range of states become thermally populated.
+
+Our objective is to describe the difference between these two distributions in a format allowing to evaluate and study in semi-analytical way the finite temperature effects occuring near to the Fermi surface.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Zero and finite temperature Fermi-Dirac distributions}
@@ -198,7 +203,7 @@ As our expression is written in terms of distributions rather than analytic func
 \end{align}
 which means that the limit of our expression at the origin $x=0$ exists and is equal to the value of the function in \req{f_old} at $x = 0$. With the definitions of the step function $\Theta(x)$ and sign function $\sgn(x)$ in \req{NFF2}, the limits for $x\rightarrow0^{\pm}$ are equal to the value of our function at the origin. Therefore, for all real $x\in\mathbb{R}$, our expression matches the original FD distribution \req{f_old}.
 
-\rev{This I believe is not necessary...if the functions match $\forall x \in \mathbb{R}$ then of course their derivatives match too - NOT TRUE FOR DISTRIBUTIONS!.}Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
+Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
 \begin{align}
 \label{NFF1b}
 \frac{d}{dx}\Theta(-x)&=-\delta(x)\,,\qquad 
@@ -212,16 +217,6 @@ both without and with units and where $\delta(x)$ is the Dirac $\delta$-function
 \subsection{Decomposition of zero and finite temperature contribution}
 \label{Numerical}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\sout{In addition to our mathematical derivation, we also present a graphical check to show that the novel expression for the distribution is well behaved numerically. In \rf{Fermi_Checking} we plot the traditional expression for the Fermi-distribution [\req{f_old}] with solid lines and the novel form of Fermi-distribution [\req{NFF1}] with dashed lines as a function of energy for various temperatures and chemical potential values. This demonstrates that \req{f_old} and \req{NFF1} are equivalent to each other numerically.}\rev{I would remove this and Fig.2. ...of course they are identical, we showed that they are. Or I would at least reframe Fig. 2. as examples of Fermi distribution for some parameters, not sure if needed. This way it makes an impression that we are not sure. I would focus on the splitting in Fig. 3.}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure}[ht]
-%\centering
-%\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_001}\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_002}
-%\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_003}\includegraphics[width=0.5\textwidth]{./plot/Fermi_novel_004}
-%\caption{We plot the Fermi-distribution~\req{f_old} (solid lines) against the novel formulation~\req{NFF1} (dashed lines) as a function of energy. (Upper plots) We compare the two formulations under different chemical potentials: $\widetilde\mu=(0,\pm0.1,\pm0.4,\pm0.6)\MeV$ at temperature $T=0.012\MeV$. (Lower plots) We compare under different temperatures $T=(0.511,0.0511, 0.012)\MeV$ for chemical potential $\widetilde\mu=\pm0.461\MeV$.}
-%\label{Fermi_Checking}
-%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %{\xmagenta ANDREW: I recommend we stick with the dimensionless variable ``$x$'' for all calculations and discussions up to the physical example. This enhances the mathematical clarity and simply makes the expressions more simple to read. I did this for Eq. 11, but wanted your approval before continuing my edits. Additionally, the expression $f_{T=0}(x)$ doesn't make sense as $T$ is clearly nonzero in $x(E,\widetilde\mu,T)$. I suggest we abandon this notation and simply call it the step function $\Theta(x)$ and we are already doing earlier. There is also a conflict where Eq. 12 and Eq. 13 are defined using the same notation. Is this an error? Please look at this Cheng Tao.} 
@@ -231,12 +226,12 @@ To illustrate the separation of the zero and finite temperature contributions to
 \end{align}
 where the temperature functions are defined as
 \begin{align}
-&f_\mathrm{T\neq0}=\frac{1}{2}e^{ -|x|/T }\mathrm{sgn}\left(x\right),\qquad
+&f_\mathrm{T\neq0}=\frac{1}{2}e^{ -|x| }\mathrm{sgn}\left(x\right),\qquad
 \tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |x| }\tanh\left(\frac{x}{2}\right),\qquad x=\frac{E-\tilde\mu}{T}
 %&f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\mathrm{sgn}\left(\frac{E-\widetilde\mu}{T}\right),\qquad
 %\tilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\widetilde\mu|/T }\tanh\left(\frac{E-\widetilde\mu}{2T}\right)
 \end{align}
-In Fig.~(\ref{Fermi_Component}) we plot the exact Fermi distribution (black line $f$), the zero (purple lines, $f_{T=0}$) and finite temperature components of the Fermi distribution as a function of energy choosing in this example the chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and at $T=0.2\MeV$.
+In Fig.~\ref{Fermi_Component} we plot the exact Fermi distribution (black line $f$), the zero (purple lines, $\Theta(-x)$) and finite temperature components of the Fermi distribution as a function of energy choosing in this example the chemical potential $\widetilde\mu=0.461\MeV$ at temperature $T=0.02\MeV$ and at $T=0.2\MeV$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
@@ -249,64 +244,75 @@ The zero and finite temperature components of the decomposition here considered 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The Fig.~(\ref{Fermi_Component}) shows that \rev{the contributions of the two finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ exponentially decay with the distance from the Fermi surface $E=\tilde{\mu}$. Moreover, the splitting was chosen in such a way that the discontinuous distribution part is fully contained in $f_\mathrm{T\neq 0}$ and $\tilde{f}_\mathrm{T\neq 0}$ is a remaining smooth function of $T$. Hmmm...actually the second derivative of $\tilde{f}_\mathrm{T\neq 0}$ is discontinuous at origin, is there any other motiviation for this splitting?}  Both finite temperature contributions always have the same sign \rev{and lower the distribution for $E < \tilde{\mu}$ and increase it for $E > \tilde{\mu}$}.
-%\vfill\eject
 
-
-{\xred(Comments for the numerical motivation:) In contrast to the brute force approach for eliminating the $T=0$ limit from the low-temperature Fermi distribution, our analytic form of distribution offers a more numerically advantageous method for separating the finite temperature components. This is advantage arise from the behavior of: 1.) both finite temperature contributions $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ always have the same sign 2.) the exponential factor for finite temperature components provide the naturally exponentially suppresses for the large energy. In this scenario, it reduces the numerical noise when evaluate the numerical integral beyond the zero temperature approximation. Furthermore, our novel form for Fermi distribution also provide us the tool to analytically investigate the finite temperature contributions by expanding the function around the Fermi-energy surface, which is useful for addressing physics for the finite temperature approximation.}
+In contrast to the brute force approach for eliminating the $T=0$ limit from the low-temperature Fermi distribution, our analytic form of distribution offers a more numerically advantageous method for separating the finite temperature components. This is advantage arise from the behavior of: 1.) both finite temperature contributions $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ always have the same sign 2.) the exponential factor for finite temperature components provide the naturally exponentially suppresses for the large energy. In this scenario, it reduces the numerical noise when evaluate the numerical integral beyond the zero temperature approximation. Furthermore, our novel form for Fermi distribution also provide us the tool to analytically investigate the finite temperature contributions by expanding the function around the Fermi-energy surface, which is useful for addressing physics for the finite temperature approximation.
 
 To illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics especially when temperature $T\to0$, we consider for any given function $G(p)$, then the correspond  thermal average physical quantity $\langle G\rangle_T$ can be obtained by integrating over the D-dimension phase space. We have
 \begin{align}
-\langle G\rangle_T&\equiv\int^{\infty}_{0}\!\!\frac{d^Dp}{(2\pi)^D}\,G(p)\,f_{FD}(p)=\int^{\infty}_{0}\!\!dp\frac{p^{D-1}}{(2\pi)^2}\frac{2\pi^{D/2}}{\Gamma(D/2)}\,G(p)\,f_{FD}(p),\\
-&=\frac{2\pi^{D/2}}{(2\pi)^D}\frac{T^D}{\Gamma(D/2)}\int^\infty_0dy\,y^{D-1}G(y)\,f_{FD}(y),\qquad y\equiv{p}/{T}\\
-&=\langle G\rangle_{0}+\langle G\rangle_{\delta T},
+\langle G\rangle_T&\equiv\int^{\infty}_{0}\!\!\frac{d^Dp}{(2\pi)^D}\,G(p)\,f_{FD}(p)=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}\,G(p)\,f_{FD}(p),\\
+%&=\frac{2\pi^{D/2}}{(2\pi)^D}\frac{T^D}{\Gamma(D/2)}\int^\infty_0dy\,y^{D-1}G(y)\,f_{FD}(y),\qquad y\equiv{p}/{T}\\
+&=\langle G\rangle_{\Theta}+\langle G\rangle_{\delta T},
 \end{align}
- where the functions $\langle G\rangle_{0}$ and $\langle G\rangle_{\delta T}$ are defined as
+ where the functions $\langle G\rangle_{\Theta}$ and $\langle G\rangle_{\delta T}$ are defined as
 \begin{align}
-&\langle G\rangle_{0}=\frac{2\pi^{D/2}}{(2\pi)^D}\frac{T^D}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dy\,y^{D-1}G(y)\Theta(-\sqrt{y^2+(m/T)^2}+\tilde\mu/T),\\
+&\langle G\rangle_{\Theta}=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}G(p)\Theta\left(\frac{-E+\tilde\mu}{T}\right),\qquad E=\sqrt{p^2+m^2},\\
 \label{G_deltaT}
-&\langle G\rangle_{\delta T}=\frac{2\pi^{D/2}}{(2\pi)^D}\frac{T^D}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dy\,y^{D-1}\,G(y)\bigg[f_\mathrm{T\neq0}(y)+\tilde f_\mathrm{T\neq0}(y)\bigg]
+&\langle G\rangle_{\delta T}=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}\,G(p)\bigg[f_\mathrm{T\neq0}(p)+\tilde f_\mathrm{T\neq0}(p)\bigg]
 \end{align}
 
 In general, we can use the Laguerre polynomials $L_n(y)$ as a orthogonal basis to expand any functions. we have
 \begin{align}
-L_n(y)=\frac{e^y}{n!}\frac{d^n}{dy^n}\left(y^ne^{-y}\right),\qquad\int_0^\infty\!\!dyL_n(y)L_m(y)e^{-y}=\delta_{nm}
+L_n(p)=\frac{e^p}{n!}\frac{d^n}{dp^n}\left(p^ne^{-p}\right),\qquad\int_0^\infty\!\!dpL_n(p)L_m(p)e^{-p}=\delta_{nm}
 \end{align}
-The functions $G(y)$, $f_\mathrm{T\neq0}(y)$ and $\tilde f_\mathrm{T\neq0}(y)$ can be written as
+Then the functions $p^{D-1}G(p)$, $f_\mathrm{T\neq0}(p)$ and $\tilde f_\mathrm{T\neq0}(p)$ can be written as
 \begin{align}
-&y^{D-1}G(y)=\sum_{n=0}^\infty k_n e^{-y/2}L_n(y),\qquad k_n=\int_0^\infty\!\!dy y^{D-1}G(y)L_n(y)e^{-y/2}\\
-&f_\mathrm{T\neq0}(y)=\sum_{m=0}^\infty a_m e^{-y/2}L_m(y),\qquad a_m=\int_0^\infty\!\!dy f_\mathrm{T\neq0}(y)L_m(y)e^{-y/2}\\
-&\tilde f_\mathrm{T\neq0}(y)=\sum_{m=0}^\infty b_m e^{-y/2}L_m(y),\qquad b_m=\int_0^\infty\!\!dy \tilde f_\mathrm{T\neq0}(y)L_m(y)e^{-y/2}
+&p^{D-1}G(p)=\sum_{n=0}^\infty k_nL_n(p),\qquad\quad k_n=\int_0^\infty\!\!dp\,p^{D-1}G(p)L_n(p)e^{-p}\\
+&f_\mathrm{T\neq0}(p)=\sum_{m=0}^\infty a_m e^{-p}L_m(p),\qquad a_m=\int_0^\infty\!\!dp f_\mathrm{T\neq0}(p)L_m(p)\\
+&\tilde f_\mathrm{T\neq0}(p)=\sum_{m=0}^\infty b_m e^{-p}L_m(p),\qquad b_m=\int_0^\infty\!\!dp \tilde f_\mathrm{T\neq0}(p)L_m(p)
 \end{align}
-where $k_n$, $a_m$ and $b_m$ represent the expansion coefficients. Substituting the polynomial expansion into Eq.~(\ref{G_deltaT}), the integral of $\langle G\rangle_{\delta T}$ can be written as
+where $k_n$, $a_m$ and $b_m$ represent the expansion coefficients. Substituting the polynomial expansion into Eq.~(\ref{G_deltaT}) for the finite temperature contribution, the integral of $\langle G\rangle_{\delta T}$ becomes
 \begin{align}
-\langle G\rangle_{\delta T}&=\frac{2\pi^{D/2}}{(2\pi)^D}\frac{T^D}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dy\,\left[\sum_{n=0}^\infty k_n e^{-y/2}L_n(y)\right]\left[\sum_{m=0}^\infty \left(a_m+b_m\right) e^{-y/2}L_m(y)\right]\notag\\
-&=\frac{2\pi^{D/2}}{(2\pi)^D}\frac{T^D}{\Gamma(D/2)}\sum_{n,m=0}^\infty k_n(a_m+b_m)\left[\int_0^\infty\!\!dy e^{-y}L_n(y)L_m(y)\right]\notag\\
-&=\frac{2\pi^{D/2}}{(2\pi)^D}\frac{T^D}{\Gamma(D/2)}\sum^\infty_{n=0}k_n(a_n+b_n).
+\langle G\rangle_{\delta T}&=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,\left[\sum_{n=0}^\infty k_nL_n(p)\right]\left[\sum_{m=0}^\infty \left(a_m+b_m\right) e^{-p}L_m(p)\right]\notag\\
+&=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\sum_{n,m=0}^\infty k_n(a_m+b_m)\left[\int_0^\infty\!\!dp e^{-p}L_n(p)L_m(p)\right]\notag\\
+&=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\sum^\infty_{n=0}k_n(a_n+b_n).\label{Sum000}
 \end{align}
-% Andrew's note: CHECK EQ. 23 for accuracy. The othogonality implementation is suspect to me.
-Given different value of $n=0,1,2,3\cdots$, the coefficients $a_n$ and $b_n$ can be evaluated numerically. In Table.~\ref{coeff_table} we evaluate the coefficient $a_n$ and $b_n$ numerically for $n=1,2,3,4$ as an example.  %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\begin{table}%[b]
-\centering
-\begin{tabular}{c | c | c }
-\hline\hline
-$n$ &$a_n$ & $b_n$ \\
-\hline
-$0$ & $1/3$ & $0.095$\\ 
-\hline
-$1$ & $1/9$ & $-0.018$\\
-\hline
-$2$ & $1/27$& $-0.031$\\
-\hline
- $3$ & $1/81$&$-0.023$\\
-\hline
-$4$ & $1/243$ & $-0..013$\\
-\hline\hline
-\end{tabular}
-\caption{The coefficient $a_n$ and $b_n$ for $n=1,2,3,4$ as example.}
-\label{coeff_table} 
-\end{table}
+where we use the orthogonal property of Laguerre polynomial to rewrite the intergal into the infinite sum of coefficients $a_n$, $b_n$, and $k_n$.
 
-%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+% Andrew's note: CHECK EQ. 23 for accuracy. The othogonality implementation is suspect to me.
+
+To demonstrate that Eq.~(\ref{Sum000}) can be applied to any given function or physics system. Here, we consider the semi-relativistic electron number density with chemical potential $\mu>m$ as an example. Given the exact Fermi-Dirac distribution, the number density  in $3$-dimension phase space can be written 
+as
+\begin{align}
+\label{DensityExact}
+\langle n\rangle _{\mathrm{exact}}=\int\frac{d^3p}{(2\pi)^3}\frac{1}{e^{(E-\tilde\mu)/T}+1},\qquad E=\sqrt{p^2+m^2}.
+\end{align}
+On the other hand, using the novel form of Fermi-Dirac distribution, the number density can be obtained by setting $G(p)=1$. We have
+\begin{align}
+\label{DensitySum}
+&\langle n\rangle_T=\langle n\rangle_\Theta+\langle n\rangle_{\delta T},\\
+&\langle n\rangle_\Theta=\frac{1}{2\pi^2}\bigg[\int^\infty_0\!\!dp\,p^2\Theta\left(\frac{-E+\tilde\mu}{T}\right)\bigg],\\
+&\langle n\rangle_{\delta T}=\frac{1}{2\pi^2}\bigg[\sum_n k_n(a_n+b_n)\bigg],
+\end{align}
+where the coefficients $a_n$,$b_n$, and $k_n$ are given by
+\begin{align}
+&k_n=\int_0^\infty\!\!dp\,p^{D-1}G(p)L_n(p)e^{-p}\\
+&a_n=\int_0^\infty\!\!dpL_n(p)\left[\frac{1}{2}e^{-|(\sqrt{p^2+m^2}-\tlide\mu)/T|}\right]\mathrm{sgn}((\sqrt{p^2+m^2}-\tlide\mu)/T),\\
+&b_n=\int_0^\infty\!\!dpL_n(p)\left[\frac{1}{2}e^{-|(\sqrt{p^2+m^2}-\tlide\mu)/T|}\right]\tanh\left(\frac{\sqrt{p^2+m^2}-\tlide\mu}{2T}\right).
+\end{align}
+In Fig.~\ref{Density_checking}, we plot the electron number density with condition $m=0.511$ MeV and $\tilde\mu=1$ MeV as a function of temperature.  For compassion, the number density is calculated by using  exact Fermi distribution Eq.~(\ref{DensityExact}) and the novel Fermi distribution Eq.~(\ref{DensitySum}). (Top) We present the exact number density $\langle n\rangle _{\mathrm{exact}}$ and the number density  decomposed into zero temperature component $\langle n\rangle_\Theta$ and finite temperature contribution $\langle n\rangle_{\delta T}$. It shows that in low temperature range, the exact number density $\langle n\rangle _{\mathrm{exact}}$ approaches to the zero-temperature limit $\langle n\rangle_\Theta$. In the high temperature dominant, the finite-temperature $\langle n\rangle_{\delta T}$ accurately represent the limit for the electron density and agree with $\langle n\rangle _{\mathrm{exact}}$. (Bottom) The comparison of particle number density Eq.~(\ref{DensityExact}) and Eq.~(\ref{DensitySum}), it illustrate that Eq.~(\ref{DensityExact}) and Eq.~(\ref{DensitySum}) are equivalent to each other numerically.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{./plot/NewFermi_numerical_Exact002}
+\includegraphics[width=0.8\textwidth]{./plot/NewFermi_numerical_exact}
+\caption{The number density as a function of temperature by using exact Fermi distribution Eq.~(\ref{DensityExact}) and novel form of Fermi distribution Eq.~(\ref{DensitySum}). We consider $m=0.511$ MeV and $\tilde\mu=1$ MeV as an example. }
+\label{Density_checking}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 %By employing our decomposition form, we propose that the integral for finite temperature contribution $\langle G\rangle_{\delta T}$ in general can be written as
@@ -324,9 +330,10 @@ $4$ & $1/243$ & $-0..013$\\
 \label{sec12}
 In this work, we introduce a novel form of the Fermi distribution Eq.~(\ref{NFF1}) that separates the Fermi gas into zero and finite temperature components analytically. This is the first time in literature that has clean separation of the zero and finite temperature components. Unlike the traditional brutal approach to eliminating the $T=0$ limit from the low-temperature Fermi distribution, our novel form of the Fermi distribution for finite temperature component has several numerical advantages in computation. 
 
-The Fermi distribution Eq.~(\ref{NFF1}) provides us the tool to study or examine the effects and characteristics of finite temperature components separately. The mathematical form of the finite temperature components is well-suited for numerical calculations and can be used to address the integrals common in statistical physics. This is because the finite temperature components are naturally exponentially suppressed while also preserving the sign of all corrections making the formulation easier to numerically integrate and reduce the numerical noise, see Fig.~\ref{Fermi_Component}. In addition, our approach also allows for analytical exploration of the finite temperature contributions by expanding the function around the Fermi-energy surface.
-
-To illustrate the numerical benefits, we examine the magnetization of electron-positron gas in a uniform magnetic filed as an example. Fig.~\ref{M_Checking001} shows that our novel form of Fermi distribution improves convergence of the numerical calculation of Landau levels. Instead of summing over a large number of terms, our approach  requires only a few additional terms in the Landau level summation to obtain the stable magnetization. This results imply that our analytic form of Fermi function exhibits rapid convergence and therefore improves the computational efficiency significantly.
+ 
+The mathematical form of the finite temperature components is well-suited for numerical calculations and can be used to address the integrals common in statistical physics. This is because the finite temperature components are naturally exponentially suppressed while also preserving the sign of all corrections making the formulation easier to numerically integrate and reduce the numerical noise, see Fig.~\ref{Fermi_Component}. We consider a semi relativistic-electron density where with high chemical potential $\mu>m$ at low temperature as an example. Fig.~\ref{Density_checking} shows the equivalence of particle number density with exact Fermi distribution Eq.~(\ref{DensityExact}) and our novel form  distribution Eq.~(\ref{DensitySum}). 
+ 
+The Fermi distribution Eq.~(\ref{NFF1}) provides us the tool to study or examine the effects and characteristics of finite temperature components separately. In addition, our approach also allows for analytical exploration of the finite temperature contributions by expanding the function around the Fermi-energy surface.
 
 
 
