@@ -74,17 +74,17 @@
 %% \author*[1,2]{\pfx{Dr} \fnm{Joergen W.} \spfx{van der} \sur{Ploeg} \sfx{IV} \tanm{Poet Laureate} 
 %%                 \dgr{MSc, PhD}}\email{iauthor@gmail.com}
 %%=============================================================%%
-\centering
-\author[1]{\fnm{Cheng Tao} \sur{Yang\orc{\orcB}}}
+ 
+\author[1]{\hspace*{1.5cm}\fnm{Cheng Tao} \sur{Yang\orc{\orcB}}}
 \author[1,2]{\fnm{Martin} \sur{Formanek\orc{\orcD}}}
 \author[1]{\newline\fnm{Andrew} \sur{Steinmetz\orc{\orcC}}} 
 \author[1]{\fnm{Johann} \sur{Rafelski\orc{\orcA}}}
 %\email{iiiauthor@gmail.com}
 %\equalcont{These authors contributed equally to this work.}
 
-\affil[1]{\orgdiv{Department of Physics}, \orgname{The University of Arizona}, \city{Tucson}, \state{Arizona}, \postcode{85721}, \country{USA}}
+\affil[1]{\orgdiv{Department of Physics}, \orgname{The University of Arizona}, \city{\newline Tucson}, \state{Arizona}, \postcode{85721}, \country{USA}}
 
-\affil[2]{\orgdiv{ELI Beamlines Facility}, \orgname{The Extreme Light Infrastructure ERIC}, \orgaddress{ \postcode{252 41}, \city{Dolni Brezany}, \country{Czech Republic}}}
+\affil[2]{\orgdiv{ELI Beamlines Facility}, \orgname{The Extreme Light Infrastructure ERIC}, \orgaddress{ \postcode{\newline 252 41}  \city{Dolni Brezany}, \country{Czech Republic}}}
 
 \abstract{We present a novel mathematical tool allowing to separate the zero and finite temperature phenomena in ideal Fermi gases. To achieve this  we decompose the Fermi distribution into three components. We prove that the singular (step) functions properly add up to the finite temperature smooth Fermi shape. As an example we consider briefly a semi relativistic-electron density where with high chemical potential ($\mu>m$) at low temperature $T<<m$.}
 
@@ -102,14 +102,14 @@
 \section{Introduction}
 \label{sec1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-It is self evident that the  zero temperature limit of Fermi distribution involves transition from a smooth functional form to a singular step function. Therefore, systems which obey the Fermi-Dirac (FD) distribution, such as finite temperature Fermi quantum gasses, are difficult to study in
-the limit of zero temperature. Numerical evaluations of the finite temperature behavior of systems also obscures the physics as the precise origin of thermodynamic features are shrouded; whereas analytic evaluations can show explicitly the mathematical origin of physical features. This is why the few analytic solutions that exist in physics are invaluable to study.
+It is self evident that the  zero temperature limit of Fermi distribution involves a transition from a smooth functional form to a singular Heavyside step function. This limit  $1/T\equiv \beta \to 0$ clearly is non-analytical.  Therefore,   Fermi quantum gasses, are difficult to study in the limit of zero temperature. Numerical evaluations of this limit may miss key physical features.  We therefore attempt here a novel reformulation which allows exact separation of finite temperature behavior from the singular zero temperature limit. This means that we will be replacing the smooth Fermi distribution by two singular functions
+$$
+\boxed{\frac{1}{e^{x} +1}=\Theta(-x)+\frac{1}{2}e^{-|x|}\left[\sgn(x)+\tanh(x/2)\right]}
+$$
+one being the $T=0$ limit,  the other being a novel form of the finite $T$ residual
 
-% Kapusta and Gale - many body theory
-% Lebellac - text
-% 
 
-%The most interesting physics of Fermi gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution in an analytic fashion. We provide a novel form of FD distribution that can separate the Fermi gas into zero and finite temperature components analytically which is useful addressing physics beyond the zero temperature approximation. We also tackle the case of the magnetized relativistic Fermi gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and wherever finite temperature Fermi effects are important.
+The most interesting physics of Fermi gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution in an analytic fashion. We provide a novel form of FD distribution that can separate the Fermi gas into zero and finite temperature components analytically which is useful addressing physics beyond the zero temperature approximation. We also tackle the case of the magnetized relativistic Fermi gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and wherever finite temperature Fermi effects are important.
 
 %Before we introduce the novel form in \rsec{NewFermi}, we will briefly recall the standard picture of the FD distribution. 
 
@@ -150,9 +150,10 @@ Our interest and motivations in studying the Fermi-Dirac distribution was to per
 \label{NFF1}
 \begin{split}
 f_\mathrm{FD}(x)
-&=\left(e^{x}+1\right)^{-1}\\
-&=\Theta(-x)+\frac{1}{2}e^{-|x|}\left[\sgn(x)+\tanh(x/2)\right]\,,\quad
-x\equiv\frac{E-\widetilde\mu}{T}\,,
+&=\frac{1}{e^{x}+1}\,,\quad
+x\equiv\frac{E-\widetilde\mu}{T}\,,\\
+\frac{1}{e^{x} +1}&=\Theta(-x)+\frac{1}{2}e^{-|x|}\left[\sgn(x)+\tanh(x/2)\right]
+\,,
 \end{split}
 \end{align}
 \begin{align}
