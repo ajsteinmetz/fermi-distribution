@@ -102,21 +102,22 @@
 \section{Introduction}
 \label{sec1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-It is self evident that the  zero temperature limit of Fermi distribution involves a transition from a smooth functional form to a singular Heavyside step function. This limit  $1/T\equiv \beta \to 0$ clearly is non-analytical.  Therefore,   Fermi quantum gasses, are difficult to study in the limit of zero temperature. Numerical evaluations of this limit may miss key physical features.  We therefore attempt here a novel reformulation which allows exact separation of finite temperature behavior from the singular zero temperature limit. This means that we will be replacing the smooth Fermi distribution by two singular functions
+The  zero temperature limit of Fermi-Dirac (FD) distribution involves a transition from a smooth functional form to a singular Heavyside step function. Such singular limit  $
+T\to 0$ therefore cannot be analytical.  For this reason a study of finite temperature effects in dense  low temperature  FD quantum gasses poses a mathematical challenge and can miss key physical features.  To remedy this situation we introduce here a novel reformulation which allows exact separation of the finite temperature behavior from the singular zero temperature limit. This means that we will be replacing the smooth FD distribution by the sum of three singular functions
 $$
 \boxed{\frac{1}{e^{x} +1}=\Theta(-x)+\frac{1}{2}e^{-|x|}\left[\sgn(x)+\tanh(x/2)\right]}
 $$
-one being the $T=0$ limit,  the other being a novel form of the finite $T$ residual
+one being the $T=0$ limit,  the other two describing the finite temperature residual. In the following we illuminate the advantages offered by this decomposition.  
 
 
-The most interesting physics of Fermi gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution in an analytic fashion. We provide a novel form of FD distribution that can separate the Fermi gas into zero and finite temperature components analytically which is useful addressing physics beyond the zero temperature approximation. We also tackle the case of the magnetized relativistic Fermi gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and wherever finite temperature Fermi effects are important.
+The most interesting physics of FD gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution. We provide a novel form of FD distribution that manifestly separates the zero and finite temperature contributions so that the finite temperature correction can be studied on its own. We also tackle the case of the magnetized relativistic Fermi gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and in any situation when finite temperature Fermi effects are important.
 
 %Before we introduce the novel form in \rsec{NewFermi}, we will briefly recall the standard picture of the FD distribution. 
 
-The situation of interest is presented in \rf{Electron_001}: In the zero temperature limit $T\to0$, the FD distribution reduces to a step function where a state $E_{i}$ is either filled or empty. For given chemical potential $\widetilde\mu(T)$, we have
+The illustration of the problem is presented in \rf{Electron_001}: In the zero temperature limit $T\to0$, the FD distribution reduces to a step function where a state $E_{i}$ is either filled or empty. For given chemical potential $\widetilde\mu(T)$, we have
 \begin{align}
 \label{f_old}
-f_\mathrm{FD}(E_{i},\widetilde\mu(T),T)=\left[\exp\left(\frac{E_{i}-\widetilde\mu}{T}\right)+1\right]^{-1}\,,\quad
+f_\mathrm{FD}[E_{i},\widetilde\mu(T),T]=\left[\exp\left(\frac{E_{i}-\widetilde\mu}{T}\right)+1\right]^{-1}\,,\quad
 \lim_{T\to0}f_\mathrm{FD}=\left\{
 \begin{array}{c}
 1,\quad\mathrm{for}\quad{E_{i}}<\widetilde\mu\\
@@ -134,7 +135,7 @@ The energy of the last filled state is called the Fermi energy and is denoted by
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The two analytical forms are shown in \rf{Electron_001}: The solid line shows Fermi distribution as a function of energy with example parameters $T=0.012\MeV$ and $\widetilde\mu=0.461\MeV$ for electrons of mass $m=0.511\MeV$. Dashed line is the corresponding $T=0$ limit.  This shows the textbook behavior that for finite temperatures, there is a filling of higher energy states above the chemical potential $\widetilde\mu$ at the expense of states below $\widetilde\mu$. As the temperature increases, the distribution becomes more broad as a wide range of states become thermally populated.
+In \rf{Electron_001} the solid line shows Fermi distribution as a function of energy for temperature $T=0.012\MeV$, chemical potential $\widetilde\mu=0.461\MeV$, and electron mass $m=0.511\MeV$. Dashed line is the corresponding $T=0$ limit.  This demonstrates the textbook behavior that for finite temperature $T > 0$, even states above the chemical potential $\widetilde\mu$ can be occupied at the expense of states below $\widetilde\mu$. As the temperature increases, the distribution becomes broader as a wide range of states become thermally populated.
 
 Our objective is to describe the difference between these two distributions in a format allowing to evaluate and study in semi-analytical way the finite temperature effects occuring near to the Fermi surface.
 
