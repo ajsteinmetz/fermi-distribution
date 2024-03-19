@@ -16,6 +16,7 @@
 \usepackage{algpseudocode}%
 \usepackage{listings}%
 \usepackage[normalem]{ulem}
+\usepackage{comment}
 
 % Make Orcid icon
 \newcommand{\orcidicon}{\includegraphics[width=0.32cm]{orcid.pdf}}
@@ -78,13 +79,15 @@
 \author[1]{\hspace*{1.5cm}\fnm{Cheng Tao} \sur{Yang\orc{\orcB}}}
 \author[1,2]{\fnm{Martin} \sur{Formanek\orc{\orcD}}}
 \author[1]{\newline\fnm{Andrew} \sur{Steinmetz\orc{\orcC}}} 
+\author[1]{\fnm{Jeremiah} \sur{Birrell\orc{\orcB}}}
 \author[1]{\fnm{Johann} \sur{Rafelski\orc{\orcA}}}
+
 %\email{iiiauthor@gmail.com}
 %\equalcont{These authors contributed equally to this work.}
 
 \affil[1]{\orgdiv{Department of Physics}, \orgname{The University of Arizona}, \city{\newline Tucson}, \state{Arizona}, \postcode{85721}, \country{USA}}
 
-\affil[2]{\orgdiv{ELI Beamlines Facility}, \orgname{The Extreme Light Infrastructure ERIC}, \orgaddress{ \postcode{\newline 252 41}  \city{Dolni Brezany}, \country{Czech Republic}}}
+\affil[2]{\orgdiv{ELI Beamlines Facility}, \orgname{The Extreme Light Infrastructure ERIC}, \orgaddress{ \postcode{\newline 252 41}  \city{Doln\'{i} B\v{r}e\v{z}any}, \country{Czech Republic}}}
 
 \abstract{We present a novel mathematical tool allowing to separate the zero and finite temperature phenomena in ideal Fermi gases. To achieve this  we decompose the Fermi distribution into three components. We prove that the singular (step) functions properly add up to the finite temperature smooth Fermi shape. As an example we consider briefly a semi relativistic-electron density where with high chemical potential ($\mu>m$) at low temperature $T<<m$.}
 
@@ -115,7 +118,7 @@ $$
 one being the $T=0$ limit,  the other two describing the finite temperature residual. In the following we illuminate the advantages offered by this decomposition.  
 
 
-The most interesting physics of FD gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution. We provide a novel form of FD distribution that manifestly separates the zero and finite temperature contributions so that the finite temperature correction can be studied on its own. We also tackle the case of the magnetized relativistic Fermi gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and in any situation when finite temperature Fermi effects are important.
+The most interesting physics of FD gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution. We provide a novel form of FD distribution that manifestly separates the zero and finite temperature contributions so that the finite temperature correction can be studied on its own. We also tackle the case of the semi-relativistic electron gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and in any situation when finite temperature Fermi effects are important.
 
 %Before we introduce the novel form in \rsec{NewFermi}, we will briefly recall the standard picture of the FD distribution. 
 
@@ -167,17 +170,17 @@ x\equiv\frac{E-\widetilde\mu}{T}\,,\\
 \Theta(x)=\left\{
 \begin{array}{r}
 1,\quad\mathrm{for}\quad{x}>0\\
-1/2,\quad\mathrm{for}\quad{x}=0\\
+%1/2,\quad\mathrm{for}\quad{x}=0\\
 0,\quad\mathrm{for}\quad{x}<0
 \end{array}\right.\,,\qquad
 \sgn(x)=\left\{
 \begin{array}{r}
 +1,\quad\mathrm{for}\quad{x}>0\\
-0,\quad\mathrm{for}\quad{x}=0\\
+%0,\quad\mathrm{for}\quad{x}=0\\
 -1,\quad\mathrm{for}\quad{x}<0\\
 \end{array}\right.\,,
 \end{align}
-where $\Theta(x)$ is the Heaviside step function and $\sgn(x)$ is the sign function. The first term $\Theta(-x)$ in \req{NFF1} represents the zero temperature portion of the FD distribution while the finite temperature terms are weighted by a decaying exponential function. The immediate benefit of this form is that numerical evaluations will naturally center around the Fermi surface of the system with finite temperature contributions exponentially weighted.
+where $\Theta(x)$ is the Heaviside step function and $\sgn(x)$ is the sign function {\xgreen whose values at $x=0$ are convention-dependent and do not affect our results}. The first term $\Theta(-x)$ in \req{NFF1} represents the zero temperature portion of the FD distribution while the finite temperature terms are weighted by a decaying exponential function. The immediate benefit of this form is that numerical evaluations will naturally center around the Fermi surface of the system with finite temperature contributions exponentially weighted.
 
 We note that \req{NFF1} comprises of distributions rather than analytical functions~\cite{Arfken:2011abc}. On first sight, it is difficult to see that these cancel to create the analytical FD function seen in \req{f_old}. In the following section, we will show that both sides are truly equivalent.
 
@@ -186,30 +189,30 @@ We note that \req{NFF1} comprises of distributions rather than analytical functi
 \label{Proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 To show the equivalency between the two distinct forms of the FD, we look at the three relevant regions of $x>0$, the origin $x=0$, and $x<0$. For $x>0$, \req{NFF1} evaluates as
-\begin{equation}
+\begin{equation}\label{eq:xpos}
     f_\mathrm{FD}(x>0) = 0 + \frac{1}{2}e^{-x}[1+\tanh(x/2)] = (e^x + 1)^{-1}\,.
 \end{equation}
-This can be seen by substituting
-\begin{equation}
-    \tanh(x/2)=\sinh(x/2)/\cosh(x/2)\,,
-\end{equation}
-and using hyperbolic formulas
-\begin{equation}
-    \sinh(x/2)=(e^{x/2}-e^{-x/2})/2\,,\qquad
-    \cosh(x/2) = (e^{x/2}+e^{-x/2})/2\,.
-\end{equation}
-In a similar manner, the $x<0$ region evaluates as
-\begin{equation}
+This can be seen by using the hyperbolic formula $\tanh(x/2)=(e^x-1)/(e^x+1)$. In a similar manner, the $x<0$ region evaluates as
+\begin{equation}\label{eq:xneg}
     f_\mathrm{FD}(x<0) = 1 + \frac{1}{2}e^{x}[-1 + \tanh(x/2)] = (e^x + 1)^{-1}\,.
 \end{equation}
 
-As our expression is written in terms of distributions rather than analytic functions, special care should be taken in evaluation of the origin. It can be shown that the left $x=0^{-}$ and right $x=0^{+}$ limits are equal via
+As our expression is written in terms of distributions rather than analytic functions, {\xgreen we need to compare with the original prescription in the sense of integration over a infinitely-differentiable compactly-supported test function $\phi(x)$
+\begin{equation}
+    \langle f_\text{FD}, \phi \rangle \equiv \int_{-\infty}^\infty f_\text{FD}(x) \phi(x) dx  = \langle (e^x + 1 )^{-1}, \phi\rangle\,.
+\end{equation}
+The last equality holds since the integration can be broken into integrals over $(-\infty,0)$ and $(0,\infty)$ and using Eqs.~(\ref{eq:xpos},\ref{eq:xneg}). The exact behavior of functions $\Theta(x)$ and $\text{sgn}(x)$ at $x=0$ depends on a convention and it is not necessary for showing equality in terms of distributions since the point $x=0$ represents a set of measure zero with respect to integration.}
+
+\begin{comment}
+special care should be taken in evaluation of the origin. It can be shown that the left $x=0^{-}$ and right $x=0^{+}$ limits are equal via
 \begin{align}
     \lim_{x\rightarrow 0^+} f_\mathrm{FD}(x) &= 0 + \frac{1}{2}(1 + 0) = \frac{1}{2}\,,\\
     \lim_{x\rightarrow 0^-} f_\mathrm{FD}(x) &= 1 + \frac{1}{2}(-1 + 0) = \frac{1}{2}\,,
 \end{align}
 which means that the limit of our expression at the origin $x=0$ exists and is equal to the value of the function in \req{f_old} at $x = 0$. With the definitions of the step function $\Theta(x)$ and sign function $\sgn(x)$ in \req{NFF2}, the limits for $x\rightarrow0^{\pm}$ are equal to the value of our function at the origin. Therefore, for all real $x\in\mathbb{R}$, our expression matches the original FD distribution \req{f_old}.
+\end{comment}
 
+\begin{comment}
 Lastly, we check that the properties of the first derivative of \req{NFF1} are in agreement with the usual FD distribution. We write the first derivative of the singular distributions as 
 \begin{align}
 \label{NFF1b}
@@ -218,7 +221,67 @@ Lastly, we check that the properties of the first derivative of \req{NFF1} are i
 \frac{d}{dx}\sgn(x)&=2\delta(x)\,,\,\,\quad 
 \frac{d}{dE}\sgn(x)=\frac{2}{T}\delta(x)\,,
 \end{align}
-both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} at $x=0$ exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}.
+both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. \rev{The first derivative of the original FD distribution is
+\begin{equation}\label{eq:ffdder}
+    \frac{d}{dE} f_{FD}(x) = \frac{1}{T} \frac{-1}{4\cosh^2 \frac{x}{2}}
+\end{equation}
+which goes in the $T \rightarrow 0^+$ limit to delta function (DOES IT REALLY? NORMALLY $\delta$ is limit of 1/cosh). Using
+\begin{equation}
+    \frac{d|x|}{dE} = \frac{d\text{sgn}(x)x}{dE} = \frac{1}{T}\text{sgn}(x) + \frac{2}{T}x\delta(x)
+\end{equation}
+we can evaluate the derivative of the novel form as 
+\begin{equation}
+    \begin{split}
+    T \frac{d}{dE}f_N(x) &= -\delta(x) - \frac{1}{2}e^{-|x|}[\text{sgn}(x) + 2x\delta(x)]\text{sgn}(x) + e^{-|x|}\delta(x)\\
+    &- \frac{1}{2}e^{-|x|}[\text{sgn}(x) + 2 x \delta(x)]\tanh\frac{x}{2} + \frac{1}{4}\frac{e^{-|x|}}{\cosh^2\frac{x}{2}}
+    \end{split}
+\end{equation}
+It is quite straightforward to show that for $x > 0$ or $x<0$ this expression matches Eq. (\ref{eq:ffdder}) as it should because outside $x=0$ we don't expect any issues. For $x\neq 0$ we have
+\begin{equation}
+    \begin{split}
+    \left. T \frac{d}{dE}f_N(x)\right|_{x\neq 0} &= -\frac{1}{2}e^{-|x|} - \frac{1}{2}e^{-|x|}\tanh\frac{|x|}{2} + \frac{1}{4}\frac{e^{-|x|}}{\cosh^2\frac{|x|}{2}}\\
+    &= \frac{-e^{-|x|}\left(2\cosh^2\frac{|x|}{2}+2\sinh\frac{|x|}{2}\cosh\frac{|x|}{2}-1\right)}{4\cosh^2\frac{|x|}{2}}
+    \end{split}
+\end{equation}
+Now we re-write $1 = \cosh^2|x|/2 - \sinh^2|x|/2$ and use the twice angle formulas $\cosh^2|x|/2 + \sinh^2|x|/2 = \cosh|x|$ and $2\sinh |x|/2 \cosh|x|/2 = \sinh|x|$
+\begin{equation}
+    \left. T \frac{d}{dE}f_N(x)\right|_{x\neq 0} = -\frac{e^{-|x|}\left(\cosh|x|+\sinh|x|\right)}{4\cosh^2\frac{|x|}{2}} = \frac{-1}{4\cosh^2\frac{|x|}{2}}
+\end{equation}
+since $\cosh|x| + \sinh|x| = e^{|x|}$. However, the behavior of the first derivative at $x = 0$ is strange and does not match \req{eq:ffdder}. The question is if we care about the single point $x=0$, since if integrated over a whole set of functions, this should not change the behavior of the distribution corresponding to the first derivative. 
+}
+
+
+\rev{NOT TRUE:} These cancel in \req{NFF1} at $x=0$ exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}.
+
+{\bf JB: There are some details missing regarding exactly what you are finding to be strange about $x=0$ but here are some general comments as to what I believe is the issue. First, you using the product rule which can fail for the product of nonsmooth distributions if things are singular enough.  In your problem, the situation isn't that bad: the product rule holds in the sense of distributions but not pointwise, and it seems like you are trying to make pointwise comparisons.  However, as soon as you start taking derivatives in the sense of distributions then pointwise comparisons are not necessarily valid: equality now only has meaning in terms of integrals against test functions.  If you give more details regarding the issue you are encountering then maybe I comment more specifically on your calculation.  However, when I do the calculation, I get the expected equality in the sense of distributions:}\\
+First
+\begin{align}
+    \frac{d}{dx} e^{-|x|}=-\text{sgn}(x)e^{-|x|}
+\end{align}
+Next:
+\begin{align}
+    \frac{d}{dx}(e^{-|x|}\text{sgn}(x))=2\delta(x)-e^{-|x|}
+\end{align}
+For this term one should be careful because it is the product of two non-smooth functions and so the product rule could fail.  However, nothing too crazy happens here, though one should note that the result only meaningful in the sense of distributions.  To carefully check this result, let $\phi(x)$ be a smooth compactly supported test function and compute
+\begin{align}
+    &\langle  \frac{d}{dx}(e^{-|x|}sgn(x)),\phi\rangle\\
+    =&-\int_{\infty}^\infty e^{-|x|}sgn(x)\phi^\prime(x) dx\\
+    =&2\phi(0)-\int_{-\infty}^\infty e^{-|x|}\phi(x) dx\\
+    =&\langle 2\delta(x)-e^{-|x|},\phi\rangle
+\end{align}
+To get the from the second line to the third line, break the integral into integrals over $(-\infty,0)$ and $(0,\infty)$ and integrate each term by parts.
+
+In the term $e^{-|x|}\tanh(x/2)$, one of the terms is smooth so one can use the product rule without worry.  Therefore we can put these pieces together to get
+\begin{align}
+    &\frac{d}{dx} f_N(x)\\
+    =&-\delta(x)+\frac{1}{2}(2\delta(x)-e^{-|x|})+\frac{1}{2}(-\text{sgn}(x)e^{-|x|})\tanh(x/2)+\frac{1}{4}e^{-|x|}\frac{1}{\cosh^2(x/2)}\\
+    =&-\frac{1}{2}e^{-|x|}+\frac{1}{2}(-\text{sgn}(x)e^{-|x|})\tanh(x/2)+\frac{1}{4}e^{-|x|}\frac{1}{\cosh^2(x/2)}\\
+    =&\frac{-1}{4\cosh^2(x/2)}
+\end{align}
+{\bf
+Note that the equality in the last line holds pointwise in terms of functions, but that is not strictly necessary to have equality in terms of distributions: if either side differed on a set of measure zero (e.g., if they differed at $0$) then equality in the sense of distributions would still hold, and since we took derivatives in the sense of distributions that is the most one could reasonably expect.  It is certainly possible to do the above calculation in a different way and get an answer that differs at $0$ but is equal everywhere else, and that would still prove equality in the sense of distributions; I think you are running into the latter situation in your caclucation, but without more details I can't be sure.
+}
+\end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Decomposition of zero and finite temperature contribution}
@@ -250,71 +313,81 @@ The zero and finite temperature components of the decomposition here considered 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The Fig.~(\ref{Fermi_Component}) shows that \rev{the contributions of the two finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ exponentially decay with the distance from the Fermi surface $E=\tilde{\mu}$. Moreover, the splitting was chosen in such a way that the discontinuous distribution part is fully contained in $f_\mathrm{T\neq 0}$ and $\tilde{f}_\mathrm{T\neq 0}$ is a remaining smooth function of $T$. Hmmm...actually the second derivative of $\tilde{f}_\mathrm{T\neq 0}$ is discontinuous at origin, is there any other motiviation for this splitting?}  Both finite temperature contributions always have the same sign \rev{and lower the distribution for $E < \tilde{\mu}$ and increase it for $E > \tilde{\mu}$}.
+The Fig.~(\ref{Fermi_Component}) shows that \rev{the contributions of the two finite temperature components $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ exponentially decay with the distance from the Fermi surface $E=\tilde{\mu}$. Moreover, the splitting was chosen in such a way that the discontinuous distribution part is fully contained in $f_\mathrm{T\neq 0}$ and $\tilde{f}_\mathrm{T\neq 0}$ is a remaining continuous function of temperature $T$.}  Both finite temperature contributions always have the same sign \rev{and lower the distribution for $E < \tilde{\mu}$ and increase it for $E > \tilde{\mu}$}.
 
 In contrast to the brute force approach for eliminating the $T=0$ limit from the low-temperature Fermi distribution, our analytic form of distribution offers a more numerically advantageous method for separating the finite temperature components. This is advantage arise from the behavior of: 1.) both finite temperature contributions $f_\mathrm{T\neq0}$ and $\tilde f_\mathrm{T\neq0}$ always have the same sign 2.) the exponential factor for finite temperature components provide the naturally exponentially suppresses for the large energy. In this scenario, it reduces the numerical noise when evaluate the numerical integral beyond the zero temperature approximation. Furthermore, our novel form for Fermi distribution also provide us the tool to analytically investigate the finite temperature contributions by expanding the function around the Fermi-energy surface, which is useful for addressing physics for the finite temperature approximation.
 
-To illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics especially when temperature $T\to0$, we consider for any given function $G(p)$, then the correspond  thermal average physical quantity $\langle G\rangle_T$ can be obtained by integrating over the D-dimension phase space. We have
+\subsection{Numerical illustration}
+To illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics especially when temperature $T\to0$, we examine the thermal average of any given function $G(p)$ . This thermal average physical quantity, denoted as $\langle G\rangle_T$, is determined by integrating over the D-dimensional phase space 
 \begin{align}
-\langle G\rangle_T&\equiv\int^{\infty}_{0}\!\!\frac{d^Dp}{(2\pi)^D}\,G(p)\,f_{FD}(p)=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}\,G(p)\,f_{FD}(p),\\
-%&=\frac{2\pi^{D/2}}{(2\pi)^D}\frac{T^D}{\Gamma(D/2)}\int^\infty_0dy\,y^{D-1}G(y)\,f_{FD}(y),\qquad y\equiv{p}/{T}\\
-&=\langle G\rangle_{\Theta}+\langle G\rangle_{\delta T},
+\langle G\rangle_T&\equiv\int^{\infty}_{0}\!\!\frac{d^Dp}{(2\pi)^D}\,G(p)\,f_{FD}(p)=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}\,G(p)\,f_{FD}(p).
 \end{align}
- where the functions $\langle G\rangle_{\Theta}$ and $\langle G\rangle_{\delta T}$ are defined as
+By Substituting our novel form of FD distribution, the physical quantity $\langle G\rangle_T$ can be expressed as the sum of three distinct components:
+\begin{align}
+\langle G\rangle_T=\langle G\rangle_{\Theta}+\langle G\rangle_{\delta T}+\langle G\rangle_{\delta \tilde T},
+\end{align}
+ where the functions $\langle G\rangle_{\Theta}$, $\langle G\rangle_{\delta T}$ and $\langle G\rangle_{\delta \tilde T}$ are defined as
 \begin{align}
 &\langle G\rangle_{\Theta}=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}G(p)\Theta\left(\frac{-E+\tilde\mu}{T}\right),\qquad E=\sqrt{p^2+m^2},\\
 \label{G_deltaT}
-&\langle G\rangle_{\delta T}=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}\,G(p)\bigg[f_\mathrm{T\neq0}(p)+\tilde f_\mathrm{T\neq0}(p)\bigg]
+&\langle G\rangle_{\delta T}=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}\,G(p)\,f_\mathrm{T\neq0}(p),\\
+\label{G_deltaT2}
+&\langle G\rangle_{\delta \tilde T}=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}\,G(p)\,\tilde f_\mathrm{T\neq0}(p).
 \end{align}
 
-In general, we can use the Laguerre polynomials $L_n(y)$ as a orthogonal basis to expand any functions. we have
+To simplify the integral we can utilize the Laguerre polynomials $L_n(y)$ as a orthogonal basis to expand the  functions. These polynomials satisfies the orthogonality condition as follows
 \begin{align}
 L_n(p)=\frac{e^p}{n!}\frac{d^n}{dp^n}\left(p^ne^{-p}\right),\qquad\int_0^\infty\!\!dpL_n(p)L_m(p)e^{-p}=\delta_{nm}
 \end{align}
-Then the functions $p^{D-1}G(p)$, $f_\mathrm{T\neq0}(p)$ and $\tilde f_\mathrm{T\neq0}(p)$ can be written as
+In this scenario, the functions $p^{D-1}G(p)$, $f_\mathrm{T\neq0}(p)$, and $\tilde f_\mathrm{T\neq0}(p)$ involved in the integrals can be expressed in terms of Laguerre polynomials as
 \begin{align}
 &p^{D-1}G(p)=\sum_{n=0}^\infty k_nL_n(p),\qquad\quad k_n=\int_0^\infty\!\!dp\,p^{D-1}G(p)L_n(p)e^{-p}\\
 &f_\mathrm{T\neq0}(p)=\sum_{m=0}^\infty a_m e^{-p}L_m(p),\qquad a_m=\int_0^\infty\!\!dp f_\mathrm{T\neq0}(p)L_m(p)\\
 &\tilde f_\mathrm{T\neq0}(p)=\sum_{m=0}^\infty b_m e^{-p}L_m(p),\qquad b_m=\int_0^\infty\!\!dp \tilde f_\mathrm{T\neq0}(p)L_m(p)
 \end{align}
-where $k_n$, $a_m$ and $b_m$ represent the expansion coefficients. Substituting the polynomial expansion into Eq.~(\ref{G_deltaT}) for the finite temperature contribution, the integral of $\langle G\rangle_{\delta T}$ becomes
+where $k_n$, $a_m$ and $b_m$ represent the expansion coefficients. By substituting the polynomial expansion into Eq.~(\ref{G_deltaT}) and Eq.~(\ref{G_deltaT2}) for the finite temperature contribution, the integral of $\langle G\rangle_{\delta T}+\langle G\rangle_{\delta \tilde T}$ becomes
 \begin{align}
-\langle G\rangle_{\delta T}&=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,\left[\sum_{n=0}^\infty k_nL_n(p)\right]\left[\sum_{m=0}^\infty \left(a_m+b_m\right) e^{-p}L_m(p)\right]\notag\\
+\langle G\rangle_{\delta T}+\langle G\rangle_{\delta \tilde T}&=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,\left[\sum_{n=0}^\infty k_nL_n(p)\right]\left[\sum_{m=0}^\infty \left(a_m+b_m\right) e^{-p}L_m(p)\right]\notag\\
 &=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\sum_{n,m=0}^\infty k_n(a_m+b_m)\left[\int_0^\infty\!\!dp e^{-p}L_n(p)L_m(p)\right]\notag\\
 &=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\sum^\infty_{n=0}k_n(a_n+b_n).\label{Sum000}
 \end{align}
-where we use the orthogonal property of Laguerre polynomial to rewrite the intergal into the infinite sum of coefficients $a_n$, $b_n$, and $k_n$.
+We use the orthogonal property of Laguerre polynomial to express the integral as an infinite sum of coefficients $a_n$, $b_n$, and $k_n$. This method simplifies the evaluation of the finite temperature integral and provides a powerful too for investigating the finite temperature behavior under different temperature conditions.
 
 % Andrew's note: CHECK EQ. 23 for accuracy. The othogonality implementation is suspect to me.
 
-To demonstrate that Eq.~(\ref{Sum000}) can be applied to any given function or physics system. Here, we consider the semi-relativistic electron number density with chemical potential $\mu>m$ as an example. Given the exact Fermi-Dirac distribution, the number density  in $3$-dimension phase space can be written 
+To demonstrate the equivalence between our novel distribution and the Fermi-Dirac distribution for any thermal average physical quantity, we examine the semi-relativistic electron number density with a chemical potential $\mu>m$ as an example.  Given the exact Fermi-Dirac distribution, the number density  in $3$-dimension phase space can be written 
 as
 \begin{align}
 \label{DensityExact}
-\langle n\rangle _{\mathrm{exact}}=\int\frac{d^3p}{(2\pi)^3}\frac{1}{e^{(E-\tilde\mu)/T}+1},\qquad E=\sqrt{p^2+m^2}.
+\langle n\rangle _{\mathrm{FD}}=\int\frac{d^3p}{(2\pi)^3}\frac{1}{e^{(E-\tilde\mu)/T}+1},\qquad E=\sqrt{p^2+m^2}.
 \end{align}
-On the other hand, using the novel form of Fermi-Dirac distribution, the number density can be obtained by setting $G(p)=1$. We have
+On the other hand, using the novel form of Fermi-Dirac distribution, the number density can be obtained by setting $G(p)=1$, we have
 \begin{align}
 \label{DensitySum}
-&\langle n\rangle_T=\langle n\rangle_\Theta+\langle n\rangle_{\delta T},\\
-&\langle n\rangle_\Theta=\frac{1}{2\pi^2}\bigg[\int^\infty_0\!\!dp\,p^2\Theta\left(\frac{-E+\tilde\mu}{T}\right)\bigg],\\
-&\langle n\rangle_{\delta T}=\frac{1}{2\pi^2}\bigg[\sum_n k_n(a_n+b_n)\bigg],
+&\langle n\rangle_T=\langle n\rangle_\Theta+\langle n\rangle_{\delta T}+\langle n\rangle_{\delta \tilde T},
+\end{align}
+where the number densities are given by
+
+\begin{align}
+&\langle n\rangle_\Theta=\frac{1}{2\pi^2}\int^\infty_0\!\!dp\,p^2\Theta\left(\frac{-E+\tilde\mu}{T}\right),\\
+&\langle n\rangle_{\delta T}=\frac{1}{2\pi^2}\sum_n k_n\,a_n,\quad\langle n\rangle_{\delta \tilde T}=\frac{1}{2\pi^2}\sum_n k_n\,b_n,
 \end{align}
 where the coefficients $a_n$,$b_n$, and $k_n$ are given by
 \begin{align}
-&k_n=\int_0^\infty\!\!dp\,p^{D-1}G(p)L_n(p)e^{-p}\\
+&k_n=\int_0^\infty\!\!dp\,p^2L_n(p)e^{-p}\\
 &a_n=\int_0^\infty\!\!dpL_n(p)\left[\frac{1}{2}e^{-|(\sqrt{p^2+m^2}-\tlide\mu)/T|}\right]\mathrm{sgn}((\sqrt{p^2+m^2}-\tlide\mu)/T),\\
 &b_n=\int_0^\infty\!\!dpL_n(p)\left[\frac{1}{2}e^{-|(\sqrt{p^2+m^2}-\tlide\mu)/T|}\right]\tanh\left(\frac{\sqrt{p^2+m^2}-\tlide\mu}{2T}\right).
 \end{align}
-In Fig.~\ref{Density_checking}, we plot the electron number density with condition $m=0.511$ MeV and $\tilde\mu=1$ MeV as a function of temperature.  For compassion, the number density is calculated by using  exact Fermi distribution Eq.~(\ref{DensityExact}) and the novel Fermi distribution Eq.~(\ref{DensitySum}). (Top) We present the exact number density $\langle n\rangle _{\mathrm{exact}}$ and the number density  decomposed into zero temperature component $\langle n\rangle_\Theta$ and finite temperature contribution $\langle n\rangle_{\delta T}$. It shows that in low temperature range, the exact number density $\langle n\rangle _{\mathrm{exact}}$ approaches to the zero-temperature limit $\langle n\rangle_\Theta$. In the high temperature dominant, the finite-temperature $\langle n\rangle_{\delta T}$ accurately represent the limit for the electron density and agree with $\langle n\rangle _{\mathrm{exact}}$. (Bottom) The comparison of particle number density Eq.~(\ref{DensityExact}) and Eq.~(\ref{DensitySum}), it illustrate that Eq.~(\ref{DensityExact}) and Eq.~(\ref{DensitySum}) are equivalent to each other numerically.
 
+In Fig.~\ref{Density_checking} (Left) we plot the electron number density with condition $m=0.511$ MeV and $\tilde\mu=1$ MeV as a function of temperature. 
+By using our novel Fermi distribution Eq.~(\ref{DensitySum}) the number density can decomposed into zero temperature component $\langle n\rangle_\Theta$ and finite temperature contribution $\langle n\rangle_{\delta T}+\langle n\rangle_{\delta \tilde T}$. It shows that in low temperature range, the zero-temperature limit $\langle n\rangle_\Theta$ is dominant term. In the high temperature range the finite-temperature $\langle n\rangle_{\delta T}+\langle n\rangle_{\delta \tilde T}$ accurately represent the limit for the electron density. In Fig.~\ref{Density_checking} (Right) for comparison, we present the density ratio between  Eq.~(\ref{DensityExact}) and Eq.~(\ref{DensitySum}). Giving density ratio $\langle n\rangle_{\mathrm{FD}}/\langle n\rangle_T\approx1$, it illustrate that Eq.~(\ref{DensityExact}) and Eq.~(\ref{DensitySum}) are equivalent to each other numerically. This example demonstrates the suitability of our novel mathematical form of the Fermi distribution for numerical calculations and can be used to address the integrals common in statistical
+physics.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\textwidth]{./plot/NewFermi_numerical_Exact002}
-\includegraphics[width=0.8\textwidth]{./plot/NewFermi_numerical_exact}
-\caption{The number density as a function of temperature by using exact Fermi distribution Eq.~(\ref{DensityExact}) and novel form of Fermi distribution Eq.~(\ref{DensitySum}). We consider $m=0.511$ MeV and $\tilde\mu=1$ MeV as an example. }
+\includegraphics[width=0.5\textwidth]{./plot/Fermi_DenistyTest}\includegraphics[width=0.55\textwidth]{./plot/FermiRatio5000}
+\caption{(Left) The number density as a function of temperature by using  novel form of Fermi distribution Eq.~(\ref{DensitySum}). {\color{red}(Right) The density ratio between  Eq.~(\ref{DensityExact}) and Eq.~(\ref{DensitySum}), Still Working on this figure to make it better}. We consider $m=0.511$ MeV and $\tilde\mu=1$ MeV as an example.  }
 \label{Density_checking}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -335,7 +408,7 @@ In Fig.~\ref{Density_checking}, we plot the electron number density with conditi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Discussion}
 \label{sec12}
-In this work, we introduce a novel form of the Fermi distribution Eq.~(\ref{NFF1}) that separates the Fermi gas into zero and finite temperature components analytically. This is the first time in literature that has clean separation of the zero and finite temperature components. Unlike the traditional brutal approach to eliminating the $T=0$ limit from the low-temperature Fermi distribution, our novel form of the Fermi distribution for finite temperature component has several numerical advantages in computation. 
+In this work, we introduce a novel form of the Fermi distribution Eq.~(\ref{NFF1}) that separates the Fermi gas into zero and finite temperature components analytically. This is the first time in literature that has clean separation of the zero and finite temperature components. Unlike the traditional brutal approach to eliminating the $T=0$ limit from the low-temperature Fermi distribution, our novel form of the Fermi distribution for finite temperature component has several numerical advantages in computation. {\xgreen The prescription proposed here is in terms of distribution rather than analytical function. However, for all physical applications it is only necessary to calculate integrals for which the exact behavior at $x=0$ is not required.}
 
  
 The mathematical form of the finite temperature components is well-suited for numerical calculations and can be used to address the integrals common in statistical physics. This is because the finite temperature components are naturally exponentially suppressed while also preserving the sign of all corrections making the formulation easier to numerically integrate and reduce the numerical noise, see Fig.~\ref{Fermi_Component}. We consider a semi relativistic-electron density where with high chemical potential $\mu>m$ at low temperature as an example. Fig.~\ref{Density_checking} shows the equivalence of particle number density with exact Fermi distribution Eq.~(\ref{DensityExact}) and our novel form  distribution Eq.~(\ref{DensitySum}). 
