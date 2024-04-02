@@ -63,7 +63,7 @@
 \begin{document}
 
 %\title[Article Title]{Cold Ideal Fermi Gas}
-\title[Article Title]{Zero and finite temperature  components of\newline the Fermi quantum gas}
+\title[Article Title]{Zero and finite temperature  components of\newline Fermi quantum gas}
 
 %%=============================================================%%
 %% Prefix	-> \pfx{Dr}
@@ -319,6 +319,130 @@ The Fig.~(\ref{Fermi_Component}) shows that \rev{the contributions of the two fi
 
 In contrast to the brute force approach for eliminating the $T=0$ limit from the low-temperature Fermi distribution, our analytic form of distribution offers a more numerically advantageous method for separating the finite temperature components. This is advantage arise from the behavior of: 1.) both finite temperature contributions $f_\mathrm{T\neq0}$ and $\widetilde f_\mathrm{T\neq0}$ always have the same sign 2.) the exponential factor for finite temperature components provide the naturally exponentially suppresses for the large energy. In this scenario, it reduces the numerical noise when evaluate the numerical integral beyond the zero temperature approximation. Furthermore, our novel form for Fermi distribution also provide us the tool to analytically investigate the finite temperature contributions by expanding the function around the Fermi-energy surface, which is useful for addressing physics for the finite temperature approximation.
 
+\subsection{Asymptotic Expansion of Thermal Averages as $T\to 0$}
+{\xgreen I finished editing this section so that it is in terms of unitless quantities. It seems to me though that the $p_\mu$ scale is somewhat arbitrary...equivalently we could use $m$ or $\mu$ not sure which is better. Also, I renamed the chemical potential to $\mu$ without tilde so that I can use tilde for re-scaled quantities. M.
+} {\bf Great, thanks.  Yes, I agree there is nothing unique about the choice and mathematically we could have chosen $\mu$ or $m$ but I do think $p_\mu$ is better since it is the combination of $m$ and $\mu$ that naturally shows up in the denominator of certain terms.  It suggests at a glance that the expansion can encounter trouble if any of $\mu/p_\mu$, $m/p_\mu$ or $T/p_\mu$ is large, even if strictly speaking the result concerns the asymptotic behavior in $T$.} {\xgreen Based on the formulas I added at the end I believe that this can be significantly simplified still. No need to explicitly state the dimension $D$ because we can absorb it to arbitrary function $G(p)$. Also, we can start with the integral over $dE H(E) f_{FD}(E)$ from the beginning which saves one switch of variables and at the end we get an expression which is more useful for calculating some standard thermodynamical properties....like heat capacity. See also equation 58.1 in Landau-Lifshitz \url{https://www.charmille.art/books/Landau_Lifshitz_T5.pdf}}
+In this section we use the decomposition \eqref{Eq_form} to obtain an asymptotic expansion for the difference between a $D$-dimensional thermal average at finite and zero temperature as $T\to 0$ and when $m<\mu$.   We will assume that $G(p)$, $p\in(0,\infty)$, is a $C^k$ function and that the zeroth through $k$'th derivatives are polynomially bounded.
+
+Start by changing variables to $E=\sqrt{p^2+m^2}$:
+\begin{align}
+    &\int_0^\infty dp\, p^{D-1} G(p)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\\
+=&\int_0^\infty dp\, p^{D-1} G(p)\frac{1}{2}e^{-|E-\mu|/T}\left\{\mathrm{sgn}(E-\mu)+\tanh[(E-\mu)/(2T)]\right\}\notag\\
+    =&\int_m^\infty dE \,Ep^{D-2} G\left(\sqrt{E^2-m^2}\right)\frac{1}{2}e^{-|E-\mu|/T}\left\{\mathrm{sgn}(E-\mu)+\tanh[(E-\mu)/(2T)]\right\}\notag\\
+    =&\int_m^{\mu} dE \,E(E^2-m^2)^{(D-2)/2} G\left(\sqrt{E^2-m^2}\right)\frac{1}{2}e^{(E-\mu)/T}\left\{-1+\tanh[(E-\mu)/(2T)]\right\}\notag\\
+    &+\int_{\mu}^\infty dE\, E(E^2-m^2)^{(D-2)/2} G\left(\sqrt{E^2-m^2}\right)\frac{1}{2}e^{-(E-\mu)/T}\left\{1+\tanh[(E-\mu)/(2T)]\right\}\,.\notag
+\end{align}
+Now change variables to $u=(\mu-E)/p_\mu$ in the first integral and $z=(E-\mu)/p_\mu$ in the second where $p_{\mu} \equiv \sqrt{\mu^2 - m^2}$ is the magnitude of the momentum at energy equal to chemical potential. This simplifies the integrands 
+\begin{align}
+    &\int_0^\infty dp\, p^{D-1} G(p)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\\
+        &=p_\mu^D \int_0^\infty dz\, (z+\widetilde{\mu})[(z+\widetilde{\mu})^2-\widetilde{m}^2]^{(D-2)/2} G\left(p_\mu \sqrt{(z+\widetilde{\mu})^2-\widetilde{m}^2}\right)\frac{1}{1+e^{z/\widetilde{T}}}\notag\\
+        &-p_\mu^D \int_0^{\widetilde{\mu}-\widetilde{m}} du\, (\widetilde{\mu}-u)[(\widetilde{\mu}-u)^2-\widetilde{m}^2]^{(D-2)/2} G\left(p_\mu \sqrt{(\widetilde{\mu}-u)^2-\widetilde{m}^2}\right)\frac{1}{1+e^{u/\widetilde{T}}}\,,\notag
+\end{align}
+where 
+\begin{equation}
+\widetilde{T} \equiv T/p_\mu, \quad \widetilde{\mu} \equiv \mu/p_\mu, \quad  \widetilde{m} \equiv m/p_\mu     
+\end{equation}
+are dimensionless quantities. Define
+\begin{align}\label{eq:F_tilde_F_def}
+  &F(z,\wt{m},\wt{\mu}) \equiv (z+\wt{\mu})[(z+\wt{\mu})^2-\wt{m}^2]^{(D-2)/2} G\left(p_\mu\sqrt{(z+\wt{\mu})^2-\wt{m}^2}\right)\,,\,\,\,z\in[0,\infty)\,,\\ 
+  &\hat{F}(u,\wt{m},\wt{\mu}) \equiv (\wt{\mu}-u)[(\wt{\mu}-u)^2-\wt{m}^2]^{(D-2)/2} G\left(p_\mu\sqrt{(\wt{\mu}-u)^2-\wt{m}^2}\right)\,,\,\,\, u\in[0,\wt{\mu}-\wt{m}]\,.\notag
+\end{align}
+The assumptions on $G$ allow us to obtain   Taylor expansions with remainder in $z$ and $u$ respectively:
+\begin{align}\label{eq:a_a_tilde_def}
+F(z,\wt{m},\wt{\mu})=&\sum_{n=0}^{k-1} a_{n}(\wt{m},\wt{\mu})z^n + R_k(z,\wt{m},\wt{\mu})\,,\,\,\, a_n(\wt{m},\wt{\mu})\equiv\frac{1}{n!}\partial_z^nF(0,\wt{m},\wt{\mu})\,,\\
+\hat{F}(u,\wt{m},\wt{\mu})=&\sum_{n=0}^{k-1} \hat{a}_{n}(\wt{m},\wt{\mu})u^n + \hat{R}_k(u,\wt{m},\wt{\mu})\,,\,\,\,\hat{a}_n(\wt{m},\wt{\mu})\equiv\frac{1}{n!}\partial_u^n\hat{F}(0,\wt{m},\wt{\mu})\,,\notag
+\end{align}
+where the remainders satisfy polynomial growth bounds of the form 
+\begin{align}\label{eq:remainder_bounds}
+&|R_k(z,\wt{m},\wt{\mu})|\leq z^k(\alpha_k(\wt{m},\wt{\mu})+\beta_k(\wt{m},\wt{\mu}) z^{q_k})\,,\\
+&|\hat{R}_k(u,\wt{m},\wt{\mu})|\leq u^k(\hat{\alpha}_k(\wt{m},\wt{\mu})+\hat{\beta}_k(\wt{m},\wt{\mu}) u^{\hat{q}_k})\notag
+\end{align}
+for some coefficients $\alpha_k,\beta_k,\hat{\alpha}_k,\hat{\beta}_k$ and powers $q_k$, $\hat{q}_k$.
+ Note that the assumption $\mu>m$ ensures that the square roots and powers do not introduce any singularities at $0$ in the formulas for $F$ and $\widetilde F$ and therefore the required derivatives of $F$ and $\hat{F}$ exist when $G(p)$ is sufficiently smooth.   The definitions \eqref{eq:F_tilde_F_def} are in fact both valid on a neighborhood on $0$ and there one has the relationship $\hat{F}(u,\wt{m},\wt{\mu})=F(-u,\wt{m},\wt{\mu})$. Therefore one finds  $\hat{a}_n=(-1)^n{a}_n$ for all $n$. The remainder terms in \req{eq:a_a_tilde_def} are given by
+ \begin{align}
+    R_k(z,\wt{m},\wt{\mu})=& z^k\int_0^1\frac{(1-s)^{k-1}}{(k-1)!}\partial^k_{z}F(sz,\wt{m},\wt{\mu})ds\,,\\
+       \hat{R}_k(u,\wt{m},\wt{\mu})=& u^k\int_0^1\frac{(1-s)^{k-1}}{(k-1)!}\partial^k_{u}\hat{F}(su,\wt{m},\wt{\mu})ds\notag
+ \end{align}
+and so the bounds \eqref{eq:remainder_bounds} follow from polynomially boundedness of   $\partial_z^k F$ and $\partial_u^k \hat{F}$,  which in turn follows from polynomial boundedness of the zeroth through $k$'th derivatives of $G$.  We note that if one is only interested in the asymptotic behavior, and not in an explicit error bound, then the $\alpha_k,\beta_k,\hat{\alpha}_k,\hat{\beta}_k$ and powers $q_k$, $\hat{q}_k$ do not need to be computed.  
+ 
+Using the above expansions, and recalling the integral formula
+\begin{align}
+    \int_0^\infty \frac{x^{\nu-1}}{e^{\alpha x}+1}dx=\alpha^{-\nu}(1-2^{1-\nu})\Gamma(\nu)\zeta(\nu)
+\end{align}
+for $\alpha,\nu\in(0,\infty)$ (see 3.411.3 on page 353 of  \cite{integral_table_book}),  we can compute the following:
+\begin{align}
+ &\int_0^\infty dz\, F(z,\wt{m},\wt{\mu})\frac{1}{1+e^{z/\wt{T}}}\\
+ =& \sum_{n=0}^{k-1} a_{n}(\wt{m},\wt{\mu})\int_0^\infty dz\, z^n \frac{1}{1+e^{z/\wt{T}}}+ \int_0^\infty dz\, R_k(z,\wt{m},\wt{\mu})\frac{1}{1+e^{z/\wt{T}}}\notag\\
+ =& \sum_{n=0}^{k-1} a_{n}(\wt{m},\wt{\mu})\wt{T}^{n+1}(1-2^{-n})\Gamma(n+1)\zeta(n+1)+ \int_0^\infty dz\, R_k(z,\wt{m},\wt{\mu})\frac{1}{1+e^{z/\wt{T}}}\,,\notag
+\end{align}
+where the integral of the remainder has the bound
+\begin{align}
+  &\left|\int_0^\infty dz\, R_k(z,\wt{m},\wt{\mu})\frac{1}{1+e^{z/\wt{T}}}\right|\\
+  \leq &   \int_0^\infty dz\,z^k[\alpha_k(\wt{m},\wt{\mu})+\beta_k(\wt{m},\wt{\mu}) z^{q_k}]\frac{1}{1+e^{z/\wt{T}}}\notag\\
+  =& \alpha_k(\wt{m},\wt{\mu}) \wt{T}^{k+1}(1-2^{-k})\Gamma(k+1)\zeta(k+1)\notag\\
+  &+\beta_k(\wt{m},\wt{\mu}) \wt{T}^{k+q_k+1}(1-2^{-(k+q_k)})\Gamma(k+q_k+1)\zeta(k+q_k+1)\notag\\ 
+  =&\mathcal{O}(\wt{T}^{k+1})\,.\notag
+\end{align}
+Similarly we have
+\begin{align}
+    &\int_0^{\wt{\mu}-\wt{m}} du\,\hat{F}(u,\wt{m},\wt{\mu})\frac{1}{1+e^{u/\wt{T}}}\\
+    =&\sum_{n=0}^{k-1} \hat{a}_{n}(\wt{m},\wt{\mu})\int_0^{\wt{\mu}-\wt{m}} du \,u^n  \frac{1}{1+e^{u/\wt{T}}}+ \int_0^{\wt{\mu}-\wt{m}} du\,\hat{R}_k(u,\wt{m},\wt{\mu}) \frac{1}{1+e^{u/\wt{T}}}    \notag\\
+        =&\sum_{n=0}^{k-1} \hat{a}_{n}(\wt{m},\wt{\mu})
+        T^{n+1}(1-2^{-n})\Gamma(n+1)\zeta(n+1)      
+        + \int_0^{\wt{\mu}-\wt{m}} du\,\hat{R}_k(u,\wt{m},\wt{\mu}) \frac{1}{1+e^{u/\wt{T}}}    \notag\\
+        &-\sum_{n=0}^{k-1} \hat{a}_{n}(\wt{m},\wt{\mu})\int_{\wt{\mu}-\wt{m}}^\infty du\, u^n  \frac{1}{1+e^{u/\wt{T}}}\,,\notag
+\end{align}
+where
+\begin{align}
+&\left|\int_0^{\wt{\mu}-\wt{m}} du\, \hat{R}_k(u,\wt{m},\wt{\mu})\frac{1}{1+e^{u/\wt{T}}}\right|\\
+\leq &\int_0^\infty u^k[\hat{\alpha}_k(\wt{m},\wt{\mu})+\hat{\beta}_k(\wt{m},\wt{\mu}) u^{\hat{q}_k}]\frac{1}{1+e^{u/\wt{T}}}\notag\\
+\leq&\hat{\alpha}_k(\wt{m},\wt{\mu}) \wt{T}^{k+1}(1-2^{-k})\Gamma(k+1)\zeta(k+1)\notag\\
+  &+\hat{\beta}_k(\wt{m},\wt{\mu}) \wt{T}^{k+\hat{q}_k+1}(1-2^{-(k+\hat{q}_k)})\Gamma(k+\hat{q}_k+1)\zeta(k+\hat{q}_k+1) \notag\\
+  =&\mathcal{O}(\wt{T}^{k+1})\notag
+\end{align}
+and
+\begin{align}\label{eq:exp_supressed_remainder}
+\left|\sum_{n=0}^{k-1} \hat{a}_{n}(\wt{m},\wt{\mu})\int_{\mu-m}^\infty du\, u^n  \frac{1}{1+e^{u/\wt{T}}}\right|
+\leq&\sum_{n=0}^{k-1} |\hat{a}_{n}(\wt{m},\wt{\mu})|\int_{\mu-m}^\infty du\, u^n  e^{-u/\wt{T}}\\
+=&\sum_{n=0}^{k-1} |\hat{a}_{n}(\wt{m},\wt{\mu})|T^{n+1}\Gamma(n+1,(\wt{\mu}-\wt{m})/\wt{T})\,.\notag
+\end{align}
+Here $\Gamma(s,x)$ is the incomplete Gamma function which has the asymptotic behavior $\Gamma(s,x)=\mathcal{O}(e^{-x}x^{s-1})$ as $x\to\infty$ and hence \eqref{eq:exp_supressed_remainder} decays exponentially as $\wt{T}\to 0$, as compared to the other remainder terms which decay polynomially in $\wt{T}$.  
+
+Putting the above calculations together, when $m<\mu$ and $G(p)$ is smooth with polynomially bounded zeroth through $k$'th derivatives we obtain the following asymptotic result as $T\to 0$:
+\begin{align}
+    &\int_0^\infty dp\, p^{D-1} G(p)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\\
+    =& 2p_\mu^D\sum_{n=1, \text{odd}}^{k-1} 
+        (1-2^{-n})\Gamma(n+1)\zeta(n+1){a}_n(\wt{m},\wt{\mu})\wt{T}^{n+1}+ \mathcal{O}(\wt{T}^{k+1})\,,\notag\\
+        &a_n(\wt{m},\wt{\mu})=\frac{1}{n!}\partial_z^n|_{z=0} \left[(z+\wt{\mu})[(z+\wt{\mu})^2-\wt{m}^2]^{(D-2)/2} G\left(p_\mu\sqrt{(z+\wt{\mu})^2-\wt{m}^2}\right)\right]\,.\notag
+\end{align}
+Here we used the fact that   $\hat{a}_n=(-1)^n{a}_n$ for all $n$ to cancel the even terms in the sum. Note that the implied constant in the error bound depends on $m$ and $\mu$, and also on any parameters that enter into $G$; the error term can be explicitly bounded using the  formulas derived above.
+
+Specifically, for $D=3$ the expansion in temperature starts as
+\begin{equation}\label{eq:expansion}
+    \begin{split}
+    \int_0^\infty &dp\, p^2 G(p) (f_{T\neq 0} + \widetilde{f}_{T\neq 0})\\
+    &= \frac{\pi^2}{6} p_\mu^3\left[(1 + \wt{\mu}^2)G(p_{\mu}) + \wt{\mu}^2  \wt{G}'(p_{\mu})\right] \wt{T}^2 \\
+    &+ \frac{7\pi^4}{360}p_\mu^3\left[3\wt{m}^4 G(p_{\mu}) + 3(2-\wt{m}^4)\wt{G}'(p_{\mu})+ 6\wt{\mu}^2 \wt{G}''(p_{\mu}) + \wt{\mu}^4 \wt{G}'''(p_{\mu})\right]\wt{T}^4\\
+    &+ \mathcal{O}(\wt{T}^6)\,,
+    \end{split}
+\end{equation}
+where the re-scaled unitless derivatives denoted by prime are 
+\begin{equation}
+    \wt{G}^{(n)}(p_\mu) \equiv p_\mu^n \left.\frac{\partial^{n}}{\partial p^{n}} G(p)\right|_{p = p_\mu}
+\end{equation}
+{\xgreen Note that integrals over energy can be converted to this type of integral by change of variables $p dp = E dE$
+\begin{equation}
+    \int_m^\infty dE f_{FD}(E) H(E) = \int_0^\infty p^2 dp \frac{H(p)}{p\sqrt{p^2 + m^2}}f_{FD}(p) 
+\end{equation}
+where $G(p) = H(p)/(p\sqrt{p^2+m^2})$. Substituting to the first order term in \req{eq:expansion} the terms which do not contain derivative of $H(p)$ exactly cancel and we obtain
+\begin{equation}
+    \int_m^\infty dE (f_{T\neq 0}+\widetilde{f}_{T\neq 0})(E)H(E) = \frac{\pi^2}{6} \left.\frac{dH(E)}{dE}\right|_{E=\mu} T^2 + \mathcal{O}(T^4)
+\end{equation}
+as is written on wikipedia page for the Sommerfeld expansion I sent you. For this derivation note that
+\begin{equation}
+    \left. \frac{dH(p)}{dp}\right|_{p=p_\mu} = \left.\frac{1}{\wt{\mu}}\frac{dH(E)}{dE}\right|_{E=\mu}
+\end{equation}
+}
 
 \subsection{Numerical illustration}
 {\bf As is, this section should probably be removed.  The above calculation suggests that numerical integration will always be an issue, both using  the brute force method and even when using the decomposition, due to the cancellation of leading order terms in $T$ from the integrals of the positive and negative parts.  I think we should replace it with a figure comparing the asymptotic expansion with the numerical integration (which should exhibit instability).  }
@@ -433,199 +557,7 @@ The Fermi distribution Eq.~(\ref{NFF1}) provides us the tool to study or examine
 % Cheng Tao - This novel form is numerically friendly as the finite temperature components are naturally exponentially suppresses while also preserving the sign of all corrections making the formulation easier to numerically integrate.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu=m+O(T)$}
 
-In this section we use the decomposition \eqref{Eq_form} to obtain an asymptotic expansion for the difference between a $D$-dimensional thermal average at finite and zero temperature as $T\to 0$ and when $\mu=m+O(T)$.   More specifically, we will assume that $\mu=m+bT$ where $b>0$ and that $G(p)$, $p\in[0,\infty)$, is a $C^k$ function whose zeroth through $k$'th derivatives are polynomially bounded.
-
-Start by changing variables to $E=\sqrt{p^2+m^2}$:
-\begin{align}
-    &\int_0^\infty dp\, p^{D-1} G(p)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\\
-=&\int_0^\infty dp\, p^{D-1} G(p)\frac{1}{2}e^{-|E-\mu|/T}\left\{\mathrm{sgn}(E-\mu)+\tanh[(E-\mu)/(2T)]\right\}\notag\\
-    =&\int_m^\infty dE \,Ep^{D-2} G\left(\sqrt{E^2-m^2}\right)\frac{1}{2}e^{-|E-\mu|/T}\left\{\mathrm{sgn}(E-\mu)+\tanh[(E-\mu)/(2T)]\right\}\notag\\
-    =&-\int_m^{\mu} dE \,E(E^2-m^2)^{(D-2)/2} G\left(\sqrt{E^2-m^2}\right)\frac{1}{1+e^{(\mu-E)/T}}\label{eq:2_int_decomp}\\
-    &+\int_{\mu}^\infty dE\, E(E^2-m^2)^{(D-2)/2} G\left(\sqrt{E^2-m^2}\right)
-    \frac{1}{1+e^{(E-\mu)/T}}   \,.\notag
-\end{align}
-We start by considering the second integral, where we change variables to $z=(E-m)/m$:
-\begin{align}
-&\int_{\mu}^\infty dE\, E(E^2-m^2)^{(D-2)/2} G\left(\sqrt{E^2-m^2}\right)
-    \frac{1}{1+e^{(E-\mu)/T}}   \\
-    =&m^{D}\int_{b\widetilde{T}}^\infty dz\, (z+1)((z+1)^2-1)^{(D-2)/2} G\left(m\sqrt{(z+1)^2-1}\right)
-    \frac{1}{1+e^{z/\widetilde{T}-b}}\notag\\
-        =&m^{D}\int_{b\widetilde{T}}^\infty dz\, (z+1)z^{(D-2)/2}(z+2)^{(D-2)/2} G\left(m\sqrt{z}\sqrt{z+2}\right)
-    \frac{1}{1+e^{z/\widetilde{T}-b}}\,,\notag
-\end{align}
-where $\widetilde{T}\equiv T/m$.  Note that the lower limit of integration approaches $0$ in the regime under consideration and that, in general, the integrand has a singularity there.  Thus is is important that we not simply assume the integrand is smooth and has a Taylor expansion.  A more general asymptotic expansion is needed.  To accomplish this, define
-\begin{align}
-    F(y,m)\equiv(y^2+1)y^{D-2}(y^2+2)^{(D-2)/2}G(my\sqrt{y^2+2})\,.
-\end{align}
-We have assumed that $G$ is $C^k$ on $[0,\infty)$ with polynomially bounded zeroth through $k$'th derivatives and therefore $y\mapsto F(y,m)$ also has these properties.  We can express it as a Taylor series with remainder
-\begin{align}
-F(y,m)=&\sum_{n=0}^{k-1} a_n(m)y^n +R_k(y,m)\,, \,\,\,a_n(m)=\frac{1}{n!}\partial_y^n F(0,m)\,,
-\end{align}
-where the remainder terms are given by
-\begin{align}
-R_k(y,m)=y^k \int_0^1\frac{(1-s)^{k-1}}{(k-1)!}\partial_y^k F(sy,m)ds
-\end{align}
-and can be bounded via
-\begin{align}
-|R_k(y,m)|\leq y^k(\alpha_k(m)+\beta_k(m)y^{q_k})
-\end{align}
-for some coefficients $\alpha_k,\beta_k$ and power $q_k$.
-
-With this we can rewrite the integral as
-\begin{align}
-&\int_{\mu}^\infty dE\, E(E^2-m^2)^{(D-2)/2} G\left(\sqrt{E^2-m^2}\right)
-    \frac{1}{1+e^{(E-\mu)/T}}   \\
-    =&m^{D}\int_{b\widetilde{T}}^\infty dz\, F(\sqrt{z},m)\frac{1}{1+e^{z/\widetilde{T}-b}}\notag\\
-    =&\sum_{n=0}^{k-1} a_n(m)m^{D}\int_{b\widetilde{T}}^\infty dz z^{n/2}\frac{1}{1+e^{z/\widetilde{T}-b}} +m^{D}\int_{b\widetilde{T}}^\infty dz R_k(\sqrt{z},m)\frac{1}{1+e^{z/\widetilde{T}-b}}\notag\\   
-        =&\sum_{n=0}^{k-1} a_n(m)m^{D}\widetilde{T}^{1+n/2}\int_{0}^\infty dx (x+b)^{n/2}\frac{1}{1+e^{x}} +m^{D}\int_{b\widetilde{T}}^\infty dz R_k(\sqrt{z},m)\frac{1}{1+e^{z/\widetilde{T}-b}}\,,   \label{eq:second_int_exp_final}
-\end{align}
-where the integral of the remainder term has the bound
-\begin{align}
- &\left|m^{D}\int_{b\widetilde{T}}^\infty dz R_k(\sqrt{z},m)\frac{1}{1+e^{z/\widetilde{T}-b}}\right|\\
- \leq&m^{D}\int_{b\widetilde{T}}^\infty dz z^{k/2}(\alpha_k(m)+\beta_k(m)z^{q_k/2})e^{-z/\widetilde{T}+b}\notag\\
- =&m^{D}\widetilde{T}^{1+k/2}\left(\alpha_k(m)\int_b^\infty dx x^{k/2}e^{-(x-b)}+\beta_k(m)\widetilde{T}^{q_k/2}\int_b^\infty dx x^{(k+q_k)/2}e^{-(x-b)}\right)\notag\\
- =&O(\widetilde{T}^{1+k/2})\,,\notag
-\end{align}
-which is higher order in $\widetilde{T}$ than the first $k$ terms in the expansion \eqref{eq:second_int_exp_final}; we emphasize that the implied constant in the error term  depends on $m$ and $b$.  The integrals
-\begin{align}\label{eq:h_n_def}
-    h_n(b)\equiv \int_{0}^\infty dx (x+b)^{n/2}\frac{1}{1+e^{x}}
-\end{align}
-can be computed exactly when $n$ is even, by expanding the integrand using the binonial formula and then using the integral formula
-\begin{align}
-    \int_0^\infty \frac{x^{\nu-1}}{e^{ x}+1}dx=(1-2^{1-\nu})\Gamma(\nu)\zeta(\nu)
-\end{align}
-for $\nu\in(0,\infty)$ (see 3.411.3 on page 353 of  \cite{integral_table_book}). When $n$ is odd, Eq.~\eqref{eq:h_n_def} 
-does not appear to be expressible in terms of any well-known family of special functions, though for moderate values of $b$ they are of a form that can be reliably approximated via numerical integration.
-
-Now we consider the first integral in \eqref{eq:2_int_decomp} {\bf ...to do...}
-
-\section{Appendix: Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu>m$}\label{Appendix}
-%{\xgreen I finished editing this section so that it is in terms of unitless quantities. It seems to me though that the $p_\mu$ scale is somewhat arbitrary...equivalently we could use $m$ or $\mu$ not sure which is better. Also, I renamed the chemical potential to $\mu$ without tilde so that I can use tilde for re-scaled quantities. M.} 
-%{\bf Great, thanks.  Yes, I agree there is nothing unique about the choice and mathematically we could have chosen $\mu$ or $m$ but I do think $p_\mu$ is better since it is the combination of $m$ and $\mu$ that naturally shows up in the denominator of certain terms.  It suggests at a glance that the expansion can encounter trouble if any of $\mu/p_\mu$, $m/p_\mu$ or $T/p_\mu$ is large, even if strictly speaking the result concerns the asymptotic behavior in $T$.} {\xgreen Based on the formulas I added at the end I believe that this can be significantly simplified still. No need to explicitly state the dimension $D$ because we can absorb it to arbitrary function $G(p)$. Also, we can start with the integral over $dE H(E) f_{FD}(E)$ from the beginning which saves one switch of variables and at the end we get an expression which is more useful for calculating some standard thermodynamical properties....like heat capacity. See also equation 58.1 in Landau-Lifshitz \url{https://www.charmille.art/books/Landau_Lifshitz_T5.pdf}}
-
-
-In this section we use the decomposition \eqref{Eq_form} to obtain an asymptotic expansion for the difference between a $D$-dimensional thermal average at finite and zero temperature as $T\to 0$ and when $\mu>m$.   We will assume that $G(p)$, $p\in(0,\infty)$, is a $C^k$ function and that the zeroth through $k$'th derivatives are polynomially bounded.
-
-Start by changing variables to $E=\sqrt{p^2+m^2}$:
-\begin{align}
-    &\int_0^\infty dp\, p^{D-1} G(p)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\\
-=&\int_0^\infty dp\, p^{D-1} G(p)\frac{1}{2}e^{-|E-\mu|/T}\left\{\mathrm{sgn}(E-\mu)+\tanh[(E-\mu)/(2T)]\right\}\notag\\
-    =&\int_m^\infty dE \,Ep^{D-2} G\left(\sqrt{E^2-m^2}\right)\frac{1}{2}e^{-|E-\mu|/T}\left\{\mathrm{sgn}(E-\mu)+\tanh[(E-\mu)/(2T)]\right\}\notag\\
-    =&\int_m^{\mu} dE \,E(E^2-m^2)^{(D-2)/2} G\left(\sqrt{E^2-m^2}\right)\frac{1}{2}e^{(E-\mu)/T}\left\{-1+\tanh[(E-\mu)/(2T)]\right\}\notag\\
-    &+\int_{\mu}^\infty dE\, E(E^2-m^2)^{(D-2)/2} G\left(\sqrt{E^2-m^2}\right)\frac{1}{2}e^{-(E-\mu)/T}\left\{1+\tanh[(E-\mu)/(2T)]\right\}\,.\notag
-\end{align}
-Now change variables to $u=(\mu-E)/p_\mu$ in the first integral and $z=(E-\mu)/p_\mu$ in the second where $p_{\mu} \equiv \sqrt{\mu^2 - m^2}$ is the magnitude of the momentum at energy equal to chemical potential. This simplifies the integrands 
-\begin{align}
-    &\int_0^\infty dp\, p^{D-1} G(p)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\\
-        &=p_\mu^D \int_0^\infty dz\, (z+\widetilde{\mu})[(z+\widetilde{\mu})^2-\widetilde{m}^2]^{(D-2)/2} G\left(p_\mu \sqrt{(z+\widetilde{\mu})^2-\widetilde{m}^2}\right)\frac{1}{1+e^{z/\widetilde{T}}}\notag\\
-        &-p_\mu^D \int_0^{\widetilde{\mu}-\widetilde{m}} du\, (\widetilde{\mu}-u)[(\widetilde{\mu}-u)^2-\widetilde{m}^2]^{(D-2)/2} G\left(p_\mu \sqrt{(\widetilde{\mu}-u)^2-\widetilde{m}^2}\right)\frac{1}{1+e^{u/\widetilde{T}}}\,,\notag
-\end{align}
-where 
-\begin{equation}
-\widetilde{T} \equiv T/p_\mu, \quad \widetilde{\mu} \equiv \mu/p_\mu, \quad  \widetilde{m} \equiv m/p_\mu     
-\end{equation}
-are dimensionless quantities. Define
-\begin{align}\label{eq:F_tilde_F_def}
-  &F(z,\wt{m},\wt{\mu}) \equiv (z+\wt{\mu})[(z+\wt{\mu})^2-\wt{m}^2]^{(D-2)/2} G\left(p_\mu\sqrt{(z+\wt{\mu})^2-\wt{m}^2}\right)\,,\,\,\,z\in[0,\infty)\,,\\ 
-  &\hat{F}(u,\wt{m},\wt{\mu}) \equiv (\wt{\mu}-u)[(\wt{\mu}-u)^2-\wt{m}^2]^{(D-2)/2} G\left(p_\mu\sqrt{(\wt{\mu}-u)^2-\wt{m}^2}\right)\,,\,\,\, u\in[0,\wt{\mu}-\wt{m}]\,.\notag
-\end{align}
-The assumptions on $G$ allow us to obtain   Taylor expansions with remainder in $z$ and $u$ respectively:
-\begin{align}\label{eq:a_a_tilde_def}
-F(z,\wt{m},\wt{\mu})=&\sum_{n=0}^{k-1} a_{n}(\wt{m},\wt{\mu})z^n + R_k(z,\wt{m},\wt{\mu})\,,\,\,\, a_n(\wt{m},\wt{\mu})\equiv\frac{1}{n!}\partial_z^nF(0,\wt{m},\wt{\mu})\,,\\
-\hat{F}(u,\wt{m},\wt{\mu})=&\sum_{n=0}^{k-1} \hat{a}_{n}(\wt{m},\wt{\mu})u^n + \hat{R}_k(u,\wt{m},\wt{\mu})\,,\,\,\,\hat{a}_n(\wt{m},\wt{\mu})\equiv\frac{1}{n!}\partial_u^n\hat{F}(0,\wt{m},\wt{\mu})\,,\notag
-\end{align}
-where the remainders satisfy polynomial growth bounds of the form 
-\begin{align}\label{eq:remainder_bounds}
-&|R_k(z,\wt{m},\wt{\mu})|\leq z^k(\alpha_k(\wt{m},\wt{\mu})+\beta_k(\wt{m},\wt{\mu}) z^{q_k})\,,\\
-&|\hat{R}_k(u,\wt{m},\wt{\mu})|\leq u^k(\hat{\alpha}_k(\wt{m},\wt{\mu})+\hat{\beta}_k(\wt{m},\wt{\mu}) u^{\hat{q}_k})\notag
-\end{align}
-for some coefficients $\alpha_k,\beta_k,\hat{\alpha}_k,\hat{\beta}_k$ and powers $q_k$, $\hat{q}_k$.
- Note that the assumption $\mu>m$ ensures that the square roots and powers do not introduce any singularities at $0$ in the formulas for $F$ and $\widetilde F$ and therefore the required derivatives of $F$ and $\hat{F}$ exist when $G(p)$ is sufficiently smooth.   The definitions \eqref{eq:F_tilde_F_def} are in fact both valid on a neighborhood on $0$ and there one has the relationship $\hat{F}(u,\wt{m},\wt{\mu})=F(-u,\wt{m},\wt{\mu})$. Therefore one finds  $\hat{a}_n=(-1)^n{a}_n$ for all $n$. The remainder terms in \req{eq:a_a_tilde_def} are given by
- \begin{align}
-    R_k(z,\wt{m},\wt{\mu})=& z^k\int_0^1\frac{(1-s)^{k-1}}{(k-1)!}\partial^k_{z}F(sz,\wt{m},\wt{\mu})ds\,,\\
-       \hat{R}_k(u,\wt{m},\wt{\mu})=& u^k\int_0^1\frac{(1-s)^{k-1}}{(k-1)!}\partial^k_{u}\hat{F}(su,\wt{m},\wt{\mu})ds\notag
- \end{align}
-and so the bounds \eqref{eq:remainder_bounds} follow from polynomially boundedness of   $\partial_z^k F$ and $\partial_u^k \hat{F}$,  which in turn follows from polynomial boundedness of the zeroth through $k$'th derivatives of $G$.  We note that if one is only interested in the asymptotic behavior, and not in an explicit error bound, then the $\alpha_k,\beta_k,\hat{\alpha}_k,\hat{\beta}_k$ and powers $q_k$, $\hat{q}_k$ do not need to be computed.  
- 
-Using the above expansions, and recalling the integral formula
-\begin{align}
-    \int_0^\infty \frac{x^{\nu-1}}{e^{\alpha x}+1}dx=\alpha^{-\nu}(1-2^{1-\nu})\Gamma(\nu)\zeta(\nu)
-\end{align}
-for $\alpha,\nu\in(0,\infty)$ (see 3.411.3 on page 353 of  \cite{integral_table_book}),  we can compute the following:
-\begin{align}
- &\int_0^\infty dz\, F(z,\wt{m},\wt{\mu})\frac{1}{1+e^{z/\wt{T}}}\\
- =& \sum_{n=0}^{k-1} a_{n}(\wt{m},\wt{\mu})\int_0^\infty dz\, z^n \frac{1}{1+e^{z/\wt{T}}}+ \int_0^\infty dz\, R_k(z,\wt{m},\wt{\mu})\frac{1}{1+e^{z/\wt{T}}}\notag\\
- =& \sum_{n=0}^{k-1} a_{n}(\wt{m},\wt{\mu})\wt{T}^{n+1}(1-2^{-n})\Gamma(n+1)\zeta(n+1)+ \int_0^\infty dz\, R_k(z,\wt{m},\wt{\mu})\frac{1}{1+e^{z/\wt{T}}}\,,\notag
-\end{align}
-where the integral of the remainder has the bound
-\begin{align}
-  &\left|\int_0^\infty dz\, R_k(z,\wt{m},\wt{\mu})\frac{1}{1+e^{z/\wt{T}}}\right|\\
-  \leq &   \int_0^\infty dz\,z^k[\alpha_k(\wt{m},\wt{\mu})+\beta_k(\wt{m},\wt{\mu}) z^{q_k}]\frac{1}{1+e^{z/\wt{T}}}\notag\\
-  =& \alpha_k(\wt{m},\wt{\mu}) \wt{T}^{k+1}(1-2^{-k})\Gamma(k+1)\zeta(k+1)\notag\\
-  &+\beta_k(\wt{m},\wt{\mu}) \wt{T}^{k+q_k+1}(1-2^{-(k+q_k)})\Gamma(k+q_k+1)\zeta(k+q_k+1)\notag\\ 
-  =&\mathcal{O}(\wt{T}^{k+1})\,.\notag
-\end{align}
-Similarly we have
-\begin{align}
-    &\int_0^{\wt{\mu}-\wt{m}} du\,\hat{F}(u,\wt{m},\wt{\mu})\frac{1}{1+e^{u/\wt{T}}}\\
-    =&\sum_{n=0}^{k-1} \hat{a}_{n}(\wt{m},\wt{\mu})\int_0^{\wt{\mu}-\wt{m}} du \,u^n  \frac{1}{1+e^{u/\wt{T}}}+ \int_0^{\wt{\mu}-\wt{m}} du\,\hat{R}_k(u,\wt{m},\wt{\mu}) \frac{1}{1+e^{u/\wt{T}}}    \notag\\
-        =&\sum_{n=0}^{k-1} \hat{a}_{n}(\wt{m},\wt{\mu})
-        T^{n+1}(1-2^{-n})\Gamma(n+1)\zeta(n+1)      
-        + \int_0^{\wt{\mu}-\wt{m}} du\,\hat{R}_k(u,\wt{m},\wt{\mu}) \frac{1}{1+e^{u/\wt{T}}}    \notag\\
-        &-\sum_{n=0}^{k-1} \hat{a}_{n}(\wt{m},\wt{\mu})\int_{\wt{\mu}-\wt{m}}^\infty du\, u^n  \frac{1}{1+e^{u/\wt{T}}}\,,\notag
-\end{align}
-where
-\begin{align}
-&\left|\int_0^{\wt{\mu}-\wt{m}} du\, \hat{R}_k(u,\wt{m},\wt{\mu})\frac{1}{1+e^{u/\wt{T}}}\right|\\
-\leq &\int_0^\infty u^k[\hat{\alpha}_k(\wt{m},\wt{\mu})+\hat{\beta}_k(\wt{m},\wt{\mu}) u^{\hat{q}_k}]\frac{1}{1+e^{u/\wt{T}}}\notag\\
-\leq&\hat{\alpha}_k(\wt{m},\wt{\mu}) \wt{T}^{k+1}(1-2^{-k})\Gamma(k+1)\zeta(k+1)\notag\\
-  &+\hat{\beta}_k(\wt{m},\wt{\mu}) \wt{T}^{k+\hat{q}_k+1}(1-2^{-(k+\hat{q}_k)})\Gamma(k+\hat{q}_k+1)\zeta(k+\hat{q}_k+1) \notag\\
-  =&\mathcal{O}(\wt{T}^{k+1})\notag
-\end{align}
-and
-\begin{align}\label{eq:exp_supressed_remainder}
-\left|\sum_{n=0}^{k-1} \hat{a}_{n}(\wt{m},\wt{\mu})\int_{\mu-m}^\infty du\, u^n  \frac{1}{1+e^{u/\wt{T}}}\right|
-\leq&\sum_{n=0}^{k-1} |\hat{a}_{n}(\wt{m},\wt{\mu})|\int_{\mu-m}^\infty du\, u^n  e^{-u/\wt{T}}\\
-=&\sum_{n=0}^{k-1} |\hat{a}_{n}(\wt{m},\wt{\mu})|T^{n+1}\Gamma(n+1,(\wt{\mu}-\wt{m})/\wt{T})\,.\notag
-\end{align}
-Here $\Gamma(s,x)$ is the incomplete Gamma function which has the asymptotic behavior $\Gamma(s,x)=\mathcal{O}(e^{-x}x^{s-1})$ as $x\to\infty$ and hence \eqref{eq:exp_supressed_remainder} decays exponentially as $\wt{T}\to 0$, as compared to the other remainder terms which decay polynomially in $\wt{T}$.  
-
-Putting the above calculations together, when $m<\mu$ and $G(p)$ is smooth with polynomially bounded zeroth through $k$'th derivatives we obtain the following asymptotic result as $T\to 0$:
-\begin{align}
-    &\int_0^\infty dp\, p^{D-1} G(p)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\\
-    =& 2p_\mu^D\sum_{n=1, \text{odd}}^{k-1} 
-        (1-2^{-n})\Gamma(n+1)\zeta(n+1){a}_n(\wt{m},\wt{\mu})\wt{T}^{n+1}+ \mathcal{O}(\wt{T}^{k+1})\,,\notag\\
-        &a_n(\wt{m},\wt{\mu})=\frac{1}{n!}\partial_z^n|_{z=0} \left[(z+\wt{\mu})[(z+\wt{\mu})^2-\wt{m}^2]^{(D-2)/2} G\left(p_\mu\sqrt{(z+\wt{\mu})^2-\wt{m}^2}\right)\right]\,.\notag
-\end{align}
-Here we used the fact that   $\hat{a}_n=(-1)^n{a}_n$ for all $n$ to cancel the even terms in the sum. Note that the implied constant in the error bound depends on $m$ and $\mu$, and also on any parameters that enter into $G$; the error term can be explicitly bounded using the  formulas derived above.
-
-Specifically, for $D=3$ the expansion in temperature starts as
-\begin{equation}\label{eq:expansion}
-    \begin{split}
-    \int_0^\infty &dp\, p^2 G(p) (f_{T\neq 0} + \widetilde{f}_{T\neq 0})\\
-    &= \frac{\pi^2}{6} p_\mu^3\left[(1 + \wt{\mu}^2)G(p_{\mu}) + \wt{\mu}^2  \wt{G}'(p_{\mu})\right] \wt{T}^2 \\
-    &+ \frac{7\pi^4}{360}p_\mu^3\left[3\wt{m}^4 G(p_{\mu}) + 3(2-\wt{m}^4)\wt{G}'(p_{\mu})+ 6\wt{\mu}^2 \wt{G}''(p_{\mu}) + \wt{\mu}^4 \wt{G}'''(p_{\mu})\right]\wt{T}^4\\
-    &+ \mathcal{O}(\wt{T}^6)\,,
-    \end{split}
-\end{equation}
-where the re-scaled unitless derivatives denoted by prime are 
-\begin{equation}
-    \wt{G}^{(n)}(p_\mu) \equiv p_\mu^n \left.\frac{\partial^{n}}{\partial p^{n}} G(p)\right|_{p = p_\mu}
-\end{equation}
-Note that integrals over energy can be converted to this type of integral by change of variables $p dp = E dE$
-\begin{equation}
-    \int_m^\infty dE f_{FD}(E) H(E) = \int_0^\infty p^2 dp \frac{H(p)}{p\sqrt{p^2 + m^2}}f_{FD}(p) 
-\end{equation}
-where $G(p) = H(p)/(p\sqrt{p^2+m^2})$. Substituting to the first order term in \req{eq:expansion} the terms which do not contain derivative of $H(p)$ exactly cancel and we obtain
-\begin{equation}
-    \int_m^\infty dE (f_{T\neq 0}+\widetilde{f}_{T\neq 0})(E)H(E) = \frac{\pi^2}{6} \left.\frac{dH(E)}{dE}\right|_{E=\mu} T^2 + \mathcal{O}(T^4)
-\end{equation}
-as is written on wikipedia page for the Sommerfeld expansion I sent you. For this derivation note that
-\begin{equation}
-    \left. \frac{dH(p)}{dp}\right|_{p=p_\mu} = \left.\frac{1}{\wt{\mu}}\frac{dH(E)}{dE}\right|_{E=\mu}
-\end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
