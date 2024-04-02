@@ -27,6 +27,7 @@
 \newcommand{\orcB}{0000-0001-5038-8427}
 \newcommand{\orcC}{0000-0001-5474-2649}
 \newcommand{\orcD}{0000-0003-2704-6474}
+\newcommand{\orcE}{0000-0002-2289-4856}
 
 % List of useful macros
 \newcommand{\wt}[1]{\widetilde{#1}}
@@ -80,7 +81,7 @@
 \author[1]{\hspace*{1.5cm}\fnm{Cheng Tao} \sur{Yang\orc{\orcB}}}
 \author[1,2]{\fnm{Martin} \sur{Formanek\orc{\orcD}}}
 \author[1]{\newline\fnm{Andrew} \sur{Steinmetz\orc{\orcC}}} 
-\author[1]{\fnm{Jeremiah} \sur{Birrell\orc{\orcB}}}
+\author[1]{\fnm{Jeremiah} \sur{Birrell\orc{\orcE}}}
 \author[1]{\fnm{Johann} \sur{Rafelski\orc{\orcA}}}
 
 %\email{iiiauthor@gmail.com}
@@ -485,9 +486,10 @@ where the integral of the remainder term has the bound
 \begin{align}
  &\left|m^{D}\int_{b\widetilde{T}}^\infty dz R_k(\sqrt{z},m)\frac{1}{1+e^{z/\widetilde{T}-b}}\right|\\
  \leq&m^{D}\int_{b\widetilde{T}}^\infty dz z^{k/2}(\alpha_k(m)+\beta_k(m)z^{q_k/2})e^{-z/\widetilde{T}+b}\notag\\
- =&m^{D}\widetilde{T}^{1+k/2}\left(\alpha_k(m)\int_b^\infty dx x^{k/2}e^{-(x-b)}+\beta_k(m)\widetilde{T}^{q_k/2}\int_b^\infty dx x^{(k+q_k)/2}e^{-(x-b)}\right)\notag\\
+ =&m^{D}\widetilde{T}^{1+k/2}\left(\alpha_k(m)\int_0^\infty dx (x+b)^{k/2}e^{-x}+\beta_k(m)\widetilde{T}^{q_k/2}\int_b^\infty dx (x+b)^{(k+q_k)/2}e^{-x}\right)\notag\\
  =&O(\widetilde{T}^{1+k/2})\,,\notag
 \end{align}
+
 which is higher order in $\widetilde{T}$ than the first $k$ terms in the expansion \eqref{eq:second_int_exp_final}; we emphasize that the implied constant in the error term  depends on $m$ and $b$.  The integrals
 \begin{align}\label{eq:h_n_def}
     h_n(b)\equiv \int_{0}^\infty dx (x+b)^{n/2}\frac{1}{1+e^{x}}
