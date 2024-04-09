@@ -53,3 +53,67 @@ which is just the original FD distribution written in the usual manner \req{f_ol
 \frac{d}{dE}\sgn(x)=\frac{2}{T}\delta(x)\,,
 \end{align}
 both without and with units and where $\delta(x)$ is the Dirac $\delta$-function. These cancel in \req{NFF1} at $x=0$ exactly as required since the derivative of the FD distribution written in \req{f_old} lacks a $\delta$-function. This encourages us to believe that all of singular expressions cancel leaving it fully analytic. This completes our demonstration of the validity of \req{NFF1}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Magnetization Example for future project
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Magnetization Example}
+\label{magnetization}
+{\bf ??Move to separate document??}
+\noindent As an application of the novel form of the Fermi distribution, we introduce the problem of relativistic charged/magnetic gasses in a nearly homogeneous and isotropic fields. This problem has applicability in the primordial universe when such gasses were dense and rapidly cooling.
+
+The grand partition function for the relativistic Fermi-Dirac ensemble is given by the standard definition
+\begin{alignat}{1}
+    \label{part:1} \ln\mathcal{Z}_\mathrm{total}=\sum_{\alpha}\ln\left(1+\Upsilon_{\alpha_{1}\ldots\alpha_{m}}\exp\left(-\frac{E_{\alpha}}{T}\right)\right)\,,\qquad\Upsilon_{\alpha_{1}\ldots\alpha_{m}}=\lambda_{\alpha_{1}}\lambda_{\alpha_{2}}\ldots\lambda_{\alpha_{m}}
+\end{alignat}
+where we are summing over the set all relevant quantum numbers $\alpha=(\alpha_{1},\alpha_{2},\ldots,\alpha_{m})$. We note here the generalized the fugacity $\Upsilon_{\alpha_{1}\ldots\alpha_{m}}$ allowing for any possible deformation caused by pressures $\lambda_{\alpha_{i}}$ effecting the distribution of any quantum numbers.
+
+In the case of the Landau problem where the gas is made up of charged particles such as electrons and positrons, there is an additional summation over $\widetilde{w}$ which represents the occupancy of Landau states~\citep{greiner2012thermodynamics} which are matched to the available phase space within $\Delta p_{x}\Delta p_{y}$. If we consider the orbital Landau quantum number $n$ to represent the transverse momentum $p_{T}^{2}=p_{x}^{2}+p_{y}^{2}$ of the system, then the relationship that defines $\widetilde{w}$ is given by
+\begin{alignat}{1}
+    \label{phase:1} \frac{L^{2}}{(2\pi)^{2}}\Delta p_{x}\Delta p_{y}=\frac{eBL^{2}}{2\pi}\Delta n\,,\qquad\widetilde{w}=\frac{eBL^{2}}{2\pi}\,.
+\end{alignat}
+The summation over the continuous $p_{z}$ is replaced with an integration and the double summation over $p_{x}$ and $p_{y}$ is replaced by a single sum over Landau orbits
+\begin{alignat}{1}
+    \label{phase:2}
+    \sum_{p_{z}}\rightarrow\frac{L}{2\pi}\int^{+\infty}_{-\infty}dp_{z}\,,\qquad\sum_{p_{x}}\sum_{p_{y}}\rightarrow\frac{eBL^{2}}{2\pi}\sum_{n}\,,
+\end{alignat}
+where $L$ defines the boundary length of our considered volume $V=L^{3}$.
+
+The partition function of the $e^{+}e^{-}$ plasma can be understood as the sum of four gaseous species
+\begin{align}
+    \label{partition:0}    
+    \ln\mathcal{Z}_{e^{+}e^{-}}=\ln\mathcal{Z}_{e^{+}}^{\uparrow}+\ln\mathcal{Z}_{e^{+}}^{\downarrow}+\ln\mathcal{Z}_{e^{-}}^{\uparrow}+\ln\mathcal{Z}_{e^{-}}^{\downarrow}\,,
+\end{align}
+of electrons and positrons of both polarizations $(\uparrow\downarrow)$. The change in phase space written in \req{phase:2} modify the magnetized $e^{+}e^{-}$ plasma partition function from \req{part:1} into
+\begin{gather}
+     \label{partition:1}
+     \ln\mathcal{Z}_{e^{+}e^{-}}=\frac{e{B}V}{(2\pi)^{2}}\sum_{\sigma}^{\pm1}\sum_{s}^{\pm1}\sum_{n=0}^{\infty}\int_{-\infty}^{\infty}\mathrm{d}p_{z}\left[\ln\left(1+\lambda_{\sigma}\exp\left(-\frac{E_{\sigma,s}^{n}}{T}\right)\right)\right]\,\\
+    \label{partition:2}    
+    \Upsilon_{\sigma,s} \rightarrow\lambda_{\sigma} = \exp{\frac{\mu_{\sigma}}{T}}\,,
+\end{gather}
+where the energy eigenvalues $E_{\sigma,s}^{n}$ are given by
+\begin{align}
+ \label{cosmokgp}
+ E^{n}_{\sigma,s}(p_{z},{B})=\sqrt{m_{e}^{2}+p_{z}^{2}+e{B}\left(2n+1+\frac{g}{2}\sigma s\right)}\,,
+\end{align}
+
+% Notes to self: We need a density (chemical potential) value for neutron stars. This tells us the amount of positrons and neutrons.
+
+% We want three quantities: The energy <E>, pressure <P>, and particle density <n>.
+
+The index $\sigma$ in \req{partition:1} is a sum over electron and positron states while $s$ is a sum over polarizations. The index $s$ refers to the spin along the field axis: parallel $(\uparrow;\ s=+1)$ or anti-parallel $(\downarrow;\ s=-1)$ for both particle and antiparticle species.
+
+We are explicitly interested in small asymmetries such as baryon excess over antibaryons, or one polarization over another. For matter $(e^{-};\ \sigma=+1)$ and antimatter $(e^{+};\ \sigma=-1)$ particles, a nonzero relativistic chemical potential $\mu_{\sigma}=\sigma\mu$ is caused by an imbalance of matter and antimatter. While the primordial electron-positron plasma era was overall charge neutral, there was a small asymmetry in the charged leptons (namely electrons) from baryon asymmetry~\citep{Fromerth:2012fe,Canetti:2012zc} in the universe. Reactions such as $e^{+}e^{-}\leftrightarrow\gamma\gamma$ constrains the chemical potential of electrons and positrons~\citep{Elze:1980er} as 
+\begin{align}
+ \label{cpotential}
+ \mu\equiv\mu_{e^{-}}=-\mu_{e^{+}}\,,\qquad
+ \lambda\equiv\lambda_{e^{-}}=\lambda_{e^{+}}^{-1}=\exp\frac{\mu}{T}\,,
+\end{align}
+where $\lambda$ is the chemical fugacity of the system.
+
+We can then parameterize the chemical potential of the $e^{+}e^{-}$ plasma as a function of temperature $\mu\rightarrow\mu(T)$ via the charge neutrality of the universe which implies
+\begin{align}
+ \label{chargeneutrality}
+ n_{p}=n_{e^{-}}-n_{e^{+}}=\frac{1}{V}\lambda\frac{\partial}{\partial\lambda}\ln\mathcal{Z}_{e^{+}e^{-}}\,.
+\end{align}
+In \req{chargeneutrality}, $n_{p}$ is the observed total number density of protons in all baryon species. The chemical potential defined in \req{cpotential} is obtained from the requirement that the positive charge of baryons (protons, $\alpha$ particles, light nuclei produced after BBN) is exactly and locally compensated by a tiny net excess of electrons over positrons.
