@@ -60,3 +60,10 @@ TBD.
 
 ## license
 Copyright © 2023 by the authors.
+
+<!--
+Useful internet links with discussions:
+https://physics.stackexchange.com/q/760248
+https://math.stackexchange.com/a/83747
+https://physics.stackexchange.com/q/736837
+-->

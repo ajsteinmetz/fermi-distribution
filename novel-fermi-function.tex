@@ -52,8 +52,9 @@
 \newcommand*{\rcite}{{\xred (Citation?)}}
 
 %\theoremstyle{thmstyleone}%
-%\newtheorem{theorem}{Theorem}
-%\newtheorem{proposition}[theorem]{Proposition}% 
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary} 
+\newtheorem{lemma}[theorem]{Lemma} 
 %\theoremstyle{thmstyletwo}%
 %\newtheorem{example}{Example}%
 \newtheorem{remark}{Remark}
@@ -64,8 +65,8 @@
 \begin{document}
 
 %\title[Article Title]{Cold Ideal Fermi Gas}
-\title[Article Title]{Zero and finite temperature  components of\newline the Fermi quantum gas}
-
+\title[Article Title]%{Zero and finite temperature  components of\newline the Fermi quantum gas}
+{Asymptotic Expansion Near Fermi Surface}
 %%=============================================================%%
 %% Prefix	-> \pfx{Dr}
 %% GivenName	-> \fnm{Joergen W.}
@@ -79,9 +80,9 @@
 %%=============================================================%%
  
 \author[1]{\hspace*{1.5cm}\fnm{Cheng Tao} \sur{Yang\orc{\orcB}}}
-\author[1,2]{\fnm{Martin} \sur{Formanek\orc{\orcD}}}
-\author[1]{\newline\fnm{Andrew} \sur{Steinmetz\orc{\orcC}}} 
 \author[1]{\fnm{Jeremiah} \sur{Birrell\orc{\orcE}}}
+\author[1,2]{\fnm{Martin} \sur{Formanek\orc{\orcD}}}
+\author[1]{\fnm{Andrew} \sur{Steinmetz\orc{\orcC}}} 
 \author[1]{\fnm{Johann} \sur{Rafelski\orc{\orcA}}}
 
 %\email{iiiauthor@gmail.com}
@@ -91,7 +92,7 @@
 
 \affil[2]{\orgdiv{ELI Beamlines Facility}, \orgname{The Extreme Light Infrastructure ERIC}, \orgaddress{ \postcode{\newline 252 41}  \city{Doln\'{i} B\v{r}e\v{z}any}, \country{Czech Republic}}}
 
-\abstract{We present a novel mathematical tool allowing to separate the zero and finite temperature phenomena in ideal Fermi gases. To achieve this  we decompose the Fermi distribution into three components. We prove that the singular (step) functions properly add up to the finite temperature smooth Fermi shape. As an example we consider briefly a semi relativistic-electron density where with high chemical potential ($\mu>m$) at low temperature $T<<m$.}
+\abstract{We present a novel mathematical tool allowing to separate the zero and finite temperature phenomena in ideal Fermi gases. To achieve this  we decompose the Fermi distribution into three components. We prove that the singular (step) functions properly add up to the finite temperature smooth Fermi shape. As an example we consider briefly a semi relativistic-electron density where with high chemical potential ($\mu>m$) at low temperature $T<<m$. \xblue{Point out that the Sommerfild doesn't work in certain domain, and our asymptotic expansion work in this domain}}
 
 % ANDREW's note: We present a novel mathematical tool allowing the separation of the finite and zero temperature phenomena in fermi gassses. To achieve this, we provide a novel form of the Fermi distribution 
 
@@ -112,15 +113,15 @@
 
 % Second solution idea: Redo the derivative derivation however treating all singular functions as couched within an integration. E.g. no naked distributions! Do then physical measurable quantities suffer from this inconsistancy? I suspect not. Therefore there is no problem.
 
-The  zero temperature limit of Fermi-Dirac (FD) distribution involves a transition from a smooth functional form to a singular Heavyside step function. Such singular limit  $
-T\to 0$ therefore cannot be analytical.  For this reason a study of finite temperature effects in dense  low temperature  FD quantum gasses poses a mathematical challenge and can miss key physical features.  To remedy this situation we introduce here a novel reformulation which allows exact separation of the finite temperature behavior from the singular zero temperature limit. This means that we will be replacing the smooth FD distribution by the sum of three singular functions
+% Andrew's Note (4/15/2024): Emphasize motivation via the low temperature limit.
+
+The zero temperature limit of Fermi-Dirac (FD) distribution involves a transition from a smooth functional form to a singular Heaviside step function. Such singular limit  $T\to 0$ therefore cannot be analytical. For this reason a study of finite temperature effects in dense low temperature FD quantum gasses poses a mathematical challenge and can miss key physical features. To remedy this situation we introduce here a novel reformulation which allows exact separation of the finite temperature behavior from the singular zero temperature limit. This means that we will be replacing the smooth FD distribution by the sum of three singular functions
 $$
 \boxed{\frac{1}{e^{x} +1}=\Theta(-x)+\frac{1}{2}e^{-|x|}\left[\sgn(x)+\tanh(x/2)\right]}
 $$
-one being the $T=0$ limit,  the other two describing the finite temperature residual. In the following we illuminate the advantages offered by this decomposition.  
+one being the $T=0$ limit, the other two describing the finite temperature residual. In the following we illuminate the advantages offered by this decomposition.
 
-
-The most interesting physics of FD gasses occurs at finite temperatures~\cite{Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution. We provide a novel form of FD distribution that manifestly separates the zero and finite temperature contributions so that the finite temperature correction can be studied on its own. We also tackle the case of the semi-relativistic electron gas to demonstrate the usefulness of this new method. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and in any situation when finite temperature Fermi effects are important.
+The most interesting physics of FD gasses occurs at finite temperatures~\cite{bludman1977equation,Elze:1980er} which necessitates a mathematical tool which captures the finite temperature behavior of the FD distribution. We provide a novel form of FD distribution that manifestly separates the zero and finite temperature contributions so that the finite temperature correction can be studied on its own. We also tackle the case of the semi-relativistic electron gas to demonstrate the usefulness of this new method. The asymptotic limit of integrals of the FD distribution~\cite{dingle1957fermi,dingle1973asymptotic} is of great interest to physicists studying statistical quantum systems~\cite{10.1063/1.1350634,10.1142/S021827180701002X,10.1063/1.1665160,FUKUSHIMA2014417,GIL2022126618,GIL2023108563} and behavior around the Fermi surface~\cite{kim2008notes,PhysRevB.103.205154}. Other use cases would be for compact astrophysical systems (white dwarfs, neutron stars, quark stars)~\cite{Kaspi:2017fwg,Ferrer:2019xlr,Ferrer:2023pgq}, Early Universe phenomenology~\cite{Rafelski:2021aey,Rafelski:2023emw,Grayson:2023flr,Steinmetz:2023nsc}, quark-gluon plasmas (QGP)~\cite{Letessier:2002ony,Rafelski:2020ajx,Yang:2021bko}, and in any situation when finite temperature Fermi effects are important.
 
 %Before we introduce the novel form in \rsec{NewFermi}, we will briefly recall the standard picture of the FD distribution. 
 
@@ -151,10 +152,28 @@ Our objective is to describe the difference between these two distributions in a
 
 {\bf New points to incorporate into abstract/intro/conclusions}
 \begin{enumerate}
-\item The decomposition guides the asymptotic analysis of $\langle G\rangle_T-\langle G\rangle_0$ by naturally reorganizing the integrand into a difference of integrals with exponentially decaying integrands. This allows us to utilize asymptotic analysis techniques to   extract  leading and subleading order behavior as $T\to 0$. 
-\item The finite temperature contribution is naively written as a difference of integrals, with the leading order contribution in $T$ of the former canceling that of the latter.  This leads to instability when attempting to compute $\langle G\rangle_T-\langle G\rangle_0$ via numerical integration for small $T$.  This issue is eliminated when using the asymptotic expansion derived below, where we are able to account for this exact cancellation analytically. 
-\item The assumptions on $G(p)$ are quite modest, only requiring smoothness and polynomial growth bounds on $G$ and it's derivatives as $p\to \infty$.  The latter is only slightly more restrictive than simply assuming integrability.  These assumptions hold, for instance, in the case of ...
+\item The decomposition guides the asymptotic analysis of $\langle G\rangle_T-\langle G\rangle_0$ by naturally reorganizing the integrand into a difference of integrals with exponentially decaying integrands. This allows us to utilize asymptotic analysis techniques to   extract  leading and subleading order behavior as $T\to 0$. {(\color{blue} Incorporate into conclusion)}
+\item The finite temperature contribution is naively written as a difference of integrals, with the leading order contribution in $T$ of the former canceling that of the latter.  This leads to instability when attempting to compute $\langle G\rangle_T-\langle G\rangle_0$ via numerical integration for small $T$.  This issue is eliminated when using the asymptotic expansion derived below, where we are able to account for this exact cancellation analytically. ({\color{blue} Incorporate into conclusion)}
+\item The assumptions on $G(p)$ are quite modest, only requiring smoothness and polynomial growth bounds on $G$ and it's derivatives as $p\to \infty$.  The latter is only slightly more restrictive than simply assuming integrability.  These assumptions hold, for instance, in the case of ...({\color{blue} Incorporate into conclusion)}
+\item The Sommerfeld expansion is asymptotic in nature (cite LL book, including footnote), meaning that adding further terms does not necessarily reduce the error at fixed values of $T$ and $\mu$.  This is particularly relevant when $\mu-m$ is small, a regime that the classical Sommerfeld expansion was not designed for.  When dealing with multiple scales, here $T$ and $\mu-m$, one generally requires specialized asymptotic expansions that are adapted to regime under consideration. ({\color{blue} Incorporate into Fig.3 and related content})
 \end{enumerate}
+
+
+ 
+
+
+\subsection{Summary of Results}
+In this work we derive and contrast expansions in the following regimes which, to the best of the authors' knowledge, are new:
+\begin{enumerate}
+\item High-temperature Sommerfeld: $\mu\gg T\gg m$; see  Section \ref{Section:HighTempSommerfeld} and Eq.~\eqref{eq:Sommerfeld_high_temp_final}.
+\item ??descriptive name for this regime??: $T\ll \mu-m\ll m$; see Section \ref{sec:asymp_T_0_faster} and Eq.~\eqref{eq:T_faster_expansion_final}.
+\item ??descriptive name for this regime??: $\mu-m\ll T\ll m$; see Section \ref{Section:HighTempSommerfeld} and Eq.~\eqref{eq:asymp_FD_int_b_decay}.
+\end{enumerate}
+First, we prove that the classical Sommerfeld expansion, which applies to the regime $T\ll m$ with $\mu-m$ not small, also applies to the high-temperature regime $\mu\gg T\gg m$ under appropriate assumptions.  In this derivation we utilize a novel decomposition of the FD distribution into finite and zero temperature components, which we find convenient for guiding this and other derivations. Next we demonstrate that the Sommerfeld expansion can fail completely when applied to certain regimes where $\mu-m$ and $T$ are both small small; see  the example in Figure \ref{lnZ_Ratio_fig} below. Reliable and accurate results in regimes where both $T$ and $\mu-m$ are small compared to $m$ require the use of the new results \eqref{eq:T_faster_expansion_final}  and \eqref{eq:asymp_FD_int_b_decay}. 
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Zero and finite temperature Fermi-Dirac distributions}
@@ -342,7 +361,7 @@ By employing our decomposition form, we will demonstrate that the integral for f
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu>m$}\label{Appendix:Sommerfeld}
-\subsection{Derivation of Sommerfeld expansion: $T\to 0$ with $\mu>m$}\label{Appendix:Sommerfeld}
+\subsection{Derivation of Sommerfeld expansion: $T\ll m$ with $\mu-m$ not small}\label{Section:Sommerfeld}
 
 In this section we use the decomposition \eqref{Eq_form} naturally leads to an alternative derivation of the Sommerfeld expansion, see, e.g., Eq. (58.1) on page 170 of \cite{landau2013statistical}), i.e., an  asymptotic expansion for the difference between a $D$-dimensional thermal average at finite and zero temperature as $T\to 0$ in the regime where  $\mu>m$.     
 
@@ -446,7 +465,7 @@ Putting the above calculations together, when $m<\mu$ and $G(p)$ is smooth with 
 Here we used the fact that   $\hat{a}_n=(-1)^n{a}_n$ for all $n$ to cancel the even terms in the sum. Note that the implied constant in the error bound depends on $m$ and $\mu$, and also on any parameters that enter into $G$; the error term can be explicitly bounded using the  formulas derived above.
 
 Specifically, for $D=3$ the expansion in temperature starts as
-\begin{equation}\label{eq:expansion}
+\begin{equation}\label{eq:Sommerfeld_expansion}
     \begin{split}
     \int_0^\infty &dp\, p^2 G(p) (f_{T\neq 0} + \widetilde{f}_{T\neq 0})\\
     &= \frac{\pi^2}{6} p_\mu^3\left[(1 + \wt{\mu}^2)G(p_{\mu}) + \wt{\mu}^2  \wt{G}'(p_{\mu})\right] \wt{T}^2 \\
@@ -471,42 +490,47 @@ which is the Sommerfeld low-temperature expansion \cite{landau2013statistical}. 
     \left. \frac{dH(p)}{dp}\right|_{p=p_\mu} = \left.\frac{1}{\wt{\mu}}\frac{dH(E)}{dE}\right|_{E=\mu}
 \end{equation}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Numerical illustration: Partition function}
-To illustrate the benefits of our innovative Fermi distribution function in practical applications, we examine the partition function for semi-relativistic electron with a chemical potential $\mu>m$ as an example. %The partition function is one of fundamental quantity in statistical mechanics. Given the partition function,  a complete description of the thermodynamical behaviour of a many-particle system can be derived and studied in details.
-The partition function of an ideal electron gas is obtained by a phase-space integral over all allowed energies $E(p)$ depending on the particle momentum $p$. After integration by part, the partition function in $3$-dimension phase space can be written as
-\begin{align}\label{lnZ_Exact}
-3\frac{T}{V}\ln\mathcal{Z}_\mathrm{FD}=g_e I_{\mathrm{FD}},\quad
-I_{\mathrm{FD}}\equiv\int\frac{d^3p}{(2\pi)^3}\frac{p^2}{E}\frac{1}{e^{(E-\mu)/T}+1}
-\end{align}
-where $V$ is volume and $g_e$ is the electron degeneracy factor.
 
-On the other hand, using the novel form of Fermi-Dirac distribution, the electron partition function can be obtained by setting $G(p)=p^2/E$ and use the asymptotic expansion for finite
-temperature contribution Eq.~(\ref{eq:expansion}) , we have
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Numerical illustration: $G(p)=1$}
+To illustrate the benefits of our innovative Fermi distribution function in practical applications, we examine the partition function for semi-relativistic electron with a chemical potential $\mu>m$ as an example. We consider the integral in $3$-dimension phase space with weight function $G(p)=1$. The exact with exact Fermi-Dirac distribution is give by
+\begin{align}\label{lnZ_Exact}
+I_{\mathrm{FD}}\equiv\int\frac{d^3p}{(2\pi)^3}\frac{1}{e^{(E-\mu)/T}+1}.
+\end{align}
+
+On the other hand, using the novel form of Fermi-Dirac distribution and asymptotic expansion, the  integral can be written as
 \begin{align}\label{lnZ_Sum}
-3\frac{T}{V}\ln\mathcal{Z}_\mathrm{novel}=g_e\,\left[I_{\Theta}+I_{\wt{T}^2}+I_{\wt{T}^4}+\mathcal{O}(\wt{T}^6)\right]
+I_{\mathrm{Asym}}=\left[I_{\Theta}+I_{\wt{T}^2}+I_{\wt{T}^4}+\mathcal{O}(\wt{T}^6)\right]
 \end{align}
 where the functions $I_\Theta$, $I_{\wr{T}^2}$, and $I_{\wt{T}^4}$ are given by
 \begin{align}
-&I_\Theta=\frac{1}{2\pi^2}\int^{\infty}_{0}\!\!dp\,p^{2}\frac{p^2}{E}\Theta\left(\frac{-E+\mu}{T}\right),\\
-&I_{\wt{T}^2}=\frac{p_\mu^3}{12\pi^2} \left[(1 + \wt{\mu}^2)G(p_{\mu}) + \wt{\mu}^2  \wt{G}'(p_{\mu})\right] \wt{T}^2,\quad \wt{G}^{(n)}(p_\mu)=p_\mu^n \left(\left.\frac{\partial^{n}}{\partial p^{n}} \frac{p^2}{E}\right)\right|_{p = p_\mu},\\
-&I_{\wt{T}^4}=\frac{7\pi^2}{720}p_\mu^3\left[3\wt{m}^4 G(p_{\mu}) + 3(2-\wt{m}^4)\wt{G}'(p_{\mu})+ 6\wt{\mu}^2 \wt{G}''(p_{\mu}) + \wt{\mu}^4 \wt{G}'''(p_{\mu})\right]\wt{T}^4.
+&I_\Theta=\frac{1}{2\pi^2}\int^{\infty}_{0}\!\!dp\Theta\left(\frac{-E+\mu}{T}\right),\\
+&I_{\wt{T}^2}=\frac{p_\mu^3}{12\pi^2}(1 + \wt{\mu}^2)G(p_{\mu})\wt{T}^2,\\
+&I_{\wt{T}^4}=\frac{7\pi^2}{120}p_\mu^3\wt{m}^4 G(p_{\mu})\wt{T}^4.
 \end{align}
 
 To demonstrate the equivalence between our novel distribution and the Fermi-Dirac distribution for the partition function, we take the ratio between Eq.~(\ref{lnZ_Sum}) and Eq.~(\ref{lnZ_Exact}) we have
 \begin{align}\label{lnZ_Ratio}
-\frac{\ln\mathcal{Z}_\mathrm{novel}}{\ln\mathcal{Z}_\mathrm{FD}}=\frac{I_{\Theta}+I_{\wt{T}^2}+I_{\wt{T}^4}+\mathcal{O}(\wt{T}^6)}{I_\mathrm{FD}}
+\frac{I_\mathrm{Asym}}{I_\mathrm{FD}}=\frac{I_{\Theta}+I_{\wt{T}^2}+I_{\wt{T}^4}+\mathcal{O}(\wt{T}^6)}{I_\mathrm{FD}}
 \end{align}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.5\textwidth]{./plot/NumericalRatio_mu01}\includegraphics[width=0.5\textwidth]{./plot/NumericalRatio_mu001}
-\caption{The ratio between electron partition function Eq.~(\ref{lnZ_Ratio}) as a function of temperature. (Left) The chemical potential $\mu=m_e+0.1$ MeV. (Right) The chemical potential $\mu=m_e+0.01$ MeV }
+\includegraphics[width=0.5\textwidth]{./plot/Lowmu_T2}\includegraphics[width=0.5\textwidth]{./plot/Lowmu_T3}\\
+\includegraphics[width=0.5\textwidth]{./plot/Lowmu_T4}\includegraphics[width=0.5\textwidth]{./plot/Lowmu_T5}
+\caption{ The ratio between numerical integral Eq.~(\ref{lnZ_Ratio}) as a function of chemical potential $(\mu-m)/m$ with different temperature  {\bf Somewhere we should point out that adding more terms doesn't necessarily help because it is an asymptotic expansion, not convergent.  I think the best comparison for us to make with with the expansion \eqref{thm:mu_zero_faster} and to reverse the roles of $T$ and $\mu$ (i.e., $x$-axis of plots shows $(\mu-m)/m$ with several plots for several different $T$'s. The example $G(p)=1$ should suffice: see figures \ref{fig:Thm3_vs_Sommerfeld_comparison_fixed_T} (\ref{fig:FD_avg_expansion_comparison}is another way of displaying the comparison) }}
 \label{lnZ_Ratio_fig}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In Fig.~\ref{lnZ_Ratio_fig} we plot the ratio between electron partition function Eq.~(\ref{lnZ_Ratio}) as a function of temperature with chemical potential $\mu=m_e+0.1$ MeV (Left) and $\mu=m_e+0.01$ MeV (Right). It shows that within a low temperature range, the Sommerfeld expansion offers a reliable approximation, yielding accurate numerical results when compared to exact Fermi-Dirac integrals.However, as the chemical potential approaches the particle's mass, higher-order terms must be incorporated into the Sommerfeld expansion to accurately describe low temperature physics. Furthermore, expanding the Sommerfeld result around the small chemical potential may lead to encountering singularities which underscore the necessity for a better tool to study this scenario. In following section, we will demonstrate that our novel Fermi distribution function serves as a valuable tool for studying Fermi gases with small chemical potentials in the low temperature regime.
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{./plot/Thm3_vs_Sommerfeld_comparison_T_0.05m.pdf}
+\includegraphics[width=0.49\textwidth]{./plot/Thm3_vs_Sommerfeld_comparison_T_0.005m.pdf}
+\caption{Comparison of $\langle G\rangle_{\Delta T}$ for $G(p)=1$, as approximated by the classical Sommerfeld formula (red curves) and our Theorem \ref{thm:mu_zero_faster} (green curves).  The theory states that Sommerfeld applies when $T\to 0$ and $\Delta\mu$ is not small, while Theorem \ref{thm:mu_zero_faster} applies when $\Delta\mu\ll T\ll m$. We see these regimes reflected in the figure, with Sommerfeld more accurate as $\Delta\mu/T$ increases above $1$ and the result of Theorem \ref{thm:mu_zero_faster} more accurate as $\Delta\mu/T$ decreases below $1$.}\label{fig:Thm3_vs_Sommerfeld_comparison_fixed_T}
+\end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In Fig.~\ref{lnZ_Ratio_fig} we plot the ratio between numerical integral Eq.~(\ref{lnZ_Ratio}) as a function of chemical potential $(\mu-m)/m$ with different temperature. It shows that the Sommerfeld expansion is asymptotic in nature \cite{landau2013statistical}, meaning that adding further terms does not necessarily reduce the error at fixed values of $T$ and $\mu$.  This is particularly relevant when $\mu-m$ is small, a regime that the classical Sommerfeld expansion was not designed for. When dealing with multiple scales, here $T$ and $\mu-m$, one generally requires specialized asymptotic expansions that are adapted to regime under consideration. Furthermore, expanding the Sommerfeld result around the small chemical potential may lead to encountering singularities which underscore the necessity for a better tool to study this scenario. In following section, we will demonstrate that our novel Fermi distribution function serves as a valuable tool for studying Fermi gases with small chemical potentials in the low temperature regime.
 
 
 
@@ -546,7 +570,9 @@ where $\widetilde{T}\equiv T/m$ and $\Delta\widetilde{\mu}\equiv \Delta\mu/m$. W
     \frac{1}{1+e^{(E-\mu)/T}}\label{eq:2_int_decomp_T_faster}  \\
     &-\int_m^{\mu} dE \,E(E^2-m^2)^{(D-2)/2} G\left(\sqrt{E^2-m^2}\right)\frac{1}{1+e^{(\mu-E)/T}} \,.\notag
 \end{align}
-Next consider the first integral in \eqref{eq:2_int_decomp_T_faster}. In general, its integrand will have a square root singularity at $E=m$. As the lower limit of integration approaches $m$ in the regime under consideration, it is necessary to carefully resolve that singularity. To do this, first change variables to $z=(E-m)/m$  to obtain
+Next consider the first integral in \eqref{eq:2_int_decomp_T_faster}. In general, its integrand will have a singularity at $E=m$. As the lower limit of integration approaches $m$ in the regime under consideration, it is necessary to carefully resolve that singularity. We have chosen to begin with the integral expressed in terms of $p$ because it simplifies this analysis, due to $E=\sqrt{p^2+m^2}$ being is a smooth function of $p$ but not vice versa. Thus if one begins with a smooth density of states $H(E)$, the corresponding $G(p)$ will also be smooth but the reverse is not true. We note that if one is interested in $G(p)$ that is not smooth at $p=0$ then the following derivation would need to be modified to account for this.
+
+To derive an expansion that correct handles the singular behavior of the integrands in \eqref{eq:2_int_decomp_T_faster} at $E=m$, we first change variables to $z=(E-m)/m$  to obtain
 \begin{align}
 &\int_{\mu}^\infty dE\, E(E^2-m^2)^{(D-2)/2} G\left(\sqrt{E^2-m^2}\right)
     \frac{1}{1+e^{(E-\mu)/T}}\notag   \\
@@ -647,7 +673,7 @@ for all  $\nu>0$. Therefore we have shown
 (note that this trivially holds for $\nu=0$ as well).   Also note that the exponential decay of the integrand implies 
 \begin{align}
 \int_{1/C}^\infty du\, \frac{u^j}{1+e^u}=O(C^k)
-\end{align} for any $k$ and hence
+\end{align} for any $k$ and hence we are free to change the upper limits of integration to $\infty$, yeilding:
 \begin{align}
 &\int_0^{1/C} du \,\frac{(1-Cu)^\nu}{1+e^u}\\
 =&\sum_{j=0}^{k-1}\frac{C^j}{j!}(-1)^j\left(\prod_{\ell=0}^{j-1}(\nu-\ell) \right)\int_0^{\infty} du \,\frac{u^j}{1+e^u}  +O(C^k)\,.\notag
@@ -668,7 +694,9 @@ This completes the asymptotic expansion of the second integral in  \eqref{eq:2_i
 \end{align}
 \end{comment}
 
-Finally, subtracting \eqref{eq:T_faster_int_2_expanded2} from \eqref{eq:T_faster_int_1_change_vars_expanded2} and canceling the shared terms (in particular, the leading order term) we  obtain the asymptotic expansion
+Finally, subtracting \eqref{eq:T_faster_int_2_expanded2} from \eqref{eq:T_faster_int_1_change_vars_expanded2} and canceling the shared terms (in particular, they cancel at leading order) we  obtain the asymptotic expansion.
+\begin{theorem}\label{thms:T_decay_faster}
+Let $D\geq 2$,     $\mu=m+\Delta\mu$, $\Delta\mu>0$ and $\widetilde{T}=d\Delta\widetilde{\mu}^{1+\gamma}$$d,\gamma>0$.  Let $k\in\mathbb{Z}^+$ and suppose $G(p)$ is a $C^k$ function on $p\in[0,\infty)$ whose zeroth through $k$'th derivatives are polynomially bounded. Then
 \begin{align}
     &\int_0^\infty dp\, p^{D-1} G(p)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\label{eq:T_faster_orig_integral}\\
     =& \sum_{n=0}^{k-1} da_n(m)m^{D}\Delta\widetilde{\mu}^{(n+D)/2+\gamma}\label{eq:T_faster_expansion_final}\\
@@ -677,9 +705,10 @@ Finally, subtracting \eqref{eq:T_faster_int_2_expanded2} from \eqref{eq:T_faster
     &+O(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\,,\notag
 \end{align} 
 where
-\begin{align}
+\begin{align}\label{eq:an_def}
 a_n(m)=\frac{1}{n!}\partial_y^n|_{y=0}\left[  (y^2+1)(  y^2+2)^{(D-2)/2} G\left(my\sqrt{y^2+2}\right)\right]\,.
 \end{align}
+\end{theorem}
 We provide explicit formulas for the first few  $a_n$'s below:
 \begin{align}\label{eq:first_few_a_ns}
   &a_0(m)=2^{(D-2)/2} G(0)\,,\\
@@ -687,7 +716,7 @@ We provide explicit formulas for the first few  $a_n$'s below:
   &a_2(m)=2^{(D-6)/2}\left((D+2)G(0)+4m^2 G^{\prime\prime}(0)\right)\,,\notag\\
   &a_3(m)=2^{(D - 5)/2} \left((D + 3) m G^\prime(0) +  \frac{4}{3}m^3 G^{\prime\prime\prime}(0) \right)\,.\notag
 \end{align}
- In Figure \ref{fig:T_faster_expansion_comparison} we show a comparison between the expansion \eqref{eq:T_faster_expansion_final} and numerical integration of \eqref{eq:T_faster_orig_integral}. 
+In dimension $D=3$ the leading order term in \eqref{eq:T_faster_expansion_final} will be determined by the first $n$ for which $a_n(m)\neq 0$, which will then scale with $\Delta\widetilde{\mu}^{(n+3)/2+2\gamma}$.  In Figure \ref{fig:T_faster_expansion_comparison} we show a comparison between the expansion \eqref{eq:T_faster_expansion_final} and numerical integration of \eqref{eq:T_faster_orig_integral}, demonstrating the effectiveness of the expansion as well as error scaling that matches the result \eqref{eq:T_faster_expansion_final}.
 
 \begin{figure}
 \centering
@@ -706,7 +735,16 @@ We provide explicit formulas for the first few  $a_n$'s below:
 In this work, we introduce a novel form of the Fermi distribution Eq.~(\ref{NFF1}) that separates the Fermi gas into zero and finite temperature components analytically. This is the first time in literature that has clean separation of the zero and finite temperature components. Unlike the traditional brutal approach to eliminating the $T=0$ limit from the low-temperature Fermi distribution, our novel form of the Fermi distribution for finite temperature component has several numerical advantages in computation. {\xgreen The prescription proposed here is in terms of distribution rather than analytical function. However, for all physical applications it is only necessary to calculate integrals for which the exact behavior at $x=0$ is not required.}
 
  
-The mathematical form of the finite temperature components is well-suited for numerical calculations and can be used to address the integrals common in statistical physics. This is because the finite temperature components are naturally exponentially suppressed while also preserving the sign of all corrections making the formulation easier to numerically integrate and reduce the numerical noise, see Fig.~\ref{Fermi_Component}. We consider a semi relativistic-electron density where with high chemical potential $\mu>m$ at low temperature as an example. Fig.~\ref{Density_checking} shows the equivalence of particle number density with exact Fermi distribution Eq.~(\ref{DensityExact}) and our novel form  distribution Eq.~(\ref{DensitySum}). 
+The mathematical form of the finite temperature components is well-suited for numerical calculations and can be used to address the integrals common in statistical physics. This is because the finite temperature components are naturally exponentially suppressed while also preserving the sign of all corrections making the formulation easier to numerically integrate and reduce the numerical noise, see Fig.~\ref{Fermi_Component}. 
+
+
+To illustrate the advantage of our novel form of distribution can be used to address the integrals common in physics, we examine the thermal average quantity $\langle G\rangle_T$ for any given function $G(p)$. The assumptions on $G(p)$ are quite modest, only requiring smoothness and polynomial growth bounds on $G$ and it's derivatives as $p\to \infty$. 
+
+
+Our novel decomposition guides the asymptotic analysis of $\langle G\rangle_{\Delta T}-\langle G\rangle_\Theta$ by naturally reorganizing the integrand into a difference of integrals with exponentially decaying integrands. This allows us to utilize asymptotic analysis techniques to   extract  leading and subleading order behavior as $T\to 0$. 
+
+The finite temperature contribution is naively written as a difference of integrals, with the leading order contribution in $T$ of the former canceling that of the latter.  This leads to instability when attempting to compute $\langle G\rangle_{\Delta T}-\langle G\rangle_\Theta$ via numerical integration for small $T$.  This issue is eliminated when using the asymptotic expansion derived below, where we are able to account for this exact cancellation analytically. 
+
  
 The Fermi distribution Eq.~(\ref{NFF1}) provides us the tool to study or examine the effects and characteristics of finite temperature components separately. In addition, our approach also allows for analytical exploration of the finite temperature contributions by expanding the function around the Fermi-energy surface.
 
@@ -724,7 +762,7 @@ The Fermi distribution Eq.~(\ref{NFF1}) provides us the tool to study or examine
 \appendix
 
 \section{Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu=m+O(T)$}
-The decomposition of the FD distribution presented above is not as useful for studying the regime where $\mu$ approaches to $m$ as fast or faster than $T$ approaches to $0$.  This can be motivated by noting that the zero temperature contribution  is defined with respect to a fixed $\mu$ and this choice makes little sense  in the regime where $\mu=m+O(T)$.  In this appendix we show that an asymptotic expansion as $T\to 0$ in this regime is more easily obtained by using the FD distribution as a whole, in contrast to the cases studied in Sections \ref{Appendix:Sommerfeld} and \ref{sec:asymp_T_0_faster}.
+The decomposition of the FD distribution presented above is not as useful for studying the regime where $\mu$ approaches to $m$ as fast or faster than $T$ approaches to $0$.  This can be motivated by noting that the zero temperature contribution  is defined with respect to a fixed $\mu$ and this choice makes little sense  in the regime where $\mu=m+O(T)$.  In this appendix we show that an asymptotic expansion as $T\to 0$ in this regime is more easily obtained by using the FD distribution as a whole, in contrast to the cases studied in Sections  \ref{sec:asymp_T_0_faster} and \ref{Section:HighTempSommerfeld}.
 
 
   Here we consider a $D$-dimensional thermal average ($D\geq 2$) of a function   $G(p)$, $p\in[0,\infty)$ that is a $C^k$ function whose zeroth through $k$'th derivatives are polynomially bounded and will assume that $\mu=m+bT$ where $b\geq 0$. First change variables to $z=(E-m)/m$ so that $p=m\sqrt{z}\sqrt{z+2}$
@@ -756,17 +794,17 @@ Changing variables to $x=z/\widetilde{T}$, recalling the integral formula for th
 \begin{align}\label{eq:h_decomp_eval}
    \int_0^\infty dx \, \frac{x^{n/2}}{1+e^{x-b}}    =-\Gamma(1+n/2)\mathrm{Li}_{1+n/2}(-e^b)\,,
 \end{align}
-and using the  remainder bound \eqref{eq:combined_exp_remainder} we obtain the asymptotic expansion
+and using the  remainder bound \eqref{eq:combined_exp_remainder} we obtain the following asymptotic expansion.
+\begin{theorem}\label{thm:asymp_FD_int_Delta_mu_small}
+Let $D\geq 0$, $k\in\mathbb{Z}^+$, and $G(p)$ be a  $C^k$ function on $[0,\infty)$ whose zeroth through $k$'th derivatives are polynomially bounded.  Let $\mu=m+bT$ for $b\geq 0$. Then
 \begin{align}\label{eq:asymp_FD_int}
 &\int_0^\infty dp\, p^{D-1} G(p) f_{FD}(p)\notag\\
    =&\sum_{n=0}^{k-1} a_n(m)m^{D}\widetilde{T}^{(n+D)/2}\left(-\Gamma((n+D)/2)\mathrm{Li}_{(n+D)/2}(-e^b)\right)+O(\widetilde{T}^{(k+D)/2})\,,
 \end{align}
-where $\widetilde{T}=T/m$
-\begin{align}
-a_n(m)=\frac{1}{n!}\partial_y^n|_{y=0}\left[(y^2+1)(y^2+2)^{(D-2)/2}G\left(my\sqrt{y^2+2}\right)\right]\,.
-\end{align}
-and the implied constant in the error term depends on $m$ but is uniform in $b$ when restricted to a fixed bounded set.  Explicit formulas for the first few $a_n$'s can be found in Eq.~\eqref{eq:first_few_a_ns}.
-
+where $\widetilde{T}=T/m$, $a_n$ is defined in \eqref{eq:an_def}, and the implied constant in the error term depends on $m$ but is uniform in $b$ when restricted to a fixed bounded set. 
+\end{theorem}
+Explicit formulas for the first few $a_n$'s can be found in Eq.~\eqref{eq:first_few_a_ns}.
+\subsection{Asymptotic Expansion in the Regime $T\ll m$, $\mu=m$}\label{sec:b_0}
 When $b=0$ (i.e., $\mu=m$) one can use the integral formula \eqref{eq:FD_power_integrals} to further simplify the expansion \eqref{eq:asymp_FD_int}:
 \begin{align}\label{eq:asymp_FD_int_b_0}
 &\int_0^\infty dp\, p^{D-1} G(p) f_{FD}(p)\notag\\
@@ -778,8 +816,8 @@ In particular, note that when $D=3$ and $G(0)\neq 0$ the leading order term scal
 
 
 
-\subsection{Asymptotic Expansion when $\mu=m+O(T^{1+\gamma})$}\label{sec:decaying_b}
-One can also use the expansion \eqref{eq:asymp_FD_int} to study the regime where $\mu$ approaches zero faster than $T$, i.e., $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $B\geq 0$, $\gamma>0$.  To proceed, first  Taylor expand \eqref{eq:h_decomp_eval} by differentiating under the integral to obtain
+\subsection{Asymptotic Expansion in the Regime $\mu-m\ll T\ll m$}\label{sec:decaying_b}
+One can also use the expansion \eqref{eq:asymp_FD_int} to study the regime where $\mu$ approaches $m$ faster than $T$ approaches zero. Mathematically we parameterize this as $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $B\geq 0$, $\gamma>0$.  To proceed, first  Taylor expand \eqref{eq:h_decomp_eval} by differentiating under the integral to obtain
 \begin{align}\label{eq:Li_expansion}
     &-\Gamma(1+n/2)\mathrm{Li}_{1+n/2}(-e^b)\\
     =&\int_0^\infty du \, \frac{u^{n/2}}{1+e^{u-b}}    \notag\\
@@ -790,14 +828,31 @@ For $n=0$ the leading order term in the above expression has the indeterminant f
 \begin{align}
 \int_0^\infty du \frac{1}{1+e^{u-b}}=\ln(1+e^b)=    \ln(2)+\frac{b}{2}+O(b^2)\,.
 \end{align}
-Now substitute \eqref{eq:Li_expansion} into \eqref{eq:asymp_FD_int} and let $b=B\widetilde{T}^\gamma$ (we note that the remainder term in \eqref{eq:asymp_FD_int} is still $O(\widetilde{T}^{1+(k+D-2)/2})$ in this case because $b$ remains bounded as $\widetilde{T}\to 0$; see Remark \ref{remark:combined_remainder_uniform_in_b}). Assuming $\gamma\geq 1/2$ and $D=3$ the expansion \eqref{eq:asymp_FD_int} with $k=2$ then becomes 
+Now substitute \eqref{eq:Li_expansion} into \eqref{eq:asymp_FD_int} and let $b=B\widetilde{T}^\gamma$ (we note that the remainder term in \eqref{eq:asymp_FD_int} is still $O(\widetilde{T}^{1+(k+D-2)/2})$ in this case because $b$ remains bounded as $\widetilde{T}\to 0$; see Remark \ref{remark:combined_remainder_uniform_in_b}). Assuming $\gamma\geq 1/2$ and $D=3$ the expansion \eqref{eq:asymp_FD_int} with $k=2$ simplifies to give the following result.
+\begin{theorem}\label{thm:mu_zero_faster}
+Let $G(p)$ be a $C^2$ function on $[0,\infty)$ whose zeroth through $2$nd derivatives are polynomially bounded.  Let $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $B\geq 0$, $\gamma\geq 1/2$. Then
 \begin{align}
 &\int_0^\infty dp\, p^{2} G(p) f_{FD}(p)\label{eq:FD_b_decay_orig_integral}\\
    =&a_0(m)m^{3}(1 - 2^{-1/2}) \frac{\pi^{1/2}}{2} \zeta(3/2)\widetilde{T}^{3/2}+  \frac{\pi^2}{12}a_1(m)m^{3}\widetilde{T}^{2}\label{eq:asymp_FD_int_b_decay}\\
    &+ Ba_0(m)m^{3}\widetilde{T}^{\gamma+3/2}\int_0^\infty du\,\frac{u^{1/2}}{(e^{u/2}+e^{-u/2})^2} 
-   +O(\widetilde{T}^{5/2})\,.\notag
+   +O(\widetilde{T}^{5/2})\notag
 \end{align}
-To obtain higher order terms, or to consider $\gamma<1/2$, one simply needs to  continue the expansion \eqref{eq:Li_expansion} to higher order before substituting it into \eqref{eq:asymp_FD_int}. We note that the integral over $u$ appearing above is of a form that can be  reliably approximated via standard numerical quadrature.  In Figure \ref{fig:FD_avg_expansion_comparison} we show a comparison between the expansion \eqref{eq:asymp_FD_int_b_decay} and numerical integration of \eqref{eq:FD_b_decay_orig_integral}. 
+as $T\to 0$, where $\widetilde{T}=T/m$ and $a_n$ is defined by \eqref{eq:an_def} with $D=3$.
+\end{theorem}
+Similarly, when $D=2$, the expansion \eqref{eq:asymp_FD_int} with $k=2$ becomes the following:
+\begin{theorem}\label{thm:mu_zero_faster_D2}
+Let $G(p)$ be a $C^2$ function on $[0,\infty)$ whose zeroth through $2$nd derivatives are polynomially bounded.  Let $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $B\geq 0$, $\gamma\geq 1/2$. Then
+\begin{align}
+&\int_0^\infty dp\, p G(p) f_{FD}(p)\\
+   =& a_0(m)m^{2}\ln(2)\widetilde{T}
++\frac{1}{2}Ba_0(m)m^{2}\widetilde{T}^{1+\gamma}\\
+   &+ a_1(m)m^{2}
+ (1 - 2^{-1/2}) \frac{\pi^{1/2}}{2} \zeta(3/2)\widetilde{T}^{3/2}+ 
+   O(\widetilde{T}^{2})\,,\notag
+\end{align}
+as $T\to 0$, where $\widetilde{T}=T/m$ and $a_n$ is defined by \eqref{eq:an_def} with $D=2$.
+\end{theorem}
+To obtain higher order terms in either Theorem \ref{thm:mu_zero_faster} or Theorem \ref{thm:mu_zero_faster_D2} or to consider  $\gamma<1/2$, one simply needs to  continue the expansion \eqref{eq:Li_expansion} to the appropriate higher order before substituting it into \eqref{eq:asymp_FD_int}. We note that the integral over $u$ appearing above is of a form that can be  reliably approximated via standard numerical quadrature.  In Figure \ref{fig:FD_avg_expansion_comparison} we show a comparison between the expansion \eqref{eq:asymp_FD_int_b_decay} and numerical integration of \eqref{eq:FD_b_decay_orig_integral}. 
 
 
 \begin{figure}
@@ -807,12 +862,92 @@ To obtain higher order terms, or to consider $\gamma<1/2$, one simply needs to  
 \caption{Comparison of the computation of $\langle G\rangle_{T}$ (left)   using the expansion \eqref{eq:asymp_FD_int_b_decay} for $m=1.5$, $\gamma=1/2$, $B=1$, and $G(p)=(m+p)/E$ with the result obtained via numerical integration of \eqref{eq:FD_b_decay_orig_integral}. The right plot shows the difference between the numerical result and the two expansions.  On a log-log plot  the slopes can be measured to be approximately $5/2$ and $2$, correctly matching the indicated order of the expansion error in $\widetilde{T}$. }\label{fig:FD_avg_expansion_comparison}
 \end{figure}
 
+\section{Sommerfeld Expansion in the Regime $\mu\gg T\gg m$}\label{Section:HighTempSommerfeld}
+The classical Sommerfeld expansion can also be extended to an appropriate high temperature regime, with $\mu$ growing faster than $T$.  Specifically, we paramaterize $\mu$ as a function of $T$ as follows
+\begin{align}\label{eq:mu_infinity_faster}
+\mu=m(1+B\widetilde{T}^{1+\gamma}) \,,\,\,\gamma,B>0\,.   
+\end{align}
+Note that this is the same functional relation as considered in Appendix \ref{sec:decaying_b} but here we study the high-temperature limit.  We will assume that the density of states $H(E)$ is continuous on $[m,\infty)$ and is smooth on a neighborhood of $\infty$ and we have an odd $k>1$ such that the $k$'th derivative of $H$ the following asymptotic behavior as $E\to\infty$ for some $a_k\neq 0$, $q_k\in\mathbb{R}$:
+\begin{align}\label{eq:H_deriv_asymp}
+    H^{(k)}(E)=a_kE^{q_k}+ O(E^{q_k-1})\,.
+\end{align}
+By integrating this expression and combining it with the assumption that $H$ is continuous we can conclude that $H$ is also polynomially bounded on $[m,\infty)$. We note that, by definition, the asymptotic behavior \eqref{eq:H_deriv_asymp} implies that there exists $E_0$ and $C$ such that $H$ is smooth on $[E_0,\infty)$ and $|H^{(k)}(E)-a_kE^{q_k}|\leq CE^{q_k-1}$ for all $E\in[E_0,\infty)$. For the remainder of this derivation we assume that $T$ is large enough to ensure $\mu\geq E_0$. 
+
+Now use  the decomposition \eqref{Eq_form} to write
+\begin{align}
+    &\int_m^\infty dE\, H(E)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\notag\\
+    =&\int_\mu^\infty dE \,H(E)\frac{1}{1+e^{(E-\mu)/T}}-\int_m^\mu dE\, H(E)\frac{1}{1+e^{(\mu-E)/T}}\notag\\
+=&T\int_0^\infty dz \,H(\mu+Tz)\frac{1}{1+e^{z}}-T\int^{(\mu-m)/T}_0 dz\, H(\mu-Tz)\frac{1}{1+e^{z}}\,,\label{eq:Sommerfeld_high_temp_z}
+\end{align}
+where we changed variables to $z=(E-\mu)/T$ in the first integral and $z=(\mu-E)/T$ in the second.  Due to the exponentially decaying factor in the integrands in \eqref{eq:Sommerfeld_high_temp_z} along with polynomial boundedness of $H$, we can shrink the upper limits of integration  to $(\mu-E_0)/T$, thereby ensuring that $\mu-Tz\geq E_0$ on the domain of integration, with the  error incurred by this change being $O(T^{-p})$ as $T\to \infty$ for any choice of $p>0$; this which will be negligible compared to the other asymptotic approximations made below.  With this we can write
+\begin{align}
+    &\int_m^\infty dE\, H(E)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\notag\\
+=&T\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{H(\mu+Tz)- H(\mu-Tz)}{1+e^{z}}+O(T^{-p})\,. \label{eq:Sommerfeld_high_temp_z2}
+\end{align}
+As $\mu\pm Tz\geq E_0$ for all $z$ in the domain of integration, we can compute a Taylor expansion with remainder up to order $k$ as follows:
+\begin{align}
+ &H(\mu+Tz)- H(\mu-Tz)=\sum_{n=1,n\text{ odd}}^{k-2} 2H^{(n)}(\mu)\frac{(Tz)^n}{n!}\\
+ &\qquad\qquad\qquad+(Tz)^k \int_0^1 ds\,\frac{(1-s)^{k-1}}{(k-1)!} (H^{(k)}(\mu+sTz)+H^{(k)}(\mu-sTz))\,. \notag
+\end{align}
+Substituting this into \eqref{eq:Sommerfeld_high_temp_z2} and again making use of the freedom to change the limits of integration while only incurring $O(T^{-p})$ error and using the integral formulas \eqref{eq:FD_power_integrals} we find
+\begin{align}
+    &\int_m^\infty dE\, H(E)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\notag\\
+    =&\sum_{n=1,n\text{ odd}}^{k-2} \frac{2T^{n+1}}{n!}H^{(n)}(\mu)\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{z^n}{1+e^{z}}+R_k
++O(T^{-p})\notag\\
+=&\sum_{n=1,n\text{ odd}}^{k-2} 2(1-2^{-n})\zeta(n+1)T^{n+1}H^{(n)}(\mu)
++R_k
++O(T^{-p})\,,\label{eq:Sommerfeld_high_temp_z3}
+\end{align}
+where the remainder term is given by
+\begin{align}
+    R_k\equiv T^{k+1}\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{z^k}{1+e^{z}}
+ \int_0^1 ds\, \frac{(1-s)^{k-1}}{(k-1)!} (H^{(k)}(\mu+sTz)+H^{(k)}(\mu-sTz))\,.
+\end{align}
+Eq.~\eqref{eq:H_deriv_asymp} implies that $|H^{(k)}(E)|\leq CE^{q_k}$ on $[E_0,\infty)$ for some $C>0$. Using this we can bound the remainder as follows:
+\begin{align}
+    |R_k|\leq &CT^{k+1}\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{z^k}{1+e^{z}}
+ \int_0^1 ds\, \frac{(1-s)^{k-1}}{(k-1)!} \left(|\mu+sTz|^{q_z}+|\mu-sTz|^{q_k}\right)\notag\\
+ \leq&2^{q_k+1}CT^{k+1}\int_0^{\infty} dz \,\frac{z^k}{1+e^{z}}\notag
+ \int_0^1 ds\, \frac{(1-s)^{k-1}}{(k-1)!} (\mu^{q_k}+(sTz)^{q_k})\notag\\
+ =&O(\mu^{q_k}T^{k+1})\label{eq:Sommerfeld_high_T_remainder_bound}
+\end{align}
+as $T\to\infty$.  Note that due to the  relation \eqref{eq:mu_infinity_faster} between $\mu$ and $T$ we can equivalently write the error term as $O(T^{(1+\gamma)q_k+k+1})$ and so the $O(T^{-p})$ error term is negligible in comparison. Combining the above remainder bound with \eqref{eq:Sommerfeld_high_temp_z3} we obtain the following asymptotic expansion.
+\begin{theorem}\label{thm:high_T_Sommerfeld}
+Let $k\in\mathbb{Z}^+$ be odd and suppose that $H(E)$ is continuous on $[m,\infty)$, is smooth on a neighborhood of $\infty$, and
+\begin{align}
+  H^{(k)}(E)=a_kE^{q_k}+O(E^{q_k-1})  
+\end{align}
+as $E\to \infty$ for some $a_k\neq 0$, $q_k\in\mathbb{R}$.  Let $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $\gamma,B>0$, $\widetilde{T}\equiv T/m$. Then
+\begin{align}
+    &\int_m^\infty dE\, H(E)f_{FD}(E)\notag\\
+=&\int_m^\mu dE\, H(E)+\sum_{n=1,n\text{ odd}}^{k-2} 2(1-2^{-n})\zeta(n+1)T^{n+1}H^{(n)}(\mu)+O(\mu^{q_k}T^{k+1})\label{eq:Sommerfeld_high_temp_final}
+\end{align}
+as $T\to\infty$.
+\end{theorem}
+When $q_k>0$ the absolute error in \eqref{thm:high_T_Sommerfeld}  grows as $T\to\infty$ but the relative error decays, as we now show.  First, integrate \eqref{eq:H_deriv_asymp} twice to get
+\begin{align}\label{eq:integrate_H_asymp}
+    H^{(k-2)}(\mu)=\frac{a_k}{(q_k+1)(q_k+2)}\mu^{q_k+2}+O(\mu^{q_k+1})
+\end{align}
+as $\mu\to\infty$, assuming $q_k>0$ (the case of $q_k\leq 0$ is more subtle and requires additional assumptions; we do not consider it here). Therefore, the ratio of the error to the last included term in the expansion behaves as
+\begin{align}
+&\frac{O(\mu^{q_k}T^{k+1})}{ T^{k-1} H^{(k-2)}(\mu)}=\frac{T^2}{\mu^2}\frac{O(1)}{ \frac{a_k}{(q_k+1)(q_k+2)}+O(\mu^{-1})}= O(T^{-2\gamma})\,,
+\end{align}
+where we used \eqref{eq:mu_infinity_faster} and also that $a_k\neq 0$. Continuing to integrate \eqref{eq:integrate_H_asymp}, one sees that earlier terms in the sum dominate the error term to a  greater degree.  Therefore the expansion \eqref{eq:Sommerfeld_high_temp_final} properly  captures leading and sub-leading behavior, with a subdominant error term and a decaying relative error.
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_high_temp_comparison.pdf}
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_high_temp_relative_error_comparison.pdf}
+\caption{Left: Comparison of asymptotic expansions of $\langle G\rangle_{\Delta T}$, $G(p)=1$, via the Sommerfeld expansion \eqref{eq:Sommerfeld_high_temp_final} (red dot-dashed line) and the new expansion from Tehorem \ref{thm:mu_zero_faster} (dashed green line) where  $\mu=m(1+\widetilde{T}^{3/2})$.  Under this relationship between $\mu$ and $T$, the theory proves that \eqref{eq:Sommerfeld_high_temp_final} is valid at high temperature and \eqref{eq:asymp_FD_int_b_decay} is valid at low temperature; we see this reflected in the figure. Right: The relative error of these asymptotic expansions. \xblue{This is one of the important results in this paper, move it to earlier section} }\label{fig:FD_avg_expansion_comparison}
+\end{figure}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \backmatter
 
 \bmhead{Acknowledgments}
-We thank Gordon Baym and John W. Clark for their encouragement to publish this result.
+We thank Gordon Baym and John W. Clark for their encouragement to pursue research into this novel form of the Fermi distribution which lead to this work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{novel-fermi-function-refs}
