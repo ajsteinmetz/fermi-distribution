@@ -165,11 +165,19 @@ Our objective is to describe the difference between these two distributions in a
 \subsection{Summary of Results}
 In this work we derive and contrast expansions in the following regimes which, to the best of the authors' knowledge, are new:
 \begin{enumerate}
-\item High-temperature Sommerfeld: $\mu\gg T\gg m$; see  Section \ref{Section:HighTempSommerfeld} and Eq.~\eqref{eq:Sommerfeld_high_temp_final}.
-\item ??descriptive name for this regime??: $T\ll \mu-m\ll m$; see Section \ref{sec:asymp_T_0_faster} and Eq.~\eqref{eq:T_faster_expansion_final}.
-\item ??descriptive name for this regime??: $\mu-m\ll T\ll m$; see Section \ref{Section:HighTempSommerfeld} and Eq.~\eqref{eq:asymp_FD_int_b_decay}.
+\item High-temperature Sommerfeld: $\mu\gg T\gg m$; see  Section \ref{Section:HighTempSommerfeld} and Theorem \ref{thm:high_T_Sommerfeld}.
+\item ??descriptive name for this regime??: $T\ll \mu-m\ll m$; see Section \ref{sec:asymp_T_0_faster} and Theorem \ref{thms:T_decay_faster}.
+\item ??descriptive name for this regime??: $\mu-m\ll T\ll m$; see Section \ref{sec:asympt_Delta_mu_order_T} and Theorem \ref{thm:mu_zero_faster}
 \end{enumerate}
-First, we prove that the classical Sommerfeld expansion, which applies to the regime $T\ll m$ with $\mu-m$ not small, also applies to the high-temperature regime $\mu\gg T\gg m$ under appropriate assumptions.  In this derivation we utilize a novel decomposition of the FD distribution into finite and zero temperature components, which we find convenient for guiding this and other derivations. Next we demonstrate that the Sommerfeld expansion can fail completely when applied to certain regimes where $\mu-m$ and $T$ are both small small; see  the example in Figure \ref{lnZ_Ratio_fig} below. Reliable and accurate results in regimes where both $T$ and $\mu-m$ are small compared to $m$ require the use of the new results \eqref{eq:T_faster_expansion_final}  and \eqref{eq:asymp_FD_int_b_decay}. 
+First, we prove that the classical Sommerfeld expansion, which applies to the regime $T\ll m$ with $\mu-m$ not small, also applies to the high-temperature regime $\mu\gg T\gg m$ under appropriate assumptions.  In this derivation we utilize a novel decomposition of the FD distribution into finite and zero temperature components, which we find convenient for guiding this and other derivations. Next we demonstrate that the Sommerfeld expansion can fail completely when applied to certain regimes where $\mu-m$ and $T$ are both small small; see  the example in Figure \ref{lnZ_Ratio_fig} below. Accurate results in the regime where both $\Delta\mu\ll T\ll m$ ($\Delta\mu\equiv \mu-m$)  requires the use of the new expansion presented in Theorem \ref{thm:mu_zero_faster}. In addition, the application of the classical Sommerfeld expansion to the case where $T\ll\Delta\mu\ll m$ requires care, as the coefficients in the expansion become singular in general;  in Theorem \ref{thms:T_decay_faster} we provide a formula that  resolves those singularities so as to avoid such numerical difficulties and obtain an expansion up to a specified order. We compare the domain of validity of the Sommerfeld expansion and the expansion from  Theorem \ref{thm:mu_zero_faster} in Figure \ref{fig:Thm3_vs_Sommerfeld_regions}. 
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_Thm3_regions_D3_1_term.pdf}
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_Thm3_regions_D2_1_term.pdf}
+\caption{Domains of validity in $(T/m,\Delta\mu/m)$-space ($\Delta\mu\equiv\mu-m$) of the Sommerfeld expansion (solid blue) and the new expansion from Theorem \ref{thm:mu_zero_faster} (dotted green),  where validity is defined as the computation of $\langle G\rangle_T$ having relative error  less that $10\%$ for the choice  $G(p)=1$.  Our  expansion from Theorem \ref{thm:mu_zero_faster} applies when $\Delta\mu\ll T\ll m$, and its region of validity is larger in dimension $D=2$ than in $D=3$.  Note that in addition to the well-known low temperature regime, there is also a high-temperature regime ($\mu\gg T\gg m$) where the Sommerfeld expansion is valid; we  prove this in Theorem \ref{thm:high_T_Sommerfeld} below. }\label{fig:Thm3_vs_Sommerfeld_regions}
+\end{figure}
 
 
 
@@ -362,7 +370,7 @@ By employing our decomposition form, we will demonstrate that the integral for f
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu>m$}\label{Appendix:Sommerfeld}
 \subsection{Derivation of Sommerfeld expansion: $T\ll m$ with $\mu-m$ not small}\label{Section:Sommerfeld}
-
+{\bf JB: Now that we have the proof that Sommerfeld holds in an appropriate high temp regime, I don't think we need this section anymore.  I think the derivation in the appendix makes the case for the utility of the decomposition and so I don't think we need to redo the usual Sommerfeld derivation, I think it is sufficient to just recall it here.}
 In this section we use the decomposition \eqref{Eq_form} naturally leads to an alternative derivation of the Sommerfeld expansion, see, e.g., Eq. (58.1) on page 170 of \cite{landau2013statistical}), i.e., an  asymptotic expansion for the difference between a $D$-dimensional thermal average at finite and zero temperature as $T\to 0$ in the regime where  $\mu>m$.     
 
 {\bf ??To Do: This case can be rephrased in terms of a smooth $H(E)$ and we can simply comment that if one starts with $G(p)$ then the resulting $H(E)$ is smooth because we are assuming $\mu>m$ are fixed. This will make the derivation simpler and should better showcase how the decomposition leads to the Sommerfeld expansion???}
@@ -519,7 +527,7 @@ To demonstrate the equivalence between our novel distribution and the Fermi-Dira
 \centering
 \includegraphics[width=0.5\textwidth]{./plot/Lowmu_T2}\includegraphics[width=0.5\textwidth]{./plot/Lowmu_T3}\\
 \includegraphics[width=0.5\textwidth]{./plot/Lowmu_T4}\includegraphics[width=0.5\textwidth]{./plot/Lowmu_T5}
-\caption{ The ratio between numerical integral Eq.~(\ref{lnZ_Ratio}) as a function of chemical potential $(\mu-m)/m$ with different temperature  {\bf Somewhere we should point out that adding more terms doesn't necessarily help because it is an asymptotic expansion, not convergent.  I think the best comparison for us to make with with the expansion \eqref{thm:mu_zero_faster} and to reverse the roles of $T$ and $\mu$ (i.e., $x$-axis of plots shows $(\mu-m)/m$ with several plots for several different $T$'s. The example $G(p)=1$ should suffice: see figures \ref{fig:Thm3_vs_Sommerfeld_comparison_fixed_T} (\ref{fig:FD_avg_expansion_comparison}is another way of displaying the comparison) }}
+\caption{ The ratio between numerical integral Eq.~(\ref{lnZ_Ratio}) as a function of chemical potential $(\mu-m)/m$ with different temperature  {\bf Somewhere we should point out that adding more terms doesn't necessarily help because it is an asymptotic expansion, not convergent.  I think the best comparison for us to make with with the expansion \eqref{thm:mu_zero_faster} and to reverse the roles of $T$ and $\mu$ (i.e., $x$-axis of plots shows $(\mu-m)/m$ with several plots for several different $T$'s. The example $G(p)=1$ should suffice: see figures \ref{fig:Thm3_vs_Sommerfeld_comparison_fixed_T} (\ref{fig:FD_avg_expansion_comparison_Sommerfeld}is another way of displaying the comparison) }}
 \label{lnZ_Ratio_fig}
 \end{figure}
 \begin{figure}
@@ -550,8 +558,8 @@ In Fig.~\ref{lnZ_Ratio_fig} we plot the ratio between numerical integral Eq.~(\r
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\subsection{Asymptotic Expansion of Thermal Averages in the regime $T=O(\mu-m)$}\label{sec:asymp_T_0_faster}
-\subsection{Asymptotic Expansion in the regime: $T=O(\mu-m)$}\label{sec:asymp_T_0_faster}
+%\subsection{Asymptotic Expansion of Thermal Averages in the regime $T=\mathcal{O}(\mu-m)$}\label{sec:asymp_T_0_faster}
+\subsection{Asymptotic Expansion in the regime: $T=\mathcal{O}(\mu-m)$}\label{sec:asymp_T_0_faster}
 
 In this section we use the decomposition \eqref{Eq_form} to obtain an asymptotic expansion for the difference between a $D$-dimensional thermal average ($D\geq 2$) at finite and zero temperature when $T$ approaches zero at a faster rate than $\mu$ approaches $m$.   More specifically, we will assume 
 \begin{align}\label{eq:T_mu_relation}
@@ -610,18 +618,18 @@ The remainder term can be bounded by using \eqref{eq:R_k_poly_bound} as follows
    \leq&m^{D}\int_{\Delta\widetilde{\mu}}^\infty dz\,z^{k/2}[\alpha_k(m)+\beta_k(m)z^{q_k/2}]z^{(D-2)/2}e^{-(z-\Delta\widetilde{\mu})/\widetilde{T}}\notag\\
 =&d\alpha_k(m)m^{D}\Delta\widetilde{\mu}^{(k+D)/2+\gamma}\int_{0}^\infty dx\,(1+d\Delta\widetilde{\mu}^{\gamma}x)^{(k+D-2)/2}e^{-x}\notag\\
 &+d\beta_k(m)m^{D}\Delta\widetilde{\mu}^{(k+q_k+D)/2+\gamma}\int_{0}^\infty dx\,(1+d\Delta\widetilde{\mu}^{\gamma}x)^{(k+q_k+D-2)/2}e^{-x}\notag\\   
-=&O(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\text{ as } \Delta\widetilde{\mu}\to 0^+\,,\label{eq:T_faster_remainder_bound}
+=&\mathcal{O}(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\text{ as } \Delta\widetilde{\mu}\to 0^+\,,\label{eq:T_faster_remainder_bound}
 \end{align}
 where we changed variables to $x=(z-\Delta\widetilde{\mu})/\widetilde{T}$ and used \eqref{eq:T_mu_relation}.  Making this same change of variables in the remaining terms, we  therefore obtain
 \begin{align}\label{eq:T_faster_int_1_change_vars_expanded1}
-\eqref{eq:T_faster_int_1_change_vars} =& \sum_{n=0}^{k-1} da_n(m)m^{D}\Delta\widetilde{\mu}^{(n+D)/2+\gamma}\!\int_{0}^\infty\! dx\, \frac{(1+d\Delta\widetilde{\mu}^{\gamma}x)^{(n+D-2)/2}}{1+e^{x}}+O(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\,.
+\eqref{eq:T_faster_int_1_change_vars} =& \sum_{n=0}^{k-1} da_n(m)m^{D}\Delta\widetilde{\mu}^{(n+D)/2+\gamma}\!\int_{0}^\infty\! dx\, \frac{(1+d\Delta\widetilde{\mu}^{\gamma}x)^{(n+D-2)/2}}{1+e^{x}}+\mathcal{O}(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\,.
 \end{align}
 These remaining integrals are smooth as functions of $d\Delta\widetilde{\mu}^\gamma$ and can be Taylor expanded by differentiating under the integral:
 \begin{align}\label{eq:aux_int_expansion1}
 &\int_0^\infty dx\, \frac{(1+C x)^\nu}{1+e^x}\\
 =&\sum_{j=0}^{k-1}\frac{1}{j!} \left(\prod_{\ell=0}^{j-1}(\nu-\ell) \right)C^j\int_0^\infty \frac{x^j}{1+e^x} \notag\\
 &+C^k\int_0^\infty dx \frac{x^k}{1+e^x} \int_0^1 ds\frac{(1-s)^{k-1}}{(k-1)!}  \left(\prod_{\ell=0}^{k-1}(\nu-\ell)\right)(1+sCx)^{\nu-k}\notag\\
-=&\ln(2)+\sum_{j=1}^{k-1}\frac{1}{j!} \left(\prod_{\ell=0}^{j-1}(\nu-\ell) \right)C^j  (1 - 2^{-j}) \Gamma(j+1) \zeta(j+1) +O(C^k)\,, \notag
+=&\ln(2)+\sum_{j=1}^{k-1}\frac{1}{j!} \left(\prod_{\ell=0}^{j-1}(\nu-\ell) \right)C^j  (1 - 2^{-j}) \Gamma(j+1) \zeta(j+1) +\mathcal{O}(C^k)\,, \notag
 \end{align}
 where we used the integral formulas \eqref{eq:FD_power_integrals}. Now we apply this to the terms in \eqref{eq:T_faster_int_1_change_vars_expanded1} with $C=d\Delta\widetilde{\mu}^\gamma$ and $\nu=(n+D-2)/2$; note that for each $n$ we must expand \eqref{eq:aux_int_expansion1} up to order $k_n\equiv\lceil(k-n)/(2\gamma)\rceil$ so that the the remainder term in \eqref{eq:aux_int_expansion1} is of  the same or higher order than the remainder in \eqref{eq:T_faster_remainder_bound} for each $n$. Doing this yields
 \begin{align}\label{eq:T_faster_int_1_change_vars_expanded2}
@@ -629,7 +637,7 @@ where we used the integral formulas \eqref{eq:FD_power_integrals}. Now we apply 
 \ln(2)\\
 &+\sum_{j=1}^{k_n-1}d^j\Delta\widetilde{\mu}^{j\gamma}  \left(\prod_{\ell=0}^{j-1}((n+D-2)/2-\ell) \right) (1 - 2^{-j})  \zeta(j+1)\bigg]\notag
 \\
-&+O(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\,.\notag
+&+\mathcal{O}(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\,.\notag
 \end{align}
 This completes the asymptotic expansion of the first integral in  \eqref{eq:2_int_decomp_T_faster}.
 
@@ -646,12 +654,12 @@ We bound the remainder by again using \eqref{eq:R_k_poly_bound}
 \frac{z^{(D-2)/2}}{1+e^{(\Delta\widetilde{\mu}-z)/\widetilde{T}}}\right|\\
 \leq&m^{D}\int_0^{\Delta\widetilde{\mu}} dz \,[\alpha_k(m)+\beta_k(m)z^{q_k/2}]z^{(k+D-2)/2}e^{-(\Delta\widetilde{\mu}-z)/\widetilde{T}}\notag\\
 \leq &m^{D}\widetilde{T}[\alpha_k(m)\Delta\widetilde{\mu}^{(k+D-2)/2}+\beta_k(m)\Delta\widetilde{\mu}^{(k+q_k+D-2)/2}]\notag\\
-=&O(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\,.\notag
+=&\mathcal{O}(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\,.\notag
 \end{align}
 Therefore 
 \begin{align}    \label{eq:T_faster_int_2_expanded1}
     \eqref{eq:T_faster_int_2_change_vars} =&\sum_{n=0}^{k-1} da_n(m)m^{D}\Delta\widetilde{\mu}^{(n+D)/2+\gamma}\int^{\Delta\widetilde{\mu}/\widetilde{T}}_{0} du \,\frac{(1-\widetilde{T}u/\Delta\widetilde{\mu})^{(n+D-2)/2}}{1+e^{u}} \\
-    &+O(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\notag\,,
+    &+\mathcal{O}(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\notag\,,
 \end{align}
 where we changed variables to $u=(\Delta\widetilde{\mu}-z)/\widetilde{T}$. The remaining integrals can be expanded using the following computation for $C>0$: 
 \begin{align}
@@ -659,38 +667,38 @@ where we changed variables to $u=(\Delta\widetilde{\mu}-z)/\widetilde{T}$. The r
 =&\sum_{j=0}^{k-1}\frac{C^j}{j!}(-1)^j\left(\prod_{\ell=0}^{j-1}(\nu-\ell) \right)\int_0^{1/C} du \,\frac{u^j}{1+e^u}  \notag\\
 &+ C^k (-1)^k\left(\prod_{\ell=0}^{k-1}(\nu-\ell)\right)\int_0^{1/C} du \frac{1}{1+e^u} u^k\int_0^1ds\,\frac{(1-s)^{k-1}}{(k-1)!} (1-Csu)^{\nu-k}\notag
 \end{align}
-When $\nu\geq k$  we have $(1-Csu)^{\nu-k}\leq 1$ and so it is straightforward to see that the remainder is $O(C^k)$ as $C\to 0$.  When $\nu<k$ we have $(1-Csu)^{\nu-k}\leq (1-s)^{\nu-k}$ and so the remainder can be bounded as follows
+When $\nu\geq k$  we have $(1-Csu)^{\nu-k}\leq 1$ and so it is straightforward to see that the remainder is $\mathcal{O}(C^k)$ as $C\to 0$.  When $\nu<k$ we have $(1-Csu)^{\nu-k}\leq (1-s)^{\nu-k}$ and so the remainder can be bounded as follows
 \begin{align}
 &\left|C^k (-1)^k\left(\prod_{\ell=0}^{k-1}(\nu-\ell)\right)\int_0^{1/C} du \frac{1}{1+e^u} u^k\int_0^1ds\,\frac{(1-s)^{k-1}}{(k-1)!} (1-Csu)^{\nu-k}\right|\notag\\
 \leq&C^k\left| \left(\prod_{\ell=0}^{k-1}(\nu-\ell)\right)\right|\int_0^{1/C} du \frac{1}{1+e^u} u^k\int_0^1ds\,\frac{(1-s)^{\nu-1}}{(k-1)!} \notag\\
-=&O(C^k)
+=&\mathcal{O}(C^k)
 \end{align}
 for all  $\nu>0$. Therefore we have shown
 \begin{align}
 &\int_0^{1/C} du \,\frac{(1-Cu)^\nu}{1+e^u}\\
-=&\sum_{j=0}^{k-1}\frac{C^j}{j!}(-1)^j\left(\prod_{\ell=0}^{j-1}(\nu-\ell) \right)\int_0^{1/C} du \,\frac{u^j}{1+e^u}  +O(C^k)\notag
+=&\sum_{j=0}^{k-1}\frac{C^j}{j!}(-1)^j\left(\prod_{\ell=0}^{j-1}(\nu-\ell) \right)\int_0^{1/C} du \,\frac{u^j}{1+e^u}  +\mathcal{O}(C^k)\notag
 \end{align}
 (note that this trivially holds for $\nu=0$ as well).   Also note that the exponential decay of the integrand implies 
 \begin{align}
-\int_{1/C}^\infty du\, \frac{u^j}{1+e^u}=O(C^k)
+\int_{1/C}^\infty du\, \frac{u^j}{1+e^u}=\mathcal{O}(C^k)
 \end{align} for any $k$ and hence we are free to change the upper limits of integration to $\infty$, yeilding:
 \begin{align}
 &\int_0^{1/C} du \,\frac{(1-Cu)^\nu}{1+e^u}\\
-=&\sum_{j=0}^{k-1}\frac{C^j}{j!}(-1)^j\left(\prod_{\ell=0}^{j-1}(\nu-\ell) \right)\int_0^{\infty} du \,\frac{u^j}{1+e^u}  +O(C^k)\,.\notag
+=&\sum_{j=0}^{k-1}\frac{C^j}{j!}(-1)^j\left(\prod_{\ell=0}^{j-1}(\nu-\ell) \right)\int_0^{\infty} du \,\frac{u^j}{1+e^u}  +\mathcal{O}(C^k)\,.\notag
 \end{align}
 For each $n$ we use this expansion up to order $k_n= \lceil(k-n)/(2\gamma)\rceil$ with $C\equiv \widetilde{T}/\Delta\widetilde{\mu}=d\Delta\widetilde{\mu}^{\gamma}$ and $\nu=(n+D-2)/2$ with $n\geq 0$, $D\geq 2$, along with the integral formulas 
 \eqref{eq:FD_power_integrals}. Substituting  these into \eqref{eq:T_faster_int_2_expanded1} yields
 \begin{align}    \label{eq:T_faster_int_2_expanded2}
     \eqref{eq:T_faster_int_2_change_vars} =&\sum_{n=0}^{k-1} da_n(m)m^{D}\Delta\widetilde{\mu}^{(n+D)/2+\gamma}\bigg[\ln(2)\\
     &+\sum_{j=1}^{k_n-1}(-1)^jd^j\Delta\widetilde{\mu}^{j\gamma}\left(\prod_{\ell=0}^{j-1}((n+D-2)/2-\ell) \right)(1-2^{-j})\zeta(j+1)  \bigg] \notag\\
-    &+O(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\notag\,,
+    &+\mathcal{O}(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\notag\,,
 \end{align}
 This completes the asymptotic expansion of the second integral in  \eqref{eq:2_int_decomp_T_faster}.
 
 \begin{comment}
 \begin{align}
 &\int_0^{\Delta\widetilde{\mu}/\widetilde{T}} du \,\frac{(1-\widetilde{T}u/\Delta\widetilde{\mu})^{(n+D-2)/2}}{1+e^u}\\
-=&\ln(2)+\sum_{j=1}^{k_n-1}\frac{d^j\Delta\widetilde{\mu}^{j\gamma}}{j!}(-1)^j\left(\prod_{\ell=0}^{j-1}((n+D-2)/2-\ell) \right)(1-2^{-j})\Gamma(j+1)\zeta(j+1)   +O(\Delta\widetilde{\mu}^{k_n\gamma})\,.\notag
+=&\ln(2)+\sum_{j=1}^{k_n-1}\frac{d^j\Delta\widetilde{\mu}^{j\gamma}}{j!}(-1)^j\left(\prod_{\ell=0}^{j-1}((n+D-2)/2-\ell) \right)(1-2^{-j})\Gamma(j+1)\zeta(j+1)   +\mathcal{O}(\Delta\widetilde{\mu}^{k_n\gamma})\,.\notag
 \end{align}
 \end{comment}
 
@@ -702,7 +710,7 @@ Let $D\geq 2$,     $\mu=m+\Delta\mu$, $\Delta\mu>0$ and $\widetilde{T}=d\Delta\w
     =& \sum_{n=0}^{k-1} da_n(m)m^{D}\Delta\widetilde{\mu}^{(n+D)/2+\gamma}\label{eq:T_faster_expansion_final}\\
     &\times\sum_{j=1,\mathrm{odd}}^{\lceil(k-n)/(2\gamma)\rceil-1}
  2d^j\Delta\widetilde{\mu}^{j\gamma}\left(\prod_{\ell=0}^{j-1}((n+D-2)/2-\ell) \right)(1-2^{-j})\zeta(j+1) \notag\\
-    &+O(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\,,\notag
+    &+\mathcal{O}(\Delta\widetilde{\mu}^{(k+D)/2+\gamma})\,,\notag
 \end{align} 
 where
 \begin{align}\label{eq:an_def}
@@ -726,7 +734,115 @@ In dimension $D=3$ the leading order term in \eqref{eq:T_faster_expansion_final}
 \end{figure}
 
 
-{\bf Discuss comparison with Sommerfeld: If one naively tries to expand the Sommerfeld result around $\Delta\mu=0$ then one can easily run into singularities in the derivatives at $E=m$. These singularities are what necessitate the more complex derivation we have employed.}
+\section{Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu=m+\mathcal{O}(T)$}\label{sec:asympt_Delta_mu_order_T}
+The decomposition of the FD distribution presented above is not as useful for studying the regime where $\mu$ approaches to $m$ as fast or faster than $T$ approaches to $0$.  This can be motivated by noting that the zero temperature contribution  is defined with respect to a fixed $\mu$ and this choice makes little sense  in the regime where $\mu=m+\mathcal{O}(T)$.  In this appendix we show that an asymptotic expansion as $T\to 0$ in this regime is more easily obtained by using the FD distribution as a whole, in contrast to the cases studied in Sections  \ref{sec:asymp_T_0_faster} and \ref{Section:HighTempSommerfeld}.
+
+
+  Here we consider a $D$-dimensional thermal average ($D\geq 2$) of a function   $G(p)$, $p\in[0,\infty)$ that is a $C^k$ function whose zeroth through $k$'th derivatives are polynomially bounded and will assume that $\mu=m+bT$ where $b\geq 0$. First change variables to $z=(E-m)/m$ so that $p=m\sqrt{z}\sqrt{z+2}$
+\begin{align}
+&\int_0^\infty dp\, p^{D-1} G(p) f_{FD}(p)\notag\\
+=&m^{D}\int_0^\infty dz\, (1+z) z^{(D-2)/2} (z+2)^{(D-2)/2} G\left(m\sqrt{z}\sqrt{z+2}\right) \frac{1}{1+e^{z/\widetilde{T}-b}}\,,\label{eq:fd_int_var_z}
+\end{align}
+where $\widetilde{T}\equiv T/m$.  Note that the integrand can have a square root singularity at $z=0$ and so we cannot simply Taylor expand in $z$.  However we can employ a more general asymptotic expansion  by again making use of the function $F(y,m)$, defined in \eqref{eq:F_y_m_def}, and its expansion \eqref{eq:F_y_m_Taylor}, to rewrite the integral as follows:
+\begin{align}
+    \eqref{eq:fd_int_var_z}=&m^{D}\int_0^\infty dz\, F(\sqrt{z},m)\frac{z^{(D-2)/2}}{1+e^{z/\widetilde{T}-b}}\\
+    =&\sum_{n=0}^{k-1} a_n(m)m^{D}\int_0^\infty dz\,  \frac{z^{(n+D-2)/2}}{1+e^{z/\widetilde{T}-b}}+m^{D}\int_0^\infty dz\, R_k(\sqrt{z},m)\frac{z^{(D-2)/2}}{1+e^{z/\widetilde{T}-b}}\,.\notag
+\end{align}
+The remainder term can be bounded as follows
+\begin{align}
+ &\left|m^{D}\int_0^\infty dz\, R_k(\sqrt{z},m)\frac{z^{(D-2)/2}}{1+e^{z/\widetilde{T}-b}}\right|\\
+ \leq&m^{D}\int_0^\infty dz\, [\alpha_k(m)+\beta_k(m)z^{q_k/2}]\frac{z^{(k+D-2)/2}}{1+e^{z/\widetilde{T}-b}}\notag\\
+ \leq &m^{D}\int_{b\widetilde{T}}^\infty dz\, [\alpha_k(m)+\beta_k(m)z^{q_k/2}]z^{(k+D-2)/2}e^{-z/\widetilde{T}+b}\notag\\
+ &+m^{D}\int_0^{{b\widetilde{T}}} dz\, [\alpha_k(m)+\beta_k(m)z^{q_k/2}]z^{(k+D-2)/2}\notag\\
+ =&m^{D} \alpha_k(m)\widetilde{T}^{(k+D)/2}\int_{0}^\infty du\,(u+b)^{(k+D-2)/2}e^{-u}\notag\\
+ &+m^D\beta_k(m)\widetilde{T}^{(k+D+q_k)/2}\int_{0}^\infty du\,(u+b)^{(k+D-2+q_k)/2}e^{-u}\notag\\
+ &+\alpha_k(m)m^{D}\frac{2}{k+D}(b\widetilde{T})^{(k+D)/2}+\beta_k(m)m^{D}\frac{2}{k+D+q_k}(b\widetilde{T})^{(k+D+q_k)/2}\notag\\
+ =&\mathcal{O}(\widetilde{T}^{(k+D)/2})\,.\label{eq:combined_exp_remainder}
+\end{align}
+\begin{remark}\label{remark:combined_remainder_uniform_in_b}
+We emphasize that the implied constant in the bound \eqref{eq:combined_exp_remainder} depends on $m$ and $b$, though if one restricts $b$ to a bounded set then the constant can be chosen independent of $b$. 
+\end{remark}
+
+Changing variables to $x=z/\widetilde{T}$, recalling the integral formula for the polylogarithm function $\mathrm{Li}_s(y)$, see 3.411.3 in  \cite{Gradshteyn:1943cpj}:
+\begin{align}\label{eq:h_decomp_eval}
+   \int_0^\infty dx \, \frac{x^{n/2}}{1+e^{x-b}}    =-\Gamma(1+n/2)\mathrm{Li}_{1+n/2}(-e^b)\,,
+\end{align}
+and using the  remainder bound \eqref{eq:combined_exp_remainder} we obtain the following asymptotic expansion.
+\begin{theorem}\label{thm:asymp_FD_int_Delta_mu_small}
+Let $D\geq 0$, $k\in\mathbb{Z}^+$, and $G(p)$ be a  $C^k$ function on $[0,\infty)$ whose zeroth through $k$'th derivatives are polynomially bounded.  Let $\mu=m+bT$ for $b\geq 0$. Then
+\begin{align}\label{eq:asymp_FD_int}
+&\int_0^\infty dp\, p^{D-1} G(p) f_{FD}(p)\notag\\
+   =&\sum_{n=0}^{k-1} a_n(m)m^{D}\widetilde{T}^{(n+D)/2}\left(-\Gamma((n+D)/2)\mathrm{Li}_{(n+D)/2}(-e^b)\right)+\mathcal{O}(\widetilde{T}^{(k+D)/2})\,,
+\end{align}
+where $\widetilde{T}=T/m$, $a_n$ is defined in \eqref{eq:an_def}, and the implied constant in the error term depends on $m$ but is uniform in $b$ when restricted to a fixed bounded set. 
+\end{theorem}
+Explicit formulas for the first few $a_n$'s can be found in Eq.~\eqref{eq:first_few_a_ns}.
+\subsection{Asymptotic Expansion in the Regime $T\ll m$, $\mu=m$}\label{sec:b_0}
+When $b=0$ (i.e., $\mu=m$) one can use the integral formula \eqref{eq:FD_power_integrals} to further simplify the expansion \eqref{eq:asymp_FD_int}:
+\begin{align}\label{eq:asymp_FD_int_b_0}
+&\int_0^\infty dp\, p^{D-1} G(p) f_{FD}(p)\notag\\
+   =&\sum_{n=0}^{k-1} a_n(m)m^{D}\widetilde{T}^{(n+D)/2}(1-2^{-(n+D-2)/2})\Gamma((n+D)/2)\zeta((n+D)/2)\\
+   &+\mathcal{O}(\widetilde{T}^{(k+D)/2})\,.\notag
+\end{align}
+In particular, note that when $D=3$ and $G(0)\neq 0$ the leading order term scales with $\widetilde{T}^{3/2}$.  This is in contrast to the  Sommerfeld expansion (see Eq. (58.1) on page 170 of \cite{landau2013statistical}), which  applies to the case where $\mu-m$ is bounded away from zero and whose leading order term scales with $\widetilde{T}^2$.
+
+
+
+
+\subsection{Asymptotic Expansion in the Regime $\mu-m\ll T\ll m$}\label{sec:decaying_b}
+One can also use the expansion \eqref{eq:asymp_FD_int} to study the regime where $\mu$ approaches $m$ faster than $T$ approaches zero. Mathematically we parameterize this as 
+\begin{align}\label{eq:mu_decay_faster}
+\mu=m(1+B\widetilde{T}^{1+\gamma})\,,\,\,\,  B\geq 0\,,\,\, \gamma>0\,.   
+\end{align}
+  To proceed, first  Taylor expand \eqref{eq:h_decomp_eval} by differentiating under the integral to obtain
+\begin{align}\label{eq:Li_expansion}
+    &-\Gamma(1+n/2)\mathrm{Li}_{1+n/2}(-e^b)\\
+    =&\int_0^\infty du \, \frac{u^{n/2}}{1+e^{u-b}}    \notag\\
+    =&\int_0^\infty du\,\frac{u^{n/2}}{e^u+1}+b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2}  +\mathcal{O}(b^2)\notag\\
+    =&(1 - 2^{-n/2}) \Gamma(1 + n/2) \zeta(1 + n/2)+ b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2} +\mathcal{O}(b^2)\,.\notag
+\end{align}
+For $n=0$ the leading order term in the above expression has the indeterminant form $0\cdot \infty$ (this case will only be  relevant to us when $D=2)$; there one should instead use
+\begin{align}
+\int_0^\infty du \frac{1}{1+e^{u-b}}=\ln(1+e^b)=    \ln(2)+\frac{b}{2}+\mathcal{O}(b^2)\,.
+\end{align}
+Now substitute \eqref{eq:Li_expansion} into \eqref{eq:asymp_FD_int} and let $b=B\widetilde{T}^\gamma$ (we note that the remainder term in \eqref{eq:asymp_FD_int} is still $\mathcal{O}(\widetilde{T}^{1+(k+D-2)/2})$ in this case because $b$ remains bounded as $\widetilde{T}\to 0$; see Remark \ref{remark:combined_remainder_uniform_in_b}). Assuming $\gamma\geq 1/2$  the expansion \eqref{eq:asymp_FD_int} with $k=2$ simplifies to give the following result.
+\begin{theorem}\label{thm:mu_zero_faster}
+Let $G(p)$ be a $C^2$ function on $[0,\infty)$ whose zeroth through $2$nd derivatives are polynomially bounded.  Let $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $B\geq 0$, $\gamma\geq 1/2$. 
+\begin{enumerate}
+    \item For $D=3$ we have
+    \begin{align}
+&\int_0^\infty dp\, p^{2} G(p) f_{FD}(p)\label{eq:FD_b_decay_orig_integral}\\
+   =&a_0(m)m^{3}(1 - 2^{-1/2}) \frac{\pi^{1/2}}{2} \zeta(3/2)\widetilde{T}^{3/2}+  \frac{\pi^2}{12}a_1(m)m^{3}\widetilde{T}^{2}\label{eq:asymp_FD_int_b_decay}\\
+   &+ Ba_0(m)m^{3}\widetilde{T}^{\gamma+3/2}\int_0^\infty du\,\frac{u^{1/2}}{(e^{u/2}+e^{-u/2})^2} 
+   +\mathcal{O}(\widetilde{T}^{5/2})\notag
+\end{align}
+as $T\to 0$, where $\widetilde{T}=T/m$ and $a_n$ is defined by \eqref{eq:an_def} with $D=3$.
+\item For $D=2$ we have
+\begin{align}
+&\int_0^\infty dp\, p G(p) f_{FD}(p)\\
+   =& a_0(m)m^{2}\ln(2)\widetilde{T}
++\frac{1}{2}Ba_0(m)m^{2}\widetilde{T}^{1+\gamma}\\
+   &+ a_1(m)m^{2}
+ (1 - 2^{-1/2}) \frac{\pi^{1/2}}{2} \zeta(3/2)\widetilde{T}^{3/2}+ 
+   \mathcal{O}(\widetilde{T}^{2})\,,\notag
+\end{align}
+as $T\to 0$, where $\widetilde{T}=T/m$ and $a_n$ is defined by \eqref{eq:an_def} with $D=2$.
+\end{enumerate}
+\end{theorem}
+\begin{remark}
+ When referring to the number of terms in the expansions in Theorem \ref{thm:mu_zero_faster} and related results, e.g., in \ref{fig:FD_avg_expansion_comparison_Sommerfeld},  we mean the index $k$ that was used in \eqref{eq:asymp_FD_int} to obtain the expansion.
+\end{remark}
+To obtain higher order terms in  Theorem \ref{thm:mu_zero_faster}, or to consider  $\gamma<1/2$ or $D\neq 2,3$, one simply needs to  continue the expansion \eqref{eq:Li_expansion} to the appropriate higher order before substituting it into \eqref{eq:asymp_FD_int}; however, we again emphasize that these results are asymptotic expansions and so going to higher order does not necessarily increase the accuracy at a given $T$. We note that the integral over $u$ appearing in \eqref{eq:asymp_FD_int_b_decay} does not depend on the values of the parameters and is of a form that can be  reliably approximated via standard numerical quadrature.  In Figure \ref{fig:FD_avg_expansion_comparison_Sommerfeld} we show a comparison between the expansion \eqref{eq:asymp_FD_int_b_decay} (green dashed line) and numerical integration of \eqref{eq:FD_b_decay_orig_integral} (solid black line).  We also compare with the Sommerfeld expansion \eqref{} (red dot-dashed line).  Note that the Sommerfeld completely fails in the low temperature regime when $\mu$ and $T$ are related by \eqref{eq:mu_decay_faster} (i.e., when $\mu-m\ll T$).  Under the parameterization \eqref{eq:mu_decay_faster}, the classical Sommerfeld expansion is actually seen to be valid at high temperature; we prove this to be the case in Theorem \ref{thm:high_T_Sommerfeld}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_high_temp_comparison.pdf}
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_high_temp_relative_error_comparison.pdf}
+\caption{Left: Comparison of asymptotic expansions of $\langle G\rangle_{\Delta T}$, $G(p)=1$, via the Sommerfeld expansion \eqref{eq:Sommerfeld_high_temp_final} (red dot-dashed line) and the new expansion  \eqref{eq:asymp_FD_int_b_decay}  (green dashed  line) where  $\mu=m(1+\widetilde{T}^{3/2})$.  Under this relationship between $\mu$ and $T$, Theorem \ref{thm:high_T_Sommerfeld} and Theorem \ref{thm:mu_zero_faster} respectively prove that \eqref{eq:Sommerfeld_high_temp_final} is valid at high temperature and \eqref{eq:asymp_FD_int_b_decay} is valid at low temperature; we see this reflected in the figure. Right: The relative error of these asymptotic expansions.  }\label{fig:FD_avg_expansion_comparison_Sommerfeld}
+\end{figure}
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -761,115 +877,19 @@ The Fermi distribution Eq.~(\ref{NFF1}) provides us the tool to study or examine
 
 \appendix
 
-\section{Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu=m+O(T)$}
-The decomposition of the FD distribution presented above is not as useful for studying the regime where $\mu$ approaches to $m$ as fast or faster than $T$ approaches to $0$.  This can be motivated by noting that the zero temperature contribution  is defined with respect to a fixed $\mu$ and this choice makes little sense  in the regime where $\mu=m+O(T)$.  In this appendix we show that an asymptotic expansion as $T\to 0$ in this regime is more easily obtained by using the FD distribution as a whole, in contrast to the cases studied in Sections  \ref{sec:asymp_T_0_faster} and \ref{Section:HighTempSommerfeld}.
-
-
-  Here we consider a $D$-dimensional thermal average ($D\geq 2$) of a function   $G(p)$, $p\in[0,\infty)$ that is a $C^k$ function whose zeroth through $k$'th derivatives are polynomially bounded and will assume that $\mu=m+bT$ where $b\geq 0$. First change variables to $z=(E-m)/m$ so that $p=m\sqrt{z}\sqrt{z+2}$
-\begin{align}
-&\int_0^\infty dp\, p^{D-1} G(p) f_{FD}(p)\notag\\
-=&m^{D}\int_0^\infty dz\, (1+z) z^{(D-2)/2} (z+2)^{(D-2)/2} G\left(m\sqrt{z}\sqrt{z+2}\right) \frac{1}{1+e^{z/\widetilde{T}-b}}\,,\label{eq:fd_int_var_z}
-\end{align}
-where $\widetilde{T}\equiv T/m$.  Note that the integrand can have a square root singularity at $z=0$ and so we cannot simply Taylor expand in $z$.  However we can employ a more general asymptotic expansion  by again making use of the function $F(y,m)$, defined in \eqref{eq:F_y_m_def}, and its expansion \eqref{eq:F_y_m_Taylor}, to rewrite the integral as follows:
-\begin{align}
-    \eqref{eq:fd_int_var_z}=&m^{D}\int_0^\infty dz\, F(\sqrt{z},m)\frac{z^{(D-2)/2}}{1+e^{z/\widetilde{T}-b}}\\
-    =&\sum_{n=0}^{k-1} a_n(m)m^{D}\int_0^\infty dz\,  \frac{z^{(n+D-2)/2}}{1+e^{z/\widetilde{T}-b}}+m^{D}\int_0^\infty dz\, R_k(\sqrt{z},m)\frac{z^{(D-2)/2}}{1+e^{z/\widetilde{T}-b}}\,.\notag
-\end{align}
-The remainder term can be bounded as follows
-\begin{align}
- &\left|m^{D}\int_0^\infty dz\, R_k(\sqrt{z},m)\frac{z^{(D-2)/2}}{1+e^{z/\widetilde{T}-b}}\right|\\
- \leq&m^{D}\int_0^\infty dz\, [\alpha_k(m)+\beta_k(m)z^{q_k/2}]\frac{z^{(k+D-2)/2}}{1+e^{z/\widetilde{T}-b}}\notag\\
- \leq &m^{D}\int_{b\widetilde{T}}^\infty dz\, [\alpha_k(m)+\beta_k(m)z^{q_k/2}]z^{(k+D-2)/2}e^{-z/\widetilde{T}+b}\notag\\
- &+m^{D}\int_0^{{b\widetilde{T}}} dz\, [\alpha_k(m)+\beta_k(m)z^{q_k/2}]z^{(k+D-2)/2}\notag\\
- =&m^{D} \alpha_k(m)\widetilde{T}^{(k+D)/2}\int_{0}^\infty du\,(u+b)^{(k+D-2)/2}e^{-u}\notag\\
- &+m^D\beta_k(m)\widetilde{T}^{(k+D+q_k)/2}\int_{0}^\infty du\,(u+b)^{(k+D-2+q_k)/2}e^{-u}\notag\\
- &+\alpha_k(m)m^{D}\frac{2}{k+D}(b\widetilde{T})^{(k+D)/2}+\beta_k(m)m^{D}\frac{2}{k+D+q_k}(b\widetilde{T})^{(k+D+q_k)/2}\notag\\
- =&O(\widetilde{T}^{(k+D)/2})\,.\label{eq:combined_exp_remainder}
-\end{align}
-\begin{remark}\label{remark:combined_remainder_uniform_in_b}
-We emphasize that the implied constant in the bound \eqref{eq:combined_exp_remainder} depends on $m$ and $b$, though if one restricts $b$ to a bounded set then the constant can be chosen independent of $b$. 
-\end{remark}
-
-Changing variables to $x=z/\widetilde{T}$, recalling the integral formula for the polylogarithm function $\mathrm{Li}_s(y)$, see 3.411.3 in  \cite{Gradshteyn:1943cpj}:
-\begin{align}\label{eq:h_decomp_eval}
-   \int_0^\infty dx \, \frac{x^{n/2}}{1+e^{x-b}}    =-\Gamma(1+n/2)\mathrm{Li}_{1+n/2}(-e^b)\,,
-\end{align}
-and using the  remainder bound \eqref{eq:combined_exp_remainder} we obtain the following asymptotic expansion.
-\begin{theorem}\label{thm:asymp_FD_int_Delta_mu_small}
-Let $D\geq 0$, $k\in\mathbb{Z}^+$, and $G(p)$ be a  $C^k$ function on $[0,\infty)$ whose zeroth through $k$'th derivatives are polynomially bounded.  Let $\mu=m+bT$ for $b\geq 0$. Then
-\begin{align}\label{eq:asymp_FD_int}
-&\int_0^\infty dp\, p^{D-1} G(p) f_{FD}(p)\notag\\
-   =&\sum_{n=0}^{k-1} a_n(m)m^{D}\widetilde{T}^{(n+D)/2}\left(-\Gamma((n+D)/2)\mathrm{Li}_{(n+D)/2}(-e^b)\right)+O(\widetilde{T}^{(k+D)/2})\,,
-\end{align}
-where $\widetilde{T}=T/m$, $a_n$ is defined in \eqref{eq:an_def}, and the implied constant in the error term depends on $m$ but is uniform in $b$ when restricted to a fixed bounded set. 
-\end{theorem}
-Explicit formulas for the first few $a_n$'s can be found in Eq.~\eqref{eq:first_few_a_ns}.
-\subsection{Asymptotic Expansion in the Regime $T\ll m$, $\mu=m$}\label{sec:b_0}
-When $b=0$ (i.e., $\mu=m$) one can use the integral formula \eqref{eq:FD_power_integrals} to further simplify the expansion \eqref{eq:asymp_FD_int}:
-\begin{align}\label{eq:asymp_FD_int_b_0}
-&\int_0^\infty dp\, p^{D-1} G(p) f_{FD}(p)\notag\\
-   =&\sum_{n=0}^{k-1} a_n(m)m^{D}\widetilde{T}^{(n+D)/2}(1-2^{-(n+D-2)/2})\Gamma((n+D)/2)\zeta((n+D)/2)\\
-   &+O(\widetilde{T}^{(k+D)/2})\,.\notag
-\end{align}
-In particular, note that when $D=3$ and $G(0)\neq 0$ the leading order term scales with $\widetilde{T}^{3/2}$.  This is in contrast to the  Sommerfeld expansion (see Eq. (58.1) on page 170 of \cite{landau2013statistical}), which  applies to the case where $\mu-m$ is bounded away from zero and whose leading order term scales with $\widetilde{T}^2$.
 
 
 
 
-\subsection{Asymptotic Expansion in the Regime $\mu-m\ll T\ll m$}\label{sec:decaying_b}
-One can also use the expansion \eqref{eq:asymp_FD_int} to study the regime where $\mu$ approaches $m$ faster than $T$ approaches zero. Mathematically we parameterize this as $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $B\geq 0$, $\gamma>0$.  To proceed, first  Taylor expand \eqref{eq:h_decomp_eval} by differentiating under the integral to obtain
-\begin{align}\label{eq:Li_expansion}
-    &-\Gamma(1+n/2)\mathrm{Li}_{1+n/2}(-e^b)\\
-    =&\int_0^\infty du \, \frac{u^{n/2}}{1+e^{u-b}}    \notag\\
-    =&\int_0^\infty du\,\frac{u^{n/2}}{e^u+1}+b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2}  +O(b^2)\notag\\
-    =&(1 - 2^{-n/2}) \Gamma(1 + n/2) \zeta(1 + n/2)+ b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2} +O(b^2)\,.\notag
-\end{align}
-For $n=0$ the leading order term in the above expression has the indeterminant form $0\cdot \infty$ (this case will only be  relevant to us when $D=2)$; there one should instead use
-\begin{align}
-\int_0^\infty du \frac{1}{1+e^{u-b}}=\ln(1+e^b)=    \ln(2)+\frac{b}{2}+O(b^2)\,.
-\end{align}
-Now substitute \eqref{eq:Li_expansion} into \eqref{eq:asymp_FD_int} and let $b=B\widetilde{T}^\gamma$ (we note that the remainder term in \eqref{eq:asymp_FD_int} is still $O(\widetilde{T}^{1+(k+D-2)/2})$ in this case because $b$ remains bounded as $\widetilde{T}\to 0$; see Remark \ref{remark:combined_remainder_uniform_in_b}). Assuming $\gamma\geq 1/2$ and $D=3$ the expansion \eqref{eq:asymp_FD_int} with $k=2$ simplifies to give the following result.
-\begin{theorem}\label{thm:mu_zero_faster}
-Let $G(p)$ be a $C^2$ function on $[0,\infty)$ whose zeroth through $2$nd derivatives are polynomially bounded.  Let $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $B\geq 0$, $\gamma\geq 1/2$. Then
-\begin{align}
-&\int_0^\infty dp\, p^{2} G(p) f_{FD}(p)\label{eq:FD_b_decay_orig_integral}\\
-   =&a_0(m)m^{3}(1 - 2^{-1/2}) \frac{\pi^{1/2}}{2} \zeta(3/2)\widetilde{T}^{3/2}+  \frac{\pi^2}{12}a_1(m)m^{3}\widetilde{T}^{2}\label{eq:asymp_FD_int_b_decay}\\
-   &+ Ba_0(m)m^{3}\widetilde{T}^{\gamma+3/2}\int_0^\infty du\,\frac{u^{1/2}}{(e^{u/2}+e^{-u/2})^2} 
-   +O(\widetilde{T}^{5/2})\notag
-\end{align}
-as $T\to 0$, where $\widetilde{T}=T/m$ and $a_n$ is defined by \eqref{eq:an_def} with $D=3$.
-\end{theorem}
-Similarly, when $D=2$, the expansion \eqref{eq:asymp_FD_int} with $k=2$ becomes the following:
-\begin{theorem}\label{thm:mu_zero_faster_D2}
-Let $G(p)$ be a $C^2$ function on $[0,\infty)$ whose zeroth through $2$nd derivatives are polynomially bounded.  Let $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $B\geq 0$, $\gamma\geq 1/2$. Then
-\begin{align}
-&\int_0^\infty dp\, p G(p) f_{FD}(p)\\
-   =& a_0(m)m^{2}\ln(2)\widetilde{T}
-+\frac{1}{2}Ba_0(m)m^{2}\widetilde{T}^{1+\gamma}\\
-   &+ a_1(m)m^{2}
- (1 - 2^{-1/2}) \frac{\pi^{1/2}}{2} \zeta(3/2)\widetilde{T}^{3/2}+ 
-   O(\widetilde{T}^{2})\,,\notag
-\end{align}
-as $T\to 0$, where $\widetilde{T}=T/m$ and $a_n$ is defined by \eqref{eq:an_def} with $D=2$.
-\end{theorem}
-To obtain higher order terms in either Theorem \ref{thm:mu_zero_faster} or Theorem \ref{thm:mu_zero_faster_D2} or to consider  $\gamma<1/2$, one simply needs to  continue the expansion \eqref{eq:Li_expansion} to the appropriate higher order before substituting it into \eqref{eq:asymp_FD_int}. We note that the integral over $u$ appearing above is of a form that can be  reliably approximated via standard numerical quadrature.  In Figure \ref{fig:FD_avg_expansion_comparison} we show a comparison between the expansion \eqref{eq:asymp_FD_int_b_decay} and numerical integration of \eqref{eq:FD_b_decay_orig_integral}. 
-
-
-\begin{figure}
-\centering
-\includegraphics[width=0.49\textwidth]{./plot/FD_avg_expansion_comparison.pdf}
-\includegraphics[width=0.49\textwidth]{./plot/FD_avg_expansion_error_comparison.pdf}
-\caption{Comparison of the computation of $\langle G\rangle_{T}$ (left)   using the expansion \eqref{eq:asymp_FD_int_b_decay} for $m=1.5$, $\gamma=1/2$, $B=1$, and $G(p)=(m+p)/E$ with the result obtained via numerical integration of \eqref{eq:FD_b_decay_orig_integral}. The right plot shows the difference between the numerical result and the two expansions.  On a log-log plot  the slopes can be measured to be approximately $5/2$ and $2$, correctly matching the indicated order of the expansion error in $\widetilde{T}$. }\label{fig:FD_avg_expansion_comparison}
-\end{figure}
 
 \section{Sommerfeld Expansion in the Regime $\mu\gg T\gg m$}\label{Section:HighTempSommerfeld}
 The classical Sommerfeld expansion can also be extended to an appropriate high temperature regime, with $\mu$ growing faster than $T$.  Specifically, we paramaterize $\mu$ as a function of $T$ as follows
 \begin{align}\label{eq:mu_infinity_faster}
 \mu=m(1+B\widetilde{T}^{1+\gamma}) \,,\,\,\gamma,B>0\,.   
 \end{align}
-Note that this is the same functional relation as considered in Appendix \ref{sec:decaying_b} but here we study the high-temperature limit.  We will assume that the density of states $H(E)$ is continuous on $[m,\infty)$ and is smooth on a neighborhood of $\infty$ and we have an odd $k>1$ such that the $k$'th derivative of $H$ the following asymptotic behavior as $E\to\infty$ for some $a_k\neq 0$, $q_k\in\mathbb{R}$:
+Note that this is the same functional relation as considered in Section \ref{sec:decaying_b} but here we study the high-temperature limit.  We will assume that the density of states $H(E)$ is continuous on $[m,\infty)$ and is smooth on a neighborhood of $\infty$ and we have an odd $k>1$ such that the $k$'th derivative of $H$ the following asymptotic behavior as $E\to\infty$ for some $a_k\neq 0$, $q_k\in\mathbb{R}$:
 \begin{align}\label{eq:H_deriv_asymp}
-    H^{(k)}(E)=a_kE^{q_k}+ O(E^{q_k-1})\,.
+    H^{(k)}(E)=a_kE^{q_k}+ \mathcal{O}(E^{q_k-1})\,.
 \end{align}
 By integrating this expression and combining it with the assumption that $H$ is continuous we can conclude that $H$ is also polynomially bounded on $[m,\infty)$. We note that, by definition, the asymptotic behavior \eqref{eq:H_deriv_asymp} implies that there exists $E_0$ and $C$ such that $H$ is smooth on $[E_0,\infty)$ and $|H^{(k)}(E)-a_kE^{q_k}|\leq CE^{q_k-1}$ for all $E\in[E_0,\infty)$. For the remainder of this derivation we assume that $T$ is large enough to ensure $\mu\geq E_0$. 
 
@@ -879,24 +899,24 @@ Now use  the decomposition \eqref{Eq_form} to write
     =&\int_\mu^\infty dE \,H(E)\frac{1}{1+e^{(E-\mu)/T}}-\int_m^\mu dE\, H(E)\frac{1}{1+e^{(\mu-E)/T}}\notag\\
 =&T\int_0^\infty dz \,H(\mu+Tz)\frac{1}{1+e^{z}}-T\int^{(\mu-m)/T}_0 dz\, H(\mu-Tz)\frac{1}{1+e^{z}}\,,\label{eq:Sommerfeld_high_temp_z}
 \end{align}
-where we changed variables to $z=(E-\mu)/T$ in the first integral and $z=(\mu-E)/T$ in the second.  Due to the exponentially decaying factor in the integrands in \eqref{eq:Sommerfeld_high_temp_z} along with polynomial boundedness of $H$, we can shrink the upper limits of integration  to $(\mu-E_0)/T$, thereby ensuring that $\mu-Tz\geq E_0$ on the domain of integration, with the  error incurred by this change being $O(T^{-p})$ as $T\to \infty$ for any choice of $p>0$; this which will be negligible compared to the other asymptotic approximations made below.  With this we can write
+where we changed variables to $z=(E-\mu)/T$ in the first integral and $z=(\mu-E)/T$ in the second.  Due to the exponentially decaying factor in the integrands in \eqref{eq:Sommerfeld_high_temp_z} along with polynomial boundedness of $H$, we can shrink the upper limits of integration  to $(\mu-E_0)/T$, thereby ensuring that $\mu-Tz\geq E_0$ on the domain of integration, with the  error incurred by this change being $\mathcal{O}(T^{-p})$ as $T\to \infty$ for any choice of $p>0$; this which will be negligible compared to the other asymptotic approximations made below.  With this we can write
 \begin{align}
     &\int_m^\infty dE\, H(E)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\notag\\
-=&T\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{H(\mu+Tz)- H(\mu-Tz)}{1+e^{z}}+O(T^{-p})\,. \label{eq:Sommerfeld_high_temp_z2}
+=&T\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{H(\mu+Tz)- H(\mu-Tz)}{1+e^{z}}+\mathcal{O}(T^{-p})\,. \label{eq:Sommerfeld_high_temp_z2}
 \end{align}
 As $\mu\pm Tz\geq E_0$ for all $z$ in the domain of integration, we can compute a Taylor expansion with remainder up to order $k$ as follows:
 \begin{align}
  &H(\mu+Tz)- H(\mu-Tz)=\sum_{n=1,n\text{ odd}}^{k-2} 2H^{(n)}(\mu)\frac{(Tz)^n}{n!}\\
  &\qquad\qquad\qquad+(Tz)^k \int_0^1 ds\,\frac{(1-s)^{k-1}}{(k-1)!} (H^{(k)}(\mu+sTz)+H^{(k)}(\mu-sTz))\,. \notag
 \end{align}
-Substituting this into \eqref{eq:Sommerfeld_high_temp_z2} and again making use of the freedom to change the limits of integration while only incurring $O(T^{-p})$ error and using the integral formulas \eqref{eq:FD_power_integrals} we find
+Substituting this into \eqref{eq:Sommerfeld_high_temp_z2} and again making use of the freedom to change the limits of integration while only incurring $\mathcal{O}(T^{-p})$ error and using the integral formulas \eqref{eq:FD_power_integrals} we find
 \begin{align}
     &\int_m^\infty dE\, H(E)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\notag\\
     =&\sum_{n=1,n\text{ odd}}^{k-2} \frac{2T^{n+1}}{n!}H^{(n)}(\mu)\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{z^n}{1+e^{z}}+R_k
-+O(T^{-p})\notag\\
++\mathcal{O}(T^{-p})\notag\\
 =&\sum_{n=1,n\text{ odd}}^{k-2} 2(1-2^{-n})\zeta(n+1)T^{n+1}H^{(n)}(\mu)
 +R_k
-+O(T^{-p})\,,\label{eq:Sommerfeld_high_temp_z3}
++\mathcal{O}(T^{-p})\,,\label{eq:Sommerfeld_high_temp_z3}
 \end{align}
 where the remainder term is given by
 \begin{align}
@@ -909,38 +929,48 @@ Eq.~\eqref{eq:H_deriv_asymp} implies that $|H^{(k)}(E)|\leq CE^{q_k}$ on $[E_0,\
  \int_0^1 ds\, \frac{(1-s)^{k-1}}{(k-1)!} \left(|\mu+sTz|^{q_z}+|\mu-sTz|^{q_k}\right)\notag\\
  \leq&2^{q_k+1}CT^{k+1}\int_0^{\infty} dz \,\frac{z^k}{1+e^{z}}\notag
  \int_0^1 ds\, \frac{(1-s)^{k-1}}{(k-1)!} (\mu^{q_k}+(sTz)^{q_k})\notag\\
- =&O(\mu^{q_k}T^{k+1})\label{eq:Sommerfeld_high_T_remainder_bound}
+ =&\mathcal{O}(\mu^{q_k}T^{k+1})\label{eq:Sommerfeld_high_T_remainder_bound}
 \end{align}
-as $T\to\infty$.  Note that due to the  relation \eqref{eq:mu_infinity_faster} between $\mu$ and $T$ we can equivalently write the error term as $O(T^{(1+\gamma)q_k+k+1})$ and so the $O(T^{-p})$ error term is negligible in comparison. Combining the above remainder bound with \eqref{eq:Sommerfeld_high_temp_z3} we obtain the following asymptotic expansion.
+as $T\to\infty$.  Note that due to the  relation \eqref{eq:mu_infinity_faster} between $\mu$ and $T$ we can equivalently write the error term as $\mathcal{O}(T^{(1+\gamma)q_k+k+1})$ and so the $\mathcal{O}(T^{-p})$ error term is negligible in comparison. Combining the above remainder bound with \eqref{eq:Sommerfeld_high_temp_z3} we obtain the following asymptotic expansion.
 \begin{theorem}\label{thm:high_T_Sommerfeld}
 Let $k\in\mathbb{Z}^+$ be odd and suppose that $H(E)$ is continuous on $[m,\infty)$, is smooth on a neighborhood of $\infty$, and
 \begin{align}
-  H^{(k)}(E)=a_kE^{q_k}+O(E^{q_k-1})  
+  H^{(k)}(E)=a_kE^{q_k}+\mathcal{O}(E^{q_k-1})  
 \end{align}
 as $E\to \infty$ for some $a_k\neq 0$, $q_k\in\mathbb{R}$.  Let $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $\gamma,B>0$, $\widetilde{T}\equiv T/m$. Then
 \begin{align}
     &\int_m^\infty dE\, H(E)f_{FD}(E)\notag\\
-=&\int_m^\mu dE\, H(E)+\sum_{n=1,n\text{ odd}}^{k-2} 2(1-2^{-n})\zeta(n+1)T^{n+1}H^{(n)}(\mu)+O(\mu^{q_k}T^{k+1})\label{eq:Sommerfeld_high_temp_final}
+=&\int_m^\mu dE\, H(E)+\sum_{n=1,n\text{ odd}}^{k-2} 2(1-2^{-n})\zeta(n+1)T^{n+1}H^{(n)}(\mu)+\mathcal{O}(\mu^{q_k}T^{k+1})\label{eq:Sommerfeld_high_temp_final}
 \end{align}
 as $T\to\infty$.
 \end{theorem}
 When $q_k>0$ the absolute error in \eqref{thm:high_T_Sommerfeld}  grows as $T\to\infty$ but the relative error decays, as we now show.  First, integrate \eqref{eq:H_deriv_asymp} twice to get
 \begin{align}\label{eq:integrate_H_asymp}
-    H^{(k-2)}(\mu)=\frac{a_k}{(q_k+1)(q_k+2)}\mu^{q_k+2}+O(\mu^{q_k+1})
+    H^{(k-2)}(\mu)=\frac{a_k}{(q_k+1)(q_k+2)}\mu^{q_k+2}+\mathcal{O}(\mu^{q_k+1})
 \end{align}
-as $\mu\to\infty$, assuming $q_k>0$ (the case of $q_k\leq 0$ is more subtle and requires additional assumptions; we do not consider it here). Therefore, the ratio of the error to the last included term in the expansion behaves as
+as $\mu\to\infty$, assuming $q_k>0$; we do not consider these cases further here). Therefore, the ratio of the error to the last included term in the expansion behaves as
+\begin{align}\label{eq:Sommerfeld_high_T_rel_err}
+&\frac{\mathcal{O}(\mu^{q_k}T^{k+1})}{ T^{k-1} H^{(k-2)}(\mu)}=\frac{T^2}{\mu^2}\frac{\mathcal{O}(1)}{ \frac{a_k}{(q_k+1)(q_k+2)}+\mathcal{O}(\mu^{-1})}= \mathcal{O}(T^{-2\gamma})\,,
+\end{align}
+where we used \eqref{eq:mu_infinity_faster} and also that $a_k\neq 0$. Continuing to integrate \eqref{eq:integrate_H_asymp}, one sees that earlier terms in the sum dominate the error term to a  greater degree.  Therefore the expansion \eqref{eq:Sommerfeld_high_temp_final} properly  captures leading and sub-leading behavior, with a subdominant error term and a decaying relative error when $q_k>0$. When $q_k\leq 0$, integrating \eqref{eq:H_deriv_asymp} becomes more subtle due to the need to handle potential logarithm and constant terms that arise.  However, if instead we make the additional assumptions 
 \begin{align}
-&\frac{O(\mu^{q_k}T^{k+1})}{ T^{k-1} H^{(k-2)}(\mu)}=\frac{T^2}{\mu^2}\frac{O(1)}{ \frac{a_k}{(q_k+1)(q_k+2)}+O(\mu^{-1})}= O(T^{-2\gamma})\,,
+H^{(k-j)}(E)=a_{k-j} E^{q_k+j} +\mathcal{O}(E^{q_k+j-1})
 \end{align}
-where we used \eqref{eq:mu_infinity_faster} and also that $a_k\neq 0$. Continuing to integrate \eqref{eq:integrate_H_asymp}, one sees that earlier terms in the sum dominate the error term to a  greater degree.  Therefore the expansion \eqref{eq:Sommerfeld_high_temp_final} properly  captures leading and sub-leading behavior, with a subdominant error term and a decaying relative error.
+for $j=2,...,k-1$ with $a_{k-j}\neq 0$ then a similar computation to \eqref{eq:Sommerfeld_high_T_rel_err} shows
+\begin{align}
+    \frac{\mathcal{O}(\mu^{q_k}T^{k+1})}{T^{n+1}H^{(n)}(\mu)}= \mathcal{O}(T^{-(k-n)\gamma})
+\end{align}
+for all $n=1,...,k-2$ and therefore the error term in \eqref{eq:Sommerfeld_high_temp_final} is again seen to be dominated by all other terms in the summation as $T\to\infty$. In Figure \ref{fig:FD_avg_expansion_comparison_Sommerfeld} we present a  numerical demonstration of the validity of \eqref{eq:Sommerfeld_high_temp_final} in the high temperature regime. In   Figure \ref{fig:Thm3_vs_Sommerfeld_regions_terms_comp} we plot the domain of validity of the  Sommerfeld expansion  and compare it with that of the expansion from Theorem \ref{thm:mu_zero_faster}.  In particular, we note that the domain of validity when using 2 terms (right) of the Sommerfeld expansion is reduced in many areas, as compared to the region for 1 term (left). This is typical of results such as Theorem \ref{thm:high_T_Sommerfeld} that give asymptotic, but not convergent, expansions.
+
+
+
+
 \begin{figure}
 \centering
-\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_high_temp_comparison.pdf}
-\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_high_temp_relative_error_comparison.pdf}
-\caption{Left: Comparison of asymptotic expansions of $\langle G\rangle_{\Delta T}$, $G(p)=1$, via the Sommerfeld expansion \eqref{eq:Sommerfeld_high_temp_final} (red dot-dashed line) and the new expansion from Tehorem \ref{thm:mu_zero_faster} (dashed green line) where  $\mu=m(1+\widetilde{T}^{3/2})$.  Under this relationship between $\mu$ and $T$, the theory proves that \eqref{eq:Sommerfeld_high_temp_final} is valid at high temperature and \eqref{eq:asymp_FD_int_b_decay} is valid at low temperature; we see this reflected in the figure. Right: The relative error of these asymptotic expansions. \xblue{This is one of the important results in this paper, move it to earlier section} }\label{fig:FD_avg_expansion_comparison}
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_Thm3_regions_D3_1_term.pdf}
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_Thm3_regions_D3_2_terms.pdf}
+\caption{Domains of validity for $D=3$ in $(T/m,\Delta\mu/m)$-space ($\Delta\mu\equiv\mu-m$) of the Sommerfeld expansion (solid blue) and the expansion from Theorem \ref{thm:mu_zero_faster} (dotted green), where validity is defined as the computation of $\langle G\rangle_T$ having relative error  less that $10\%$ for the choice  $G(p)=1$.  Our new expansion from Theorem \ref{thm:mu_zero_faster} applies when $\Delta\mu\ll T\ll m$.  Note that in addition to the well-known low temperature regime, there is also a high-temperature regime ($\mu\gg T\gg m$) where the Sommerfeld expansion is also valid, as proven in Theorem \ref{thm:high_T_Sommerfeld}. }\label{fig:Thm3_vs_Sommerfeld_regions_terms_comp}
 \end{figure}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -963,10 +993,10 @@ We thank Gordon Baym and John W. Clark for their encouragement to pursue researc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Old Version: Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu=m+O(T)$}
+\section{Old Version: Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu=m+\mathcal{O}(T)$}
 {\bf ?? To be removed in final??}
 
-In this section we use the decomposition \eqref{Eq_form} to obtain an asymptotic expansion for the difference between a $D$-dimensional thermal average ($D\geq 2$) at finite and zero temperature as $T\to 0$ and when $\mu=m+O(T)$.   More specifically, we will assume that $\mu=m+bT$ where $b\geq 0$ and that $G(p)$, $p\in[0,\infty)$, is a $C^k$ function whose zeroth through $k$'th derivatives are polynomially bounded.
+In this section we use the decomposition \eqref{Eq_form} to obtain an asymptotic expansion for the difference between a $D$-dimensional thermal average ($D\geq 2$) at finite and zero temperature as $T\to 0$ and when $\mu=m+\mathcal{O}(T)$.   More specifically, we will assume that $\mu=m+bT$ where $b\geq 0$ and that $G(p)$, $p\in[0,\infty)$, is a $C^k$ function whose zeroth through $k$'th derivatives are polynomially bounded.
 
 Start by changing variables to $E=\sqrt{p^2+m^2}$:
 \begin{align}
@@ -1105,22 +1135,22 @@ When $b=0$ (i.e., $\mu=m$) one can use \eqref{eq:h_n_0} to further simplify the 
 \begin{align}
     &\int_0^\infty dp\, p^{D-1} G(p)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\\
     =&\sum_{n=0}^{k-1} a_n(m)m^{D}\widetilde{T}^{(n+D)/2}  
-(1-2^{-(n+D-2)/2})\Gamma\!\left(\frac{n+D}{2}\right)\zeta\!\left(\frac{n+D}{2}\right) +O(\widetilde{T}^{(k+D)/2})\notag\,,
+(1-2^{-(n+D-2)/2})\Gamma\!\left(\frac{n+D}{2}\right)\zeta\!\left(\frac{n+D}{2}\right) +\mathcal{O}(\widetilde{T}^{(k+D)/2})\notag\,,
 \end{align}
 In particular, note that when $D=3$ and $G(0)\neq 0$ the leading order term scales with $\widetilde{T}^{3/2}$.  This is in contrast to the  Sommerfeld expansion (see Eq. (58.1) on page 170 of \cite{landau2013statistical}), which  applies to the case where $\mu-m$ is bounded away from zero and whose leading order term scales with $\widetilde{T}^2$.
-\subsection{Asymptotic Expansion when $\mu=m+O(T^{1+\gamma})$}\label{sec:decaying_b}
+\subsection{Asymptotic Expansion when $\mu=m+\mathcal{O}(T^{1+\gamma})$}\label{sec:decaying_b}
 One can also use the expansion \eqref{eq:expansion_general} to study the regime where $\mu$ approaches zero faster than $T$, i.e., $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $B\geq 0$, $\gamma>0$.  To proceed, first  Taylor expand \eqref{eq:h_decomp_eval} by differentiating under the integral to obtain
 \begin{align}\label{eq:Li_expansion}
     &-\Gamma(1+n/2)\mathrm{Li}_{1+n/2}(-e^b)\\
     =&\int_0^\infty du \, \frac{u^{n/2}}{1+e^{u-b}}    \notag\\
-    =&\int_0^\infty du\,\frac{u^{n/2}}{e^u+1}+b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2}  +O(b^2)\notag\\
-    =&(1 - 2^{-n/2}) \Gamma(1 + n/2) \zeta(1 + n/2)+ b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2} +O(b^2)\,.\notag
+    =&\int_0^\infty du\,\frac{u^{n/2}}{e^u+1}+b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2}  +\mathcal{O}(b^2)\notag\\
+    =&(1 - 2^{-n/2}) \Gamma(1 + n/2) \zeta(1 + n/2)+ b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2} +\mathcal{O}(b^2)\,.\notag
 \end{align}
 For $n=0$ the leading order term in the above expression has the indeterminant form $0\cdot \infty$ (this case will only be  relevant to us when $D=2)$; there one should instead use
 \begin{align}
-\int_0^\infty du \frac{1}{1+e^{u-b}}=\ln(1+e^b)=    \ln(2)+\frac{b}{2}+O(b^2)\,.
+\int_0^\infty du \frac{1}{1+e^{u-b}}=\ln(1+e^b)=    \ln(2)+\frac{b}{2}+\mathcal{O}(b^2)\,.
 \end{align}
-Now substitute \eqref{eq:Li_expansion} into \eqref{eq:expansion_general} and let $b=B\widetilde{T}^\gamma$ (we note that the remainder term in \eqref{eq:expansion_general} is still $O(\widetilde{T}^{1+(k+D-2)/2})$ in this case because $b$ remains bounded as $\widetilde{T}\to 0$; see Remark \ref{remark:uniform_in_b}). Assuming $\gamma\geq 1/2$ and $D=3$ the expansion \eqref{eq:expansion_general} with $k=2$ then becomes 
+Now substitute \eqref{eq:Li_expansion} into \eqref{eq:expansion_general} and let $b=B\widetilde{T}^\gamma$ (we note that the remainder term in \eqref{eq:expansion_general} is still $\mathcal{O}(\widetilde{T}^{1+(k+D-2)/2})$ in this case because $b$ remains bounded as $\widetilde{T}\to 0$; see Remark \ref{remark:uniform_in_b}). Assuming $\gamma\geq 1/2$ and $D=3$ the expansion \eqref{eq:expansion_general} with $k=2$ then becomes 
 \begin{comment}
 \begin{align}
     &\int_0^\infty dp\, p^{D-1} G(p)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\label{eq:b_decay_orig_integral}\\
@@ -1147,4 +1177,14 @@ To obtain higher order terms, or to consider $\gamma<1/2$, one simply needs to  
 \includegraphics[width=0.49\textwidth]{./plot/expansion_comparison.pdf}
 \includegraphics[width=0.49\textwidth]{./plot/expansion_error_comparison.pdf}
 \caption{Comparison of the computation of $\langle G\rangle_{\Delta T}$ (left)   using the expansion \eqref{eq:expansion_b_decay} for $m=1.5$, $\gamma=1/2$, $B=1$, and $G(p)=(m+p)/E$ with the result obtained via numerical integration of \eqref{eq:b_decay_orig_integral}. The right plot shows the difference between the numerical result and the two expansions.  On a log-log plot they have slops of approximately $5/2$ and $2$, matching the indicated order of the expansion error in $\widetilde{T}$. }\label{fig:expansion_comparison}
+\end{figure}
+
+
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{./plot/FD_avg_expansion_comparison.pdf}
+\includegraphics[width=0.49\textwidth]{./plot/FD_avg_expansion_error_comparison.pdf}
+\caption{Comparison of the computation of $\langle G\rangle_{T}$ (left)   using the expansion \eqref{eq:asymp_FD_int_b_decay} for $D=3$, $m=1.5$, $\gamma=1/2$, $B=1$, and $G(p)=(m+p)/E$ with the result obtained via numerical integration of \eqref{eq:FD_b_decay_orig_integral}. The right plot shows the difference between the numerical result and the two expansions.  On a log-log plot  the slopes can be measured to be approximately $5/2$ and $2$, correctly matching the indicated order of the expansion error in $\widetilde{T}$. }\label{fig:FD_avg_expansion_comparison}
 \end{figure}
