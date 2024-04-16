@@ -79,10 +79,10 @@
 %%                 \dgr{MSc, PhD}}\email{iauthor@gmail.com}
 %%=============================================================%%
  
-\author[1]{\hspace*{1.5cm}\fnm{Cheng Tao} \sur{Yang\orc{\orcB}}}
 \author[1]{\fnm{Jeremiah} \sur{Birrell\orc{\orcE}}}
 \author[1,2]{\fnm{Martin} \sur{Formanek\orc{\orcD}}}
 \author[1]{\fnm{Andrew} \sur{Steinmetz\orc{\orcC}}} 
+\author[1]{\fnm{Cheng Tao} \sur{Yang\orc{\orcB}}}
 \author[1]{\fnm{Johann} \sur{Rafelski\orc{\orcA}}}
 
 %\email{iiiauthor@gmail.com}
@@ -324,7 +324,7 @@ To illustrate the separation of the zero and finite temperature contributions to
 &f_\mathrm{FD}(x)=\Theta(-x)+f_\mathrm{T\neq0}(x)+\widetilde f_\mathrm{T\neq0}(x)
 \end{align}
 where the temperature functions are defined as
-\begin{align}
+\begin{align}\label{eq:f_T_nonzero_def}
 &f_\mathrm{T\neq0}=\frac{1}{2}e^{ -|x| }\mathrm{sgn}\left(x\right),\qquad
 \widetilde f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |x| }\tanh\left(\frac{x}{2}\right),\qquad x=\frac{E-\mu}{T}
 %&f_\mathrm{T\neq0}=\frac{1}{2}e^{ - |E-\mu|/T }\mathrm{sgn}\left(\frac{E-\mu}{T}\right),\qquad
@@ -361,8 +361,7 @@ By substituting our novel form of FD distribution, the physical quantity $\langl
  where the $\langle G\rangle_{\Theta}$ corresponds to the zero temperature limit and $\langle G\rangle_{\Delta T}$ represents the finite temperature contribution. We have
 \begin{align}
 &\langle G\rangle_{\Theta}=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}G(p)\Theta\left(\frac{-E+\mu}{T}\right),\qquad E=\sqrt{p^2+m^2},\\
-\label{G_deltaT}
-&\langle G\rangle_{\Delta T}=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}\,G(p)\,\left(f_\mathrm{T\neq0}(p)+\widetilde f_\mathrm{T\neq0}(p)\right).
+&\langle G\rangle_{\Delta T}=\frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)}\int^{\infty}_{0}\!\!dp\,p^{D-1}\,G(p)\,\left(f_\mathrm{T\neq0}(p)+\widetilde f_\mathrm{T\neq0}(p)\right).\label{G_deltaT}
 \end{align}
 
 By employing our decomposition form, we will demonstrate that the integral for finite temperature contribution $\langle G\rangle_{\Delta T}$ can be studied by asymptotic expansion in different regime of interest in physics in following sections. Our novel Fermi distribution can provide the tool to study any physical quantity when temperature approach to zero, and facilitate the connection between the study of finite temperature system to zero temperature limit smoothly. 
@@ -879,7 +878,40 @@ The Fermi distribution Eq.~(\ref{NFF1}) provides us the tool to study or examine
 
 
 
+\section{Connection to Derivation of Classical Sommerfeld Expansion}
+In this section we show that the decomposition \eqref{Eq_form} naturally motivates certain steps in the derivation of the classical Sommerfeld expansion, see, e.g., Eq. (58.1) on page 170 of \cite{landau2013statistical}), i.e., an  asymptotic expansion for the difference between a $D$-dimensional thermal average at finite and zero temperature as $T\to 0$ in the regime.  
 
+
+Here we will assume that $\mu>m$ and the density of states $H(E)$ is  polynomially bounded on $[m,\infty)$ and is $C^k$ on a neighborhood of $\mu$ and will obtain an asymptotic expansion 
+\begin{align}
+    I\equiv\int_m^\infty dE\, H(E) f_{FD}(E)
+\end{align}
+as $T\to 0$.  First we note that for a given $G(p)$ in \eqref{G_deltaT} the corresponding $H(E)$ is given by
+\begin{align}
+   H(E)= \frac{1}{(2\pi)^D}\frac{2\pi^{D/2}}{\Gamma(D/2)} E(E^2-m^2)^{(D-2)/2} G(\sqrt{E^2-m^2}) 
+\end{align}
+and this $H$ has the required properties if $D\geq 2$ and $G$ is polynomially bounded on $[0,\infty)$ and $C^k$ on a neighborhood of $\sqrt{\mu^2-m^2}$ (recall that we are assuming $\mu>m$).
+
+
+We start by using the decomposition \eqref{Eq_form}  to break the integral into zero and nonzero temperature contributions
+\begin{align}
+   I= \int_m^\mu dE\, H(E) +\int_m^\infty dE\, H(E) (f_{T\neq 0}(E)+\widetilde{f}_{T\neq 0}(E))\,.
+\end{align}
+Focusing on the non-zero temperature contribution,  we break this integral into two terms due to the discontinuity of \eqref{eq:f_T_nonzero_def} at $E=\mu$ and then simplify the formulas as follows:
+\begin{align}
+   &\int_m^\infty dE\,H(E) (f_{T\neq 0}(E)+\widetilde{f}_{T\neq 0}(E))\\
+    =  &\int_m^\infty dE\, H(E) \frac{1}{2}e^{-|E-\mu|/T}(\mathrm{sign}(E-\mu)+\tanh((E-\mu)/(2T))\notag\\
+=&\int_\mu^\infty dE\, H(E) \frac{1}{2}e^{-(E-\mu)/T}(1+\tanh((E-\mu)/(2T)))\notag\\
+&+\int_m^\mu dE\,H(E) \frac{1}{2}e^{(E-\mu)/T}(-1+\tanh((E-\mu)/(2T)))\notag\\
+=&\int_\mu^\infty dE\, H(E)  \frac{1}{1+e^{(E-\mu)/T}}-\int_m^\mu dE\,H(E) \frac{1}{1+e^{-(E-\mu)/T}}\,.
+\end{align}
+The exponential decay factor in the integrands implies that the domains of integration can be reduced to an interval $(\mu,\mu-\delta)$ and $(\mu,\mu+\delta)$ respectively, on which $H$ is $C^k$, with the cost being an $O(e^{-c/T})$ error term for some $c>0$.  To see this, compute
+\begin{align}
+    
+\end{align}
+The other term is handled similarly.
+
+where in the last line we changed variables to $z=(E-\mu)/T$ in the first integral and $z=-(E-\mu)/T$ in the second.
 
 
 \section{Sommerfeld Expansion in the Regime $\mu\gg T\gg m$}\label{Section:HighTempSommerfeld}
