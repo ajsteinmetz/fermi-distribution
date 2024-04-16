@@ -17,6 +17,15 @@ style="width: 1em; margin-inline-start: 0.5em"
 alt="ORCID iD icon"/> Cheng Tao Yang</a>, <a
 id="cy-effective-orcid-url"
 class="underline"
+href="https://orcid.org/0000-0002-2289-4856"
+target="orcid.widget"
+rel="me noopener noreferrer"
+style="vertical-align: top"><img
+src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
+style="width: 1em; margin-inline-start: 0.5em"
+alt="ORCID iD icon"/> Jeremiah Birrell</a>, <a
+id="cy-effective-orcid-url"
+class="underline"
 href="https://orcid.org/0000-0003-2704-6474"
 target="orcid.widget"
 rel="me noopener noreferrer"
@@ -32,16 +41,7 @@ rel="me noopener noreferrer"
 style="vertical-align: top"><img
 src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
 style="width: 1em; margin-inline-start: 0.5em"
-alt="ORCID iD icon"/> Andrew Steinmetz</a>, <a
-id="cy-effective-orcid-url"
-class="underline"
-href="https://orcid.org/0000-0002-2289-4856"
-target="orcid.widget"
-rel="me noopener noreferrer"
-style="vertical-align: top"><img
-src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
-style="width: 1em; margin-inline-start: 0.5em"
-alt="ORCID iD icon"/> Jeremiah Birrell</a>, & <a
+alt="ORCID iD icon"/> Andrew Steinmetz</a>, & <a
 id="cy-effective-orcid-url"
 class="underline"
 href="https://orcid.org/0000-0001-8217-1484"
@@ -53,7 +53,7 @@ style="width: 1em; margin-inline-start: 0.5em"
 alt="ORCID iD icon"/> Johann Rafelski</a>
 
 ## cite as
-Yang, C. T., Formanek, M., Steinmetz, A., Birrell, J. & Rafelski, J. In preparation (2024).
+Yang, C. T., Birrell, J., Formanek, M., Steinmetz, A. & Rafelski, J. In preparation (2024).
 
 ## doi/arXiv id
 TBD.
