@@ -17,7 +17,8 @@
 \usepackage{listings}%
 \usepackage[normalem]{ulem}
 \usepackage{comment}
-
+\usepackage{subcaption}
+\usepackage{wrapfig}
 % Make Orcid icon
 \newcommand{\orcidicon}{\includegraphics[width=0.32cm]{orcid.pdf}}
 \newcommand{\orc}[1]{\href{https://orcid.org/#1}{\orcidicon}}
@@ -65,8 +66,7 @@
 \begin{document}
 
 %\title[Article Title]{Cold Ideal Fermi Gas}
-\title[Article Title]%{Zero and finite temperature  components of\newline the Fermi quantum gas}
-{Asymptotic Expansion Near Fermi Surface}
+\title[Article Title]{Characterizing Asymptotic Expansions of Quantum Fermi Gas}
 %%=============================================================%%
 %% Prefix	-> \pfx{Dr}
 %% GivenName	-> \fnm{Joergen W.}
@@ -92,7 +92,7 @@
 
 \affil[2]{\orgdiv{ELI Beamlines Facility}, \orgname{The Extreme Light Infrastructure ERIC}, \orgaddress{ \postcode{\newline 252 41}  \city{Doln\'{i} B\v{r}e\v{z}any}, \country{Czech Republic}}}
 
-\abstract{We derive asymptotic expansions for thermal averages under the Fermi-Dirac distribution in several novel regimes, depending on the relation between the chemical potential $\mu$,  temperature $T$, and mass $m$. 1) We derive a high-temperature variant of the traditional Sommerfeld expansion that holds when $\mu\gg T\gg m$.  2) We derive a refined variant of the Sommerfeld expansion that applies when $T\ll\mu-m\ll m$; this new result resolves  singularities and hence alleviates numerical issues that can arise from a naive application of the traditional Sommerfeld expansion. 3) We show that the Sommerfeld expansion fails in the regime where $\mu-m\ll T\ll m$.  We derive a novel asymptotic  expansion that applies to this regime and confirm the behavior through numerical tests.  As part of these derivations, we utilize a novel decomposition of the Fermi-Dirac distribution into zero and nonzero temperature components.}
+\abstract{We derive asymptotic expansions for thermal averages under the Fermi-Dirac distribution in several novel regimes, depending on the relation between the chemical potential $\mu$,  temperature $T$, and mass $m$. 1) We derive a high-temperature variant of the traditional Sommerfeld expansion that holds when $\mu\gg T\gg m$.  2) We derive a refined variant of the Sommerfeld expansion that applies when $T\ll\mu-m\ll m$; this new result resolves  singularities and hence alleviates numerical issues that can arise from a naive application of the traditional Sommerfeld expansion. 3) We show that the Sommerfeld expansion fails in the regime where $0\leq\mu-m\ll T\ll m$.  We derive a novel asymptotic  expansion that applies to this regime  and confirm the behavior through numerical tests.  As part of these derivations, we utilize a novel decomposition of the Fermi-Dirac distribution into zero and nonzero temperature components.}
 
 %We present a novel mathematical tool allowing to separate the zero and finite temperature phenomena in ideal Fermi gases. To achieve this  we decompose the Fermi distribution into three components. We prove that the singular (step) functions properly add up to the finite temperature smooth Fermi shape. As an example we consider briefly a semi relativistic-electron density where with high chemical potential ($\mu>m$) at low temperature $T<<m$. \xblue{Point out that the Sommerfild doesn't work in certain domain, and our asymptotic expansion work in this domain}}
 
@@ -110,7 +110,7 @@
 \section{Introduction}
 \label{sec1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-{\bf JB: I rewrote the abstract to fit what the current focus of the paper. I think the intro and conclusion sections need to be rewritten to reflect the new structure and emphasis of the paper.}
+{\bf JB: I rewrote the abstract to fit what the current focus of the paper. I think the intro and conclusion sections need to be rewritten to reflect the new structure and emphasis of the paper.}{\xgreen Define what is the Boltzmann limit}
 
 % Andrew's note (2/26/2024): Can the 1st derivative delta function problem present in other mathematical examples of derivatives of distributions? If so, then this clarifies the issue and separates it entirely from the complexity of the FD distribution. Suggested mathematical example to try: f(x) = FD(x) - Heaviside(x). Hmm...
 
@@ -144,7 +144,7 @@ The energy of the last filled state is called the Fermi energy and is denoted by
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.9\textwidth]{./plot/Electron_distribution001}
-\caption{The FD distribution is plotted (solid blue line) as a function of energy with parameters $T=0.012\MeV$ and $\mu=0.461\MeV$. The zero temperature distribution is plotted as the dashed black line.}
+\caption{The FD distribution is plotted (solid blue line) as a function of energy with parameters $T=0.012\MeV$ and $\mu=0.461\MeV$. The zero temperature distribution is plotted as the dashed black line. {\bf JB: I think this figure is not be worth including in the intro, since it really only relates to the decomposition lemma and distracts from the current focus of the paper.}}
 \label{Electron_001}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -169,19 +169,29 @@ Our interest and motivations in studying the Fermi-Dirac distribution was to per
 In this work we derive and contrast expansions in the following regimes which, to the best of the authors' knowledge, are new:
 \begin{enumerate}
 \item {\bf High-temperature Sommerfeld expansion:}  We prove that the traditional Sommerfeld expansion, which applies to the regime $T\ll m$ with $\mu-m$ not small, also applies to the high-temperature regime $\mu\gg T\gg m$ under appropriate assumptions.  In this derivation we utilize a novel decomposition of the FD distribution into finite and zero temperature components, which we find convenient for guiding this and other derivations; see  Theorem \ref{thm:high_T_Sommerfeld_main}.  
-\item {\bf  $T\ll \mu-m\ll m$ ??do we want a descriptive name for this regime??:\xblue{How about the name: Nonrelativistic degenerate Fermi gas region?}}   Application of the traditional Sommerfeld expansion in this regime requires care, as the coefficients in the expansion can become singular when $\mu\to m$.  In Section \ref{sec:asymp_T_0_faster}  we derive a formula that  resolves those singularities so as to avoid such numerical difficulties and obtain an expansion up to a specified order; Theorem \ref{thms:T_decay_faster}.
-\item {\bf  $\mu-m\ll T\ll m$ ??do we want a descriptive name for this regime??:\xblue{How about the name: Nonrelativistic Fermi gas region?}} Finally, we demonstrate that the Sommerfeld expansion can fail completely when  $\mu-m$ and $T$ are both small; see  the example in Figure \ref{fig:Thm3_vs_Sommerfeld_comparison_fixed_T} below. Accurate results in the regime where both $\mu-m\ll T\ll m$   require the use of the new expansion that we derive in Section \ref{sec:asympt_Delta_mu_order_T}.  In Figure \ref{fig:Thm3_vs_Sommerfeld_regions} we preview the new expansion stated in Theorem \ref{thm:mu_zero_faster}, comparing its domain of validity to that of the  Sommerfeld expansion  in dimensions $D=2,3$.  In particular, note that the new expansion derived here covers a distinct new region in the $(T/m,\Delta\mu/m)$-plane. 
+\item {\bf  Nonrelativistic degenerate Fermi gas region:}   Application of the traditional Sommerfeld expansion in this regime requires care, as the coefficients in the expansion can become singular when $\mu\to m$.  In Section \ref{sec:asymp_T_0_faster}  we derive a formula that  resolves those singularities so as to avoid such numerical difficulties and obtain an expansion up to a specified order; see Theorem \ref{thms:T_decay_faster}.
+\item {\bf Quantum Boltzmann dust:} {\bf JB: I think this name might cause confusion because it might make people think this region corresponds to the Boltzmann region in fig 2 instead of our new region.} Finally, we demonstrate that the Sommerfeld expansion can fail completely when $0\leq\mu-m\ll T\ll m$; see  the example in Figure \ref{fig:FD_avg_expansion_comparison_Sommerfeld} below. Accurate results in this regime    require the use of the new expansion that we derive in Section \ref{sec:asympt_Delta_mu_order_T}.  In Figure \ref{fig:Thm3_vs_Sommerfeld_regions} we preview the new expansion stated in Theorem \ref{thm:mu_zero_faster}, comparing its domain of validity to that of the  Sommerfeld expansion  in dimensions $D=2,3$.  In particular, note that the new expansion derived here covers a distinct new region in the $(T/m,\Delta\mu/m)$-plane. 
 \end{enumerate}
 
 
 
+
+\begin{wrapfigure}{R}{0.5\textwidth}
+\centering
+   \includegraphics[width=.5\textwidth]{plot/Sommerfeld_vs_ours_vs_Boltzmann_regions_1_term.pdf}
+\caption{Domains in $(T/m,\Delta\mu/m)$-space ($\Delta\mu\equiv\mu-m$) of the Sommerfeld expansion (solid blue), Boltzmann approximation (lined purple), and the new expansion from Theorem \ref{thm:mu_zero_faster} (dotted green) have relative error less than $10\%$ or $20\%$ when computing $\langle G\rangle_T$  for the choice  $G(p)=1$.  The new  expansion from Theorem \ref{thm:mu_zero_faster} applies when $|\Delta\mu|\ll T\ll m$, and its region of validity is larger in dimension $D=2$ (bottom) than in $D=3$ (top).  Note that in addition to the well-known low temperature regime, there is also a high-temperature regime ($\mu\gg T\gg m$) where the Sommerfeld expansion is valid; we prove this in Theorem \ref{thm:high_T_Sommerfeld_main} below. In these figures we also show the number of particles per de Broglie volume (solid black contours). From these one can see that the domain of validity of Theorem 3 lies in a moderate density region where quantum effects are nontrivial.   }\label{fig:Thm3_vs_Sommerfeld_regions}
+\end{wrapfigure}
+
+\clearpage
+
+\begin{comment}
 \begin{figure}
 \centering
 \includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_ours_regions_D3_1_term.pdf}
 \includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_ours_regions_D2_1_term.pdf}
-\caption{Domains of validity in $(T/m,\Delta\mu/m)$-space ($\Delta\mu\equiv\mu-m$) of the Sommerfeld expansion (solid blue) and the new expansion from Theorem \ref{thm:mu_zero_faster} (dotted green),  where validity is defined as the computation of $\langle G\rangle_T$ having relative error  less that $10\%$ for the choice  $G(p)=1$.  Our  expansion from Theorem \ref{thm:mu_zero_faster} applies when $\Delta\mu\ll T\ll m$, and its region of validity is larger in dimension $D=2$ (right) than in $D=3$ (left).  Note that in addition to the well-known low temperature regime, there is also a high-temperature regime ($\mu\gg T\gg m$) where the Sommerfeld expansion is valid; this can be seen in the figure and we prove this in Theorem \ref{thm:high_T_Sommerfeld_main} below. }\label{fig:Thm3_vs_Sommerfeld_regions}
+\caption{Domains of validity in $(T/m,\Delta\mu/m)$-space ($\Delta\mu\equiv\mu-m$) of the Sommerfeld expansion (solid blue) and the new expansion from Theorem \ref{thm:mu_zero_faster} (dotted green),  where validity is defined as the computation of $\langle G\rangle_T$ having relative error  less that $10\%$ for the choice  $G(p)=1$.  Our  expansion from Theorem \ref{thm:mu_zero_faster} applies when $\Delta\mu\ll T\ll m$, and its region of validity is larger in dimension $D=2$ (right) than in $D=3$ (left).  Note that in addition to the well-known low temperature regime, there is also a high-temperature regime ($\mu\gg T\gg m$) where the Sommerfeld expansion is valid; this can be seen in the figure and we prove this in Theorem \ref{thm:high_T_Sommerfeld_main} below. The domains of applicability of the expansions predominantly  lie in the particle dominated region where $n\gg \overline{n}$ ($n$ and $\overline{n}$ denote number of particles and antiparticles respectively); see the solid black contours.  The pair dominated region on the right side of the domain requires other methods.}\label{fig:Thm3_vs_Sommerfeld_regions}
 \end{figure}
-
+\end{comment}
 
 
 
@@ -405,7 +415,7 @@ The zero and finite temperature components of the decomposition here considered 
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  In Fig.~\ref{Fermi_Component} we plot the exact Fermi distribution (black line $f$), the zero (purple lines, $\Theta(-x)$) and finite temperature components (blue lines for $f_\mathrm{T\neq0}$ and red line for $\widetilde f_\mathrm{T\neq0}$) of the Fermi distribution as a function of energy.
-In contrast to the brute force approach for eliminating the $T=0$ limit from the low-temperature Fermi distribution, our analytic form of distribution offers a more numerically advantageous method for separating the finite temperature components. This is advantage arise from the behavior of: 1) both finite temperature contributions $f_\mathrm{T\neq0}$ and $\widetilde f_\mathrm{T\neq0}$ always have the same sign 2) the exponential factor for finite temperature components provide the naturally exponentially suppresses for the large energy. In this scenario, it reduces the numerical noise when evaluate the numerical integral beyond the zero temperature approximation. {\bf I'm not sure these factors do really grant the decomposition numerical advantages.  We certainly have no examples that demonstrate this.  Our use of it is to naturally motivate several steps in the derivation.  I think its best not to make these claims, else we might be asked to substantiate them and I'm not sure they can be.}
+%In contrast to the brute force approach for eliminating the $T=0$ limit from the low-temperature Fermi distribution, our analytic form of distribution offers a more numerically advantageous method for separating the finite temperature components. This is advantage arise from the behavior of: 1) both finite temperature contributions $f_\mathrm{T\neq0}$ and $\widetilde f_\mathrm{T\neq0}$ always have the same sign 2) the exponential factor for finite temperature components provide the naturally exponentially suppresses for the large energy. In this scenario, it reduces the numerical noise when evaluate the numerical integral beyond the zero temperature approximation. {\bf I'm not sure these factors do really grant the decomposition numerical advantages.  We certainly have no examples that demonstrate this.  Our use of it is to naturally motivate several steps in the derivation.  I think its best not to make these claims, else we might be asked to substantiate them and I'm not sure they can be.}
 
 To illustrate the advantage of our novel form of distribution can be used to address the integrals common in statistical physics especially when temperature $T\to0$, we examine the thermal average of any given function $G(p)$ with smoothness and polynomial growth bounds on it and it's derivatives as $p\to \infty$. The thermal average physical quantity, denoted as $\langle G\rangle_T$, is determined by integrating over the D-dimensional phase space 
 \begin{align}\label{eq:avg_G_T}
@@ -502,7 +512,7 @@ Substituting this into \eqref{eq:traditional_sommerfeld_I} we obtain the traditi
  &\int_m^\infty dE\, H(E) f_{FD}(E)\notag\\
   = &\int_m^\mu dE\, H(E)+\sum_{n=1,n\text{ odd}}^{k-2} 2(1-2^{-n})\zeta(n+1)T^{n+1} H^{(n)}(\mu) +\mathcal{O}(T^{k+1})\,.\label{eq:traditional_Sommerfeld_final}
    \end{align}
-Interestingly, there is also a high temperature regime ($\mu\gg T\gg m$) where the traditional Sommerfeld expansion provides a good approximation to thermal averages.  The proof is very similar to the traditional case, and so we defer it to Appendix  \ref{Section:HighTempSommerfeld}. An illustration of this result can be found in Figure \ref{fig:FD_avg_expansion_comparison_Sommerfeld} below.
+Interestingly, there is also a high temperature regime ($\mu\gg T\gg m$) where the traditional Sommerfeld expansion provides a good approximation to thermal averages.  The proof is very similar to the traditional case, and so we defer it to Appendix  \ref{Section:HighTempSommerfeld}. 
 \begin{theorem}[High-Temperature Sommerfeld Expansion]\label{thm:high_T_Sommerfeld_main}
 Let $k\in\mathbb{Z}^+$ be odd and suppose that $H(E)$ is continuous on $[m,\infty)$, is smooth on a neighborhood of $\infty$, and
 \begin{align}
@@ -515,6 +525,14 @@ as $E\to \infty$ for some $a_k\neq 0$, $q_k\in\mathbb{R}$.  Let $\mu=m(1+B(T/m)^
 \end{align}
 as $T\to\infty$.
 \end{theorem}
+
+In   Figure \ref{fig:Thm3_vs_Sommerfeld_regions_terms_comp_deBroglie}   we plot the domain of validity of the  Sommerfeld expansion  and compare it with that of the new expansion that we derive in Theorem \ref{thm:mu_zero_faster} below.  Note that in addition to the well-known low temperature regime, there is also a high-temperature regime ($\mu\gg T\gg m$) where the Sommerfeld expansion is also valid; this can be seen in the figure and reflects the result  stated in Theorem \ref{thm:high_T_Sommerfeld_main}. Our new expansion, Theorem \ref{thm:mu_zero_faster} below, applies when $|\Delta\mu|\ll T\ll m$ and the domain of applicability is larger in dimension $D=2$ (right) than in $D=3$ (left).  We show the number of particles per de Broglie volume in the solid black contours, from which we can see that our new expansion applies in a moderate density regime where quantum effects are non-negligible but that is distinct from the high-density regime where the Sommerfeld expansion applies.
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_ours_regions_D3_1_term_deBroglie.pdf}
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_ours_regions_D2_1_term_deBroglie.pdf}
+\caption{Domains of validity  in $(T/m,\Delta\mu/m)$-space ($\Delta\mu\equiv\mu-m$) of the Sommerfeld expansion (solid blue) and the expansion from Theorem \ref{thm:mu_zero_faster} (dotted green), where validity is defined as the computation of $\langle G\rangle_T$ having relative error  less that $10\%$ for the choice  $G(p)=1$.   }\label{fig:Thm3_vs_Sommerfeld_regions_terms_comp_deBroglie}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsubsection{Numerical illustration: $G(p)=1$}
@@ -720,7 +738,7 @@ This completes the asymptotic expansion of the second integral in  \eqref{eq:2_i
 \centering
 \includegraphics[width=0.49\textwidth]{./plot/FD_avg_expansion_comparison_T_decay_faster.pdf}
 \includegraphics[width=0.49\textwidth]{./plot/FD_avg_expansion_error_comparison_T_decay_faster.pdf}
-\caption{Comparison of the computation of $\langle G\rangle_{\Delta T}$   (left) using the expansion \eqref{eq:T_faster_expansion_final} for $\gamma=1/2$, $d=1$, and $G(p)=E$, with the result obtained via numerical integration of \eqref{eq:T_faster_orig_integral}. The right plot shows the difference between the numerical result and the expansion \eqref{eq:T_faster_expansion_final} corresponding to $k=3$ and $k=4$.  The right plot shows the difference between the numerical result and the two expansions.  On a log-log plot  the slopes can be measured to be approximately $4$ and $7/2$, correctly matching the stated order of the expansion error in $\Delta\widetilde{\mu}$.}\label{fig:T_faster_expansion_comparison}
+\caption{Comparison of the computation of $\langle G\rangle_{\Delta T}$   (left) using the expansion \eqref{eq:T_faster_expansion_final} for $\gamma=1/2$, $d=1$, and $G(p)=E$, with the result obtained via numerical integration of \eqref{eq:T_faster_orig_integral}. The right plot shows the difference between the numerical result and the expansion \eqref{eq:T_faster_expansion_final} corresponding to $k=3$ and $k=4$.  The right plot shows the difference between the numerical result and the two expansions.  On a log-log plot  the slopes of the error can be measured to be approximately $4$ (for $k=4$) and $7/2$ (for $k=3$), correctly matching the order of the expansion error in $\Delta\widetilde{\mu}$ as stated in \eqref{eq:T_faster_expansion_final}.}\label{fig:T_faster_expansion_comparison}
 \end{figure}
 
 
@@ -732,9 +750,9 @@ Let $D\geq 2$,     $\mu=m+\Delta\mu$, $\Delta\mu>0$ and $\widetilde{T}=d\Delta\w
     =& \sum_{n=0}^{k-1} da_n(m)m^{D}\Delta\widetilde{\mu}^{(n+D)/2+\gamma}\label{eq:T_faster_expansion_final}\\
     &\times\sum_{j=1,\mathrm{odd}}^{\lceil(k-n)/(2\gamma)\rceil-1}
  2d^j\Delta\widetilde{\mu}^{j\gamma}\left(\prod_{\ell=0}^{j-1}[(n+D-2)/2-\ell] \right)(1-2^{-j})\zeta(j+1) \notag\\
-    &+\mathcal{O}\left(\Delta\widetilde{\mu}^{(k+D)/2+\gamma}\right)\,,\notag
+    &+\mathcal{O}\left(\Delta\widetilde{\mu}^{(k+D)/2+\gamma}\right)\notag
 \end{align} 
-where
+as $\Delta\widetilde{\mu}\to 0^+$, where
 \begin{align}\label{eq:an_def}
 a_n(m)=\frac{1}{n!}\partial_y^n|_{y=0}\left[  (y^2+1)(  y^2+2)^{(D-2)/2} G\left(my\sqrt{y^2+2}\right)\right]\,.
 \end{align}
@@ -750,8 +768,8 @@ where the primes denote derivatives of $G(p)$ with respect to $p$. In dimension 
 
 
 
-\section{Beyond Sommerfeld: Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu=m+\mathcal{O}(T)$}\label{sec:asympt_Delta_mu_order_T}
-In this section we study thermal averages when $\mu-m\ll T\ll m$, a regime where we demonstrate a complete failure of the Sommerfeld formula. The techniques used here are similar to those employed in Section \ref{sec:asymp_T_0_faster}, but this time they lead to a wholly distinct and novel asymptotic expansion.  In Figure \ref{fig:FD_avg_expansion_comparison_Sommerfeld} we preview this new result, presented in Theorem \ref{thm:mu_zero_faster} below.  In this figure we have parameterized $\mu-m=\mathcal{O}(T^{3/2})$ and so $\mu-m$ approaches zero faster than $T$.  In this regime, the Sommerfeld expansion \eqref{eq:traditional_Sommerfeld_final} (red dot-dashed lines) fails at low temperature while our Theorem \ref{thm:mu_zero_faster} (green dashed lines) provides an accurate approximation.  One can see from the figure that the traditional Sommerfeld expansion is in fact a high temperature approximation under this  relation between $\mu$ and $T$; this corresponds to the behavior noted by Theorem \ref{thm:high_T_Sommerfeld_main} above.
+\section{Beyond Sommerfeld: Asymptotic Expansion of Thermal Averages as $T\to 0$ with $\mu-m\ll T$}\label{sec:asympt_Delta_mu_order_T}
+In this section we study thermal averages when $\mu-m\ll T\ll m$, a regime where we demonstrate a complete failure of the Sommerfeld formula. The techniques used here are similar to those employed in Section \ref{sec:asymp_T_0_faster}, but this time they lead to a wholly distinct and novel asymptotic expansion.  In Figure \ref{fig:FD_avg_expansion_comparison_Sommerfeld} we preview this new result, which is stated in Theorem \ref{thm:mu_zero_faster} below.  In this figure we have parameterized $\mu-m=\mathcal{O}(T^{3/2})$ and so $\mu-m$ approaches zero faster than $T$.  In this regime, the Sommerfeld expansion \eqref{eq:traditional_Sommerfeld_final} (red dot-dashed lines) fails at low temperature while our Theorem \ref{thm:mu_zero_faster} (green dashed lines) provides an accurate approximation.  One can see from the figure that the traditional Sommerfeld expansion is in fact a high temperature approximation under this  relation between $\mu$ and $T$; this corresponds to the behavior proven in Theorem \ref{thm:high_T_Sommerfeld_main} above.
 \begin{figure}[b]
 \centering
 \includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_high_temp_comparison.pdf}
@@ -762,7 +780,7 @@ In this section we study thermal averages when $\mu-m\ll T\ll m$, a regime where
 %The decomposition of the FD distribution presented above is not as useful for studying the regime where $\mu$ approaches to $m$ as fast or faster than $T$ approaches to $0$.  This can be motivated by noting that the zero temperature contribution  is defined with respect to a fixed $\mu$ and this choice makes little sense  in the regime where $\mu=m+\mathcal{O}(T)$.  In this appendix we show that an asymptotic expansion as $T\to 0$ in this regime is more easily obtained by using the FD distribution as a whole, in contrast to the cases studied in Sections  \ref{sec:asymp_T_0_faster} and \ref{Section:HighTempSommerfeld}.
 
 
-  To make our assumptions explicit, here we  consider a $D$-dimensional thermal average ($D\geq 2$) of a function   $G(p)$, $p\in[0,\infty)$ that is  $C^k$ and whose zeroth through $k$'th derivatives are polynomially bounded, and  will assume that $\mu=m+bT$ where $b\geq 0$. To begin the derivation, first change variables  in \eqref{eq:avg_G_T}  to $z=(E-m)/m$ so that $p=m\sqrt{z}\sqrt{z+2}$:
+We now proceed with a detailed derivation of the new expansion.  To make our assumptions explicit, here we  consider a $D$-dimensional thermal average ($D\geq 2$) of a function   $G(p)$, $p\in[0,\infty)$ that is  $C^k$ and whose zeroth through $k$'th derivatives are polynomially bounded, and  will assume that $\mu=m+bT$, $b\in\mathbb{R}$. To begin the derivation, first change variables  in \eqref{eq:avg_G_T}  to $z=(E-m)/m$ so that $p=m\sqrt{z}\sqrt{z+2}$:
 \begin{align}
 &\int_0^\infty dp\, p^{D-1} G(p) f_{FD}(p)\notag\\
 =&m^{D}\int_0^\infty dz\, (1+z) z^{(D-2)/2} (z+2)^{(D-2)/2} G\left(m\sqrt{z}\sqrt{z+2}\right) \frac{1}{1+e^{z/\widetilde{T}-b}}\,,\label{eq:fd_int_var_z}
@@ -772,7 +790,7 @@ where $\widetilde{T}\equiv T/m$.  Note that the integrand can have a square root
     \eqref{eq:fd_int_var_z}=&m^{D}\int_0^\infty dz\, F(\sqrt{z},m)\frac{z^{(D-2)/2}}{1+e^{z/\widetilde{T}-b}}\\
     =&\sum_{n=0}^{k-1} a_n(m)m^{D}\int_0^\infty dz\,  \frac{z^{(n+D-2)/2}}{1+e^{z/\widetilde{T}-b}}+m^{D}\int_0^\infty dz\, R_k(\sqrt{z},m)\frac{z^{(D-2)/2}}{1+e^{z/\widetilde{T}-b}}\,.\notag
 \end{align}
-The remainder term can be bounded as follows
+When $b\geq 0$ the integral of the remainder term can be bounded as follows
 \begin{align}
  &\left|m^{D}\int_0^\infty dz\, R_k(\sqrt{z},m)\frac{z^{(D-2)/2}}{1+e^{z/\widetilde{T}-b}}\right|\\
  \leq&m^{D}\int_0^\infty dz\, [\alpha_k(m)+\beta_k(m)z^{q_k/2}]\frac{z^{(k+D-2)/2}}{1+e^{z/\widetilde{T}-b}}\notag\\
@@ -781,24 +799,35 @@ The remainder term can be bounded as follows
  =&m^{D} \alpha_k(m)\widetilde{T}^{(k+D)/2}\int_{0}^\infty du\,(u+b)^{(k+D-2)/2}e^{-u}\notag\\
  &+m^D\beta_k(m)\widetilde{T}^{(k+D+q_k)/2}\int_{0}^\infty du\,(u+b)^{(k+D-2+q_k)/2}e^{-u}\notag\\
  &+\alpha_k(m)m^{D}\frac{2}{k+D}(b\widetilde{T})^{(k+D)/2}+\beta_k(m)m^{D}\frac{2}{k+D+q_k}(b\widetilde{T})^{(k+D+q_k)/2}\notag\\
- =&\mathcal{O}(\widetilde{T}^{(k+D)/2})\,.\label{eq:combined_exp_remainder}
+ =&\mathcal{O}(\widetilde{T}^{(k+D)/2})\label{eq:combined_exp_remainder}
 \end{align}
+as $\widetilde{T}\to 0$. When $b<0$ the integral of the remainder can be bounded more simply as follows
+\begin{align}
+ &\left|m^{D}\int_0^\infty dz\, R_k(\sqrt{z},m)\frac{z^{(D-2)/2}}{1+e^{z/\widetilde{T}-b}}\right|\\
+ \leq&m^{D}\int_0^\infty dz\, (\alpha_k(m)+\beta_k(m)z^{q_k/2}) 
+z^{(k+D-2)/2}e^{-z/\widetilde{T}+b}\notag\\
+ \leq&\alpha_k(m)m^{D}e^b\widetilde{T}^{(k+D)/2}\int_0^\infty du\, u^{(k+D-2)/2}e^{-u}\notag\\
+ &+\beta_k(m)m^{D}e^b\widetilde{T}^{(q_k+k+D)/2}\int_0^\infty du\,u^{(q_k+k+D-2)/2}e^{-u} 
+\notag\\
+ =&\mathcal{O}(\widetilde{T}^{(k+D)/2})\label{eq:combined_exp_remainder2}
+\end{align}
+as $\widetilde{T}\to 0$.
 \begin{remark}\label{remark:combined_remainder_uniform_in_b}
-We emphasize that the implied constant in the bound \eqref{eq:combined_exp_remainder} depends on $m$ and $b$, though if one restricts $b$ to a bounded set then the constant can be chosen independent of $b$. 
+We emphasize that the implied constant in the bounds \eqref{eq:combined_exp_remainder} and \eqref{eq:combined_exp_remainder2} depends on $m$ and $b$, though if one restricts $b$ to a  set that is bounded above then the constants can be chosen independent of $b$. 
 \end{remark}
 
 Changing variables to $x=z/\widetilde{T}$, recalling the integral formula for the polylogarithm function $\mathrm{Li}_s(y)$, see 3.411.3 in  \cite{Gradshteyn:1943cpj}:
 \begin{align}\label{eq:h_decomp_eval}
    \int_0^\infty dx \, \frac{x^{n/2}}{1+e^{x-b}}    =-\Gamma(1+n/2)\mathrm{Li}_{1+n/2}(-e^b)\,,
 \end{align}
-and using the  remainder bound \eqref{eq:combined_exp_remainder} we obtain the following asymptotic expansion.
+and using the  remainder bounds \eqref{eq:combined_exp_remainder} and \eqref{eq:combined_exp_remainder2} we obtain the following asymptotic expansion.
 \begin{theorem}\label{thm:asymp_FD_int_Delta_mu_small}
-Let $D\geq 0$, $k\in\mathbb{Z}^+$, and $G(p)$ be a  $C^k$ function on $[0,\infty)$ whose zeroth through $k$'th derivatives are polynomially bounded.  Let $\mu=m+bT$ for $b\geq 0$. Then
+Let $D\geq 0$, $k\in\mathbb{Z}^+$, and $G(p)$ be a  $C^k$ function on $[0,\infty)$ whose zeroth through $k$'th derivatives are polynomially bounded.  Let $\mu=m+bT$ for $b\in\mathbb{R}$. Then
 \begin{align}\label{eq:asymp_FD_int}
 &\int_0^\infty dp\, p^{D-1} G(p) f_{FD}(p)\notag\\
    =-&\sum_{n=0}^{k-1} a_n(m)m^{D}\widetilde{T}^{(n+D)/2}\Gamma[(n+D)/2]\mathrm{Li}_{(n+D)/2}(-e^b)+\mathcal{O}\left(\widetilde{T}^{(k+D)/2}\right)\,,
 \end{align}
-where $\widetilde{T}=T/m$, $a_n$ is defined in \eqref{eq:an_def}, and the implied constant in the error term depends on $m$ but is uniform in $b$ when restricted to a fixed bounded set. 
+as $\widetilde{T}\to 0$, where $\widetilde{T}=T/m$, $a_n$ is defined in \eqref{eq:an_def}, and the implied constant in the error term depends on $m$ but is uniform in $b$ when restricted to a fixed  set that is bounded above. 
 \end{theorem}
 Explicit formulas for the first few $a_n$'s can be found in Eq.~\eqref{eq:first_few_a_ns}.
 \subsection{Asymptotic Expansion in the Regime $T\ll m$, $\mu=m$}\label{sec:b_0}
@@ -808,37 +837,37 @@ When $b=0$ (i.e., $\mu=m$) one can use the integral formula \eqref{eq:FD_power_i
    =&\sum_{n=0}^{k-1} a_n(m)m^{D}\widetilde{T}^{(n+D)/2}\left(1-2^{-(n+D-2)/2}\right)\Gamma[(n+D)/2]\zeta[(n+D)/2]\\
    &+\mathcal{O}\left(\widetilde{T}^{(k+D)/2}\right)\notag
 \end{align}
-while for $D=2$  we have
+as  $\widetilde{T}\to 0$, while for $D=2$  we have
 \begin{align}\label{eq:asymp_FD_int_b_D2}
 &\int_0^\infty dp\, p G(p) f_{FD}(p)\notag\\
    =& a_0(m)m^2  \ln(2)\widetilde{T}+ 
    \sum_{n=1}^{k-1} a_n(m)m^{2}\widetilde{T}^{(n+2)/2}\left(1-2^{-n/2}\right)\Gamma[(n+2)/2]\zeta[(n+D)/2]\\
-   &+\mathcal{O}\left(\widetilde{T}^{(k+2)/2}\right)\,.\notag
+   &+\mathcal{O}\left(\widetilde{T}^{(k+2)/2}\right)\notag
 \end{align}
-In particular, note that when $D=3$ and $G(0)\neq 0$ the leading order term scales with $\widetilde{T}^{3/2}$.  This is in contrast to the  Sommerfeld expansion \eqref{eq:traditional_Sommerfeld_final}, which  applies to the case where $\mu-m$ is bounded away from zero and whose leading order term scales with $\widetilde{T}^2$.
+as $\widetilde{T}\to 0$. In particular, note that when $D=3$ and $G(0)\neq 0$ the leading order term scales with $\widetilde{T}^{3/2}$.  This is in contrast to the  Sommerfeld expansion \eqref{eq:traditional_Sommerfeld_final}, which  applies to the case where $\mu-m$ is bounded away from zero and whose leading order term scales with $\widetilde{T}^2$.
 
 
 
 
-\subsection{Asymptotic Expansion in the Regime $\mu-m\ll T\ll m$}\label{sec:decaying_b}
+\subsection{Asymptotic Expansion in the Regime $|\mu-m|\ll T\ll m$}\label{sec:decaying_b}
 One can also use the expansion \eqref{eq:asymp_FD_int} to study the regime where $\mu$ approaches $m$ faster than $T$ approaches zero. Mathematically we parameterize this as 
 \begin{align}\label{eq:mu_decay_faster}
-\mu=m(1+B\widetilde{T}^{1+\gamma})\,,\,\,\,  B\geq 0\,,\,\, \gamma>0\,.   
+\mu=m(1+B\widetilde{T}^{1+\gamma})\,,\,\,\,  B\in\mathbb{R}\,,\,\, \gamma>0\,.   
 \end{align}
   To proceed, first  Taylor expand \eqref{eq:h_decomp_eval}  to first order in $b$ by differentiating under the integral to obtain
 \begin{align}\label{eq:Li_expansion}
     &-\Gamma(1+n/2)\mathrm{Li}_{1+n/2}(-e^b)\\
     =&\int_0^\infty du \, \frac{u^{n/2}}{1+e^{u-b}}    \notag\\
     =&\int_0^\infty du\,\frac{u^{n/2}}{e^u+1}+b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2}  +\mathcal{O}(b^2)\notag\\
-    =&(1 - 2^{-n/2}) \Gamma(1 + n/2) \zeta(1 + n/2)+ b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2} +\mathcal{O}(b^2)\,.\notag
+    =&(1 - 2^{-n/2}) \Gamma(1 + n/2) \zeta(1 + n/2)+ b\int_0^\infty du\,\frac{u^{n/2}}{(e^{u/2}+e^{-u/2})^2} +\mathcal{O}(b^2)\,.\label{eq:Li_expansion_final}
 \end{align}
-For $n=0$ the leading order term in the above expression has the indeterminate form $0\cdot \infty$ (this case will only be  relevant to us when $D=2)$; there one should instead use
+See   \cite{dingle1957fermi} and \cite{10.1063/1.1350634} for  in-depth discussion of the computation of \eqref{eq:Li_expansion}. For $n=0$ the leading order term in \eqref{eq:Li_expansion_final} has the indeterminate form $0\cdot \infty$ (this case will only be  relevant to us when $D=2)$; there one should instead use
 \begin{align}
 \int_0^\infty du \frac{1}{1+e^{u-b}}=\ln(1+e^b)=    \ln(2)+\frac{b}{2}+\mathcal{O}(b^2)\,.
 \end{align}
-Now substitute \eqref{eq:Li_expansion} into \eqref{eq:asymp_FD_int} and let $b=B\widetilde{T}^\gamma$ (we note that the remainder term in \eqref{eq:asymp_FD_int} is still $\mathcal{O}(\widetilde{T}^{1+(k+D-2)/2})$ in this case because $b$ remains bounded as $\widetilde{T}\to 0$; see Remark \ref{remark:combined_remainder_uniform_in_b}). The expansion \eqref{eq:asymp_FD_int} with $k=2$ then simplifies to give the following result.
+Now substitute \eqref{eq:Li_expansion} into \eqref{eq:asymp_FD_int} and let $b=B\widetilde{T}^\gamma$. We note that the remainder term in \eqref{eq:asymp_FD_int} is still $\mathcal{O}(\widetilde{T}^{1+(k+D-2)/2})$ in this case because $b$ remains bounded above (in fact, it remains bounded) as $\widetilde{T}\to 0$; see Remark \ref{remark:combined_remainder_uniform_in_b}. The expansion \eqref{eq:asymp_FD_int} with $k=2$ then simplifies to give the following result.
 \begin{theorem}\label{thm:mu_zero_faster}
-Let $G(p)$ be a $C^2$ function on $[0,\infty)$ whose zeroth through $2$nd derivatives are polynomially bounded.  Let $\mu=m(1+B\widetilde{T}^{1+\gamma})$, $B\geq 0$, $\gamma>0$. 
+Let $G(p)$ be a $C^2$ function on $[0,\infty)$ whose zeroth through $2$nd derivatives are polynomially bounded.  Let $\mu=m(1+B\widetilde{T}^{1+\gamma})$ where  $B\in\mathbb{R}$, $\gamma>0$, $\widetilde{T}=T/m$. 
 \begin{enumerate}
     \item For $D=3$ we have
 \begin{align}
@@ -846,14 +875,14 @@ Let $G(p)$ be a $C^2$ function on $[0,\infty)$ whose zeroth through $2$nd deriva
    =& a_0(m)m^{3}(1 - 2^{-1/2}) \frac{\pi^{1/2}}{2} \zeta(3/2)\widetilde{T}^{3/2}+ a_0(m)m^{3}B\widetilde{T}^{3/2+\gamma}\int_0^\infty du\,\frac{u^{1/2}}{(e^{u/2}+e^{-u/2})^2} \label{eq:asymp_FD_int_b_decay}\\
    &+a_1(m)m^{3} \frac{\pi^2}{12}\widetilde{T}^{2}+\mathcal{O}(\widetilde{T}^{3/2+2\gamma})+\mathcal{O}\left(\widetilde{T}^{5/2}\right)\notag
 \end{align}
-as $T\to 0$, where $\widetilde{T}=T/m$ and $a_n$ is defined by \eqref{eq:an_def} with $D=3$.
+as $\widetilde{T}\to 0$, where $a_n$ is defined by \eqref{eq:an_def} with $D=3$.
 \item For $D=2$ we have
 \begin{align}
 &\int_0^\infty dp\, p G(p) f_{FD}(p)\\
    =& a_0(m)m^{2}\ln(2)\widetilde{T}+\frac{1}{2}a_0(m)m^{2}B\widetilde{T}^{1+\gamma}+a_1(m)m^{2}(1 - 2^{-1/2})  \frac{\pi^{1/2}}{2} \zeta(3/2)\widetilde{T}^{3/2}\label{eq:asymp_FD_int_b_decay_D2}\\
    &+\mathcal{O}\left(\widetilde{T}^{1+2\gamma}\right)+\mathcal{O}\left(\widetilde{T}^{2}\right)\notag
 \end{align}
-as $T\to 0$, where $\widetilde{T}=T/m$ and $a_n$ is defined by \eqref{eq:an_def} with $D=2$.
+as $\widetilde{T}\to 0$, where $a_n$ is defined by \eqref{eq:an_def} with $D=2$.
 \end{enumerate}
 \begin{comment}
 %%version for $\gamma\geq 1/2$
@@ -882,8 +911,9 @@ as $T\to 0$, where $\widetilde{T}=T/m$ and $a_n$ is defined by \eqref{eq:an_def}
 \begin{remark}
  When referring to the number of terms in the expansions in Theorem \ref{thm:mu_zero_faster} and related results, e.g., in Figure \ref{fig:FD_avg_expansion_comparison_Sommerfeld},  we mean the index $k$ that was used in \eqref{eq:asymp_FD_int} to obtain the expansion.
 \end{remark}
-The dominant error term in \eqref{eq:asymp_FD_int_b_decay} and \eqref{eq:asymp_FD_int_b_decay_D2} depends on whether $\gamma<1/2$ or $\gamma\geq 1/2$. To obtain higher order terms in these expansions one simply needs to  continue the expansion \eqref{eq:Li_expansion} to the appropriate higher order before substituting it into \eqref{eq:asymp_FD_int}; however, we again emphasize that these results are asymptotic expansions and so going to higher order does not necessarily increase the accuracy at a given $T$. We note that the integral over $u$ appearing in \eqref{eq:asymp_FD_int_b_decay}  does not depend on the value of any of the parameters and is of a form that can be  reliably approximated via standard numerical quadrature.  In Figure \ref{fig:FD_avg_expansion_comparison_Sommerfeld} we show a comparison between the expansion \eqref{eq:asymp_FD_int_b_decay} (green dashed line) and numerical integration of \eqref{eq:FD_b_decay_orig_integral} (solid black line).  We also compare with the Sommerfeld expansion \eqref{eq:traditional_Sommerfeld_final} (red dot-dashed line).  Note that the Sommerfeld expansion completely fails in the low temperature regime when $\mu$ and $T$ are related by \eqref{eq:mu_decay_faster} (i.e., when $\mu-m\ll T$).  Under the parameterization \eqref{eq:mu_decay_faster}, the traditional Sommerfeld expansion is actually seen to be valid at high temperature; we proved this to be the case in Theorem \ref{thm:high_T_Sommerfeld_main}.
+The dominant error term in \eqref{eq:asymp_FD_int_b_decay} and \eqref{eq:asymp_FD_int_b_decay_D2} depends on whether $\gamma<1/2$ or $\gamma\geq 1/2$. To obtain higher order terms in these expansions one simply needs to  continue the expansion \eqref{eq:Li_expansion} to the appropriate higher order before substituting it into \eqref{eq:asymp_FD_int}; however, we again emphasize that these results are asymptotic expansions and so going to higher order does not necessarily increase the accuracy at a given $T$. We note that the integral over $u$ appearing in \eqref{eq:asymp_FD_int_b_decay}  does not depend on the value of any of the parameters and is of a form that can be  reliably approximated via standard numerical quadrature.  When applying Theorem \ref{thm:mu_zero_faster} to given values of $\mu$ and $T$, i.e., without reference to any parameterization of the form \eqref{eq:mu_decay_faster}, we fix $B=1$ if $\mu>m$ and $B=-1$ if $\mu<m$ and then choose the unique $\gamma$ that makes the equality \eqref{eq:mu_decay_faster} hold (the case $\mu=m$ was already considered in Section \ref{sec:b_0}). This is not the only possible strategy but it is the one we consistently employ in this work, e.g., in Figure \ref{fig:Thm3_vs_Sommerfeld_regions}.
 
+See Figure \ref{fig:FD_avg_expansion_comparison_Sommerfeld} above for a comparison between the expansion \eqref{eq:asymp_FD_int_b_decay} (green dashed line) and numerical integration of \eqref{eq:FD_b_decay_orig_integral} (solid black line).  We also compare with the Sommerfeld expansion \eqref{eq:traditional_Sommerfeld_final} (red dot-dashed line).  Note that the Sommerfeld expansion completely fails in the low temperature regime when $\mu$ and $T$ are related by \eqref{eq:mu_decay_faster}  with $0<\mu-m\ll T$.  Under the parameterization \eqref{eq:mu_decay_faster}, the traditional Sommerfeld expansion is actually seen to be valid at high temperature; we proved this to be the case in Theorem \ref{thm:high_T_Sommerfeld_main}. 
 
 
 
@@ -922,12 +952,12 @@ Our novel decomposition guides the asymptotic analysis of $\langle G\rangle_{\De
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
-\section{Sommerfeld Expansion in the Regime $\mu\gg T\gg m$}\label{Section:HighTempSommerfeld}
+\section{Derivation of Sommerfeld Expansion in the Regime $\mu\gg T\gg m$}\label{Section:HighTempSommerfeld}
 The traditional Sommerfeld expansion can also be extended to an appropriate high temperature regime, with $\mu$ growing faster than $T$.  Specifically, we paramaterize $\mu$ as a function of $T$ as follows
 \begin{align}\label{eq:mu_infinity_faster}
-\mu=m(1+B(T/m)^{1+\gamma}) \,,\,\,\gamma,B>0\,.   
+\mu=m[1+B(T/m)^{1+\gamma}] \,,\,\,\gamma,B>0\,.   
 \end{align}
-Note that this is the same functional relation as considered in Section \ref{sec:decaying_b} but here we study the high-temperature limit.  We will assume that the density of states $H(E)$ is continuous on $[m,\infty)$ and is smooth on a neighborhood of $\infty$ and we have an odd $k>1$ such that the $k$'th derivative of $H$ the following asymptotic behavior as $E\to\infty$ for some $a_k\neq 0$, $q_k\in\mathbb{R}$:
+Note that this is the same functional relation as considered in Section \ref{sec:decaying_b} but here we study the high-temperature limit.  We will assume that the density of states $H(E)$ is continuous on $[m,\infty)$ and  we have an odd $k>1$ such that $H$ is $C^k$ on a neighborhood of $\infty$  and the $k$'th derivative of $H$  satisfies the following asymptotic behavior as $E\to\infty$ for some $a_k\neq 0$, $q_k\in\mathbb{R}$:
 \begin{align}\label{eq:H_deriv_asymp}
     H^{(k)}(E)=a_kE^{q_k}+ \mathcal{O}(E^{q_k-1})\,.
 \end{align}
@@ -944,12 +974,14 @@ where we changed variables to $z=(E-\mu)/T$ in the first integral and $z=(\mu-E)
     &\int_m^\infty dE\, H(E)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\notag\\
 =&T\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{H(\mu+Tz)- H(\mu-Tz)}{1+e^{z}}+\mathcal{O}(T^{-p})\,. \label{eq:Sommerfeld_high_temp_z2}
 \end{align}
-As $\mu\pm Tz\geq E_0$ for all $z$ in the domain of integration, we can compute a Taylor expansion with remainder up to order $k$ as follows:
-\begin{align}
+As $\mu\pm Tz\geq E_0$ for all $z$ in the domain of integration, we can compute a Taylor expansion with remainder up to order $k$ on this domain as follows:
+\begin{align}\label{eq:H_diff_Taylor}
  &H(\mu+Tz)- H(\mu-Tz)=\sum_{n=1,n\text{ odd}}^{k-2} 2H^{(n)}(\mu)\frac{(Tz)^n}{n!}\\
  &\qquad\qquad\qquad+(Tz)^k \int_0^1 ds\,\frac{(1-s)^{k-1}}{(k-1)!} \left[H^{(k)}(\mu+sTz)+H^{(k)}(\mu-sTz)\right]\,. \notag
 \end{align}
-Substituting this into \eqref{eq:Sommerfeld_high_temp_z2} and again making use of the freedom to change the limits of integration while only incurring $\mathcal{O}(T^{-p})$ error and using the integral formula \eqref{eq:FD_power_integrals} we find
+We emphasize that the reason for restricting the domain of integration in \eqref{eq:Sommerfeld_high_temp_z2} (with the difference being accounted for in the error term) is that we are only assuming $H$ is $C^k$ on a neighborhood of $\infty$, and so the Taylor expansion argument is only valid on the restricted domain.
+
+Substituting \eqref{eq:H_diff_Taylor} this into \eqref{eq:Sommerfeld_high_temp_z2} we can compute
 \begin{align}
     &\int_m^\infty dE\, H(E)(f_{T\neq 0}+\widetilde{f}_{T\neq 0})\notag\\
     =&\sum_{n=1,n\text{ odd}}^{k-2} \frac{2T^{n+1}}{n!}H^{(n)}(\mu)\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{z^n}{1+e^{z}}+R_k
@@ -958,12 +990,12 @@ Substituting this into \eqref{eq:Sommerfeld_high_temp_z2} and again making use o
 +R_k
 +\mathcal{O}(T^{-p})\,,\label{eq:Sommerfeld_high_temp_z3}
 \end{align}
-where the remainder term is given by
+where to obtain the last line we again made use of the freedom to change the limits of integration while only incurring $\mathcal{O}(T^{-p})$ error and then used the integral formula \eqref{eq:FD_power_integrals}. The integrated remainder term is given by
 \begin{align}
     R_k\equiv T^{k+1}\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{z^k}{1+e^{z}}
  \int_0^1 ds\, \frac{(1-s)^{k-1}}{(k-1)!} (H^{(k)}(\mu+sTz)+H^{(k)}(\mu-sTz))\,.
 \end{align}
-Eq.~\eqref{eq:H_deriv_asymp} implies that $|H^{(k)}(E)|\leq CE^{q_k}$ on $[E_0,\infty)$ for some $C>0$. Using this we can bound the remainder as follows:
+Eq.~\eqref{eq:H_deriv_asymp} implies that $|H^{(k)}(E)|\leq CE^{q_k}$ on $[E_0,\infty)$ for some $C>0$. Using this we can bound the integral of the remainder as follows:
 \begin{align}
     |R_k|\leq &CT^{k+1}\int_0^{\frac{\mu-E_0}{T}} dz \,\frac{z^k}{1+e^{z}}
  \int_0^1 ds\, \frac{(1-s)^{k-1}}{(k-1)!} \left(|\mu+sTz|^{q_z}+|\mu-sTz|^{q_k}\right)\notag\\
@@ -971,26 +1003,16 @@ Eq.~\eqref{eq:H_deriv_asymp} implies that $|H^{(k)}(E)|\leq CE^{q_k}$ on $[E_0,\
  \int_0^1 ds\, \frac{(1-s)^{k-1}}{(k-1)!} (\mu^{q_k}+(sTz)^{q_k})\notag\\
  =&\mathcal{O}(\mu^{q_k}T^{k+1})\label{eq:Sommerfeld_high_T_remainder_bound}
 \end{align}
-as $T\to\infty$.  Note that due to the  relation \eqref{eq:mu_infinity_faster} between $\mu$ and $T$ we can equivalently write the error term as $\mathcal{O}(T^{(1+\gamma)q_k+k+1})$ and so the $\mathcal{O}(T^{-p})$ error term is negligible in comparison. Combining the above remainder bound with \eqref{eq:Sommerfeld_high_temp_z3} completes the proof of the asymptotic expansion stated in Theorem \ref{thm:high_T_Sommerfeld_main}, which we repeat below:
-\begin{figure}
-\centering
-\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_ours_regions_D3_1_term.pdf}
-\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_ours_regions_D3_2_terms.pdf}
-\caption{Domains of validity for $D=3$ in $(T/m,\Delta\mu/m)$-space ($\Delta\mu\equiv\mu-m$) of the Sommerfeld expansion (solid blue) and the expansion from Theorem \ref{thm:mu_zero_faster} (dotted green), where validity is defined as the computation of $\langle G\rangle_T$ having relative error  less that $10\%$ for the choice  $G(p)=1$.  Our new expansion from Theorem \ref{thm:mu_zero_faster} applies when $\Delta\mu\ll T\ll m$.  Note that in addition to the well-known low temperature regime, there is also a high-temperature regime ($\mu\gg T\gg m$) where the Sommerfeld expansion is also valid; is can be seen in the figure and reflects the result  proven in Theorem \ref{thm:high_T_Sommerfeld}. }\label{fig:Thm3_vs_Sommerfeld_regions_terms_comp}
-\end{figure}
-\begin{theorem}\label{thm:high_T_Sommerfeld}
-Let $k\in\mathbb{Z}^+$ be odd and suppose that $H(E)$ is continuous on $[m,\infty)$, is smooth on a neighborhood of $\infty$, and
-\begin{align}
-  H^{(k)}(E)=a_kE^{q_k}+\mathcal{O}(E^{q_k-1})  
-\end{align}
-as $E\to \infty$ for some $a_k\neq 0$, $q_k\in\mathbb{R}$.  Let $\mu=m(1+B(T/m)^{1+\gamma})$, $\gamma,B>0$. Then
+as $T\to\infty$.  Note that due to the  relation \eqref{eq:mu_infinity_faster} between $\mu$ and $T$ we can equivalently write the error term as $\mathcal{O}(T^{(1+\gamma)q_k+k+1})$ and so the $\mathcal{O}(T^{-p})$ error term is negligible in comparison. Combining the  bound \eqref{eq:Sommerfeld_high_T_remainder_bound} with \eqref{eq:Sommerfeld_high_temp_z3} we obtain 
 \begin{align}
     &\int_m^\infty dE\, H(E)f_{FD}(E)\notag\\
 =&\int_m^\mu dE\, H(E)+\sum_{n=1,n\text{ odd}}^{k-2} 2(1-2^{-n})\zeta(n+1)T^{n+1}H^{(n)}(\mu)+\mathcal{O}(\mu^{q_k}T^{k+1})\label{eq:Sommerfeld_high_temp_final}
 \end{align}
-as $T\to\infty$.
-\end{theorem}
-When $q_k>0$ the absolute error in \eqref{eq:Sommerfeld_high_temp_final}  grows as $T\to\infty$ but the relative error decays, as we now show.  First, integrate \eqref{eq:H_deriv_asymp} twice to get
+as $T\to\infty$. This completes the proof of Theorem \ref{thm:high_T_Sommerfeld_main}.
+
+
+
+Unless $q_k$ is sufficiently negative the absolute error in \eqref{eq:Sommerfeld_high_temp_final_main}  grows as $T\to\infty$, however the relative error decays as we now show.  First, integrate \eqref{eq:H_deriv_asymp} twice  at the Fermi energy $E=\mu$ to get
 \begin{align}\label{eq:integrate_H_asymp}
     H^{(k-2)}(\mu)=\frac{a_k}{(q_k+1)(q_k+2)}\mu^{q_k+2}+\mathcal{O}(\mu^{q_k+1})
 \end{align}
@@ -1006,17 +1028,23 @@ for $j=2,...,k-1$ with $a_{k-j}\neq 0$ then a similar computation to \eqref{eq:S
 \begin{align}
     \frac{\mathcal{O}(\mu^{q_k}T^{k+1})}{T^{n+1}H^{(n)}(\mu)}= \mathcal{O}(T^{-(k-n)\gamma})
 \end{align}
-for all $n=1,...,k-2$ and therefore the error term in \eqref{eq:Sommerfeld_high_temp_final} is again seen to be dominated by all other terms in the summation as $T\to\infty$. In Figure \ref{fig:FD_avg_expansion_comparison_Sommerfeld} we present a  numerical demonstration of the validity of \eqref{eq:Sommerfeld_high_temp_final} in the high temperature regime. In   Figure \ref{fig:Thm3_vs_Sommerfeld_regions_terms_comp} we plot the domain of validity of the  Sommerfeld expansion  and compare it with that of the expansion from Theorem \ref{thm:mu_zero_faster}.  In particular, we note that the domain of validity when using 2 terms (right) of the Sommerfeld expansion is reduced in many areas, as compared to the region for 1 term (left). This is typical of results such as Theorem \ref{thm:high_T_Sommerfeld} that give asymptotic, but not convergent, expansions.
+for all $n=1,...,k-2$ and therefore the error term in \eqref{eq:Sommerfeld_high_temp_final} is again seen to be dominated by all other terms in the summation as $T\to\infty$.  In Figure \ref{fig:Thm3_vs_Sommerfeld_regions_terms_comp_part_antipart} we demonstrate numerically that the Sommerfeld expansion applies to the high-temperature region from Theorem \ref{thm:high_T_Sommerfeld_main}, in addition to the well-known low temperature regime.  We compare it with our new expansion from Theorem \ref{thm:mu_zero_faster}, which applies when $|\Delta\mu|\ll T\ll m$.   The domains of applicability of the expansions predominantly lie in the particle dominated region where $n\gg \overline{n}$ ($n$ and $\overline{n}$ denote number of particles and antiparticles respectively); see the solid black contours.  The pair dominated region ($\overline{n}\approx n$) on the right side of the domain requires other methods. We note that the domain of validity when using 2 terms (right) of the Sommerfeld expansion is reduced in many areas, as compared to the region for 1 term (left). This is typical of results such as Theorem \ref{thm:high_T_Sommerfeld_main} that give asymptotic, but not convergent, expansions.
 
 
 
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_ours_regions_D3_1_term_part_antipart.pdf}
+\includegraphics[width=0.49\textwidth]{./plot/Sommerfeld_vs_ours_regions_D3_2_terms_part_antipart.pdf}
+\caption{Domains of validity for $D=3$ in $(T/m,\Delta\mu/m)$-space ($\Delta\mu\equiv\mu-m$) of the Sommerfeld expansion (solid blue) and the expansion from Theorem \ref{thm:mu_zero_faster} (dotted green), where validity is defined as the computation of $\langle G\rangle_T$ having relative error  less that $10\%$ for the choice  $G(p)=1$.  }\label{fig:Thm3_vs_Sommerfeld_regions_terms_comp_part_antipart}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \backmatter
 
 \bmhead{Acknowledgments}
-We thank Gordon Baym and John W. Clark for their encouragement to pursue research into this novel form of the Fermi distribution which lead to this work.
+We thank Gordon Baym and John W. Clark for their encouragement to pursue research into the novel form of the Fermi distribution which lead to this work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{novel-fermi-function-refs}
@@ -1225,7 +1253,7 @@ To obtain higher order terms, or to consider $\gamma<1/2$, one simply needs to  
 \centering
 \includegraphics[width=0.49\textwidth]{./plot/FD_avg_expansion_comparison.pdf}
 \includegraphics[width=0.49\textwidth]{./plot/FD_avg_expansion_error_comparison.pdf}
-\caption{Comparison of the computation of $\langle G\rangle_{T}$ (left)   using the expansion \eqref{eq:asymp_FD_int_b_decay} for $D=3$, $m=1.5$, $\gamma=1/2$, $B=1$, and $G(p)=(m+p)/E$ with the result obtained via numerical integration of \eqref{eq:FD_b_decay_orig_integral}. The right plot shows the difference between the numerical result and the two expansions.  On a log-log plot  the slopes can be measured to be approximately $5/2$ and $2$, correctly matching the indicated order of the expansion error in $\widetilde{T}$. }\label{fig:FD_avg_expansion_comparison}
+\caption{Comparison of the computation of $\langle G\rangle_{T}$ (left)   using the expansion \eqref{eq:asymp_FD_int_b_decay} for $D=3$, $m=1.5$, $\gamma=1/2$, $B=1$, and $G(p)=(m+p)/E$ with the result obtained via numerical integration of \eqref{eq:FD_b_decay_orig_integral}. The right plot shows the difference between the numerical result and the two expansions.  On a log-log plot  the slopes of the error can be measured to be approximately $5/2$ and $2$, correctly matching the indicated order of the expansion error in $\widetilde{T}$. }\label{fig:FD_avg_expansion_comparison}
 \end{figure}
 
 
