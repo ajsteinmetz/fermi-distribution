@@ -1,20 +1,11 @@
 # fermi-distribution
-Zero and finite temperature components of the Fermi quantum gas
+Characterizing Asymptotic Expansions of Quantum Fermi Gas
 
 ## abstract
-We present a novel mathematical tool allowing to separate the zero and finite temperature phenomena in ideal Fermi gases. To achieve this  we decompose the Fermi distribution into three components. We prove that the singular (step) functions properly add up to the finite temperature smooth Fermi shape. As an example we consider briefly a semi relativistic-electron density where with high chemical potential ($\mu>m$) at low temperature $T\ll m$.
+We characterize in a novel manner  the physical properties of the low temperature Fermi gas in the degenerate domain  as a function of temperature and chemical potential. For the first time we obtain low temperature $T$ results in the domain where several fermions are found within a de Broglie spatial cell. In this regime, the usual high degeneracy Sommerfeld expansion fails. The other known semi-classical Boltzmann domain applies when fewer than one particle is found in the de Broglie cell. The relative errors of the three approximate methods (Boltzmann limit, Sommerfeld expansion, and the new domain of several particles in the de Broglie cell) are quantified. In order to extend the understanding of the Sommerfeld expansion, we developed a novel characterization of the Fermi distribution allowing the separation of the finite and zero temperature phenomena.
 
 ## authors
 <a
-id="cy-effective-orcid-url"
-class="underline"
-href="https://orcid.org/0000-0001-5038-8427"
-target="orcid.widget"
-rel="me noopener noreferrer"
-style="vertical-align: top"><img
-src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
-style="width: 1em; margin-inline-start: 0.5em"
-alt="ORCID iD icon"/> Cheng Tao Yang</a>, <a
 id="cy-effective-orcid-url"
 class="underline"
 href="https://orcid.org/0000-0002-2289-4856"
@@ -41,7 +32,16 @@ rel="me noopener noreferrer"
 style="vertical-align: top"><img
 src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
 style="width: 1em; margin-inline-start: 0.5em"
-alt="ORCID iD icon"/> Andrew Steinmetz</a>, & <a
+alt="ORCID iD icon"/> Andrew Steinmetz</a>, <a
+id="cy-effective-orcid-url"
+class="underline"
+href="https://orcid.org/0000-0001-5038-8427"
+target="orcid.widget"
+rel="me noopener noreferrer"
+style="vertical-align: top"><img
+src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
+style="width: 1em; margin-inline-start: 0.5em"
+alt="ORCID iD icon"/> Cheng Tao Yang</a>, <a
 id="cy-effective-orcid-url"
 class="underline"
 href="https://orcid.org/0000-0001-8217-1484"
@@ -53,13 +53,13 @@ style="width: 1em; margin-inline-start: 0.5em"
 alt="ORCID iD icon"/> Johann Rafelski</a>
 
 ## cite as
-Yang, C. T., Birrell, J., Formanek, M., Steinmetz, A. & Rafelski, J. In preparation (2024).
+Birrell, J., Formanek, M., Steinmetz, A., Yang, C. T., Rafelski, J. Characterizing Asymptotic Expansions of Quantum Fermi Gas. (2024) e-print: arXiv:2405.05287 [cond-mat.quant-gas].
 
 ## doi/arXiv id
-TBD.
+* https://doi.org/10.48550/arXiv.2405.05287
 
 ## license
-Copyright © 2023 by the authors.
+Copyright © 2023 by the authors. Submitted to the International Journal of Theoretical Physics.
 
 <!--
 Useful internet links with discussions:
