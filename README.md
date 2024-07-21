@@ -53,13 +53,14 @@ style="width: 1em; margin-inline-start: 0.5em"
 alt="ORCID iD icon"/> Johann Rafelski</a>
 
 ## cite as
-Birrell, J., Formanek, M., Steinmetz, A., Yang, C. T., Rafelski, J. Characterizing Asymptotic Expansions of Quantum Fermi Gas. (2024) e-print: arXiv:2405.05287 [cond-mat.quant-gas].
+Birrell, J., Formanek, M., Steinmetz, A. et al. Fermi-Dirac Integrals in Degenerate Regimes: Novel Asymptotic Expansion. Int J Theor Phys 63, 163 (2024).
 
 ## doi/arXiv id
+* https://doi.org/10.1007/s10773-024-05695-8
 * https://doi.org/10.48550/arXiv.2405.05287
 
 ## license
-Copyright © 2023 by the authors. Submitted to the International Journal of Theoretical Physics.
+Copyright © 2024, the authors, under exclusive licence to Springer Science Business Media, LLC, part of Springer Nature
 
 <!--
 Useful internet links with discussions:
