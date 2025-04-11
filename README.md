@@ -60,11 +60,6 @@ Birrell, J., Formanek, M., Steinmetz, A. et al. Fermi-Dirac Integrals in Degener
 * https://doi.org/10.48550/arXiv.2405.05287
 
 ## license
-Copyright © 2024, the authors, under exclusive licence to Springer Science Business Media, LLC, part of Springer Nature
+Copyright © 2024, The Author(s), under exclusive licence to Springer Science Business Media, LLC, part of Springer Nature
 
-<!--
-Useful internet links with discussions:
-https://physics.stackexchange.com/q/760248
-https://math.stackexchange.com/a/83747
-https://physics.stackexchange.com/q/736837
--->
+Springer Nature or its licensor (e.g. a society or other partner) holds exclusive rights to this article under a publishing agreement with the author(s) or other rightsholder(s); author self-archiving of the accepted manuscript version of this article is solely governed by the terms of such publishing agreement and applicable law.
