@@ -1,8 +1,8 @@
 # fermi-distribution
-Characterizing Asymptotic Expansions of Quantum Fermi Gas
+Fermi-Dirac Integrals in Degenerate Regimes: Novel Asymptotic Expansion
 
 ## abstract
-We characterize in a novel manner  the physical properties of the low temperature Fermi gas in the degenerate domain  as a function of temperature and chemical potential. For the first time we obtain low temperature $T$ results in the domain where several fermions are found within a de Broglie spatial cell. In this regime, the usual high degeneracy Sommerfeld expansion fails. The other known semi-classical Boltzmann domain applies when fewer than one particle is found in the de Broglie cell. The relative errors of the three approximate methods (Boltzmann limit, Sommerfeld expansion, and the new domain of several particles in the de Broglie cell) are quantified. In order to extend the understanding of the Sommerfeld expansion, we developed a novel characterization of the Fermi distribution allowing the separation of the finite and zero temperature phenomena.
+We characterize in a novel manner the physical properties of the low temperature Fermi gas in the degenerate domain as a function of temperature and chemical potential. For the first time we obtain low temperature T results in the domain where several fermions are found within a de Broglie spatial cell. In this regime, the usual high degeneracy Sommerfeld expansion fails. The other known semi-classical Boltzmann domain applies when fewer than one particle is found in the de Broglie cell. We also improve on the understanding of the Sommerfeld expansion in the regime where the chemical potential is close to the mass and also in the high temperature regime. In these calculcations we use a novel characterization of the Fermi distribution allowing the separation of the finite and zero temperature phenomena. The relative errors of the three approximate methods (Boltzmann limit, Sommerfeld expansion, and the new domain of several particles in the de Broglie cell) are quantified.
 
 ## authors
 <a
